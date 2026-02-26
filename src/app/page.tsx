@@ -1,101 +1,129 @@
+"use client";
+
+import { useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end start"],
+  });
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "50vh"]);
+
+  return (
+    <main className="min-h-screen">
+      {/* HERO SECTION */}
+      <section ref={container} className="relative h-screen flex items-center justify-center overflow-hidden bg-[#1c1c1c]">
+        <motion.div style={{ y }} className="absolute inset-0 w-full h-full z-0">
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          <Image
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2670&auto=format&fit=crop"
+            alt="Luxury Residence"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+
+        <div className="relative z-10 container mx-auto px-6 text-center text-white mt-16">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[10px] md:text-xs uppercase tracking-[0.4em] mb-6 text-[#c5a265]"
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Redefining Private Care
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="Heading-Display mx-auto max-w-5xl"
           >
-            Read our docs
-          </a>
+            A Life of <span className="italic text-[#c5a265] font-light">Dignity,</span><br />
+            Surrounded by Comfort.
+          </motion.h1>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* PHILOSOPHY SECTION */}
+      <section className="py-32 md:py-48 bg-[#faf9f6]">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h2 className="Heading-H2 text-[#1c1c1c] mb-8">
+                The Standard of <br /><span className="italic text-[#c5a265]">Excellence.</span>
+              </h2>
+              <p className="text-[#8e948c] text-lg lg:text-xl leading-relaxed max-w-xl font-light">
+                At Homely Care, we believe that choosing support shouldn&apos;t mean compromising on lifestyle. We provide an environment that feels like a prestigious private residence, where dignity and independence remain our highest priorities.
+              </p>
+
+              <Link href="/about-us" className="mt-12 flex items-center gap-6 cursor-pointer group">
+                <div className="h-[1px] w-12 bg-[#c5a265] group-hover:w-24 transition-all duration-500" />
+                <span className="text-xs uppercase tracking-[0.2em] font-medium group-hover:text-[#c5a265] transition-colors">Discover Our Story</span>
+              </Link>
+            </motion.div>
+
+            <div className="relative h-[600px] w-full lg:w-[90%] ml-auto">
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                className="absolute inset-0 z-10"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1628611225249-6c3c7c689552?q=80&w=2670&auto=format&fit=crop"
+                  alt="Interior"
+                  fill
+                  className="object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
+                />
+              </motion.div>
+              <div className="absolute -bottom-8 -left-8 w-2/3 h-2/3 bg-[#ebe9e1] z-0" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES PREVIEW */}
+      <section className="py-32 bg-[#1c1c1c] text-white">
+        <div className="container mx-auto px-6 md:px-12 text-center max-w-3xl mb-24">
+          <p className="text-[10px] uppercase tracking-[0.4em] mb-4 text-[#8e948c]">Bespoke Services</p>
+          <h2 className="Heading-H2">Comprehensive Support</h2>
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 grid md:grid-cols-3 gap-8">
+          {[
+            { title: "Live-in Care", desc: "Expert round-the-clock support in the familiarity of our luxurious estates." },
+            { title: "Complex Care", desc: "Specialized clinical approach for advanced medical and support requirements." },
+            { title: "Supported Living", desc: "Empowering individuals to live independently while receiving tailored care." }
+          ].map((srv, i) => (
+            <motion.div
+              key={i}
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="border border-white/10 p-12 hover:bg-white/5 transition-colors group cursor-pointer"
+            >
+              <span className="text-[#c5a265] text-sm tracking-widest block mb-8">0{i + 1}</span>
+              <h3 className="Heading-Serif text-2xl mb-4">{srv.title}</h3>
+              <p className="text-[#8e948c] leading-relaxed text-sm mb-12">{srv.desc}</p>
+
+              <div className="w-8 h-[1px] bg-white/20 group-hover:w-full group-hover:bg-[#c5a265] transition-all duration-500" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
