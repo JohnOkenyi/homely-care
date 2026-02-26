@@ -18,106 +18,85 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      {/* HERO SECTION - Monumental Editorial Split */}
-      <section ref={container} className="relative pt-32 lg:pt-40 pb-20 px-6 lg:px-12 flex flex-col justify-center min-h-[90vh] bg-[#fdfcff] overflow-hidden">
+      {/* HERO SECTION - 50/50 Split */}
+      <section ref={container} className="relative flex flex-col lg:flex-row min-h-screen bg-[#fdfcff] overflow-hidden">
 
-        {/* Subtle background ambient glow if desired, left empty for now for max cleanliness */}
-        <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-[#f3effa] rounded-full blur-[100px] opacity-40 z-0 pointer-events-none translate-x-1/2 -translate-y-1/2" />
+        {/* Left: Typography (40-50%) */}
+        <div className="w-full lg:w-[45%] lg:min-h-screen flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-24 pt-32 lg:pt-0 relative z-30">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#1c1c1c]/40 font-semibold block mb-8">
+              HEALTH CARE
+            </span>
 
-        <div className="grid-container relative z-20 w-full h-full max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center h-full">
+            <h1 className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] text-[#150f1d] mb-6 tracking-tight">
+              <span className="font-light">A Life of</span> <br />
+              <span className="font-bold">Dignity,</span> <br />
+              <span className="font-light italic text-[#1c1c1c]/80">Tailored to You.</span>
+            </h1>
 
-            {/* Left: Typography */}
-            <div className="lg:col-span-6 order-2 lg:order-1 relative z-30 flex flex-col justify-center pt-8 lg:pt-0">
+            <p className="Text-18 text-[#1c1c1c]/80 font-light mb-12 max-w-lg leading-relaxed">
+              Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
+            </p>
+
+            <Link href="/contact-us" className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-[#1c1c1c]/20 text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c] hover:bg-[#8da399] hover:text-white hover:border-transparent transition-all duration-300 group">
+              24/7 DEDICATED CARE
+            </Link>
+          </motion.div>
+
+          {/* subtle scroll indicator */}
+          <div className="hidden lg:flex absolute bottom-12 left-12 xl:left-24 items-center gap-4">
+            <div className="w-[1px] h-12 bg-[#1c1c1c]/20 overflow-hidden relative">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="h-[1px] w-12 bg-[#c5a265]" />
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#c5a265] font-semibold">
-                    Luxury Home & Complex Care
-                  </span>
-                </div>
-
-                <h1 className="Heading-Serif text-5xl sm:text-6xl lg:text-[5.5rem] leading-[1.05] text-[#150f1d] mb-8 tracking-tight">
-                  A Life of <span className="italic text-[#c5a265] font-light">Dignity,</span><br />
-                  Tailored to You.
-                </h1>
-
-                <p className="Text-18 text-[#1c1c1c]/70 font-light mb-12 max-w-lg leading-relaxed">
-                  Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate and highly trained professionals.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                  <Link href="/contact-us" className="bg-[#3a2051] text-white px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium shadow-[0_8px_30px_rgb(58,32,81,0.2)] hover:bg-[#4e2b6e] transition-all duration-300 hover:-translate-y-1">
-                    Speak with our team
-                  </Link>
-                  <Link href="/services" className="group flex items-center gap-4 text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c] hover:text-[#c5a265] transition-colors duration-300">
-                    Explore services
-                    <div className="h-[1px] w-8 bg-[#1c1c1c]/20 group-hover:bg-[#c5a265] transition-all duration-300 group-hover:w-12 block" />
-                  </Link>
-                </div>
-              </motion.div>
+                className="w-full h-full bg-[#1c1c1c]"
+                animate={{ y: ["-100%", "100%"] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
             </div>
-
-            {/* Right: Image Framed Container */}
-            <div className="lg:col-span-6 order-1 lg:order-2 h-[40vh] sm:h-[50vh] lg:h-[75vh] relative w-full rounded-sm overflow-hidden shadow-2xl group">
-              <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full origin-bottom">
-                <Image src="/hero-house.jpg" alt="Homely Health Care Luxury Residence" fill className="object-cover scale-110 transition-transform duration-[20s] group-hover:scale-100 ease-out" priority unoptimized={true} />
-              </motion.div>
-
-              {/* Absolute Solid Overlay for depth without hurting legibility outside */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#150f1d]/40 via-transparent to-transparent pointer-events-none" />
-
-              {/* Floating Badge moved to the Image */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: [0, -10, 0] }}
-                transition={{ opacity: { duration: 1, delay: 0.8 }, y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
-                className="absolute bottom-6 left-6 md:bottom-10 md:left-10 hidden md:flex items-center gap-3 bg-white/95 backdrop-blur-md px-6 py-4 rounded shadow-[0_8px_30px_rgb(0,0,0,0.12)] z-30 border border-white/50"
-              >
-                <div className="w-2 h-2 rounded-full bg-[#c5a265] animate-pulse" />
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#3a2051]">24/7 Dedicated Care</span>
-              </motion.div>
-            </div>
-
+            <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#1c1c1c]/50">Discover more</span>
           </div>
+        </div>
+
+        {/* Right: Image (50-60%) */}
+        <div className="w-full lg:w-[55%] h-[50vh] lg:h-screen relative mt-12 lg:mt-0">
+          <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full origin-bottom">
+            <Image src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop" alt="Compassionate Care" fill className="object-cover" priority unoptimized={true} />
+          </motion.div>
         </div>
       </section>
 
-      {/* TRUST BANNER */}
-      <section className="bg-white border-b border-gray-100 py-10 relative z-20">
-        <div className="grid-container">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-            <span className="text-sm font-medium tracking-widest uppercase text-[#1c1c1c]">Regulated & Trusted By</span>
-            <div className="flex flex-wrap items-center justify-center gap-12 md:gap-24 text-[#primary]">
-              <span className="font-bold text-2xl tracking-tighter">CQC</span>
-              <span className="font-bold text-2xl tracking-tighter">NHS</span>
-              <span className="font-bold text-xl tracking-tight">Skills for Care</span>
+      {/* SECTION 2: TRUST BAR */}
+      <section className="bg-[#fdfcff] py-32 md:py-48 relative z-20 overflow-hidden">
+        <div className="grid-container max-w-5xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1 }}
+          >
+            <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1c1c1c]/40 block mb-12 md:mb-16">
+              Regulated & Trusted By
+            </span>
+
+            <div className="flex flex-wrap items-center justify-center gap-12 md:gap-24 mb-16 md:mb-24 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+              <span className="font-bold text-3xl tracking-tighter text-[#1c1c1c]">CQC</span>
+              <span className="font-bold text-3xl tracking-tighter text-[#1c1c1c]">NHS</span>
+              <span className="font-bold text-2xl tracking-tight text-[#1c1c1c]">Skills for Care</span>
             </div>
-          </div>
+
+            <div className="w-px h-16 bg-[#1c1c1c]/10 mx-auto mb-16 md:mb-24" />
+
+            <h2 className="Heading-H2">
+              <span className="font-light">Why Choose</span> <br className="sm:hidden" />
+              <span className="Heading-Serif font-bold">Homely Health Care?</span>
+            </h2>
+          </motion.div>
         </div>
-      </section>
 
-      {/* EDITORIAL INTRODUCTION - Why Choose Us */}
-      <section className="py-40 md:py-48 bg-[#fdfcff] text-[#1c1c1c] relative z-20">
         <div className="grid-container">
-          <div className="grid lg:grid-cols-12 gap-16 lg:gap-8 items-start mb-24">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-12"
-            >
-              <h2 className="Heading-H2 text-center max-w-4xl mx-auto">
-                Why Choose <span className="italic text-[#c5a265]">Homely</span> Health Care?
-              </h2>
-            </motion.div>
-          </div>
-
           <div className="grid md:grid-cols-3 gap-12 lg:gap-24 pt-16 border-t border-[#1c1c1c]/10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -200,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIAL CAROUSEL (Placeholder) */}
-      <section className="py-24 bg-white border-y border-gray-100">
+      <section className="py-24 bg-white border-y border-gray-100" >
         <div className="grid-container max-w-4xl text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="Heading-H4 text-[#3a2051] italic text-2xl lg:text-3xl leading-relaxed">
@@ -220,7 +199,7 @@ export default function Home() {
       </section>
 
       {/* OUR COMPREHENSIVE SERVICES - Editorial Roster */}
-      <section className="py-40 bg-[#150f1d] text-[#f3effa] overflow-hidden">
+      <section className="py-40 bg-[#150f1d] text-[#f3effa] overflow-hidden" >
         <div className="grid-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -377,7 +356,7 @@ export default function Home() {
       </section>
 
       {/* THE CHARITY TRUST - Purpose driven luxury */}
-      <section className="py-32 bg-[#fdfcff] relative overflow-hidden">
+      <section className="py-32 bg-[#fdfcff] relative overflow-hidden" >
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#f4effc] rounded-full blur-[100px] opacity-70 z-0 pointer-events-none" />
         <div className="grid-container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -425,6 +404,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

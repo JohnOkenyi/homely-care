@@ -45,7 +45,7 @@ export default function Navbar() {
                     {/* LOGO */}
                     <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex flex-col items-center group relative z-50">
                         <span className="Heading-Serif text-3xl tracking-tight text-[#3a2051]">
-                            HOMELY
+                            HOMEILY
                         </span>
                         <span className="text-[9px] uppercase tracking-[0.4em] mt-1 text-[#c5a265]">
                             Health Care
@@ -108,7 +108,7 @@ export default function Navbar() {
                                     <Link
                                         href={item.path}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="Heading-Serif text-4xl text-[#3a2051]"
+                                        className="text-2xl uppercase tracking-[0.2em] font-medium text-[#3a2051]"
                                     >
                                         {item.name}
                                     </Link>
