@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ShieldCheck, HeartHandshake, UserCheck, Award, Clock, Check, Heart } from "lucide-react";
+import { ShieldCheck, HeartHandshake, UserCheck, Check, Heart } from "lucide-react";
 
 export default function Home() {
   const container = useRef(null);
@@ -217,55 +217,86 @@ export default function Home() {
               </p>
             </motion.div>
           </div>
-
-          {/* Proof Points */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.5, delay: 0.4 }}
-            className="mt-24 pt-16 border-t border-[#1c1c1c]/10 grid sm:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto"
-          >
-            <div className="flex items-center gap-6">
-              <div className="w-12 h-12 bg-[#fdfcff] border border-[#1c1c1c]/10 rounded-full flex items-center justify-center text-[#8da399] shrink-0">
-                <Award className="w-6 h-6 stroke-[1.5]" />
-              </div>
-              <div>
-                <span className="block text-3xl font-bold text-[#1c1c1c]">9.8/10</span>
-                <span className="text-sm font-medium text-[#1c1c1c]/50 uppercase tracking-widest mt-1 block">Rated By Families</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <div className="w-12 h-12 bg-[#fdfcff] border border-[#1c1c1c]/10 rounded-full flex items-center justify-center text-[#8da399] shrink-0">
-                <Clock className="w-6 h-6 stroke-[1.5]" />
-              </div>
-              <div>
-                <span className="block text-3xl font-bold text-[#1c1c1c]">7+ Years</span>
-                <span className="text-sm font-medium text-[#1c1c1c]/50 uppercase tracking-widest mt-1 block">Avg. Carer Experience</span>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* TESTIMONIAL CAROUSEL (Placeholder) */}
-      <section className="py-32 bg-[#faf9f8] relative z-20">
-        <div className="grid-container max-w-4xl text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="Heading-H4 text-[#1c1c1c] italic text-2xl lg:text-3xl leading-relaxed">
-              &quot;The level of dignity and true compassion the staff at Homely Health Care provides is unmatched. We feel so incredibly supported having them care for our mother.&quot;
-            </p>
-            <div className="mt-12 flex items-center justify-center gap-6">
-              <div className="w-14 h-14 rounded-full overflow-hidden bg-gray-200 relative">
-                <Image src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Client Family" fill className="object-cover" />
-              </div>
-              <div className="text-left">
-                <p className="font-medium text-[#1c1c1c]">Sarah Jenkins</p>
-                <p className="text-xs uppercase tracking-widest text-[#1c1c1c]/50 mt-1">Daughter of Live-in Client, Dorset</p>
-              </div>
+      {/* SECTION 4: SOCIAL PROOF & TESTIMONIAL */}
+      <section className="bg-[#faf9f8] py-32 lg:py-48 relative z-20 overflow-hidden border-t border-[#1c1c1c]/5">
+        <div className="grid-container max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-24 lg:gap-0 items-center">
+
+            {/* Left Column: Stats */}
+            <div className="flex flex-col gap-16 lg:border-r border-[#1c1c1c]/10 lg:pr-24">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1 }}
+              >
+                <div className="flex items-baseline gap-1">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                    className="block text-[80px] lg:text-[100px] leading-none font-light text-[#1c1c1c] tracking-tighter"
+                  >
+                    9.8
+                  </motion.span>
+                  <span className="text-4xl text-[#1c1c1c]/30 font-light">/10</span>
+                </div>
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1c1c1c]/40 block mt-4">
+                  RATED BY FAMILIES
+                </span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                <div className="flex items-baseline gap-1">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 2 }}
+                    className="block text-[80px] lg:text-[100px] leading-none font-light text-[#1c1c1c] tracking-tighter"
+                  >
+                    7
+                  </motion.span>
+                  <span className="text-[60px] lg:text-[80px] text-[#1c1c1c]/30 font-light">+</span>
+                </div>
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1c1c1c]/40 block mt-4">
+                  AVG. CARER EXPERIENCE (YEARS)
+                </span>
+              </motion.div>
             </div>
-          </motion.div>
+
+            {/* Right Column: Testimonial */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="lg:pl-24 relative"
+            >
+              <div className="absolute -top-12 -left-4 lg:left-12 text-[#1c1c1c]/5 text-[150px] font-serif leading-none italic select-none">
+                &ldquo;
+              </div>
+              <p className="Heading-Serif text-[#1c1c1c] text-2xl lg:text-3xl leading-relaxed relative z-10 font-medium">
+                The level of dignity and true compassion the staff at Homely Health Care provides is unmatched. We feel so incredibly supported having them care for our mother.
+              </p>
+
+              <div className="mt-12 flex items-center gap-6">
+                <div className="w-12 h-[1px] bg-[#8da399]" />
+                <div>
+                  <p className="font-medium text-[#1c1c1c] text-lg">Sarah Jenkins</p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#1c1c1c]/50 mt-1">Daughter of Live-in Client, Dorset</p>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 

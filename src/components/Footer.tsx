@@ -1,104 +1,68 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react";
+
 
 export default function Footer() {
     return (
-        <footer className="bg-[#111111] text-[#fdfcff] pt-32 pb-12">
-            <div className="grid-container">
-                <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
-                    {/* Brand & About */}
-                    <div className="lg:col-span-4">
-                        <Link href="/" className="inline-block mb-12">
-                            <span className="Heading-Serif text-3xl tracking-tight text-[#fdfcff]">
-                                HOMELY
-                            </span><br />
-                            <span className="text-[9px] uppercase tracking-[0.4em] text-[#8da399]">
-                                Health Care
-                            </span>
-                        </Link>
+        <footer className="bg-[#1c1c1c] text-[#fdfcff] pt-24 pb-12 overflow-hidden border-t border-[#fdfcff]/5">
+            <div className="grid-container max-w-6xl">
 
-                        <h2 className="Heading-H4 text-white mb-8">
-                            Experience true <br /><span className="italic text-[#8da399] font-light">compassion.</span>
-                        </h2>
+                {/* Top Section - Brand & Navigation */}
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 mb-20">
+                    <Link href="/" className="inline-block">
+                        <span className="Heading-Serif text-2xl tracking-tight text-[#fdfcff] block">
+                            HOMELY
+                        </span>
+                        <span className="text-[9px] uppercase tracking-[0.4em] text-[#fdfcff]/50 block mt-1">
+                            Health Care
+                        </span>
+                    </Link>
 
-                        <div className="flex flex-col gap-4 mt-8">
-                            <Link href="/about-us" className="text-sm text-[#fdfcff]/70 hover:text-[#8da399] transition-colors font-light tracking-wide w-max">Our Story</Link>
-                            <Link href="/meet-the-team" className="text-sm text-[#fdfcff]/70 hover:text-[#8da399] transition-colors font-light tracking-wide w-max">Meet the Management</Link>
-                            <Link href="/careers" className="text-sm text-[#fdfcff]/70 hover:text-[#8da399] transition-colors font-light tracking-wide w-max">Join our Team</Link>
-                        </div>
-                    </div>
-
-                    {/* Services */}
-                    <div className="lg:col-start-6 lg:col-span-3">
-                        <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#fdfcff]/40 mb-8 font-semibold">Services</h4>
-                        <ul className="space-y-6">
-                            {[
-                                { name: "Home Care", path: "/services" },
-                                { name: "Live-in & Companionship", path: "/services" },
-                                { name: "Supported Living", path: "/services" },
-                                { name: "Residential & Nursing Support", path: "/services" },
-                                { name: "TDDI / Complex Care", path: "/services" }
-                            ].map((service) => (
-                                <li key={service.name}>
-                                    <Link href={service.path} className="text-sm text-[#fdfcff]/70 hover:text-[#8da399] transition-colors font-light tracking-wide">
-                                        {service.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Contact */}
-                    <div className="lg:col-span-4 lg:col-start-9">
-                        <h4 className="text-[10px] uppercase tracking-[0.3em] text-[#fdfcff]/40 mb-8 font-semibold">Head Office Contact</h4>
-                        <ul className="space-y-6 text-sm text-[#fdfcff]/70 font-light tracking-wide leading-relaxed">
-                            <li><a href="mailto:info@homelyhealth.uk" className="hover:text-[#8da399] transition-colors">info@homelyhealth.uk</a></li>
-                            <li className="grid grid-cols-[100px_1fr] gap-4">
-                                <span className="text-white/30 text-xs mt-1">Office Line</span>
-                                <a href="tel:01202948898" className="hover:text-[#8da399] transition-colors">01202 948 898</a>
-
-                                <span className="text-white/30 text-xs mt-1">24/7 Mobile</span>
-                                <div>
-                                    <a href="tel:07985591098" className="hover:text-[#8da399] transition-colors block">07985 591 098</a>
-                                    <span className="text-[10px] text-[#8da399] italic tracking-wider">Available 24/7 for emergencies</span>
-                                </div>
-                            </li>
-                            <li className="pt-6 border-t border-white/10">
-                                Homely Health Care<br />
-                                Suite 6a, Wessex House<br />
-                                St. Leonards Road<br />
-                                Charminster, Bournemouth<br />
-                                BH8 8QS
-                            </li>
-                        </ul>
-                        <div className="mt-12">
-                            <Link
-                                href="/contact-us"
-                                className="inline-flex items-center gap-4 text-xs uppercase tracking-[0.2em] border-b border-[#fdfcff]/30 pb-2 hover:text-[#8da399] hover:border-[#8da399] transition-colors"
-                            >
-                                Speak With Our Team
-                                <ArrowUpRight size={16} />
-                            </Link>
-                        </div>
-                    </div>
+                    <nav className="flex flex-wrap items-center gap-x-6 gap-y-4 text-[10px] md:text-xs uppercase tracking-[0.2em] font-medium text-[#fdfcff]/60">
+                        <Link href="/" className="hover:text-white transition-colors">HOME</Link>
+                        <span className="text-[#fdfcff]/20">&middot;</span>
+                        <Link href="/about-us" className="hover:text-white transition-colors">ABOUT</Link>
+                        <span className="text-[#fdfcff]/20">&middot;</span>
+                        <Link href="/services" className="hover:text-white transition-colors">SERVICES</Link>
+                        <span className="text-[#fdfcff]/20">&middot;</span>
+                        <Link href="/meet-the-team" className="hover:text-white transition-colors">MEET THE TEAM</Link>
+                        <span className="text-[#fdfcff]/20">&middot;</span>
+                        <Link href="/careers" className="hover:text-white transition-colors">CAREERS</Link>
+                        <span className="text-[#fdfcff]/20">&middot;</span>
+                        <Link href="/contact-us" className="hover:text-white transition-colors underline underline-offset-4 decoration-[#fdfcff]/30">CONTACT US</Link>
+                    </nav>
                 </div>
 
-                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-widest text-[#fdfcff]/50">
-                    <div className="flex flex-col md:flex-row items-center gap-6">
-                        <p>Copyright © Homely Health Care 2022-{new Date().getFullYear()}</p>
-                        <div className="flex gap-4 opacity-70">
-                            <a href="#" aria-label="Facebook" className="hover:text-[#8da399] transition-colors"><Facebook size={16} /></a>
-                            <a href="#" aria-label="Instagram" className="hover:text-[#8da399] transition-colors"><Instagram size={16} /></a>
-                            <a href="#" aria-label="LinkedIn" className="hover:text-[#8da399] transition-colors"><Linkedin size={16} /></a>
-                        </div>
+                {/* Middle Divider */}
+                <div className="w-full h-px bg-[#fdfcff]/10 mb-12" />
+
+                {/* Bottom Section - Socials, Accreditations, Copyright */}
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 text-[10px] uppercase tracking-widest text-[#fdfcff]/40">
+
+                    {/* Socials */}
+                    <div className="flex items-center gap-8">
+                        <a href="#" className="hover:text-white transition-colors">YOUTUBE</a>
+                        <a href="#" className="hover:text-white transition-colors">FACEBOOK</a>
+                        <a href="#" className="hover:text-white transition-colors">LINKEDIN</a>
                     </div>
-                    <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-                        <Link href="/privacy" className="hover:text-[#8da399] transition-colors">Privacy Policy</Link>
-                        <Link href="/cookies" className="hover:text-[#8da399] transition-colors">Cookie Policy</Link>
-                        <Link href="/terms" className="hover:text-[#8da399] transition-colors">Terms of Service</Link>
+
+                    {/* Accreditations */}
+                    <div className="flex items-center gap-6 opacity-60">
+                        <span>CQC REGULATED</span>
+                        <span className="w-1 h-1 rounded-full bg-[#fdfcff]/20" />
+                        <span>NHS PARTNER</span>
+                        <span className="w-1 h-1 rounded-full bg-[#fdfcff]/20" />
+                        <span>SKILLS FOR CARE</span>
                     </div>
+
+                    {/* Legal & Copyright */}
+                    <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                        <Link href="/privacy" className="hover:text-white transition-colors">PRIVACY</Link>
+                        <Link href="/terms" className="hover:text-white transition-colors">TERMS</Link>
+                        <p>&copy; {new Date().getFullYear()} HOMELY HEALTH CARE</p>
+                    </div>
+
                 </div>
             </div>
         </footer>
