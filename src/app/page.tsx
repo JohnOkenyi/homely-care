@@ -22,11 +22,12 @@ export default function Home() {
       <section ref={container} className="relative flex flex-col lg:flex-row min-h-screen bg-[#fdfcff] overflow-hidden">
 
         {/* Left: Typography (40-50%) */}
-        <div className="w-full lg:w-[45%] lg:min-h-screen flex flex-col justify-center px-8 sm:px-12 lg:px-16 xl:px-24 pt-32 lg:pt-0 relative z-30">
+        <div className="w-full lg:w-[45%] lg:min-h-screen flex flex-col px-8 sm:px-12 lg:px-16 xl:px-24 pt-40 lg:pt-48 pb-24 relative z-30">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="my-auto"
           >
             <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#8da399] font-semibold block mb-8">
               HEALTH CARE
