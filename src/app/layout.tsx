@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased bg-[#faf9f6] text-[#1c1c1c]">
+      <body className="antialiased bg-[#fdfcff] text-[#1c1c1c]">
         <SmoothScroll>
           <Navbar />
           {children}
