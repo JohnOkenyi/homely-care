@@ -38,16 +38,16 @@ export default function Navbar() {
                 }}
                 animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-0 inset-x-0 z-50 transition-colors duration-700 flex items-center h-28 ${scrolled || mobileMenuOpen ? "bg-[#fdfcff]/95 backdrop-blur-xl shadow-sm border-b border-[#3a2051]/5" : "bg-transparent text-[#f3effa]"
+                className={`fixed top-0 inset-x-0 z-50 transition-colors duration-700 flex items-center h-28 ${scrolled || mobileMenuOpen ? "bg-[#fdfcff]/95 backdrop-blur-xl shadow-sm border-b border-[#3a2051]/5" : "bg-[#fdfcff]/90 backdrop-blur-md"
                     }`}
             >
                 <div className="grid-container flex justify-between items-center w-full">
                     {/* LOGO */}
                     <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex flex-col items-center group relative z-50">
-                        <span className={`Heading-Serif text-3xl tracking-tight transition-colors duration-500 ${scrolled || mobileMenuOpen ? "text-[#3a2051]" : "text-[#f3effa]"}`}>
+                        <span className="Heading-Serif text-3xl tracking-tight text-[#3a2051]">
                             HOMELY
                         </span>
-                        <span className={`text-[9px] uppercase tracking-[0.4em] mt-1 ${scrolled || mobileMenuOpen ? "text-[#c5a265]" : "text-[#c5a265]/80"}`}>
+                        <span className="text-[9px] uppercase tracking-[0.4em] mt-1 text-[#c5a265]">
                             Health Care
                         </span>
                     </Link>
@@ -58,7 +58,7 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className={`text-xs uppercase tracking-[0.2em] transition-colors relative group font-medium ${scrolled || mobileMenuOpen ? "text-[#1c1c1c]/80 hover:text-[#3a2051]" : "text-[#f3effa]/90 hover:text-white"}`}
+                                className="text-xs uppercase tracking-[0.2em] transition-colors relative group font-medium text-[#1c1c1c]/80 hover:text-[#3a2051]"
                             >
                                 {item.name}
                                 <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#c5a265] transition-all duration-500 group-hover:w-full" />
@@ -70,7 +70,7 @@ export default function Navbar() {
                     <div className="hidden lg:block relative z-50">
                         <Link
                             href="/contact-us"
-                            className={`text-xs uppercase tracking-[0.2em] px-8 py-4 font-bold transition-all duration-500 ${scrolled || mobileMenuOpen ? "bg-[#3a2051] text-white hover:bg-[#4e2b6e]" : "bg-[#c5a265] text-[#150f1d] hover:bg-white"}`}
+                            className="text-xs uppercase tracking-[0.2em] px-8 py-4 font-bold transition-all duration-500 bg-[#3a2051] text-white hover:bg-[#4e2b6e] shadow-[0_8px_30px_rgb(58,32,81,0.2)] hover:-translate-y-1 inline-block"
                         >
                             Contact Us
                         </Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
                     {/* MOBILE MENU BTN */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className={`lg:hidden relative z-50 p-2 transition-colors ${scrolled || mobileMenuOpen ? "text-[#3a2051]" : "text-[#fdfcff]"}`}
+                        className="lg:hidden relative z-50 p-2 transition-colors text-[#3a2051]"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

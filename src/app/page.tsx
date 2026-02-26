@@ -13,88 +13,76 @@ export default function Home() {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0vh", "30vh"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <main className="min-h-screen">
-      {/* HERO SECTION - Monumental & Restrained */}
-      <section ref={container} className="relative h-screen flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-12 bg-[#150f1d] overflow-hidden">
-        <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
-          {/* Subtle bottom shadow just for text readability, no colored tint blocking the image */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#150f1d]/80 via-transparent to-transparent z-10" />
-          <Image
-            src="/hero-house.jpg"
-            alt="Homely Health Care Luxury Residence"
-            fill
-            className="object-cover"
-            priority
-            unoptimized={true}
-          />
-        </motion.div>
+      {/* HERO SECTION - Monumental Editorial Split */}
+      <section ref={container} className="relative pt-32 lg:pt-40 pb-20 px-6 lg:px-12 flex flex-col justify-center min-h-[90vh] bg-[#fdfcff] overflow-hidden">
 
-        <div className="relative z-20 grid-container h-full flex flex-col justify-end pb-24 text-[#f3effa]">
-          <div className="max-w-4xl relative">
+        {/* Subtle background ambient glow if desired, left empty for now for max cleanliness */}
+        <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-[#f3effa] rounded-full blur-[100px] opacity-40 z-0 pointer-events-none translate-x-1/2 -translate-y-1/2" />
 
-            {/* Floating Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: [0, -10, 0] }}
-              transition={{
-                opacity: { duration: 1, delay: 0.8 },
-                y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-              }}
-              className="absolute -top-24 md:-top-32 right-0 hidden md:flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full"
-            >
-              <div className="w-2 h-2 rounded-full bg-[#c5a265] animate-pulse" />
-              <span className="text-sm font-medium tracking-wide">24/7 Dedicated Care</span>
-            </motion.div>
+        <div className="grid-container relative z-20 w-full h-full max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center h-full">
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-center gap-4 mb-6"
-            >
-              <div className="h-[1px] w-12 bg-[#c5a265]" />
-              <span className="text-xs md:text-sm uppercase tracking-[0.2em] text-[#c5a265] font-medium">
-                Luxury Home & Complex Care
-              </span>
-            </motion.div>
+            {/* Left: Typography */}
+            <div className="lg:col-span-6 order-2 lg:order-1 relative z-30 flex flex-col justify-center pt-8 lg:pt-0">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-[1px] w-12 bg-[#c5a265]" />
+                  <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#c5a265] font-semibold">
+                    Luxury Home & Complex Care
+                  </span>
+                </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="Heading-Display mb-6"
-            >
-              A Life of <span className="italic text-[#c5a265] font-light">Dignity,</span><br />
-              Tailored to You.
-            </motion.h1>
+                <h1 className="Heading-Serif text-5xl sm:text-6xl lg:text-[5.5rem] leading-[1.05] text-[#150f1d] mb-8 tracking-tight">
+                  A Life of <span className="italic text-[#c5a265] font-light">Dignity,</span><br />
+                  Tailored to You.
+                </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="Text-18 text-[#d1c8e1] max-w-2xl mb-10 font-light"
-            >
-              Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate and highly trained professionals.
-            </motion.p>
+                <p className="Text-18 text-[#1c1c1c]/70 font-light mb-12 max-w-lg leading-relaxed">
+                  Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate and highly trained professionals.
+                </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
-            >
-              <Link href="/contact-us" className="bg-[#c5a265] text-[#150f1d] px-8 py-4 text-sm uppercase tracking-[0.1em] font-medium hover:bg-white transition-colors duration-300">
-                Speak with our team
-              </Link>
-              <Link href="/services" className="group flex items-center gap-4 text-sm uppercase tracking-[0.1em] font-medium hover:text-[#c5a265] transition-colors duration-300">
-                Explore care services
-                <div className="h-[1px] w-8 bg-white group-hover:bg-[#c5a265] transition-colors duration-300" />
-              </Link>
-            </motion.div>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                  <Link href="/contact-us" className="bg-[#3a2051] text-white px-8 py-4 text-xs uppercase tracking-[0.2em] font-medium shadow-[0_8px_30px_rgb(58,32,81,0.2)] hover:bg-[#4e2b6e] transition-all duration-300 hover:-translate-y-1">
+                    Speak with our team
+                  </Link>
+                  <Link href="/services" className="group flex items-center gap-4 text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c] hover:text-[#c5a265] transition-colors duration-300">
+                    Explore services
+                    <div className="h-[1px] w-8 bg-[#1c1c1c]/20 group-hover:bg-[#c5a265] transition-all duration-300 group-hover:w-12 block" />
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right: Image Framed Container */}
+            <div className="lg:col-span-6 order-1 lg:order-2 h-[40vh] sm:h-[50vh] lg:h-[75vh] relative w-full rounded-sm overflow-hidden shadow-2xl group">
+              <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full origin-bottom">
+                <Image src="/hero-house.jpg" alt="Homely Health Care Luxury Residence" fill className="object-cover scale-110 transition-transform duration-[20s] group-hover:scale-100 ease-out" priority unoptimized={true} />
+              </motion.div>
+
+              {/* Absolute Solid Overlay for depth without hurting legibility outside */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#150f1d]/40 via-transparent to-transparent pointer-events-none" />
+
+              {/* Floating Badge moved to the Image */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: [0, -10, 0] }}
+                transition={{ opacity: { duration: 1, delay: 0.8 }, y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+                className="absolute bottom-6 left-6 md:bottom-10 md:left-10 hidden md:flex items-center gap-3 bg-white/95 backdrop-blur-md px-6 py-4 rounded shadow-[0_8px_30px_rgb(0,0,0,0.12)] z-30 border border-white/50"
+              >
+                <div className="w-2 h-2 rounded-full bg-[#c5a265] animate-pulse" />
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#3a2051]">24/7 Dedicated Care</span>
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -114,7 +102,7 @@ export default function Home() {
       </section>
 
       {/* EDITORIAL INTRODUCTION - Why Choose Us */}
-      <section className="py-32 md:py-48 bg-[#fdfcff] text-[#1c1c1c] relative z-20">
+      <section className="py-40 md:py-48 bg-[#fdfcff] text-[#1c1c1c] relative z-20">
         <div className="grid-container">
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-8 items-start mb-24">
             <motion.div
@@ -130,19 +118,19 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid md:grid-cols-3 gap-12 lg:gap-24 pt-16 border-t border-[#1c1c1c]/10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.1 }}
-              className="space-y-6 bg-white p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl border border-gray-100/50 hover:-translate-y-2 transition-transform duration-500"
+              className="space-y-6"
             >
               <div className="w-14 h-14 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
                 <UserCheck className="w-6 h-6" />
               </div>
               <h3 className="Heading-H4 text-[#3a2051]">Person-Centred Care</h3>
-              <p className="Text-16 text-[#1c1c1c]/70">
+              <p className="Text-16 text-[#1c1c1c]/70 font-light">
                 We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity.
               </p>
             </motion.div>
@@ -152,13 +140,13 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="space-y-6 bg-white p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl border border-gray-100/50 hover:-translate-y-2 transition-transform duration-500"
+              className="space-y-6"
             >
               <div className="w-14 h-14 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <h3 className="Heading-H4 text-[#3a2051]">Rigorous Vetting</h3>
-              <p className="Text-16 text-[#1c1c1c]/70">
+              <p className="Text-16 text-[#1c1c1c]/70 font-light">
                 Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and appropriately trained to an exceptionally high standard.
               </p>
             </motion.div>
@@ -168,13 +156,13 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="space-y-6 bg-white p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl border border-gray-100/50 hover:-translate-y-2 transition-transform duration-500"
+              className="space-y-6"
             >
               <div className="w-14 h-14 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
                 <HeartHandshake className="w-6 h-6" />
               </div>
               <h3 className="Heading-H4 text-[#3a2051]">Approachable Management</h3>
-              <p className="Text-16 text-[#1c1c1c]/70">
+              <p className="Text-16 text-[#1c1c1c]/70 font-light">
                 Our friendly management team and Field Care Managers visit you regularly to guarantee the care you receive always aligns with your expectations.
               </p>
             </motion.div>
@@ -186,25 +174,25 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.5, delay: 0.4 }}
-            className="mt-24 grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto"
+            className="mt-24 pt-16 border-t border-[#1c1c1c]/10 grid sm:grid-cols-2 gap-12 lg:gap-24 max-w-4xl mx-auto"
           >
-            <div className="flex items-center gap-6 bg-[#f3effa] p-6 rounded-2xl border border-white">
-              <div className="w-12 h-12 bg-[#3a2051] rounded-full flex items-center justify-center text-[#c5a265]">
+            <div className="flex items-center gap-6">
+              <div className="w-12 h-12 bg-[#3a2051] rounded-full flex items-center justify-center text-[#c5a265] shrink-0">
                 <Award className="w-6 h-6" />
               </div>
               <div>
-                <span className="block text-2xl font-bold text-[#3a2051]">9.8/10</span>
-                <span className="text-sm font-medium text-[#1c1c1c]/70 uppercase tracking-wide">Rated By Families</span>
+                <span className="block text-3xl font-bold text-[#3a2051]">9.8/10</span>
+                <span className="text-sm font-medium text-[#1c1c1c]/50 uppercase tracking-widest mt-1 block">Rated By Families</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-6 bg-[#f3effa] p-6 rounded-2xl border border-white">
-              <div className="w-12 h-12 bg-[#3a2051] rounded-full flex items-center justify-center text-[#c5a265]">
+            <div className="flex items-center gap-6">
+              <div className="w-12 h-12 bg-[#3a2051] rounded-full flex items-center justify-center text-[#c5a265] shrink-0">
                 <Clock className="w-6 h-6" />
               </div>
               <div>
-                <span className="block text-2xl font-bold text-[#3a2051]">7+ Years</span>
-                <span className="text-sm font-medium text-[#1c1c1c]/70 uppercase tracking-wide">Avg. Carer Experience</span>
+                <span className="block text-3xl font-bold text-[#3a2051]">7+ Years</span>
+                <span className="text-sm font-medium text-[#1c1c1c]/50 uppercase tracking-widest mt-1 block">Avg. Carer Experience</span>
               </div>
             </div>
           </motion.div>
@@ -231,129 +219,158 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR COMPREHENSIVE SERVICES - Editorial Cards */}
-      <section className="py-32 bg-[#150f1d] text-[#f3effa] overflow-hidden">
+      {/* OUR COMPREHENSIVE SERVICES - Editorial Roster */}
+      <section className="py-40 bg-[#150f1d] text-[#f3effa] overflow-hidden">
         <div className="grid-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-24 text-center"
+            className="mb-32 md:mb-48 text-center"
           >
-            <span className="text-[#c5a265] text-sm tracking-[0.3em] uppercase block mb-6">Expertise</span>
+            <span className="text-[#c5a265] text-[10px] tracking-[0.4em] uppercase block mb-8 font-semibold">Expertise & Solutions</span>
             <h2 className="Heading-H2">Our Care <span className="italic font-light">Services</span></h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 mb-24">
-            {/* Service 1 */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5 }} className="group">
-              <div className="relative h-[40vh] overflow-hidden mb-8 rounded-sm">
-                <div className="absolute inset-0 bg-[#3a2051]/40 z-10 transition-opacity duration-700 opacity-0 group-hover:opacity-100 flex items-center justify-center">
-                  <Link href="/services" className="px-8 py-3 bg-[#c5a265] text-[#150f1d] uppercase tracking-widest text-sm font-medium hover:bg-white transition-colors duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                    View Home Care
-                  </Link>
-                </div>
-                <Image src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop" alt="Home Care" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
-              </div>
-              <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#c5a265] mb-4 block">Domiciliary Care</span>
-              <h3 className="Heading-Serif text-3xl mb-4 group-hover:text-[#c5a265] transition-colors duration-500">Home Care</h3>
-              <p className="Text-16 text-[#d1c8e1] font-light mb-6">Receive necessary support while maintaining full independence in the comfort of your own home.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Personalised care plans agreed with family</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Support ranging from a few hours to 7 days a week</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Options for sleep-in or waking night security</li>
+          {/* Service 1: Domiciliary Care (Image Right) */}
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center mb-32 md:mb-48">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="order-2 lg:order-1"
+            >
+              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#c5a265] mb-6 block">Domiciliary Care</span>
+              <h3 className="Heading-H3 mb-8">Home Care</h3>
+              <p className="Text-18 text-[#d1c8e1] font-light mb-10 max-w-lg leading-relaxed">
+                Receive necessary support while maintaining full independence in the comfort of your own home, surrounded by the things you love.
+              </p>
+              <ul className="space-y-4 mb-12">
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Personalised care plans agreed with family</li>
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Support ranging from a few hours to 7 days a week</li>
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Options for sleep-in or waking night security</li>
               </ul>
+              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-[#c5a265] transition-colors gap-2 group">
+                Explore Home Care <span className="w-8 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:w-12 ml-2 block" />
+              </Link>
             </motion.div>
-
-            {/* Service 2 */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.2 }} className="group mt-0 lg:mt-24">
-              <div className="relative h-[40vh] overflow-hidden mb-8 rounded-sm">
-                <div className="absolute inset-0 bg-[#3a2051]/40 z-10 transition-opacity duration-700 opacity-0 group-hover:opacity-100 flex items-center justify-center">
-                  <Link href="/services" className="px-8 py-3 bg-[#c5a265] text-[#150f1d] uppercase tracking-widest text-sm font-medium hover:bg-white transition-colors duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                    View Live-in Care
-                  </Link>
-                </div>
-                <Image src="https://images.unsplash.com/photo-1581579205556-c3ccfe505d04?q=80&w=1600&auto=format&fit=crop" alt="Live-in Care" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
-              </div>
-              <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#c5a265] mb-4 block">24/7 Presence</span>
-              <h3 className="Heading-Serif text-3xl mb-4 group-hover:text-[#c5a265] transition-colors duration-500">Live-in & Companionship</h3>
-              <p className="Text-16 text-[#d1c8e1] font-light mb-6">Round-the-clock support for those who need constant care but prefer to remain in their own homes.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Carefully matched carers based on likes and hobbies</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Assistance with administration of medicine and domestic duties</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Accompanied visits to appointments and social activities</li>
-              </ul>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[60vh] lg:h-[80vh] w-full order-1 lg:order-2"
+            >
+              <Image src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop" alt="Home Care" fill className="object-cover" />
             </motion.div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 mb-24">
-            {/* Service 3 */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5 }} className="group">
-              <div className="relative h-[40vh] overflow-hidden mb-8 rounded-sm">
-                <div className="absolute inset-0 bg-[#3a2051]/40 z-10 transition-opacity duration-700 opacity-0 group-hover:opacity-100 flex items-center justify-center">
-                  <Link href="/services" className="px-8 py-3 bg-[#c5a265] text-[#150f1d] uppercase tracking-widest text-sm font-medium hover:bg-white transition-colors duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                    View Supported Living
-                  </Link>
-                </div>
-                <Image src="https://images.unsplash.com/photo-1529156069898-49953eb1b5ae?q=80&w=1600&auto=format&fit=crop" alt="Supported Living" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
-              </div>
-              <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#c5a265] mb-4 block">Independence Focus</span>
-              <h3 className="Heading-Serif text-3xl mb-4 group-hover:text-[#c5a265] transition-colors duration-500">Supported Living</h3>
-              <p className="Text-16 text-[#d1c8e1] font-light mb-6">Empowering individuals with complex care needs, learning disabilities, or autism to live as independently as possible.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Tailored support for individuals aged 18 and over</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Flexible service ranging from a few hours to full-time</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Skills development and community integration support</li>
-              </ul>
+          {/* Service 2: Live-in Care (Image Left) */}
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center mb-32 md:mb-48">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[60vh] lg:h-[80vh] w-full order-1"
+            >
+              <Image src="https://images.unsplash.com/photo-1581579205556-c3ccfe505d04?q=80&w=1600&auto=format&fit=crop" alt="Live-in Care" fill className="object-cover" />
             </motion.div>
-
-            {/* Service 4 */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5, delay: 0.2 }} className="group mt-0 lg:mt-24">
-              <div className="relative h-[40vh] overflow-hidden mb-8 rounded-sm">
-                <div className="absolute inset-0 bg-[#3a2051]/40 z-10 transition-opacity duration-700 opacity-0 group-hover:opacity-100 flex items-center justify-center">
-                  <Link href="/services" className="px-8 py-3 bg-[#c5a265] text-[#150f1d] uppercase tracking-widest text-sm font-medium hover:bg-white transition-colors duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                    View Staffing Solutions
-                  </Link>
-                </div>
-                <Image src="https://images.unsplash.com/photo-1576766125468-ba5aca23a7bb?q=80&w=1600&auto=format&fit=crop" alt="Residential Nursing Support" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
-              </div>
-              <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#c5a265] mb-4 block">B2B Staff Cover</span>
-              <h3 className="Heading-Serif text-3xl mb-4 group-hover:text-[#c5a265] transition-colors duration-500">Residential & Nursing Support</h3>
-              <p className="Text-16 text-[#d1c8e1] font-light mb-6">Reliable, professional short-term and long-term staff cover for residential homes facing staffing challenges.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> No additional fees for urgent, last-minute cover</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Highly trained and vetted healthcare professionals</li>
-                <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Solutions for single or multiple staff placements</li>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="order-2"
+            >
+              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#c5a265] mb-6 block">24/7 Presence</span>
+              <h3 className="Heading-H3 mb-8">Live-in & Companionship</h3>
+              <p className="Text-18 text-[#d1c8e1] font-light mb-10 max-w-lg leading-relaxed">
+                Round-the-clock support for those who need constant care but prefer to remain in their own homes, preserving their lifestyle and dignity.
+              </p>
+              <ul className="space-y-4 mb-12">
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Carefully matched carers based on likes and hobbies</li>
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Assistance with administration of medicine and domestic duties</li>
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Accompanied visits to appointments and social activities</li>
               </ul>
+              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-[#c5a265] transition-colors gap-2 group">
+                Explore Live-in Care <span className="w-8 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:w-12 ml-2 block" />
+              </Link>
             </motion.div>
           </div>
 
-          <div className="max-w-[1000px] mx-auto">
-            {/* Service 5 */}
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.5 }} className="group">
-              <div className="relative h-[50vh] overflow-hidden mb-8 rounded-sm">
-                <div className="absolute inset-0 bg-[#3a2051]/40 z-10 transition-opacity duration-700 opacity-0 group-hover:opacity-100 flex items-center justify-center">
-                  <Link href="/services" className="px-8 py-3 bg-[#c5a265] text-[#150f1d] uppercase tracking-widest text-sm font-medium hover:bg-white transition-colors duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                    View Complex Care
-                  </Link>
-                </div>
-                <Image src="https://images.unsplash.com/photo-1628177142898-93e46e48c1be?q=80&w=2000&auto=format&fit=crop" alt="Complex Care" fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+          {/* Service 3: Supported Living (Image Right) */}
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center mb-32 md:mb-48">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="order-2 lg:order-1"
+            >
+              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#c5a265] mb-6 block">Independence Focus</span>
+              <h3 className="Heading-H3 mb-8">Supported Living</h3>
+              <p className="Text-18 text-[#d1c8e1] font-light mb-10 max-w-lg leading-relaxed">
+                Empowering individuals with complex care needs, learning disabilities, or autism to live fully and independently within their communities.
+              </p>
+              <ul className="space-y-4 mb-12">
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Tailored support for individuals aged 18 and over</li>
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Flexible service ranging from a few hours to full-time</li>
+                <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Skills development and community integration support</li>
+              </ul>
+              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-[#c5a265] transition-colors gap-2 group">
+                Explore Supported Living <span className="w-8 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:w-12 ml-2 block" />
+              </Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[60vh] lg:h-[80vh] w-full order-1 lg:order-2"
+            >
+              <Image src="https://images.unsplash.com/photo-1529156069898-49953eb1b5ae?q=80&w=1600&auto=format&fit=crop" alt="Supported Living" fill className="object-cover" />
+            </motion.div>
+          </div>
+
+          {/* Service 4: Complex Care (Full Width Hero Style) */}
+          <div className="pt-32 border-t border-white/10 text-center max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5 }}
+            >
+              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#c5a265] mb-6 block">Clinical Expertise</span>
+              <h3 className="Heading-H2 mb-8">TDDI & Complex Care</h3>
+              <p className="Text-18 text-[#d1c8e1] font-light mb-16 leading-relaxed max-w-3xl mx-auto">
+                A safe, highly-skilled service led by qualified nurses to support individuals managing, improving, or recovering from serious diagnosed health conditions.
+              </p>
+
+              <div className="relative h-[60vh] w-full mb-16">
+                <Image src="https://images.unsplash.com/photo-1628177142898-93e46e48c1be?q=80&w=2000&auto=format&fit=crop" alt="Complex Care" fill className="object-cover" />
               </div>
-              <div className="grid md:grid-cols-2 gap-12">
-                <div>
-                  <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#c5a265] mb-4 block">Clinical Expertise</span>
-                  <h3 className="Heading-Serif text-3xl mb-4 group-hover:text-[#c5a265] transition-colors duration-500">TDDI / Complex Care</h3>
-                  <p className="Text-16 text-[#d1c8e1] font-light mb-6">A safe, skilled, person-centred service led by qualified nurses to support individuals managing, improving, or recovering from diagnosed health conditions.</p>
-                </div>
-                <div>
-                  <ul className="space-y-4 md:mt-10">
-                    <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Nurse-led teams delivering clinical interventions (e.g., feeding tubes)</li>
-                    <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Specialised support for neurological conditions and acquired injuries</li>
-                    <li className="flex items-start gap-3 text-sm text-[#f3effa]/80"><Check className="w-4 h-4 text-[#c5a265] mt-0.5 shrink-0" /> Collaborative care working closely with healthcare professionals</li>
-                  </ul>
-                </div>
-              </div>
+
+              <ul className="text-left grid md:grid-cols-3 gap-12 max-w-4xl mx-auto mb-16">
+                <li className="flex flex-col items-center gap-4 text-center text-sm text-[#f3effa]/80 font-light">
+                  <Check className="w-6 h-6 text-[#c5a265] mb-2" />
+                  Nurse-led clinical interventions (e.g., tube feeding)
+                </li>
+                <li className="flex flex-col items-center gap-4 text-center text-sm text-[#f3effa]/80 font-light">
+                  <Check className="w-6 h-6 text-[#c5a265] mb-2" />
+                  Support for neurological conditions & acquired injuries
+                </li>
+                <li className="flex flex-col items-center gap-4 text-center text-sm text-[#f3effa]/80 font-light">
+                  <Check className="w-6 h-6 text-[#c5a265] mb-2" />
+                  Collaborative care with multidisciplinary teams
+                </li>
+              </ul>
+
+              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.4em] font-bold text-[#c5a265] hover:text-white transition-colors gap-4 group">
+                Explore Clinical Care <span className="w-12 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:bg-white block" />
+              </Link>
             </motion.div>
           </div>
         </div>
