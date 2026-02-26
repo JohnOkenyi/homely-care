@@ -34,18 +34,18 @@ export default function Home() {
           >
             <motion.div
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-              className="relative inline-block mb-8 group"
+              className="relative inline-block mb-8 group cursor-default"
             >
-              <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#8da399] font-bold relative z-10">
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#7c3aed] font-bold relative z-10 transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(124,58,237,0.8)]">
                 HEALTH CARE
               </span>
               {/* World-Class Glow Effect Pulse */}
               <motion.span
-                className="absolute inset-0 bg-[#8da399] blur-md opacity-30 z-0"
-                animate={{ opacity: [0.2, 0.6, 0.2], scale: [0.95, 1.1, 0.95] }}
+                className="absolute inset-0 bg-[#7c3aed] blur-md opacity-30 z-0 transition-opacity duration-500 group-hover:opacity-60"
+                animate={{ opacity: [0.2, 0.4, 0.2], scale: [0.95, 1.05, 0.95] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              <span className="absolute inset-0 bg-[#8da399] blur-xl opacity-10 z-0" />
+              <span className="absolute inset-0 bg-[#7c3aed] blur-xl opacity-10 z-0 transition-opacity duration-500 group-hover:opacity-30" />
             </motion.div>
 
             <motion.h1
@@ -54,13 +54,13 @@ export default function Home() {
             >
               {/* Subtle ambient glow behind the main text */}
               <motion.div
-                className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-32 bg-[#8da399]/10 blur-[60px] -z-10 rounded-full mix-blend-multiply"
-                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+                className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-32 bg-[#7c3aed]/10 blur-[60px] -z-10 rounded-full mix-blend-multiply"
+                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               />
               <span className="font-light block">A Life of</span>
               <span className="font-bold block">Dignity,</span>
-              <span className="font-light italic text-[#8da399] block">Tailored to You.</span>
+              <span className="font-light italic text-[#7c3aed] block transition-all duration-500 hover:drop-shadow-[0_0_15px_rgba(124,58,237,0.6)] cursor-default">Tailored to You.</span>
             </motion.h1>
 
             <motion.p
