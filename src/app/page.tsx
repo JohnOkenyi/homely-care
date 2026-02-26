@@ -24,28 +24,57 @@ export default function Home() {
         {/* Left: Typography (40-50%) */}
         <div className="w-full lg:w-[45%] lg:min-h-screen flex flex-col px-8 sm:px-12 lg:px-16 xl:px-24 pt-40 lg:pt-48 pb-24 relative z-30">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="my-auto"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } }
+            }}
+            initial="hidden"
+            animate="visible"
+            className="my-auto relative"
           >
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#8da399] font-semibold block mb-8">
-              HEALTH CARE
-            </span>
+            <motion.div
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              className="relative inline-block mb-8 group"
+            >
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#8da399] font-bold relative z-10">
+                HEALTH CARE
+              </span>
+              {/* World-Class Glow Effect Pulse */}
+              <motion.span
+                className="absolute inset-0 bg-[#8da399] blur-md opacity-30 z-0"
+                animate={{ opacity: [0.2, 0.6, 0.2], scale: [0.95, 1.1, 0.95] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <span className="absolute inset-0 bg-[#8da399] blur-xl opacity-10 z-0" />
+            </motion.div>
 
-            <h1 className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] text-[#150f1d] mb-6 tracking-tight">
-              <span className="font-light">A Life of</span> <br />
-              <span className="font-bold">Dignity,</span> <br />
-              <span className="font-light italic text-[#1c1c1c]/80">Tailored to You.</span>
-            </h1>
+            <motion.h1
+              variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+              className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] text-[#1c1c1c] mb-6 tracking-tight relative"
+            >
+              {/* Subtle ambient glow behind the main text */}
+              <motion.div
+                className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-32 bg-[#8da399]/10 blur-[60px] -z-10 rounded-full mix-blend-multiply"
+                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <span className="font-light block">A Life of</span>
+              <span className="font-bold block">Dignity,</span>
+              <span className="font-light italic text-[#8da399] block">Tailored to You.</span>
+            </motion.h1>
 
-            <p className="Text-18 text-[#1c1c1c]/80 font-light mb-12 max-w-lg leading-relaxed">
+            <motion.p
+              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+              className="Text-18 text-[#1c1c1c]/80 font-light mb-12 max-w-lg leading-relaxed"
+            >
               Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
-            </p>
+            </motion.p>
 
-            <Link href="/contact-us" className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-[#1c1c1c]/10 text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c] hover:bg-[#8da399] hover:text-white hover:border-transparent transition-all duration-500 group">
-              24/7 DEDICATED CARE
-            </Link>
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}>
+              <Link href="/contact-us" className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-[#1c1c1c]/20 text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c] hover:bg-[#8da399] hover:text-white hover:border-transparent transition-all duration-500 hover:shadow-[0_0_30px_rgba(141,163,153,0.4)] group">
+                24/7 DEDICATED CARE
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* subtle scroll indicator */}
