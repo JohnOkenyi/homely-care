@@ -29,14 +29,14 @@ const services = [
 
 export default function Services() {
     return (
-        <main className="min-h-screen pt-32 pb-24 bg-[#1c1c1c] text-[#faf9f6]">
+        <main className="min-h-screen pt-32 pb-24 bg-[#ffffff] text-[#1c1c1c]">
             {/* Header */}
             <section className="container mx-auto px-6 md:px-12 mb-24 max-w-4xl text-center">
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-[#c5a265] text-xs uppercase tracking-[0.3em] font-bold mb-6"
+                    className="text-[#8da399] text-xs uppercase tracking-[0.3em] font-bold mb-6"
                 >
                     Specialized Support
                 </motion.p>
@@ -44,9 +44,9 @@ export default function Services() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.2 }}
-                    className="Heading-Display text-white"
+                    className="Heading-Display text-[#1c1c1c]"
                 >
-                    Comprehensive services, <br /><span className="italic text-[#c5a265]">expertly delivered.</span>
+                    Comprehensive services, <br /><span className="italic text-[#8da399]">expertly delivered.</span>
                 </motion.h1>
             </section>
 
@@ -60,15 +60,15 @@ export default function Services() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.8, delay: i * 0.1 }}
-                            className="group border border-white/10 p-8 md:p-12 hover:bg-white/5 transition-colors cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center gap-8"
+                            className="group border-b border-[#1c1c1c]/10 py-12 hover:bg-[#faf9f8] transition-colors cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center gap-8 -mx-6 px-6 md:-mx-12 md:px-12"
                         >
                             <div className="flex-1">
-                                <span className="text-[#c5a265] text-xs tracking-widest block mb-4">0{i + 1}</span>
-                                <h3 className="Heading-Serif text-3xl mb-4">{srv.title}</h3>
-                                <p className="text-[#8e948c] leading-relaxed max-w-2xl">{srv.desc}</p>
+                                <span className="text-[#8da399] text-xs tracking-widest block mb-4">0{i + 1}</span>
+                                <h3 className="Heading-Serif text-3xl mb-4 text-[#1c1c1c]">{srv.title}</h3>
+                                <p className="text-[#1c1c1c]/70 leading-relaxed max-w-2xl">{srv.desc}</p>
                             </div>
-                            <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#c5a265] group-hover:border-[#c5a265] transition-all duration-500">
-                                <ArrowUpRight size={20} className="text-white" />
+                            <div className="w-12 h-12 rounded-full border border-[#1c1c1c]/20 flex items-center justify-center group-hover:bg-[#1c1c1c] group-hover:border-[#1c1c1c] transition-all duration-500">
+                                <ArrowUpRight size={20} className="text-[#1c1c1c] group-hover:text-white transition-colors duration-500" />
                             </div>
                         </motion.div>
                     ))}
@@ -77,12 +77,12 @@ export default function Services() {
 
             {/* CTA */}
             <section className="container mx-auto px-6 md:px-12 mt-32 text-center">
-                <p className="text-[#8e948c] text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
+                <p className="text-[#1c1c1c]/70 text-lg lg:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-12">
                     Our highly specialised team of Carers, Support Workers and Specialist Nurses offer a variety of services to clients living in their own homes.
                 </p>
                 <Link
                     href="/contact-us"
-                    className="inline-block border border-[#c5a265] text-[#c5a265] px-10 py-4 text-xs uppercase tracking-widest hover:bg-[#c5a265] hover:text-[#1c1c1c] transition-all duration-500"
+                    className="inline-block border border-[#1c1c1c]/20 text-[#1c1c1c] px-10 py-4 text-xs uppercase tracking-widest hover:bg-[#1c1c1c] hover:text-white hover:border-transparent transition-all duration-500"
                 >
                     Discuss Your Needs
                 </Link>

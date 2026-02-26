@@ -38,16 +38,16 @@ export default function Navbar() {
                 }}
                 animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-0 inset-x-0 z-50 transition-colors duration-700 flex items-center h-28 ${scrolled || mobileMenuOpen ? "bg-[#fdfcff]/95 backdrop-blur-xl shadow-sm border-b border-[#3a2051]/5" : "bg-[#fdfcff]/90 backdrop-blur-md"
+                className={`fixed top-0 inset-x-0 z-50 transition-colors duration-700 flex items-center h-28 ${scrolled || mobileMenuOpen ? "bg-[#fdfcff]/95 backdrop-blur-xl shadow-sm border-b border-[#1c1c1c]/5" : "bg-[#fdfcff]/90 backdrop-blur-md"
                     }`}
             >
                 <div className="grid-container flex justify-between items-center w-full">
                     {/* LOGO */}
                     <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex flex-col items-center group relative z-50">
-                        <span className="Heading-Serif text-3xl tracking-tight text-[#3a2051]">
-                            HOMEILY
+                        <span className="Heading-Serif text-3xl tracking-tight text-[#1c1c1c]">
+                            HOMELY
                         </span>
-                        <span className="text-[9px] uppercase tracking-[0.4em] mt-1 text-[#c5a265]">
+                        <span className="text-[9px] uppercase tracking-[0.4em] mt-1 text-[#8da399]">
                             Health Care
                         </span>
                     </Link>
@@ -58,10 +58,10 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className="text-xs uppercase tracking-[0.2em] transition-colors relative group font-medium text-[#1c1c1c]/80 hover:text-[#3a2051]"
+                                className="text-xs uppercase tracking-[0.2em] transition-colors relative group font-medium text-[#1c1c1c]/60 hover:text-[#1c1c1c]"
                             >
                                 {item.name}
-                                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#c5a265] transition-all duration-500 group-hover:w-full" />
+                                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#8da399] transition-all duration-500 group-hover:w-full" />
                             </Link>
                         ))}
                     </nav>
@@ -70,7 +70,7 @@ export default function Navbar() {
                     <div className="hidden lg:block relative z-50">
                         <Link
                             href="/contact-us"
-                            className="text-xs uppercase tracking-[0.2em] px-8 py-4 font-bold transition-all duration-500 bg-[#3a2051] text-white hover:bg-[#4e2b6e] shadow-[0_8px_30px_rgb(58,32,81,0.2)] hover:-translate-y-1 inline-block"
+                            className="text-xs uppercase tracking-[0.2em] px-8 py-4 font-bold transition-all duration-500 bg-[#1c1c1c] text-white hover:bg-[#8da399] hover:-translate-y-1 inline-block"
                         >
                             Contact Us
                         </Link>
@@ -79,7 +79,7 @@ export default function Navbar() {
                     {/* MOBILE MENU BTN */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="lg:hidden relative z-50 p-3 -mr-3 transition-colors text-[#3a2051]"
+                        className="lg:hidden relative z-50 p-3 -mr-3 transition-colors text-[#1c1c1c]"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -108,7 +108,7 @@ export default function Navbar() {
                                     <Link
                                         href={item.path}
                                         onClick={() => setMobileMenuOpen(false)}
-                                        className="text-2xl uppercase tracking-[0.2em] font-medium text-[#3a2051]"
+                                        className="text-2xl uppercase tracking-[0.2em] font-medium text-[#1c1c1c]"
                                     >
                                         {item.name}
                                     </Link>
@@ -124,14 +124,14 @@ export default function Navbar() {
                         >
                             <div className="h-[1px] w-full bg-[#1c1c1c]/10" />
                             <div>
-                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#c5a265] mb-4 font-semibold">Contact</p>
-                                <a href="tel:01202948898" className="block text-2xl font-light text-[#3a2051] mb-2">01202 948 898</a>
+                                <p className="text-[10px] uppercase tracking-[0.3em] text-[#8da399] mb-4 font-semibold">Contact</p>
+                                <a href="tel:01202948898" className="block text-2xl font-light text-[#1c1c1c] mb-2">01202 948 898</a>
                                 <p className="text-sm text-[#1c1c1c]/60">Available 24/7</p>
                             </div>
                             <Link
                                 href="/contact-us"
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="w-full text-center bg-[#3a2051] text-white py-5 text-sm uppercase tracking-[0.2em] font-medium"
+                                className="w-full text-center bg-[#1c1c1c] text-white py-5 text-sm uppercase tracking-[0.2em] font-medium"
                             >
                                 Speak To Us
                             </Link>

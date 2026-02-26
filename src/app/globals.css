@@ -5,31 +5,25 @@
 :root {
   /* True Luxury Foundation */
   --background: #fdfcff;
-  /* Ultra light lavender/off-white */
   --foreground: #1c1c1c;
-  /* Almost black for maximum contrast */
 
-  /* Brand Identity */
-  --primary: #3a2051;
-  /* Royal Purple */
-  --primary-hover: #4e2b6e;
-  /* Lighter Purple */
-  --secondary: #21122e;
-  /* Deep dark purple for footer/accents */
-  --accent: #d1c8e1;
-  /* Soft metallic lavender */
+  /* Minimalist Luxury Brand Identity */
+  --primary: #8da399;
+  /* Sage Green */
+  --primary-hover: #7a9086;
+  --secondary: #2b2b2b;
+  /* Deep Charcoal */
+  --accent: #e8ecea;
+  /* Soft Sage / Grey */
 
   --surface: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #150f1d;
-    /* Deep rich dark purple/black */
-    --foreground: #f3effa;
-    /* Soft lavender white */
-    --surface: #1e1529;
-    /* Slightly lighter surface */
+    --background: #111111;
+    --foreground: #fcfcfc;
+    --surface: #1a1a1a;
   }
 }
 
