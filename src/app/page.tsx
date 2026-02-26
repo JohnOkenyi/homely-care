@@ -106,12 +106,12 @@ export default function Home() {
                     whileHover={{ y: -5, scale: 1.05 }}
                   >
                     {/* The "Sign" (Circular Icon) */}
-                    <div className="mb-3 w-12 h-12 sm:w-14 sm:h-14 xl:w-16 xl:h-16 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/25 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 shadow-lg relative z-10 shrink-0">
-                      <s.Icon className="w-5 h-5 sm:w-6 sm:h-6 xl:w-8 xl:h-8 text-white group-hover:text-[#fce4aa] stroke-[1.5] transition-colors duration-300 drop-shadow-md" />
+                    <div className="mb-3 w-16 h-16 sm:w-18 sm:h-18 xl:w-20 xl:h-20 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/25 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 shadow-lg relative z-10 shrink-0">
+                      <s.Icon className="w-8 h-8 sm:w-10 sm:h-10 xl:w-10 xl:h-10 text-white group-hover:text-[#fce4aa] stroke-[1.5] transition-colors duration-300 drop-shadow-md" />
                     </div>
 
                     {/* Writing Under the Sign */}
-                    <span className="text-white text-[10px] sm:text-xs xl:text-[13px] font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-1 w-full break-words">
+                    <span className="text-white text-[12px] sm:text-[14px] xl:text-[15px] font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-1 w-full break-words">
                       {s.title.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                     </span>
                   </motion.div>
