@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Facebook, Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -86,8 +86,15 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-8 border-t border-[#3a2051] flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-widest text-[#d1c8e1]">
-                    <p>Copyright © Homely Health Care 2022-{new Date().getFullYear()}</p>
-                    <div className="flex gap-8">
+                    <div className="flex flex-col md:flex-row items-center gap-6">
+                        <p>Copyright © Homely Health Care 2022-{new Date().getFullYear()}</p>
+                        <div className="flex gap-4 opacity-70">
+                            <a href="#" aria-label="Facebook" className="hover:text-[#c5a265] transition-colors"><Facebook size={16} /></a>
+                            <a href="#" aria-label="Instagram" className="hover:text-[#c5a265] transition-colors"><Instagram size={16} /></a>
+                            <a href="#" aria-label="LinkedIn" className="hover:text-[#c5a265] transition-colors"><Linkedin size={16} /></a>
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
                         <Link href="/privacy" className="hover:text-[#c5a265] transition-colors">Privacy Policy</Link>
                         <Link href="/cookies" className="hover:text-[#c5a265] transition-colors">Cookie Policy</Link>
                         <Link href="/terms" className="hover:text-[#c5a265] transition-colors">Terms of Service</Link>

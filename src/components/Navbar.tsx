@@ -79,7 +79,7 @@ export default function Navbar() {
                     {/* MOBILE MENU BTN */}
                     <button
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="lg:hidden relative z-50 p-2 transition-colors text-[#3a2051]"
+                        className="lg:hidden relative z-50 p-3 -mr-3 transition-colors text-[#3a2051]"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

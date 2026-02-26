@@ -126,11 +126,11 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.1 }}
               className="space-y-6"
             >
-              <div className="w-14 h-14 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
-                <UserCheck className="w-6 h-6" />
+              <div className="w-16 h-16 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
+                <UserCheck className="w-8 h-8" />
               </div>
               <h3 className="Heading-H4 text-[#3a2051]">Person-Centred Care</h3>
-              <p className="Text-16 text-[#1c1c1c]/70 font-light">
+              <p className="Text-16 text-[#1c1c1c]/80 font-light">
                 We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity.
               </p>
             </motion.div>
@@ -142,11 +142,11 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.2 }}
               className="space-y-6"
             >
-              <div className="w-14 h-14 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
-                <ShieldCheck className="w-6 h-6" />
+              <div className="w-16 h-16 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
+                <ShieldCheck className="w-8 h-8" />
               </div>
               <h3 className="Heading-H4 text-[#3a2051]">Rigorous Vetting</h3>
-              <p className="Text-16 text-[#1c1c1c]/70 font-light">
+              <p className="Text-16 text-[#1c1c1c]/80 font-light">
                 Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and appropriately trained to an exceptionally high standard.
               </p>
             </motion.div>
@@ -158,11 +158,11 @@ export default function Home() {
               transition={{ duration: 1, delay: 0.3 }}
               className="space-y-6"
             >
-              <div className="w-14 h-14 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
-                <HeartHandshake className="w-6 h-6" />
+              <div className="w-16 h-16 bg-[#f3effa] rounded-full flex items-center justify-center text-[#3a2051] mb-8">
+                <HeartHandshake className="w-8 h-8" />
               </div>
               <h3 className="Heading-H4 text-[#3a2051]">Approachable Management</h3>
-              <p className="Text-16 text-[#1c1c1c]/70 font-light">
+              <p className="Text-16 text-[#1c1c1c]/80 font-light">
                 Our friendly management team and Field Care Managers visit you regularly to guarantee the care you receive always aligns with your expectations.
               </p>
             </motion.div>
@@ -182,7 +182,7 @@ export default function Home() {
               </div>
               <div>
                 <span className="block text-3xl font-bold text-[#3a2051]">9.8/10</span>
-                <span className="text-sm font-medium text-[#1c1c1c]/50 uppercase tracking-widest mt-1 block">Rated By Families</span>
+                <span className="text-sm font-medium text-[#1c1c1c]/70 uppercase tracking-widest mt-1 block">Rated By Families</span>
               </div>
             </div>
 
@@ -192,7 +192,7 @@ export default function Home() {
               </div>
               <div>
                 <span className="block text-3xl font-bold text-[#3a2051]">7+ Years</span>
-                <span className="text-sm font-medium text-[#1c1c1c]/50 uppercase tracking-widest mt-1 block">Avg. Carer Experience</span>
+                <span className="text-sm font-medium text-[#1c1c1c]/70 uppercase tracking-widest mt-1 block">Avg. Carer Experience</span>
               </div>
             </div>
           </motion.div>
@@ -212,7 +212,7 @@ export default function Home() {
               </div>
               <div className="text-left">
                 <p className="font-medium text-[#1c1c1c]">Sarah Jenkins</p>
-                <p className="text-sm text-[#1c1c1c]/60">Daughter of Live-in Client, Dorset</p>
+                <p className="text-sm text-[#1c1c1c]/80">Daughter of Live-in Client, Dorset</p>
               </div>
             </div>
           </motion.div>
@@ -247,13 +247,13 @@ export default function Home() {
               <p className="Text-18 text-[#d1c8e1] font-light mb-10 max-w-lg leading-relaxed">
                 Receive necessary support while maintaining full independence in the comfort of your own home, surrounded by the things you love.
               </p>
-              <ul className="space-y-4 mb-12">
+              <ul className="space-y-6 mb-12">
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Personalised care plans agreed with family</li>
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Support ranging from a few hours to 7 days a week</li>
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Options for sleep-in or waking night security</li>
               </ul>
-              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-[#c5a265] transition-colors gap-2 group">
-                Explore Home Care <span className="w-8 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:w-12 ml-2 block" />
+              <Link href="/services" className="inline-flex items-center px-8 py-4 bg-transparent border border-white/30 text-white text-xs uppercase tracking-[0.1em] font-medium hover:bg-white hover:text-[#150f1d] hover:border-white transition-all duration-300 hover:-translate-y-1">
+                Explore Home Care
               </Link>
             </motion.div>
             <motion.div
@@ -290,13 +290,13 @@ export default function Home() {
               <p className="Text-18 text-[#d1c8e1] font-light mb-10 max-w-lg leading-relaxed">
                 Round-the-clock support for those who need constant care but prefer to remain in their own homes, preserving their lifestyle and dignity.
               </p>
-              <ul className="space-y-4 mb-12">
+              <ul className="space-y-6 mb-12">
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Carefully matched carers based on likes and hobbies</li>
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Assistance with administration of medicine and domestic duties</li>
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Accompanied visits to appointments and social activities</li>
               </ul>
-              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-[#c5a265] transition-colors gap-2 group">
-                Explore Live-in Care <span className="w-8 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:w-12 ml-2 block" />
+              <Link href="/services" className="inline-flex items-center px-8 py-4 bg-transparent border border-white/30 text-white text-xs uppercase tracking-[0.1em] font-medium hover:bg-white hover:text-[#150f1d] hover:border-white transition-all duration-300 hover:-translate-y-1">
+                Explore Live-in Care
               </Link>
             </motion.div>
           </div>
@@ -315,13 +315,13 @@ export default function Home() {
               <p className="Text-18 text-[#d1c8e1] font-light mb-10 max-w-lg leading-relaxed">
                 Empowering individuals with complex care needs, learning disabilities, or autism to live fully and independently within their communities.
               </p>
-              <ul className="space-y-4 mb-12">
+              <ul className="space-y-6 mb-12">
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Tailored support for individuals aged 18 and over</li>
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Flexible service ranging from a few hours to full-time</li>
                 <li className="flex items-start gap-4 text-sm text-[#f3effa]/80 font-light border-b border-white/10 pb-4"><Check className="w-5 h-5 text-[#c5a265] mt-0 shrink-0" /> Skills development and community integration support</li>
               </ul>
-              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.2em] font-bold text-white hover:text-[#c5a265] transition-colors gap-2 group">
-                Explore Supported Living <span className="w-8 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:w-12 ml-2 block" />
+              <Link href="/services" className="inline-flex items-center px-8 py-4 bg-transparent border border-white/30 text-white text-xs uppercase tracking-[0.1em] font-medium hover:bg-white hover:text-[#150f1d] hover:border-white transition-all duration-300 hover:-translate-y-1">
+                Explore Supported Living
               </Link>
             </motion.div>
             <motion.div
@@ -368,8 +368,8 @@ export default function Home() {
                 </li>
               </ul>
 
-              <Link href="/services" className="inline-flex items-center text-xs uppercase tracking-[0.4em] font-bold text-[#c5a265] hover:text-white transition-colors gap-4 group">
-                Explore Clinical Care <span className="w-12 h-[1px] bg-[#c5a265] transition-all duration-300 group-hover:bg-white block" />
+              <Link href="/services" className="inline-flex items-center px-10 py-5 bg-[#c5a265] text-[#150f1d] text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold hover:bg-white hover:-translate-y-1 transition-all duration-300 shadow-[0_8px_30px_rgb(197,162,101,0.2)]">
+                Explore Clinical Care
               </Link>
             </motion.div>
           </div>
@@ -394,7 +394,7 @@ export default function Home() {
               <h2 className="Heading-H2 text-[#3a2051] mb-8">
                 Giving Back to <br /><span className="italic font-light">The Rahula Trust.</span>
               </h2>
-              <p className="Text-18 text-[#1c1c1c]/70 leading-relaxed font-light mb-10 max-w-xl">
+              <p className="Text-18 text-[#1c1c1c]/80 leading-relaxed font-light mb-10 max-w-xl">
                 Luxury care means caring profoundly. Homely Health Care proudly donates a percentage of its profits to The Rahula Trust, an extraordinary children&apos;s education charity. They tirelessly support underprivileged children&apos;s education in various parts of the world.
               </p>
               <a
