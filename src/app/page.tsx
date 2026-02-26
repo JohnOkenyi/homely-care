@@ -91,7 +91,7 @@ export default function Home() {
         </div>
 
         {/* Right: Image (50-60%) */}
-        <div className="w-full lg:w-[55%] h-[60vh] lg:h-screen relative mt-12 lg:mt-0 flex flex-col justify-center px-4 lg:px-12 pt-32 lg:pt-40 pb-12 bg-[#fdfcff] z-20">
+        <div className="w-full lg:w-[55%] h-[70vh] lg:h-screen relative mt-12 lg:mt-0 flex flex-col justify-center px-0 lg:px-4 pt-28 lg:pt-32 pb-4 bg-[#fdfcff] z-20">
           <motion.div style={{ y, opacity }} className="relative w-full h-full origin-bottom">
             <Image src="/hero-image.jpg" alt="Homely Care Building" fill className="object-contain" priority unoptimized={true} />
           </motion.div>
