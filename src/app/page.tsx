@@ -84,35 +84,34 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Scattered Interactive Signs (50%) */}
-          <div className="w-full lg:w-1/2 min-h-[50vh] lg:min-h-full relative pointer-events-none mt-12 lg:mt-0">
-            <div className="absolute inset-0 pointer-events-auto">
+          {/* Right: Horizontal Top Interactive Signs */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end lg:absolute lg:top-8 lg:right-0 lg:pt-24 pointer-events-none mt-12 lg:mt-0 z-40">
+            <div className="pointer-events-auto flex flex-row flex-wrap lg:flex-nowrap items-start justify-center lg:justify-end gap-4 sm:gap-6 xl:gap-8 w-full px-4 lg:px-0">
               {[
-                { title: 'Home Care', Icon: HomeIcon, pos: { top: '15%', left: '35%' } },
-                { title: 'Live-in Care', Icon: Users, pos: { top: '35%', right: '15%' } },
-                { title: 'Residential & Nursing\nHome Support', Icon: Building2, pos: { top: '48%', left: '5%' } },
-                { title: 'Supported Living', Icon: HeartHandshake, pos: { top: '70%', right: '25%' } },
-                { title: 'Treatment of Disease,\nDisorder, or Injury\n(TDDI) & Homely care', Icon: Activity, pos: { top: '85%', left: '20%' } },
+                { title: 'Home Care', Icon: HomeIcon },
+                { title: 'Live-in Care', Icon: Users },
+                { title: 'Residential &\nNursing Support', Icon: Building2 },
+                { title: 'Supported\nLiving', Icon: HeartHandshake },
+                { title: 'Treatment of Disease,\nDisorder, or Injury\n(TDDI) & Homely care', Icon: Activity },
               ].map((s, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + (index * 0.15), duration: 0.8, ease: "easeOut" }}
-                  className="absolute flex flex-col items-center justify-center cursor-pointer group hover:z-50"
-                  style={s.pos}
+                  className="flex flex-col items-center justify-start cursor-pointer group w-[28%] sm:w-[20%] lg:w-24 xl:w-32 shrink-0"
                 >
                   <motion.div
-                    className="flex flex-col items-center justify-center relative"
+                    className="flex flex-col items-center justify-start relative w-full h-full"
                     whileHover={{ y: -5, scale: 1.05 }}
                   >
                     {/* The "Sign" (Circular Icon) */}
-                    <div className="mb-2 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/25 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 shadow-lg relative z-10">
-                      <s.Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:text-[#fce4aa] stroke-[1.5] transition-colors duration-300 drop-shadow-md" />
+                    <div className="mb-3 w-12 h-12 sm:w-14 sm:h-14 xl:w-16 xl:h-16 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/25 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 shadow-lg relative z-10 shrink-0">
+                      <s.Icon className="w-5 h-5 sm:w-6 sm:h-6 xl:w-8 xl:h-8 text-white group-hover:text-[#fce4aa] stroke-[1.5] transition-colors duration-300 drop-shadow-md" />
                     </div>
 
                     {/* Writing Under the Sign */}
-                    <span className="text-white text-[11px] sm:text-xs md:text-sm font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-2 whitespace-nowrap">
+                    <span className="text-white text-[9px] sm:text-[10px] xl:text-xs font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-1 w-full break-words">
                       {s.title.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                     </span>
                   </motion.div>
