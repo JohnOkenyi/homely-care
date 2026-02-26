@@ -91,9 +91,9 @@ export default function Home() {
         </div>
 
         {/* Right: Image (50-60%) */}
-        <div className="w-full lg:w-[55%] h-[50vh] lg:h-screen relative mt-12 lg:mt-0">
-          <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full origin-bottom">
-            <Image src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop" alt="Compassionate Care" fill className="object-cover" priority unoptimized={true} />
+        <div className="w-full lg:w-[55%] h-[50vh] lg:h-screen relative mt-12 lg:mt-0 flex items-center justify-center bg-[#fdfcff]">
+          <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full origin-bottom p-4 lg:p-12">
+            <Image src="/hero-image.jpg" alt="Homely Care Building" fill className="object-contain" priority unoptimized={true} />
           </motion.div>
         </div>
       </section>
