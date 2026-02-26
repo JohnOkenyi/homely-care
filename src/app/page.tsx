@@ -3,113 +3,140 @@
 import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ShieldCheck, HeartHandshake, UserCheck, Check, Heart } from "lucide-react";
+import { motion } from "framer-motion";
+import { ShieldCheck, HeartHandshake, UserCheck, Check, Heart, Home as HomeIcon, Users, Building2, Activity } from "lucide-react";
 
 export default function Home() {
   const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <main className="min-h-screen">
-      {/* HERO SECTION - 50/50 Split */}
-      <section ref={container} className="relative flex flex-col lg:flex-row min-h-screen bg-[#fdfcff] overflow-hidden">
+      {/* HERO SECTION - Purple House Background */}
+      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden bg-[#7B2CBF]">
 
-        {/* Left: Typography (40-50%) */}
-        <div className="w-full lg:w-[45%] lg:min-h-screen flex flex-col px-8 sm:px-12 lg:px-16 xl:px-24 pt-40 lg:pt-48 pb-24 relative z-30">
-          <motion.div
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } }
-            }}
-            initial="hidden"
-            animate="visible"
-            className="my-auto relative"
-          >
+        {/* Full-width Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/purple-house-bg.jpg"
+            alt="Homely Care Purple Building"
+            fill
+            className="object-cover object-[center_65%]"
+            priority
+            unoptimized={true}
+          />
+          {/* Subtle gradient overlay to ensure text readability on the left, and nice contrast overall */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#511685]/80 via-[#7B2CBF]/40 to-transparent" />
+          <div className="absolute inset-0 bg-black/10" />
+        </div>
+
+        {/* Content Wrapper */}
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-24 gap-12 lg:gap-8">
+
+          {/* Left: Typography (50%) */}
+          <div className="w-full lg:w-1/2 flex flex-col lg:pr-8">
             <motion.div
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-              className="relative inline-block mb-8 group cursor-default"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } }
+              }}
+              initial="hidden"
+              animate="visible"
             >
-              <span className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-[#7c3aed] font-bold relative z-10 transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(124,58,237,0.8)]">
-                HEALTH CARE
-              </span>
-              {/* World-Class Glow Effect Pulse */}
-              <motion.span
-                className="absolute inset-0 bg-[#7c3aed] blur-md opacity-30 z-0 transition-opacity duration-500 group-hover:opacity-60"
-                animate={{ opacity: [0.2, 0.4, 0.2], scale: [0.95, 1.05, 0.95] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <span className="absolute inset-0 bg-[#7c3aed] blur-xl opacity-10 z-0 transition-opacity duration-500 group-hover:opacity-30" />
-            </motion.div>
-
-            <motion.h1
-              variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-              className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] text-[#1c1c1c] mb-6 tracking-tight relative"
-            >
-              {/* Subtle ambient glow behind the main text */}
               <motion.div
-                className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-32 bg-[#7c3aed]/10 blur-[60px] -z-10 rounded-full mix-blend-multiply"
-                animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <span className="font-light block">A Life of</span>
-              <span className="font-bold block">Dignity,</span>
-              <span className="font-light italic text-[#7c3aed] block transition-all duration-500 hover:drop-shadow-[0_0_15px_rgba(124,58,237,0.6)] cursor-default">Tailored to You.</span>
-            </motion.h1>
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                className="relative inline-block mb-6 lg:mb-8 group cursor-default"
+              >
+                <span className="text-[10px] md:text-sm uppercase tracking-[0.3em] text-[#e0c3fc] shadow-sm font-bold relative z-10 transition-all duration-500 drop-shadow-md">
+                  HOME CARE SERVICES
+                </span>
+                <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 z-0 transition-opacity duration-500 group-hover:opacity-100" />
+              </motion.div>
 
-            <motion.p
-              variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-              className="Text-18 text-[#1c1c1c]/80 font-light mb-12 max-w-lg leading-relaxed"
-            >
-              Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
-            </motion.p>
+              <motion.h1
+                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] text-white mb-6 lg:mb-8 tracking-tight drop-shadow-xl"
+              >
+                <span className="font-light block">A Life of</span>
+                <span className="font-bold block text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e0c3fc]">Dignity,</span>
+                <span className="font-light italic text-[#fce4aa] block drop-shadow-[0_0_15px_rgba(0,0,0,0.4)]">Tailored to You.</span>
+              </motion.h1>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} className="flex flex-col sm:flex-row items-center gap-6 mt-4">
-              {/* Option B: Solid Button */}
-              <Link href="/contact-us" className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1c1c1c] text-xs uppercase tracking-[0.2em] font-medium text-white hover:bg-[#2b2b2b] transition-all duration-300 group shadow-sm">
-                24/7 DEDICATED CARE
-                <Heart className="w-4 h-4 text-white stroke-[1.5]" />
-              </Link>
+              <motion.p
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                className="Text-18 text-white/90 font-light mb-10 max-w-md leading-relaxed drop-shadow-md"
+              >
+                Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
+              </motion.p>
 
-              {/* Secondary Navigation */}
-              <Link href="/services" className="relative text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c]/60 hover:text-[#1c1c1c] transition-colors duration-300 group inline-flex items-center gap-2">
-                DISCOVER MORE
-                <motion.span
-                  className="inline-block"
-                  whileHover={{ y: 3 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} className="flex flex-col sm:flex-row items-center gap-6">
+                <Link href="/contact-us" className="inline-flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-full bg-white text-[#511685] text-xs uppercase tracking-[0.2em] font-bold hover:bg-[#fce4aa] hover:text-[#2b084e] transition-all duration-300 shadow-xl hover:shadow-[0_0_20px_rgba(252,228,170,0.5)]">
+                  24/7 DEDICATED CARE
+                  <Heart className="w-4 h-4 stroke-[2]" />
+                </Link>
+                <Link href="/services" className="relative text-xs uppercase tracking-[0.2em] font-medium text-white/80 hover:text-white transition-colors duration-300 group inline-flex items-center gap-2 drop-shadow-md">
+                  DISCOVER MORE
+                  <motion.span whileHover={{ y: 3 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+                  </motion.span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Right: Interactive Glass Signs (50%) */}
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-end justify-center gap-4 sm:gap-6 relative">
+
+            {/* Desktop Layout: Staggered visually to look 'placed' on the building */}
+            <div className="flex flex-col w-full max-w-[400px] gap-4">
+              {[
+                { title: 'Home Care', Icon: HomeIcon },
+                { title: 'Live-in Care', Icon: Users },
+                { title: 'Residential & Nursing\nHome Support', Icon: Building2 },
+                { title: 'Supported Living', Icon: HeartHandshake },
+                { title: 'Treatment of Disease,\nDisorder, or Injury\n(TDDI) & Homely care', Icon: Activity },
+              ].map((s, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 + (index * 0.15), duration: 0.8, ease: "easeOut" }}
+                  className={`${index % 2 === 0 ? "self-start" : "self-end"} w-[80%]`}
                 >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
-                </motion.span>
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#1c1c1c] transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </motion.div>
-          </motion.div>
+                  <motion.div
+                    className="flex flex-col items-center justify-center p-4 rounded-xl border border-white/30 bg-white/10 backdrop-blur-md shadow-lg cursor-pointer group hover:bg-white/20 hover:border-white/60 transition-all duration-300 relative overflow-hidden"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          {/* subtle scroll indicator */}
-          <div className="hidden lg:flex absolute bottom-12 left-12 xl:left-24 items-center gap-4">
-            <div className="w-[1px] h-12 bg-[#1c1c1c]/20 overflow-hidden relative">
-              <motion.div
-                className="w-full h-full bg-[#1c1c1c]"
-                animate={{ y: ["-100%", "100%"] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              />
+                    {/* The "Sign" (Icon) */}
+                    <div className="mb-2 p-3 rounded-full bg-[#fce4aa]/20 group-hover:bg-[#fce4aa]/40 transition-colors duration-300 relative z-10">
+                      <s.Icon className="w-8 h-8 text-white group-hover:text-[#fce4aa] stroke-[1.5] transition-colors duration-300 drop-shadow-md" />
+                    </div>
+
+                    {/* Writing Under the Sign */}
+                    <span className="text-white text-xs sm:text-sm font-medium text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] px-2">
+                      {s.title.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
+                    </span>
+                  </motion.div>
+                </motion.div>
+              ))}
             </div>
-            <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-[#1c1c1c]/50">Discover more</span>
+
           </div>
         </div>
 
-        {/* Right: Image (50-60%) */}
-        <div className="w-full lg:w-[65%] min-h-[75vh] lg:min-h-screen lg:h-[120vh] relative mt-12 lg:mt-0 flex flex-col justify-center px-0 pt-28 lg:pt-32 pb-0 bg-[#fdfcff] z-20">
-          <motion.div style={{ y, opacity }} className="relative w-full h-full origin-bottom">
-            <Image src="/hero-image.jpg" alt="Homely Care Building" fill className="object-contain" priority unoptimized={true} />
-          </motion.div>
+        {/* Scroll indicator overlay at bottom left */}
+        <div className="hidden lg:flex absolute bottom-12 left-12 xl:left-24 items-center gap-4 z-30">
+          <div className="w-[1px] h-12 bg-white/30 overflow-hidden relative">
+            <motion.div
+              className="w-full h-full bg-[#fce4aa]"
+              animate={{ y: ["-100%", "100%"] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/70">Discover more</span>
         </div>
       </section>
 
