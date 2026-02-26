@@ -70,9 +70,24 @@ export default function Home() {
               Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
             </motion.p>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}>
-              <Link href="/contact-us" className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-[#1c1c1c]/20 text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c] hover:bg-[#8da399] hover:text-white hover:border-transparent transition-all duration-500 hover:shadow-[0_0_30px_rgba(141,163,153,0.4)] group">
+            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} className="flex flex-col sm:flex-row items-center gap-6 mt-4">
+              {/* Option B: Solid Button */}
+              <Link href="/contact-us" className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1c1c1c] text-xs uppercase tracking-[0.2em] font-medium text-white hover:bg-[#2b2b2b] transition-all duration-300 group shadow-sm">
                 24/7 DEDICATED CARE
+                <Heart className="w-4 h-4 text-white stroke-[1.5]" />
+              </Link>
+
+              {/* Secondary Navigation */}
+              <Link href="/services" className="relative text-xs uppercase tracking-[0.2em] font-medium text-[#1c1c1c]/60 hover:text-[#1c1c1c] transition-colors duration-300 group inline-flex items-center gap-2">
+                DISCOVER MORE
+                <motion.span
+                  className="inline-block"
+                  whileHover={{ y: 3 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+                </motion.span>
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#1c1c1c] transition-all duration-300 group-hover:w-full" />
               </Link>
             </motion.div>
           </motion.div>
@@ -100,21 +115,47 @@ export default function Home() {
 
       {/* SECTION 2: TRUST BAR */}
       <section className="bg-[#fdfcff] py-32 md:py-48 relative z-20 overflow-hidden">
-        <div className="grid-container max-w-5xl text-center">
+        <div className="grid-container w-full max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1 }}
           >
-            <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1c1c1c]/40 block mb-12 md:mb-16">
-              Regulated & Trusted By
-            </span>
+            {/* Modern Layout Flow: Asymmetry */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-24 mb-16 md:mb-24">
 
-            <div className="flex flex-wrap items-center justify-center gap-12 md:gap-24 mb-16 md:mb-24 opacity-40 grayscale transition-all duration-500">
-              <span className="font-bold text-3xl tracking-tighter text-[#1c1c1c]">CQC</span>
-              <span className="font-bold text-3xl tracking-tighter text-[#1c1c1c]">NHS</span>
-              <span className="font-bold text-2xl tracking-tight text-[#1c1c1c]">Skills for Care</span>
+              {/* Left text */}
+              <div className="text-center lg:text-left shrink-0">
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-[#1c1c1c]/40 block">
+                  REGULATED & TRUSTED BY
+                </span>
+              </div>
+
+              {/* Right Logos */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-end gap-12 md:gap-16 w-full">
+
+                {/* NHS Logo */}
+                <div className="relative group cursor-pointer w-20 h-8 flex justify-center items-center">
+                  <div className="relative w-full h-full opacity-60 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100">
+                    <Image src="https://upload.wikimedia.org/wikipedia/commons/f/fa/NHS-Logo.svg" alt="NHS Logo" fill className="object-contain" unoptimized />
+                  </div>
+                </div>
+
+                {/* CQC Logo */}
+                <div className="relative group cursor-pointer w-28 h-10 flex justify-center items-center">
+                  <div className="relative w-full h-full opacity-60 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100">
+                    <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Care_Quality_Commission_logo.svg/1024px-Care_Quality_Commission_logo.svg.png" alt="CQC Logo" fill className="object-contain" unoptimized />
+                  </div>
+                </div>
+
+                {/* Skills for Care Logo */}
+                <div className="relative group cursor-pointer w-32 h-10 flex justify-center items-center">
+                  <div className="relative w-full h-full opacity-60 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100">
+                    <Image src="https://www.skillsforcare.org.uk/images/Logo/Skills-for-Care-logo.svg" alt="Skills for Care" fill className="object-contain" unoptimized />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="w-px h-16 bg-[#1c1c1c]/10 mx-auto mb-16 md:mb-24" />
