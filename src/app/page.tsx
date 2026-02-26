@@ -84,9 +84,9 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Horizontal Top Interactive Signs */}
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end lg:absolute lg:top-8 lg:right-0 lg:pt-24 pointer-events-none mt-12 lg:mt-0 z-40">
-            <div className="pointer-events-auto flex flex-row flex-wrap lg:flex-nowrap items-start justify-center lg:justify-end gap-4 sm:gap-6 xl:gap-8 w-full px-4 lg:px-0">
+          {/* Top-Right: Horizontal Interactive Signs */}
+          <div className="w-full lg:w-[65%] flex justify-center lg:absolute lg:top-8 lg:right-4 lg:pt-24 pointer-events-none mt-12 lg:mt-0 z-40">
+            <div className="pointer-events-auto flex flex-row flex-wrap lg:flex-nowrap items-start justify-center gap-4 sm:gap-6 xl:gap-10 w-full px-4 lg:px-0">
               {[
                 { title: 'Home Care', Icon: HomeIcon },
                 { title: 'Live-in Care', Icon: Users },
@@ -99,7 +99,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + (index * 0.15), duration: 0.8, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-start cursor-pointer group w-[28%] sm:w-[20%] lg:w-24 xl:w-32 shrink-0"
+                  className="flex flex-col items-center justify-start cursor-pointer group w-[28%] sm:w-[20%] lg:w-28 xl:w-36 shrink-0"
                 >
                   <motion.div
                     className="flex flex-col items-center justify-start relative w-full h-full"
@@ -111,7 +111,7 @@ export default function Home() {
                     </div>
 
                     {/* Writing Under the Sign */}
-                    <span className="text-white text-[9px] sm:text-[10px] xl:text-xs font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-1 w-full break-words">
+                    <span className="text-white text-[10px] sm:text-xs xl:text-[13px] font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-1 w-full break-words">
                       {s.title.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
                     </span>
                   </motion.div>
