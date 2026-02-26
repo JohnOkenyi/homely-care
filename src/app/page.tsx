@@ -85,12 +85,12 @@ export default function Home() {
           </div>
 
           {/* Top-Right: Horizontal Interactive Signs */}
-          <div className="w-full lg:w-[65%] flex justify-center lg:absolute lg:top-8 lg:right-4 lg:pt-24 pointer-events-none mt-12 lg:mt-0 z-40">
+          <div className="w-full lg:w-[65%] flex justify-center lg:absolute lg:top-4 lg:right-4 lg:pt-12 pointer-events-none mt-8 lg:mt-0 z-40">
             <div className="pointer-events-auto flex flex-row flex-wrap lg:flex-nowrap items-start justify-center gap-4 sm:gap-6 xl:gap-10 w-full px-4 lg:px-0">
               {[
                 { title: 'Home Care', Icon: HomeIcon },
-                { title: 'Live-in Care', Icon: Users },
                 { title: 'Residential &\nNursing Support', Icon: Building2 },
+                { title: 'Live-in Care', Icon: Users },
                 { title: 'Supported\nLiving', Icon: HeartHandshake },
                 { title: 'Treatment of Disease,\nDisorder, or Injury\n(TDDI) & Homely care', Icon: Activity },
               ].map((s, index) => (
