@@ -50,7 +50,7 @@ export default function Navbar() {
                             alt="Homely Healthcare Logo"
                             width={80}
                             height={80}
-                            className="object-contain"
+                            className="object-contain mix-blend-multiply"
                             priority
                         />
                     </Link>
