@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* HERO SECTION - Purple House Background */}
-      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden bg-[#7B2CBF]">
+      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden bg-[#1c1c1c]">
 
         {/* Full-width Background Image */}
         <div className="absolute inset-0 z-0">
@@ -24,9 +24,8 @@ export default function Home() {
             priority
             unoptimized={true}
           />
-          {/* Lighter gradient overlay for a softer purple feel while keeping text readable */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#7B2CBF]/70 via-[#9d4edd]/30 to-transparent" />
-          <div className="absolute inset-0 bg-white/5" />
+          {/* Subtle neutral gradient to ensure text readability on the left without tinting the whole image */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
         </div>
 
         {/* Content Wrapper */}
