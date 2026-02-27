@@ -20,13 +20,13 @@ export default function Home() {
             src="/purple-house-bg.jpg"
             alt="Homely Care Purple Building"
             fill
-            className="object-cover object-center lg:object-[center_65%]"
+            className="object-cover object-center lg:object-[center_65%] brightness-[1.15] contrast-[0.9] saturate-[0.8]"
             priority
             unoptimized={true}
           />
-          {/* Subtle gradient overlay to ensure text readability on the left, and nice contrast overall */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#511685]/80 via-[#7B2CBF]/40 to-transparent" />
-          <div className="absolute inset-0 bg-black/10" />
+          {/* Lighter gradient overlay for a softer purple feel while keeping text readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#7B2CBF]/70 via-[#9d4edd]/30 to-transparent" />
+          <div className="absolute inset-0 bg-white/5" />
         </div>
 
         {/* Content Wrapper */}
