@@ -28,11 +28,11 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        { id: 1, text: "Home Care", lat: 52, lng: -1, icon: <Home size={18} /> },
-        { id: 2, text: "Residential &\nNursing Support", lat: 48, lng: 18, icon: <HeartHandshake size={18} /> },
-        { id: 3, text: "Live-in Care", lat: 38, lng: -4, icon: <UserCheck size={18} /> },
-        { id: 4, text: "Supported\nLiving", lat: 45, lng: 5, icon: <ShieldCheck size={18} /> },
-        { id: 5, text: "TDDI &\nHomely care", lat: 55, lng: 12, icon: <Activity size={18} /> },
+        { id: 1, text: "Home Care", lat: 52, lng: -2, icon: <Home size={18} /> },
+        { id: 2, text: "Residential &\nNursing Support", lat: 25, lng: 35, icon: <HeartHandshake size={18} /> },
+        { id: 3, text: "Live-in Care", lat: 20, lng: -20, icon: <UserCheck size={18} /> },
+        { id: 4, text: "Supported\nLiving", lat: 60, lng: 45, icon: <ShieldCheck size={18} /> },
+        { id: 5, text: "TDDI &\nHomely care", lat: 65, lng: -30, icon: <Activity size={18} /> },
     ], []);
 
     useEffect(() => {
