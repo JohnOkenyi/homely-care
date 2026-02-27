@@ -30,7 +30,6 @@ export default function InteractiveGlobe() {
     const globeData = useMemo(() => [
         // Spaced out globally to ensure ~3 per view and no clustering
         { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
-        { id: 2, text: "Residential &\nNursing Support", lat: 25, lng: 35, icon: <HeartHandshake size={18} /> }, // Middle East
         { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> }, // Southern Africa
         { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
         { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
