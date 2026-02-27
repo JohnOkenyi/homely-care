@@ -16,8 +16,8 @@ export default function InteractiveGlobe() {
         const handleResize = () => {
             const width = window.innerWidth;
             const height = window.innerHeight;
-            const elWidth = width >= 1024 ? width * 0.5 : width;
-            const elHeight = width >= 1024 ? height * 0.8 : height * 0.5;
+            const elWidth = width >= 1024 ? width * 0.6 : width;
+            const elHeight = width >= 1024 ? height * 0.9 : height * 0.6;
             const size = Math.min(elWidth, elHeight);
             setDimensions({ width: size, height: size });
         };
@@ -29,11 +29,11 @@ export default function InteractiveGlobe() {
 
     const globeData = useMemo(() => [
         // Spaced out globally to ensure ~3 per view and no clustering
-        { id: 1, text: "Homely Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
+        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
         { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> }, // Southern Africa
         { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
         { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
-        { id: 6, text: "Homely Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
+        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
         { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> }, // USA West
         { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> }, // Asia North
         { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> }, // India
@@ -46,7 +46,7 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().enableZoom = false;
 
             // Initial view showing a nice sparse group of ~3
-            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 2.2 }, 0);
+            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.8 }, 0);
         }
     }, [dimensions]);
 
