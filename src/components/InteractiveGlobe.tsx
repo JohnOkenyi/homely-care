@@ -28,17 +28,17 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // Spaced out globally to ensure ~3 per view and no clustering
+        // Primary cluster: visible on load, away from edges
         { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
-        { id: 2, text: "Residential &\nNursing Support", lat: 25, lng: 35, icon: <HeartHandshake size={18} /> }, // Middle East
-        { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> }, // Southern Africa
-        { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
-        { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
-        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
+        { id: 2, text: "Residential &\nNursing Support", lat: 40, lng: 18, icon: <HeartHandshake size={18} /> }, // Europe
+        { id: 3, text: "Live-in Care", lat: 10, lng: -5, icon: <UserCheck size={18} /> }, // West Africa
+        { id: 4, text: "Supported\nLiving", lat: -15, lng: 25, icon: <ShieldCheck size={18} /> }, // Southern Africa
+
+        // Global distribution for rotation coverage
+        { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 139, icon: <Activity size={18} /> }, // Japan
+        { id: 6, text: "Home Care", lat: -25, lng: 133, icon: <Home size={18} /> }, // Australia
         { id: 7, text: "Residential &\nNursing Support", lat: -23, lng: -46, icon: <HeartHandshake size={18} /> }, // Brazil
-        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> }, // USA West
-        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> }, // Asia North
-        { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> }, // India
+        { id: 8, text: "Live-in Care", lat: 40, lng: -74, icon: <UserCheck size={18} /> }, // New York
     ], []);
 
     useEffect(() => {
@@ -47,8 +47,8 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().autoRotateSpeed = 0.8;
             globeEl.current.controls().enableZoom = false;
 
-            // Initial view showing a nice sparse group of ~3
-            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 2.2 }, 0);
+            // Initial view centered more precisely on the starting group
+            globeEl.current.pointOfView({ lat: 25, lng: 5, altitude: 2.2 }, 0);
         }
     }, [dimensions]);
 
