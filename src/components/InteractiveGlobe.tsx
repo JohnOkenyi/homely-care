@@ -29,11 +29,11 @@ export default function InteractiveGlobe() {
     }, []);
 
     const gData = useMemo(() => [
-        { text: "Home Care", lat: 30, lng: -40, altitude: 0.1 },
-        { text: "Residential &\nNursing Support", lat: 10, lng: 20, altitude: 0.1 },
-        { text: "Live-in Care", lat: -20, lng: -30, altitude: 0.1 },
-        { text: "Supported\nLiving", lat: 45, lng: 50, altitude: 0.1 },
-        { text: "TDDI &\nHomely care", lat: -10, lng: 60, altitude: 0.1 },
+        { text: "Home Care", lat: 35, lng: -20, altitude: 0.05 },
+        { text: "Residential &\nNursing Support", lat: 15, lng: 50, altitude: 0.05 },
+        { text: "Live-in Care", lat: -25, lng: -60, altitude: 0.05 },
+        { text: "Supported\nLiving", lat: -40, lng: 30, altitude: 0.05 },
+        { text: "TDDI &\nHomely care", lat: 5, lng: 110, altitude: 0.05 },
     ], []);
 
     useEffect(() => {
@@ -64,24 +64,19 @@ export default function InteractiveGlobe() {
                     const el = document.createElement('div');
                     el.innerHTML = `
             <div style="
-              background: rgba(255,255,255,0.1); 
-              backdrop-filter: blur(8px); 
-              -webkit-backdrop-filter: blur(8px);
-              border: 1px solid rgba(255,255,255,0.2); 
-              padding: 10px 16px; 
-              border-radius: 12px; 
               color: white; 
               font-family: inherit;
-              font-weight: 600; 
-              font-size: 13px; 
+              font-weight: 700; 
+              font-size: 15px; 
               line-height: 1.3;
               letter-spacing: 0.05em;
-              text-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+              text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.8); 
               cursor: pointer; 
               transition: all 0.3s ease; 
               text-align: center; 
               white-space: pre-line;
-              box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+              position: absolute;
+              transform: translate(-50%, -50%);
             ">
               ${d.text}
             </div>
@@ -90,10 +85,9 @@ export default function InteractiveGlobe() {
                     el.onmouseenter = () => {
                         const inner = el.firstElementChild as HTMLElement;
                         if (inner) {
-                            inner.style.transform = 'scale(1.1) translateY(-5px)';
-                            inner.style.backgroundColor = 'rgba(255,255,255,0.2)';
-                            inner.style.borderColor = 'rgba(255,255,255,0.4)';
+                            inner.style.transform = 'translate(-50%, -50%) scale(1.15)';
                             inner.style.color = '#fce4aa'; // Hover color from theme
+                            inner.style.textShadow = '0 2px 4px rgba(0,0,0,0.9), 0 0 15px rgba(252,228,170,0.6)';
                         }
                         if (globeEl.current) {
                             globeEl.current.controls().autoRotate = false;
@@ -102,10 +96,9 @@ export default function InteractiveGlobe() {
                     el.onmouseleave = () => {
                         const inner = el.firstElementChild as HTMLElement;
                         if (inner) {
-                            inner.style.transform = 'none';
-                            inner.style.backgroundColor = 'rgba(255,255,255,0.1)';
-                            inner.style.borderColor = 'rgba(255,255,255,0.2)';
+                            inner.style.transform = 'translate(-50%, -50%) scale(1)';
                             inner.style.color = 'white';
+                            inner.style.textShadow = '0 2px 4px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.8)';
                         }
                         if (globeEl.current) {
                             globeEl.current.controls().autoRotate = true;
