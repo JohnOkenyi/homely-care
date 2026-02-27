@@ -30,11 +30,11 @@ export default function InteractiveGlobe() {
     }, []);
 
     const fixedLabels = useMemo(() => [
-        { text: "Home Care", top: "20%", left: "50%", icon: <Home size={20} /> },
-        { text: "Residential &\nNursing Support", top: "35%", left: "75%", icon: <HeartHandshake size={20} /> },
-        { text: "Live-in Care", top: "65%", left: "25%", icon: <UserCheck size={20} /> },
-        { text: "Supported\nLiving", top: "75%", left: "70%", icon: <ShieldCheck size={20} /> },
-        { text: "TDDI &\nHomely care", top: "45%", left: "20%", icon: <Activity size={20} /> },
+        { text: "Home Care", top: "22%", left: "50%", icon: <Home size={20} /> },
+        { text: "Residential &\nNursing Support", top: "36%", left: "74%", icon: <HeartHandshake size={20} /> },
+        { text: "Live-in Care", top: "66%", left: "28%", icon: <UserCheck size={20} /> },
+        { text: "Supported\nLiving", top: "72%", left: "68%", icon: <ShieldCheck size={20} /> },
+        { text: "TDDI &\nHomely care", top: "42%", left: "22%", icon: <Activity size={20} /> },
     ], []);
 
     useEffect(() => {
