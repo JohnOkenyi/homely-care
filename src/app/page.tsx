@@ -82,7 +82,7 @@ export default function Home() {
             <div className="relative w-[110%] sm:w-full max-w-[600px] xl:max-w-[700px] aspect-square flex items-end justify-center translate-y-[10%] lg:translate-y-[15%]">
 
               {/* Globe, inside the cradle of the hands */}
-              <div className="absolute top-[10%] left-[12%] w-[76%] h-[76%] z-10 pointer-events-auto">
+              <div className="absolute top-[5%] left-[12%] w-[76%] h-[76%] z-10 pointer-events-auto">
                 <InteractiveGlobe />
               </div>
 
