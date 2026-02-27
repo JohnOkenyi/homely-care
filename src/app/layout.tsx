@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`} data-version="1.0.2-large-globe">
       <body className="antialiased bg-[#fdfcff] text-[#1c1c1c]">
         <SmoothScroll>
           <Navbar />
