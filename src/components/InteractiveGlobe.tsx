@@ -69,11 +69,11 @@ export default function InteractiveGlobe() {
                     const iconMarkup = renderToStaticMarkup(d.icon);
 
                     el.innerHTML = `
-                        <div class="label-container flex flex-col items-center gap-1 cursor-pointer transition-all duration-300">
-                            <div class="icon-box flex items-center justify-center w-[34px] h-[34px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg mb-1">
+                        <div class="label-container flex flex-col items-center gap-0 cursor-pointer transition-all duration-300">
+                            <div class="icon-box flex items-center justify-center w-[34px] h-[34px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
                                 ${iconMarkup}
                             </div>
-                            <span class="label-text font-bold text-[11px] leading-[1.2] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                            <span class="label-text font-bold text-[11px] leading-[1.1] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mt-[-2px]">
                                 ${d.text}
                             </span>
                         </div>
