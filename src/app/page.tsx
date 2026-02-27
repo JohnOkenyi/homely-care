@@ -79,18 +79,18 @@ export default function Home() {
           {/* Right: Interactive Globe and Hands */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
             {/* The single wrapper holding BOTH the hands and the globe together */}
-            <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[10%] lg:translate-y-[15%]">
+            <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[5%]">
 
               {/* Globe, inside the cradle of the hands */}
               <div className="absolute top-[2%] left-[6%] w-[88%] h-[88%] z-10 pointer-events-auto">
                 <InteractiveGlobe />
               </div>
 
-              {/* Hands Image (Foreground). Using mix-blend-screen or lighten makes its 
-                  black background transparent, allowing the globe underneath to shine through! */}
-              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
+              {/* Hands Image (Foreground). mix-blend-multiply knocks out the white outer
+                  background while keeping the skin-toned hands fully opaque. */}
+              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply">
                 <Image
-                  src="/hands-globe.png"
+                  src="/hands-globe-new.png"
                   alt="Hands lifting globe"
                   fill
                   className="object-contain object-bottom select-none drop-shadow-[0_-30px_50px_rgba(0,0,0,0.8)]"
