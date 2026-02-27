@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
-import { Home, HeartHandshake, UserCheck, ShieldCheck, Activity } from "lucide-react";
+import { Home, UserCheck, ShieldCheck, Activity } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
@@ -34,7 +34,6 @@ export default function InteractiveGlobe() {
         { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
         { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
         { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
-        { id: 7, text: "Residential &\nNursing Support", lat: -23, lng: -46, icon: <HeartHandshake size={18} /> }, // Brazil
         { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> }, // USA West
         { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> }, // Asia North
         { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> }, // India
