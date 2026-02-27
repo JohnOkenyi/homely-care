@@ -17,10 +17,10 @@ export default function Home() {
         {/* Full-width Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/purple-house-bg.jpg"
-            alt="Homely Care Purple Building"
+            src="/hero-bg-new.jpg"
+            alt="Homely Care Elderly Couple on Bench"
             fill
-            className="object-cover object-center lg:object-[center_65%] brightness-[1.15] contrast-[0.9] saturate-[0.8]"
+            className="object-cover object-center"
             priority
             unoptimized={true}
           />
