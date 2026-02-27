@@ -20,7 +20,7 @@ export default function Home() {
             src="/purple-house-bg.jpg"
             alt="Homely Care Purple Building"
             fill
-            className="object-cover object-[center_65%]"
+            className="object-cover object-center lg:object-[center_65%]"
             priority
             unoptimized={true}
           />
