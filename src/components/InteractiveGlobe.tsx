@@ -16,8 +16,8 @@ export default function InteractiveGlobe() {
         const handleResize = () => {
             const width = window.innerWidth;
             const height = window.innerHeight;
-            const elWidth = width >= 1024 ? width * 0.6 : width;
-            const elHeight = width >= 1024 ? height * 0.9 : height * 0.6;
+            const elWidth = width >= 1024 ? width * 0.75 : width;
+            const elHeight = width >= 1024 ? height * 0.95 : height * 0.7;
             const size = Math.min(elWidth, elHeight);
             setDimensions({ width: size, height: size });
         };
@@ -46,7 +46,7 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().enableZoom = false;
 
             // Initial view showing a nice sparse group of ~3
-            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.8 }, 0);
+            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
         }
     }, [dimensions]);
 
