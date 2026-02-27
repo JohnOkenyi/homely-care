@@ -37,11 +37,11 @@ export default function InteractiveGlobe() {
     };
 
     const gData = useMemo(() => [
-        { text: "Home Care", lat: 45, lng: 10, altitude: 0.05, icon: icons.home }, // Europe
-        { text: "Residential &\nNursing Support", lat: 38, lng: -97, altitude: 0.05, icon: icons.heart }, // North America
-        { text: "Live-in Care", lat: -15, lng: -60, altitude: 0.05, icon: icons.user }, // South America
-        { text: "Supported\nLiving", lat: -25, lng: 135, altitude: 0.05, icon: icons.shield }, // Australia
-        { text: "TDDI &\nHomely care", lat: 20, lng: 80, altitude: 0.05, icon: icons.activity }, // Asia
+        { text: "Home Care", lat: 53, lng: -2, altitude: 0.05, icon: icons.home }, // UK
+        { text: "Residential &\nNursing Support", lat: 46, lng: 14, altitude: 0.05, icon: icons.heart }, // Central Europe (Austria/Slovenia)
+        { text: "Live-in Care", lat: 39, lng: -4, altitude: 0.05, icon: icons.user }, // Spain
+        { text: "Supported\nLiving", lat: 44, lng: 26, altitude: 0.05, icon: icons.shield }, // Eastern Europe (Romania)
+        { text: "TDDI &\nHomely care", lat: 60, lng: 10, altitude: 0.05, icon: icons.activity }, // Scandinavia (Norway/Sweden)
     ], [icons.activity, icons.heart, icons.home, icons.shield, icons.user]);
 
     useEffect(() => {
@@ -52,8 +52,8 @@ export default function InteractiveGlobe() {
             // Disable zoom if you want it to remain fixed size relative to the hands
             globeEl.current.controls().enableZoom = false;
 
-            // Start facing Europe initially
-            globeEl.current.pointOfView({ lat: 45, lng: 15, altitude: 2 }, 0);
+            // Start facing Europe (specifically centered on France/Germany)
+            globeEl.current.pointOfView({ lat: 48, lng: 10, altitude: 2 }, 0);
         }
     }, []);
 
