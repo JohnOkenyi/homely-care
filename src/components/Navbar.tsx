@@ -46,7 +46,7 @@ export default function Navbar() {
                     {/* LOGO */}
                     <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50">
                         <Image
-                            src="/logo.png"
+                            src="/logo-v3.png"
                             alt="Homely Healthcare Logo"
                             width={80}
                             height={80}
