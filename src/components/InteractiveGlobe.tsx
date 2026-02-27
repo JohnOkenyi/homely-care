@@ -28,11 +28,27 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
-        { id: 2, text: "Residential &\nNursing Support", lat: -25.2, lng: 133.7, icon: <HeartHandshake size={18} /> }, // Australia
-        { id: 3, text: "Live-in Care", lat: 40.7, lng: -74, icon: <UserCheck size={18} /> }, // New York
-        { id: 4, text: "Supported\nLiving", lat: 35.6, lng: 139.6, icon: <ShieldCheck size={18} /> }, // Tokyo
-        { id: 5, text: "TDDI &\nHomely care", lat: -23.5, lng: -46.6, icon: <Activity size={18} /> }, // Sao Paulo
+        // Cluster 1: Initial View (Europe/Atlantic Focus - 4 Services)
+        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> },
+        { id: 2, text: "Residential &\nNursing Support", lat: 48, lng: 16, icon: <HeartHandshake size={18} /> },
+        { id: 3, text: "Live-in Care", lat: 15, lng: -15, icon: <UserCheck size={18} /> },
+        { id: 4, text: "Supported\nLiving", lat: 38, lng: -45, icon: <ShieldCheck size={18} /> },
+
+        // Distribution: Around the Globe (At least 3 in every section)
+        { id: 5, text: "TDDI &\nHomely care", lat: -15, lng: -55, icon: <Activity size={18} /> },
+        { id: 6, text: "Home Care", lat: 35, lng: 139, icon: <Home size={18} /> },
+        { id: 7, text: "Residential &\nNursing Support", lat: -25, lng: 133, icon: <HeartHandshake size={18} /> },
+        { id: 8, text: "Live-in Care", lat: 10, lng: 105, icon: <UserCheck size={18} /> },
+        { id: 9, text: "Supported\nLiving", lat: 25, lng: 55, icon: <ShieldCheck size={18} /> },
+        { id: 10, text: "TDDI &\nHomely care", lat: -30, lng: 25, icon: <Activity size={18} /> },
+        { id: 11, text: "Home Care", lat: 37, lng: -122, icon: <Home size={18} /> },
+        { id: 12, text: "Residential &\nNursing Support", lat: 55, lng: -100, icon: <HeartHandshake size={18} /> },
+        { id: 13, text: "Live-in Care", lat: -2, lng: 115, icon: <UserCheck size={18} /> },
+        { id: 14, text: "Supported\nLiving", lat: 55, lng: 70, icon: <ShieldCheck size={18} /> },
+        { id: 15, text: "TDDI &\nHomely care", lat: 35, lng: 95, icon: <Activity size={18} /> },
+        { id: 16, text: "Home Care", lat: -34, lng: -58, icon: <Home size={18} /> },
+        { id: 17, text: "Residential &\nNursing Support", lat: 26, lng: 30, icon: <HeartHandshake size={18} /> },
+        { id: 18, text: "Live-in Care", lat: 60, lng: 15, icon: <UserCheck size={18} /> },
     ], []);
 
     useEffect(() => {
@@ -41,8 +57,8 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().autoRotateSpeed = 0.8;
             globeEl.current.controls().enableZoom = false;
 
-            // Start with a view that shows the first few pins
-            globeEl.current.pointOfView({ lat: 20, lng: 0, altitude: 2.2 }, 0);
+            // Adjusted view to ensure the Europe-side cluster (4 pins) is prominent
+            globeEl.current.pointOfView({ lat: 35, lng: -10, altitude: 2.1 }, 0);
         }
     }, [dimensions]);
 
@@ -63,11 +79,11 @@ export default function InteractiveGlobe() {
                     const iconMarkup = renderToStaticMarkup(d.icon);
 
                     el.innerHTML = `
-                        <div class="label-container flex flex-col items-center gap-3 cursor-pointer transition-all duration-300">
-                            <div class="icon-box flex items-center justify-center w-[36px] h-[36px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg mb-1">
+                        <div class="label-container flex flex-col items-center gap-1 cursor-pointer transition-all duration-300">
+                            <div class="icon-box flex items-center justify-center w-[34px] h-[34px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg mb-1">
                                 ${iconMarkup}
                             </div>
-                            <span class="label-text font-bold text-[12px] leading-[1.3] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                            <span class="label-text font-bold text-[11px] leading-[1.2] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                                 ${d.text}
                             </span>
                         </div>
