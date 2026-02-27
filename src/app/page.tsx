@@ -77,16 +77,16 @@ export default function Home() {
           </div>
 
           {/* Right: Interactive Globe and Hands */}
-          <div className="w-full lg:w-[55%] h-[50vh] lg:h-full lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30">
-            <div className="relative w-full h-[120%] max-w-[900px] flex items-end justify-center">
+          <div className="w-full lg:w-[55%] h-[50vh] lg:h-[90vh] lg:absolute lg:right-0 lg:top-[10vh] flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
+            <div className="relative w-full h-full max-w-[800px] flex items-end justify-center">
 
-              {/* Globe (Behind the hands or nestled inside) */}
-              <div className="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full aspect-square z-10 pointer-events-auto mix-blend-screen opacity-90">
+              {/* Globe */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] lg:w-[100%] aspect-square z-10 pointer-events-auto mix-blend-screen opacity-90">
                 <InteractiveGlobe />
               </div>
 
               {/* Hands Image (Foreground) */}
-              <div className="relative w-[110%] lg:w-[130%] aspect-square z-20 pointer-events-none translate-y-[15%] lg:translate-y-[25%] lg:translate-x-[5%] opacity-90 drop-shadow-[0_-20px_40px_rgba(0,0,0,0.8)]">
+              <div className="absolute bottom-[-10%] lg:bottom-[-20%] left-1/2 -translate-x-1/2 w-[120%] lg:w-[140%] aspect-square z-20 pointer-events-none opacity-90 drop-shadow-[0_-20px_40px_rgba(0,0,0,0.8)]">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands lifting globe"
