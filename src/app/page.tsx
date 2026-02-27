@@ -77,27 +77,30 @@ export default function Home() {
           </div>
 
           {/* Right: Interactive Globe and Hands */}
-          <div className="w-full lg:w-[55%] h-[50vh] lg:h-[90vh] lg:absolute lg:right-0 lg:top-[10vh] flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
-            <div className="relative w-full h-full max-w-[800px] flex items-end justify-center">
+          <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
+            {/* The single wrapper holding BOTH the hands and the globe together */}
+            <div className="relative w-[110%] sm:w-full max-w-[600px] xl:max-w-[700px] aspect-square flex items-end justify-center translate-y-[10%] lg:translate-y-[15%]">
 
-              {/* Globe */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] lg:w-[100%] aspect-square z-10 pointer-events-auto mix-blend-screen opacity-90">
+              {/* Globe, inside the cradle of the hands */}
+              <div className="absolute top-[10%] left-[12%] w-[76%] h-[76%] z-10 pointer-events-auto">
                 <InteractiveGlobe />
               </div>
 
-              {/* Hands Image (Foreground) */}
-              <div className="absolute bottom-[-10%] lg:bottom-[-20%] left-1/2 -translate-x-1/2 w-[120%] lg:w-[140%] aspect-square z-20 pointer-events-none opacity-90 drop-shadow-[0_-20px_40px_rgba(0,0,0,0.8)]">
+              {/* Hands Image (Foreground). Using mix-blend-screen or lighten makes its 
+                  black background transparent, allowing the globe underneath to shine through! */}
+              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands lifting globe"
                   fill
-                  className="object-contain object-bottom select-none"
+                  className="object-contain object-bottom select-none drop-shadow-[0_-30px_50px_rgba(0,0,0,0.8)]"
                   priority
                   unoptimized={true}
                 />
-                {/* Dark fade at bottom to blend into next section */}
-                <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-[#050505] to-transparent z-30" />
               </div>
+
+              {/* Dark fade at bottom to blend into next section */}
+              <div className="absolute bottom-[-10%] inset-x-0 h-1/3 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-30 pointer-events-none" />
 
             </div>
           </div>
