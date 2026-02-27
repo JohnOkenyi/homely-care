@@ -28,17 +28,15 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // Spaced out to ensure ~4 are visible in the center of the initial view (lat 30, lng 20)
-        { id: 1, text: "Home Care", lat: 35, lng: 15, icon: <Home size={18} /> }, // Centered-ish
-        { id: 4, text: "Supported\nLiving", lat: 20, lng: 35, icon: <ShieldCheck size={18} /> }, // Spread to the right
-        { id: 3, text: "Live-in Care", lat: 45, lng: 5, icon: <UserCheck size={18} /> }, // Spread to the top-left
-        { id: 5, text: "TDDI &\nHomely care", lat: 15, lng: 5, icon: <Activity size={18} /> }, // Spread to the bottom-left
-
-        // Background points to populate the rest of the globe
-        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> },
-        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> },
-        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> },
-        { id: 10, text: "TDDI &\nHomely care", lat: -10, lng: -20, icon: <Activity size={18} /> },
+        // Spaced out globally to ensure ~3 per view and no clustering
+        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
+        { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> }, // Southern Africa
+        { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
+        { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
+        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
+        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> }, // USA West
+        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> }, // Asia North
+        { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> }, // India
     ], []);
 
     useEffect(() => {
