@@ -37,11 +37,11 @@ export default function InteractiveGlobe() {
     };
 
     const gData = useMemo(() => [
-        { text: "Home Care", lat: 55, lng: -5, altitude: 0.05, icon: icons.home },
-        { text: "Residential &\nNursing Support", lat: 45, lng: 25, altitude: 0.05, icon: icons.heart },
-        { text: "Live-in Care", lat: 30, lng: -10, altitude: 0.05, icon: icons.user },
-        { text: "Supported\nLiving", lat: 35, lng: 30, altitude: 0.05, icon: icons.shield },
-        { text: "TDDI &\nHomely care", lat: 50, lng: 15, altitude: 0.05, icon: icons.activity },
+        { text: "Home Care", lat: 45, lng: 10, altitude: 0.05, icon: icons.home }, // Europe
+        { text: "Residential &\nNursing Support", lat: 38, lng: -97, altitude: 0.05, icon: icons.heart }, // North America
+        { text: "Live-in Care", lat: -15, lng: -60, altitude: 0.05, icon: icons.user }, // South America
+        { text: "Supported\nLiving", lat: -25, lng: 135, altitude: 0.05, icon: icons.shield }, // Australia
+        { text: "TDDI &\nHomely care", lat: 20, lng: 80, altitude: 0.05, icon: icons.activity }, // Asia
     ], [icons.activity, icons.heart, icons.home, icons.shield, icons.user]);
 
     useEffect(() => {
@@ -145,11 +145,17 @@ export default function InteractiveGlobe() {
                         const inner = el.firstElementChild as HTMLElement;
                         if (inner) inner.style.transform = 'translate(-50%, -50%) scale(1.15)';
 
-                        if (!isActive) {
-                            const iconCont = el.querySelector('.icon-container') as HTMLElement;
-                            const textCont = el.querySelector('.text-container') as HTMLElement;
-                            if (iconCont) iconCont.style.borderColor = 'rgba(255,255,255,0.5)';
-                            if (textCont) textCont.style.color = '#fce4aa';
+                        // Apply strong glow on hover regardless of isActive state
+                        const iconCont = el.querySelector('.icon-container') as HTMLElement;
+                        const textCont = el.querySelector('.text-container') as HTMLElement;
+                        if (iconCont) {
+                            iconCont.style.boxShadow = '0 0 30px rgba(252,228,170,1)';
+                            iconCont.style.borderColor = 'rgba(252,228,170,1)';
+                            iconCont.style.color = '#fce4aa';
+                        }
+                        if (textCont) {
+                            textCont.style.color = '#fce4aa';
+                            textCont.style.textShadow = '0 0 25px rgba(252,228,170,1)';
                         }
 
                         if (globeEl.current) {
@@ -160,11 +166,30 @@ export default function InteractiveGlobe() {
                         const inner = el.firstElementChild as HTMLElement;
                         if (inner) inner.style.transform = 'translate(-50%, -50%) scale(1)';
 
+                        const iconCont = el.querySelector('.icon-container') as HTMLElement;
+                        const textCont = el.querySelector('.text-container') as HTMLElement;
+
                         if (!isActive) {
-                            const iconCont = el.querySelector('.icon-container') as HTMLElement;
-                            const textCont = el.querySelector('.text-container') as HTMLElement;
-                            if (iconCont) iconCont.style.borderColor = 'rgba(255,255,255,0.2)';
-                            if (textCont) textCont.style.color = 'white';
+                            if (iconCont) {
+                                iconCont.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
+                                iconCont.style.borderColor = 'rgba(255,255,255,0.2)';
+                                iconCont.style.color = 'white';
+                            }
+                            if (textCont) {
+                                textCont.style.color = 'white';
+                                textCont.style.textShadow = '0 2px 4px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.8)';
+                            }
+                        } else {
+                            // Revert to the active state glow
+                            if (iconCont) {
+                                iconCont.style.boxShadow = '0 0 20px rgba(252,228,170,0.8)';
+                                iconCont.style.borderColor = 'rgba(252,228,170,0.8)';
+                                iconCont.style.color = '#fce4aa';
+                            }
+                            if (textCont) {
+                                textCont.style.color = '#fce4aa';
+                                textCont.style.textShadow = '0 0 15px rgba(252,228,170,0.8)';
+                            }
                         }
 
                         if (globeEl.current) {
