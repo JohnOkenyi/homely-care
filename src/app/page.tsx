@@ -4,7 +4,8 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShieldCheck, HeartHandshake, UserCheck, Check, Heart, Home as HomeIcon, Users, Building2, Activity } from "lucide-react";
+import { ShieldCheck, HeartHandshake, UserCheck, Check, Heart } from "lucide-react";
+import InteractiveGlobe from "@/components/InteractiveGlobe";
 
 export default function Home() {
   const container = useRef(null);
@@ -14,25 +15,17 @@ export default function Home() {
       {/* HERO SECTION - Purple House Background */}
       <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden bg-[#1c1c1c]">
 
-        {/* Full-width Background Image */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/hero-bg-bw.jpg"
-            alt="Homely Care Holding Hands"
-            fill
-            className="object-cover object-center"
-            priority
-            unoptimized={true}
-          />
-          {/* Subtle neutral gradient to ensure text readability on the left without tinting the whole image */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
+        {/* Full-width Background - Dark theme for space/globe feel */}
+        <div className="absolute inset-0 z-0 bg-[#050505]">
+          {/* Subtle gradient so left text looks nice if needed */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent" />
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-24 gap-12 lg:gap-8">
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-8 gap-12 lg:gap-8 min-h-[100svh]">
 
-          {/* Left: Typography (50%) */}
-          <div className="w-full lg:w-1/2 flex flex-col lg:pr-8">
+          {/* Left: Typography (40%) */}
+          <div className="w-full lg:w-[45%] flex flex-col z-40">
             <motion.div
               variants={{
                 hidden: { opacity: 0 },
@@ -83,39 +76,29 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Top-Right: Horizontal Interactive Signs */}
-          <div className="w-full lg:w-[65%] flex justify-center lg:absolute lg:top-12 lg:right-4 lg:pt-16 pointer-events-none mt-12 lg:mt-0 z-40">
-            <div className="pointer-events-auto flex flex-row flex-wrap lg:flex-nowrap items-start justify-center gap-4 sm:gap-6 xl:gap-10 w-full px-4 lg:px-0">
-              {[
-                { title: 'Home Care', Icon: HomeIcon },
-                { title: 'Residential &\nNursing Support', Icon: Building2 },
-                { title: 'Live-in Care', Icon: Users },
-                { title: 'Supported\nLiving', Icon: HeartHandshake },
-                { title: 'Treatment of Disease,\nDisorder, or Injury\n(TDDI) & Homely care', Icon: Activity },
-              ].map((s, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + (index * 0.15), duration: 0.8, ease: "easeOut" }}
-                  className="flex flex-col items-center justify-start cursor-pointer group w-[28%] sm:w-[20%] lg:w-28 xl:w-36 shrink-0"
-                >
-                  <motion.div
-                    className="flex flex-col items-center justify-start relative w-full h-full"
-                    whileHover={{ y: -5, scale: 1.05 }}
-                  >
-                    {/* The "Sign" (Circular Icon) */}
-                    <div className="mb-3 w-16 h-16 sm:w-18 sm:h-18 xl:w-20 xl:h-20 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center group-hover:bg-white/25 group-hover:border-white/50 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 shadow-lg relative z-10 shrink-0">
-                      <s.Icon className="w-8 h-8 sm:w-10 sm:h-10 xl:w-10 xl:h-10 text-white group-hover:text-[#fce4aa] stroke-[1.5] transition-colors duration-300 drop-shadow-md" />
-                    </div>
+          {/* Right: Interactive Globe and Hands */}
+          <div className="w-full lg:w-[55%] h-[50vh] lg:h-full lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30">
+            <div className="relative w-full h-[120%] max-w-[900px] flex items-end justify-center">
 
-                    {/* Writing Under the Sign */}
-                    <span className="text-white text-[12px] sm:text-[14px] xl:text-[15px] font-semibold text-center leading-snug relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] px-1 w-full break-words">
-                      {s.title.split('\n').map((line, i) => <span key={i} className="block">{line}</span>)}
-                    </span>
-                  </motion.div>
-                </motion.div>
-              ))}
+              {/* Globe (Behind the hands or nestled inside) */}
+              <div className="absolute top-[20%] lg:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full aspect-square z-10 pointer-events-auto mix-blend-screen opacity-90">
+                <InteractiveGlobe />
+              </div>
+
+              {/* Hands Image (Foreground) */}
+              <div className="relative w-[110%] lg:w-[130%] aspect-square z-20 pointer-events-none translate-y-[15%] lg:translate-y-[25%] lg:translate-x-[5%] opacity-90 drop-shadow-[0_-20px_40px_rgba(0,0,0,0.8)]">
+                <Image
+                  src="/hands-globe.png"
+                  alt="Hands lifting globe"
+                  fill
+                  className="object-contain object-bottom select-none"
+                  priority
+                  unoptimized={true}
+                />
+                {/* Dark fade at bottom to blend into next section */}
+                <div className="absolute bottom-0 inset-x-0 h-1/3 bg-gradient-to-t from-[#050505] to-transparent z-30" />
+              </div>
+
             </div>
           </div>
         </div>
