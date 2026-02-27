@@ -86,25 +86,14 @@ export default function Home() {
                 <InteractiveGlobe />
               </div>
 
-              {/* SVG filter: converts luminance to alpha — black → transparent, skin tones → fully opaque */}
-              <svg width="0" height="0" className="absolute overflow-hidden">
-                <defs>
-                  <filter id="remove-black-bg">
-                    <feColorMatrix type="matrix" values="1 0 0 0 0
-                                                         0 1 0 0 0
-                                                         0 0 1 0 0
-                                                         4 4 4 0 -0.3" />
-                  </filter>
-                </defs>
-              </svg>
-
-              {/* Hands Image (Foreground) - solid opaque, black background removed by SVG filter */}
-              <div className="absolute inset-0 z-20 pointer-events-none" style={{ filter: 'url(#remove-black-bg)' }}>
+              {/* Hands Image (Foreground). Using mix-blend-screen or lighten makes its 
+                  black background transparent, allowing the globe underneath to shine through! */}
+              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands lifting globe"
                   fill
-                  className="object-contain object-bottom select-none"
+                  className="object-contain object-bottom select-none drop-shadow-[0_-30px_50px_rgba(0,0,0,0.8)]"
                   priority
                   unoptimized={true}
                 />
