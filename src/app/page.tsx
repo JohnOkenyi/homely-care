@@ -79,7 +79,7 @@ export default function Home() {
           {/* Right: Interactive Globe and Hands */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
             {/* The single wrapper holding BOTH the hands and the globe together */}
-            <div className="relative w-[110%] sm:w-full max-w-[600px] xl:max-w-[700px] aspect-square flex items-end justify-center translate-y-[10%] lg:translate-y-[15%]">
+            <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[10%] lg:translate-y-[15%]">
 
               {/* Globe, inside the cradle of the hands */}
               <div className="absolute top-[5%] left-[12%] w-[76%] h-[76%] z-10 pointer-events-auto">
