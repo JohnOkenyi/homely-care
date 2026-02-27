@@ -17,8 +17,8 @@ export default function Home() {
         {/* Full-width Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero-bg-new.jpg"
-            alt="Homely Care Elderly Couple on Bench"
+            src="/hero-bg-bw.jpg"
+            alt="Homely Care Holding Hands"
             fill
             className="object-cover object-center"
             priority
