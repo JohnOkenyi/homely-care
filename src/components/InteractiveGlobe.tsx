@@ -28,11 +28,11 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        { id: 1, text: "Home Care", lat: 52, lng: -2, icon: <Home size={18} /> },
-        { id: 2, text: "Residential &\nNursing Support", lat: 25, lng: 35, icon: <HeartHandshake size={18} /> },
-        { id: 3, text: "Live-in Care", lat: 20, lng: -20, icon: <UserCheck size={18} /> },
-        { id: 4, text: "Supported\nLiving", lat: 60, lng: 45, icon: <ShieldCheck size={18} /> },
-        { id: 5, text: "TDDI &\nHomely care", lat: 65, lng: -30, icon: <Activity size={18} /> },
+        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
+        { id: 2, text: "Residential &\nNursing Support", lat: -25.2, lng: 133.7, icon: <HeartHandshake size={18} /> }, // Australia
+        { id: 3, text: "Live-in Care", lat: 40.7, lng: -74, icon: <UserCheck size={18} /> }, // New York
+        { id: 4, text: "Supported\nLiving", lat: 35.6, lng: 139.6, icon: <ShieldCheck size={18} /> }, // Tokyo
+        { id: 5, text: "TDDI &\nHomely care", lat: -23.5, lng: -46.6, icon: <Activity size={18} /> }, // Sao Paulo
     ], []);
 
     useEffect(() => {
@@ -41,8 +41,8 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().autoRotateSpeed = 0.8;
             globeEl.current.controls().enableZoom = false;
 
-            // Target Europe directly
-            globeEl.current.pointOfView({ lat: 48, lng: 10, altitude: 2 }, 0);
+            // Start with a view that shows the first few pins
+            globeEl.current.pointOfView({ lat: 20, lng: 0, altitude: 2.2 }, 0);
         }
     }, [dimensions]);
 
@@ -63,11 +63,11 @@ export default function InteractiveGlobe() {
                     const iconMarkup = renderToStaticMarkup(d.icon);
 
                     el.innerHTML = `
-                        <div class="label-container flex flex-col items-center gap-1 cursor-pointer transition-all duration-300">
-                            <div class="icon-box flex items-center justify-center w-[34px] h-[34px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
+                        <div class="label-container flex flex-col items-center gap-3 cursor-pointer transition-all duration-300">
+                            <div class="icon-box flex items-center justify-center w-[36px] h-[36px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg mb-1">
                                 ${iconMarkup}
                             </div>
-                            <span class="label-text font-bold text-[12px] leading-[1.2] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                            <span class="label-text font-bold text-[12px] leading-[1.3] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                                 ${d.text}
                             </span>
                         </div>
