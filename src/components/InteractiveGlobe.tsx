@@ -28,27 +28,17 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // Cluster 1: Initial View (Europe/Atlantic Focus - 4 Services)
-        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> },
-        { id: 2, text: "Residential &\nNursing Support", lat: 48, lng: 16, icon: <HeartHandshake size={18} /> },
-        { id: 3, text: "Live-in Care", lat: 15, lng: -15, icon: <UserCheck size={18} /> },
-        { id: 4, text: "Supported\nLiving", lat: 38, lng: -45, icon: <ShieldCheck size={18} /> },
-
-        // Distribution: Around the Globe (At least 3 in every section)
-        { id: 5, text: "TDDI &\nHomely care", lat: -15, lng: -55, icon: <Activity size={18} /> },
-        { id: 6, text: "Home Care", lat: 35, lng: 139, icon: <Home size={18} /> },
-        { id: 7, text: "Residential &\nNursing Support", lat: -25, lng: 133, icon: <HeartHandshake size={18} /> },
-        { id: 8, text: "Live-in Care", lat: 10, lng: 105, icon: <UserCheck size={18} /> },
-        { id: 9, text: "Supported\nLiving", lat: 25, lng: 55, icon: <ShieldCheck size={18} /> },
-        { id: 10, text: "TDDI &\nHomely care", lat: -30, lng: 25, icon: <Activity size={18} /> },
-        { id: 11, text: "Home Care", lat: 37, lng: -122, icon: <Home size={18} /> },
-        { id: 12, text: "Residential &\nNursing Support", lat: 55, lng: -100, icon: <HeartHandshake size={18} /> },
-        { id: 13, text: "Live-in Care", lat: -2, lng: 115, icon: <UserCheck size={18} /> },
-        { id: 14, text: "Supported\nLiving", lat: 55, lng: 70, icon: <ShieldCheck size={18} /> },
-        { id: 15, text: "TDDI &\nHomely care", lat: 35, lng: 95, icon: <Activity size={18} /> },
-        { id: 16, text: "Home Care", lat: -34, lng: -58, icon: <Home size={18} /> },
-        { id: 17, text: "Residential &\nNursing Support", lat: 26, lng: 30, icon: <HeartHandshake size={18} /> },
-        { id: 18, text: "Live-in Care", lat: 60, lng: 15, icon: <UserCheck size={18} /> },
+        // Spaced out globally to ensure ~3 per view and no clustering
+        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
+        { id: 2, text: "Residential &\nNursing Support", lat: 25, lng: 35, icon: <HeartHandshake size={18} /> }, // Middle East
+        { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> }, // Southern Africa
+        { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
+        { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
+        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
+        { id: 7, text: "Residential &\nNursing Support", lat: -23, lng: -46, icon: <HeartHandshake size={18} /> }, // Brazil
+        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> }, // USA West
+        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> }, // Asia North
+        { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> }, // India
     ], []);
 
     useEffect(() => {
@@ -57,8 +47,8 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().autoRotateSpeed = 0.8;
             globeEl.current.controls().enableZoom = false;
 
-            // Adjusted view to ensure the Europe-side cluster (4 pins) is prominent
-            globeEl.current.pointOfView({ lat: 35, lng: -10, altitude: 2.1 }, 0);
+            // Initial view showing a nice sparse group of ~3
+            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 2.2 }, 0);
         }
     }, [dimensions]);
 
