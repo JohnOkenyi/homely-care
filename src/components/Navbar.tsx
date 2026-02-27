@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { X, Menu } from "lucide-react";
 
@@ -43,13 +44,15 @@ export default function Navbar() {
             >
                 <div className="grid-container flex justify-between items-center w-full">
                     {/* LOGO */}
-                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex flex-col items-center group relative z-50">
-                        <span className="Heading-Serif text-3xl tracking-tight text-[#1c1c1c]">
-                            HOMELY
-                        </span>
-                        <span className="text-[9px] uppercase tracking-[0.4em] mt-1 text-[#8da399]">
-                            Health Care
-                        </span>
+                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50">
+                        <Image
+                            src="/logo.png"
+                            alt="Homely Healthcare Logo"
+                            width={80}
+                            height={80}
+                            className="object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* DESKTOP LINKS */}
