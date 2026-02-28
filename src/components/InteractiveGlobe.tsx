@@ -45,25 +45,37 @@ export default function InteractiveGlobe() {
         { id: 8, text: "Complex Care", lat: -15, lng: -75, icon: <Activity size={18} /> },
     ], []);
 
+    const isHovered = useRef(false);
+
     useEffect(() => {
         let animationFrameId: number;
+        let lastTime = performance.now();
 
         if (globeEl.current) {
-            globeEl.current.controls().autoRotate = true;
-            globeEl.current.controls().autoRotateSpeed = 1.2; // Slightly faster for continuous engagement
             globeEl.current.controls().enableZoom = false;
 
             // Initial view centred on the equator to ensure pairs are perfectly visible
             globeEl.current.pointOfView({ lat: 5, lng: 0, altitude: 1.6 }, 0);
 
-            // Force rendering loop for auto-rotation
-            const animate = () => {
-                if (globeEl.current) {
-                    globeEl.current.controls().update();
+            // Manual rendering loop for guaranteed auto-rotation
+            const animate = (time: number) => {
+                const delta = time - lastTime;
+                lastTime = time;
+
+                if (globeEl.current && !isHovered.current) {
+                    const currentPov = globeEl.current.pointOfView();
+                    // Rotate ~8 degrees per second
+                    const rotateAmount = (8 * delta) / 1000;
+
+                    globeEl.current.pointOfView({
+                        lat: currentPov.lat,
+                        lng: currentPov.lng + rotateAmount,
+                        altitude: currentPov.altitude
+                    }, 0);
                 }
                 animationFrameId = requestAnimationFrame(animate);
             };
-            animate();
+            animationFrameId = requestAnimationFrame(animate);
         }
 
         return () => {
@@ -109,11 +121,11 @@ export default function InteractiveGlobe() {
 
                     // Hover effects using standard CSS in JS approach for the library
                     el.onmouseenter = () => {
-                        if (globeEl.current) globeEl.current.controls().autoRotate = false;
+                        isHovered.current = true;
                         el.querySelector('.label-container')?.classList.add('hover-glow');
                     };
                     el.onmouseleave = () => {
-                        if (globeEl.current) globeEl.current.controls().autoRotate = true;
+                        isHovered.current = false;
                         el.querySelector('.label-container')?.classList.remove('hover-glow');
                     };
 
