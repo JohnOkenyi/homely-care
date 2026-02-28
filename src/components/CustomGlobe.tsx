@@ -23,7 +23,7 @@ export default function CustomGlobe() {
         const container = containerRef.current;
         if (!container) return;
 
-        console.log("🔥 INITIALIZING ENHANCED NATIVE GLOBE");
+        console.log("🚀 GLOBAL ACTIVATION - V3.0");
 
         let renderer: THREE.WebGLRenderer;
         let scene: THREE.Scene;
