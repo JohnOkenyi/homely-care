@@ -12,110 +12,124 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      {/* HERO SECTION - Purple House Background */}
-      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden bg-[#1c1c1c]">
+      {/* HERO SECTION - Luxury Purple Dark Theme */}
+      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F1115 0%, #1B1326 55%, #24163A 100%)' }}>
 
-        {/* Full-width Background - Dark theme for space/globe feel */}
-        <div className="absolute inset-0 z-0 bg-[#050505]">
-          {/* Subtle gradient so left text looks nice if needed */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent" />
+        {/* Depth layers */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Ambient star field */}
+          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,163,211,0.9) 1px, transparent 1px)', backgroundSize: '70px 70px' }} />
+          {/* Purple glow — left ambient */}
+          <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-25" style={{ background: '#5B2A86' }} />
+          {/* Text-readability gradient overlay */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(15,17,21,0.97) 0%, rgba(27,19,38,0.9) 30%, rgba(36,22,58,0.5) 55%, transparent 78%)' }} />
         </div>
 
         {/* Content Wrapper */}
         <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-8 gap-12 lg:gap-8 min-h-[100svh]">
 
-          {/* Left: Typography (40%) */}
+          {/* Left: Typography */}
           <div className="w-full lg:w-[45%] flex flex-col z-40">
             <motion.div
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } }
-              }}
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.15 } } }}
               initial="hidden"
               animate="visible"
             >
+              {/* Label */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-                className="relative inline-block mb-6 lg:mb-8 group cursor-default"
+                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
+                className="mb-6 lg:mb-8"
               >
-                <span className="text-[10px] md:text-sm uppercase tracking-[0.3em] text-[#e0c3fc] shadow-sm font-bold relative z-10 transition-all duration-500 drop-shadow-md">
-                  HOME CARE SERVICES
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.35em] uppercase" style={{ color: '#B9A3D3' }}>
+                  Home Care Services
                 </span>
-                <span className="absolute inset-0 bg-white/20 blur-xl opacity-0 z-0 transition-opacity duration-500 group-hover:opacity-100" />
               </motion.div>
 
+              {/* Headline */}
               <motion.h1
-                variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] text-white mb-6 lg:mb-8 tracking-tight drop-shadow-xl"
+                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
+                className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6 lg:mb-8 tracking-tight"
               >
-                <span className="font-light block">A Life of</span>
-                <span className="font-bold block text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e0c3fc]">Dignity,</span>
-                <span className="font-light italic text-[#fce4aa] block drop-shadow-[0_0_15px_rgba(0,0,0,0.4)]">Tailored to You.</span>
+                <span className="font-light block" style={{ color: '#F2F2F2' }}>A Life of</span>
+                <span className="font-bold block" style={{ color: '#F2F2F2' }}>Dignity,</span>
+                <span className="font-light italic block" style={{ background: 'linear-gradient(90deg, #B9A3D3 0%, #D6B36A 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Tailored to You.</span>
               </motion.h1>
 
+              {/* Supporting text */}
               <motion.p
-                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-                className="Text-18 text-white/90 font-light mb-10 max-w-md leading-relaxed drop-shadow-md"
+                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                className="Text-18 font-light mb-10 max-w-md leading-relaxed"
+                style={{ color: 'rgba(242,242,242,0.7)' }}
               >
                 Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
               </motion.p>
 
-              <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }} className="flex flex-col sm:flex-row items-center gap-6">
-                <Link href="/contact-us" className="inline-flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-full bg-white text-[#511685] text-xs uppercase tracking-[0.2em] font-bold hover:bg-[#fce4aa] hover:text-[#2b084e] transition-all duration-300 shadow-xl hover:shadow-[0_0_20px_rgba(252,228,170,0.5)]">
-                  24/7 DEDICATED CARE
+              {/* CTAs */}
+              <motion.div
+                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                className="flex flex-col sm:flex-row items-center gap-4"
+              >
+                <Link
+                  href="/contact-us"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-full text-white text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 shadow-xl"
+                  style={{ background: 'linear-gradient(135deg, #5B2A86, #7A4FB3)', boxShadow: '0 4px 24px rgba(91,42,134,0.45)' }}
+                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 32px rgba(214,179,106,0.35), 0 4px 24px rgba(91,42,134,0.45)')}
+                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(91,42,134,0.45)')}
+                >
+                  24/7 Dedicated Care
                   <Heart className="w-4 h-4 stroke-[2]" />
                 </Link>
-                <Link href="/services" className="relative text-xs uppercase tracking-[0.2em] font-medium text-white/80 hover:text-white transition-colors duration-300 group inline-flex items-center gap-2 drop-shadow-md">
-                  DISCOVER MORE
-                  <motion.span whileHover={{ y: 3 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
-                  </motion.span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+                <Link href="/services" className="group relative text-xs uppercase tracking-[0.2em] font-medium inline-flex items-center gap-2 transition-colors duration-300" style={{ color: 'rgba(185,163,211,0.85)' }}>
+                  Discover More
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full" style={{ background: '#B9A3D3' }} />
                 </Link>
               </motion.div>
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe and Hands */}
+          {/* Right: Interactive Globe + Hands */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
-            {/* The single wrapper holding BOTH the hands and the globe together */}
-            <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[10%] lg:translate-y-[15%]">
+            <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[5%]">
 
-              {/* Globe, inside the cradle of the hands */}
+              {/* Atmospheric purple glow behind globe */}
+              <div className="absolute top-[8%] left-[8%] w-[84%] h-[84%] rounded-full z-0 blur-[80px] opacity-35" style={{ background: 'radial-gradient(circle, #5B2A86 0%, transparent 70%)' }} />
+
+              {/* Globe */}
               <div className="absolute top-[2%] left-[6%] w-[88%] h-[88%] z-10 pointer-events-auto">
                 <InteractiveGlobe />
               </div>
 
-              {/* Hands Image (Foreground). Using mix-blend-screen or lighten makes its 
-                  black background transparent, allowing the globe underneath to shine through! */}
-              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
+              {/* Hands — black bg blends seamlessly with dark hero background */}
+              <div className="absolute inset-0 z-20 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
-                  alt="Hands lifting globe"
+                  alt="Hands cradling globe"
                   fill
-                  className="object-contain object-bottom select-none drop-shadow-[0_-30px_50px_rgba(0,0,0,0.8)]"
+                  className="object-contain object-bottom select-none"
                   priority
                   unoptimized={true}
                 />
               </div>
 
-              {/* Dark fade at bottom to blend into next section */}
-              <div className="absolute bottom-[-10%] inset-x-0 h-1/3 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent z-30 pointer-events-none" />
+              {/* Bottom fade to next section */}
+              <div className="absolute bottom-[-10%] inset-x-0 h-1/3 z-30 pointer-events-none" style={{ background: 'linear-gradient(to top, #0F1115, rgba(15,17,21,0.6), transparent)' }} />
 
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator overlay at bottom left */}
-        <div className="hidden lg:flex absolute bottom-12 left-12 xl:left-24 items-center gap-4 z-30">
-          <div className="w-[1px] h-12 bg-white/30 overflow-hidden relative">
+        {/* Scroll indicator */}
+        <div className="hidden lg:flex absolute bottom-10 left-12 xl:left-24 items-center gap-4 z-30">
+          <div className="w-[1px] h-12 overflow-hidden relative" style={{ background: 'rgba(185,163,211,0.25)' }}>
             <motion.div
-              className="w-full h-full bg-[#fce4aa]"
+              className="w-full h-full"
+              style={{ background: '#D6B36A' }}
               animate={{ y: ["-100%", "100%"] }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
             />
           </div>
-          <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-white/70">Discover more</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'rgba(185,163,211,0.7)' }}>Discover more</span>
         </div>
       </section>
 

@@ -39,7 +39,7 @@ export default function Navbar() {
                 }}
                 animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className={`fixed top-0 inset-x-0 z-50 transition-colors duration-700 flex items-center h-28 ${scrolled || mobileMenuOpen ? "bg-[#fdfcff]/95 backdrop-blur-xl shadow-sm border-b border-[#1c1c1c]/5" : "bg-[#fdfcff]/90 backdrop-blur-md"
+                className={`fixed top-0 inset-x-0 z-50 transition-colors duration-700 flex items-center h-28 ${scrolled || mobileMenuOpen ? 'bg-[#F7F5F2]/98 backdrop-blur-xl shadow-sm border-b border-[#5B2A86]/10' : 'bg-[#F7F5F2]/95 backdrop-blur-md'
                     }`}
             >
                 <div className="grid-container flex justify-between items-center w-full">
@@ -61,10 +61,13 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.path}
-                                className="text-xs uppercase tracking-[0.2em] transition-colors relative group font-medium text-[#1c1c1c]/60 hover:text-[#1c1c1c]"
+                                className="text-xs uppercase tracking-[0.2em] transition-colors relative group font-medium"
+                                style={{ color: 'rgba(27,19,38,0.6)' }}
+                                onMouseEnter={e => (e.currentTarget.style.color = '#5B2A86')}
+                                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(27,19,38,0.6)')}
                             >
                                 {item.name}
-                                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#8da399] transition-all duration-500 group-hover:w-full" />
+                                <span className="absolute -bottom-2 left-0 w-0 h-[1px] transition-all duration-500 group-hover:w-full" style={{ background: '#5B2A86' }} />
                             </Link>
                         ))}
                     </nav>
@@ -73,7 +76,10 @@ export default function Navbar() {
                     <div className="hidden lg:block relative z-50">
                         <Link
                             href="/contact-us"
-                            className="text-xs uppercase tracking-[0.2em] px-8 py-4 font-bold transition-all duration-500 bg-[#1c1c1c] text-white hover:bg-[#8da399] hover:-translate-y-1 inline-block"
+                            className="text-xs uppercase tracking-[0.2em] px-8 py-4 font-bold transition-all duration-300 text-white inline-block rounded-sm"
+                            style={{ background: 'linear-gradient(135deg, #5B2A86, #7A4FB3)', boxShadow: '0 2px 16px rgba(91,42,134,0.35)' }}
+                            onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(214,179,106,0.4), 0 2px 16px rgba(91,42,134,0.35)')}
+                            onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 2px 16px rgba(91,42,134,0.35)')}
                         >
                             Contact Us
                         </Link>

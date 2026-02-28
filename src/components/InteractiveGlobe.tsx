@@ -68,10 +68,10 @@ export default function InteractiveGlobe() {
 
                     el.innerHTML = `
                         <div class="label-container flex flex-col items-center gap-0 cursor-pointer transition-all duration-300">
-                            <div class="icon-box flex items-center justify-center w-[34px] h-[34px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
+                            <div class="icon-box flex items-center justify-center w-[36px] h-[36px] rounded-full" style="background:rgba(91,42,134,0.25);border:1px solid rgba(185,163,211,0.4);backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(91,42,134,0.3)">
                                 ${iconMarkup}
                             </div>
-                            <span class="label-text font-bold text-[11px] leading-[1.1] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mt-[-2px]">
+                            <span class="label-text font-semibold text-[11px] leading-[1.2] tracking-wide text-center whitespace-pre-line mt-[-1px]" style="color:#F2F2F2;text-shadow:0 2px 8px rgba(15,17,21,0.9)">
                                 ${d.text}
                             </span>
                         </div>
@@ -102,24 +102,36 @@ export default function InteractiveGlobe() {
                 .label-container {
                     transition: all 0.3s ease;
                 }
+                .label-container .icon-box svg {
+                    color: #B9A3D3;
+                    stroke: #B9A3D3;
+                }
                 .label-container.hover-glow .icon-box {
-                    background: rgba(252, 228, 170, 0.4) !important;
-                    border-color: rgba(252, 228, 170, 1) !important;
-                    box-shadow: 0 0 20px rgba(252, 228, 170, 0.8) !important;
+                    background: rgba(214,179,106,0.25) !important;
+                    border-color: rgba(214,179,106,0.7) !important;
+                    box-shadow: 0 0 20px rgba(214,179,106,0.5) !important;
                     transform: scale(1.1);
                 }
+                .label-container.hover-glow .icon-box svg {
+                    color: #D6B36A;
+                    stroke: #D6B36A;
+                }
                 .label-container.hover-glow .label-text {
-                    color: #fce4aa !important;
-                    text-shadow: 0 0 15px rgba(252, 228, 170, 0.8) !important;
+                    color: #D6B36A !important;
+                    text-shadow: 0 0 12px rgba(214,179,106,0.6) !important;
                 }
                 .label-container.glow-active .icon-box {
-                    background: rgba(252, 228, 170, 0.6) !important;
-                    border-color: rgba(252, 228, 170, 1) !important;
-                    box-shadow: 0 0 30px rgba(252, 228, 170, 1) !important;
+                    background: rgba(214,179,106,0.4) !important;
+                    border-color: rgba(214,179,106,1) !important;
+                    box-shadow: 0 0 28px rgba(214,179,106,0.7) !important;
+                }
+                .label-container.glow-active .icon-box svg {
+                    color: #D6B36A;
+                    stroke: #D6B36A;
                 }
                 .label-container.glow-active .label-text {
-                    color: #fce4aa !important;
-                    text-shadow: 0 0 20px rgba(252, 228, 170, 1) !important;
+                    color: #D6B36A !important;
+                    text-shadow: 0 0 16px rgba(214,179,106,0.8) !important;
                 }
             `}</style>
         </div>
