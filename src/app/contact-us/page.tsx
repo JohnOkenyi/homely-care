@@ -84,8 +84,9 @@ export default function ContactUs() {
                                         <div>
                                             <p className="text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Visit Us</p>
                                             <p className="text-xl text-[#1B1326] font-light leading-relaxed">
-                                                Suite 2 27, Brighton Road,<br />
-                                                South Croydon, CR2 6EB
+                                                Suite 6A, Wessex House<br />
+                                                St. Leonards Road, Charminster<br />
+                                                Bournemouth, Dorset, BH8 8QS
                                             </p>
                                         </div>
                                     </div>

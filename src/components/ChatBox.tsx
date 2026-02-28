@@ -115,11 +115,11 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["address", "location", "where", "visit", "office", "find you", "based"],
-        answer: "Our office is located at:\n\n📍 **Suite 2 27, Brighton Road, South Croydon, CR2 6EB**\n\nFeel free to visit us or contact us to arrange a meeting."
+        answer: "Our office is located at:\n\n📍 **Suite 6A, Wessex House, St. Leonards Road, Charminster, Bournemouth, Dorset, BH8 8QS, UK**\n\nFeel free to visit us or contact us to arrange a meeting."
     },
     {
         keywords: ["contact", "get in touch", "reach", "enquir", "speak to"],
-        answer: "You can reach us by:\n\n📞 **Phone:** 0203 916 5797\n📧 **Email:** info@homelyhealthcare.org.uk\n📍 **Address:** Suite 2 27, Brighton Road, South Croydon, CR2 6EB\n\nOr visit our Contact Us page to submit an enquiry form."
+        answer: "You can reach us by:\n\n📞 **Phone:** 0203 916 5797\n📧 **Email:** info@homelyhealthcare.org.uk\n📍 **Address:** Suite 6A, Wessex House, St. Leonards Road, Charminster, Bournemouth, Dorset, BH8 8QS, UK\n\nOr visit our Contact Us page to submit an enquiry form."
     },
     {
         keywords: ["hours", "available", "when", "open", "time", "24/7"],
@@ -203,7 +203,7 @@ const knowledgeBase: QA[] = [
     // ── LOCATION & COVERAGE ──
     {
         keywords: ["bournemouth", "dorset", "croydon", "london", "area", "cover", "region", "south"],
-        answer: "Our main office is in **South Croydon, London** (Suite 2 27, Brighton Road, CR2 6EB). We also have historical connections to the **Bournemouth** area. For information about our full coverage areas, please call **0203 916 5797**."
+        answer: "Our main office is in **Bournemouth, Dorset** (Suite 6A, Wessex House, St. Leonards Road, Charminster, BH8 8QS). We provide care across multiple regions. For information about our full coverage areas near you, please call **0203 916 5797**."
     },
 
     // ── PERSON-CENTRED CARE ──
