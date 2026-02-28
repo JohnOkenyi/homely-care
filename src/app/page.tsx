@@ -408,13 +408,13 @@ export default function Home() {
               {
                 title: "Home Care",
                 tag: "Bespoke Support",
-                img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop",
+                img: "/images/home-care.png",
                 desc: "Maintain independence with clinical precision and heartfelt companionship in your own home."
               },
               {
                 title: "Live-in Care",
                 tag: "24/7 Presence",
-                img: "https://images.unsplash.com/photo-1581579205556-c3ccfe505d04?q=80&w=1600&auto=format&fit=crop",
+                img: "/images/live-in-care.png",
                 desc: "Round-the-clock peace of mind delivered by a hand-picked team of dedicated professionals."
               },
               {
@@ -426,7 +426,7 @@ export default function Home() {
               {
                 title: "Complex Care",
                 tag: "Clinical Excellence",
-                img: "https://images.unsplash.com/photo-1628177142898-93e46e48c1be?q=80&w=2000&auto=format&fit=crop",
+                img: "/images/complex-care.png",
                 desc: "Specialized nurse-led care for complex health conditions and intensive support needs."
               }
             ].map((srv, idx) => (
