@@ -8,25 +8,39 @@ import { Award, Heart } from "lucide-react";
 
 const team = [
     {
-        name: "Lola Okenyi",
-        role: "Managing Director",
-        bio: "With over 15 years of leadership in private healthcare, Lola is dedicated to setting new standards for dignity and compassion in home care.",
-        img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1600&auto=format&fit=crop",
-        accolade: "Dignity in Care Award"
+        name: "Douglas Matungamire",
+        role: "Director / Registered Manager",
+        bio: "Douglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education, and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
+        img: "/images/team/douglas.jpg",
+        accolade: "Founder & Director"
     },
     {
-        name: "James Sterling",
-        role: "Clinical Lead",
-        bio: "A specialist in complex care management, James ensures our nurse-led interventions are delivered with absolute clinical precision.",
-        img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1600&auto=format&fit=crop",
-        accolade: "Excellence in Nursing"
+        name: "Maria Wilson",
+        role: "Office Manager",
+        bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
+        img: "/images/team/maria.png",
+        accolade: "NHS Experience"
     },
     {
-        name: "Sarah Montgomery",
-        role: "Head of Operations",
-        bio: "Sarah meticulously oversees our bespoke care packages, ensuring every client experience aligns with our luxury brand promise.",
-        img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1600&auto=format&fit=crop",
-        accolade: "Operations Excellence"
+        name: "Cedric Dube",
+        role: "Compliance Officer",
+        bio: "Cedric has 15 years' experience in the legal and compliance field. He ensures that all processes adhere to legal and regulatory requirements, fostering a culture of integrity across the organisation.",
+        img: "/images/team/cedric.png",
+        accolade: "Legal & Compliance"
+    },
+    {
+        name: "Sara Randall",
+        role: "Registered Manager",
+        bio: "Sara has over 35 years' experience in the social care industry, working for Social Services, the NHS, and care home settings. She is passionate about ensuring clients receive the best care and staff are trained to the highest standards.",
+        img: "/images/team/sara.png",
+        accolade: "35+ Years Experience"
+    },
+    {
+        name: "Pauline Makazhu",
+        role: "Registered Manager",
+        bio: "A compassionate Registered Nurse and CQC Registered Manager, Pauline leads the TDDI / Complex Care Team, ensuring individuals with higher clinical needs receive safe, skilled, and responsive support.",
+        img: "/images/team/pauline.jpg",
+        accolade: "Clinical Excellence"
     }
 ];
 
