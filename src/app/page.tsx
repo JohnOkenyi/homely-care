@@ -247,36 +247,43 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: idx * 0.15 }}
-                className={`relative flex flex-col p-10 lg:p-12 rounded-[40px] border border-[#B9A3D3]/10 glass-card transition-all duration-700 hover:-translate-y-3 cursor-default group overflow-hidden ${feature.isFeatured ? 'ring-1 ring-[#D6B36A]/20' : ''}`}
+                className={`relative flex flex-col p-8 lg:p-10 rounded-[32px] border transition-all duration-700 hover:-translate-y-2 cursor-default group overflow-hidden glass-card ${feature.isFeatured ? 'border-[#D6B36A]/30 ring-1 ring-[#D6B36A]/10 shadow-[0_20px_50px_-12px_rgba(214,179,106,0.15)]' : 'border-[#B9A3D3]/10 hover:border-[#B9A3D3]/30 shadow-2xl'}`}
               >
-                {/* Surface Reflection */}
-                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
+                {/* Surface Reflection - Refined */}
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.05] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                {/* Center Card Featured Glow */}
+                {/* Shimmering Border Effect for Featured Card */}
                 {feature.isFeatured && (
-                  <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#D6B36A]/5 rounded-full blur-[80px] pointer-events-none transition-opacity duration-1000 group-hover:opacity-100 opacity-60" />
+                  <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute inset-0 border border-[#D6B36A]/20 rounded-[32px] animate-shimmer bg-gradient-to-r from-transparent via-[#D6B36A]/10 to-transparent bg-[length:200%_auto]" />
+                  </div>
+                )}
+
+                {/* Card Interior Glow */}
+                {feature.isFeatured && (
+                  <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#D6B36A]/5 rounded-full blur-[60px] pointer-events-none transition-opacity duration-1000 group-hover:opacity-100 opacity-40" />
                 )}
 
                 {/* Glowing Halo Icon */}
-                <div className="relative mb-12 flex">
-                  {/* Halo Ambient */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full blur-[15px] bg-[#B9A3D3]/20 group-hover:bg-[#D6B36A]/20 transition-all duration-700" />
+                <div className="relative mb-8 flex">
+                  {/* Halo Ambient - Refined */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full blur-[12px] bg-[#B9A3D3]/20 group-hover:bg-[#D6B36A]/30 transition-all duration-700" />
 
-                  <div className="relative w-16 h-16 border border-[#B9A3D3]/10 bg-white/[0.02] rounded-full flex items-center justify-center text-[#F2F2F2]/90 group-hover:text-[#D6B36A] transition-all duration-700 z-10">
-                    <feature.icon className="w-8 h-8 stroke-[1.2] transition-transform duration-700 group-hover:rotate-[5deg]" />
+                  <div className="relative w-14 h-14 border border-[#B9A3D3]/10 bg-white/[0.04] rounded-full flex items-center justify-center text-[#F2F2F2]/90 group-hover:text-[#D6B36A] transition-all duration-700 z-10">
+                    <feature.icon className="w-7 h-7 stroke-[1.2] transition-transform duration-700 group-hover:rotate-[5deg]" />
                   </div>
                 </div>
 
-                <h3 className="Heading-Serif text-3xl text-white mb-6 font-light group-hover:tracking-wide transition-all duration-700">
+                <h3 className="Heading-Serif text-2xl text-white mb-4 font-light group-hover:text-[#D6B36A] transition-all duration-700">
                   {feature.title}
                 </h3>
 
-                <p className="text-[15px] text-[#F2F2F2]/70 font-light leading-relaxed mb-4">
+                <p className="text-[14px] text-[#F2F2F2]/95 font-light leading-relaxed mb-2 opacity-90 group-hover:opacity-100 transition-opacity">
                   {feature.desc}
                 </p>
 
-                {/* Subtle Light Reflection Beneath Only on Hover */}
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A]/0 to-transparent group-hover:via-[#D6B36A]/20 transition-all duration-1000" />
+                {/* Subtle Luxury Edge Highlight */}
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A]/0 to-transparent group-hover:via-[#D6B36A]/30 transition-all duration-1000" />
               </motion.div>
             ))}
           </div>
