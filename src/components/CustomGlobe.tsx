@@ -48,8 +48,9 @@ export default function CustomGlobe() {
         // --- THE GLOBE ---
         const geometry = new THREE.SphereGeometry(100, 64, 64);
         const textureLoader = new THREE.TextureLoader();
+        // Using a more reliable and clearer texture URL
         const texture = textureLoader.load(
-            "//unpkg.com/three-globe/example/img/earth-night.jpg",
+            "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-blue-marble.jpg",
             () => console.log("🌍 Texture Loaded Successfully"),
             undefined,
             (err) => console.error("❌ Texture Load Error:", err)
@@ -59,9 +60,9 @@ export default function CustomGlobe() {
             map: texture,
             transparent: true,
             opacity: 1.0,
-            shininess: 50,
-            color: 0x4B3061, // Backup rich purple color
-            emissive: 0x1A0F2E, // Deep purple glow
+            shininess: 15, // Reduced for a more natural look
+            color: 0xffffff, // White base color to show texture correctly
+            specular: 0x333333,
         });
 
         const globe = new THREE.Mesh(geometry, material);

@@ -96,8 +96,8 @@ export default function Home() {
               <div className="absolute top-[8%] left-[8%] w-[84%] h-[84%] rounded-full z-0 blur-[80px] opacity-35" style={{ background: 'radial-gradient(circle, #5B2A86 0%, transparent 70%)' }} />
 
               {/* Globe */}
-              <div className="absolute inset-0 z-30 pointer-events-auto flex items-center justify-center">
-                <div className="w-[85%] h-[85%] mt-[-5%]">
+              <div className="absolute inset-0 z-10 pointer-events-auto flex items-center justify-center">
+                <div className="w-[65%] h-[65%] mt-[-2%]">
                   <CustomGlobe />
                 </div>
               </div>
