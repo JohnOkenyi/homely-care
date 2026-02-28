@@ -97,7 +97,7 @@ export default function Home() {
 
               {/* Globe */}
               <div className="absolute inset-0 z-10 pointer-events-auto flex items-center justify-center">
-                <div className="w-[65%] h-[65%] mt-[-2%]">
+                <div className="w-[52%] h-[52%] mt-[-3.5%]">
                   <CustomGlobe />
                 </div>
               </div>
