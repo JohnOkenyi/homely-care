@@ -1,7 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, HeartHandshake, ArrowRight } from "lucide-react";
 
@@ -29,7 +27,6 @@ const jobs = [
 export default function Careers() {
     return (
         <main className="min-h-screen bg-[#F7F5F2]">
-            <Navbar />
 
             {/* HERO SECTION */}
             <section className="relative pt-40 pb-20 overflow-hidden bg-premium-dark text-center">
@@ -132,7 +129,6 @@ export default function Careers() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

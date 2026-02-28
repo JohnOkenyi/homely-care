@@ -1,35 +1,26 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 
 export default function ContactUs() {
     return (
         <main className="min-h-screen bg-[#F7F5F2]">
-            <Navbar />
 
             {/* HERO / CONTACT HEADER */}
             <section className="relative pt-40 pb-20 bg-premium-dark overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
 
                 <div className="grid-container relative z-10 text-center">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-[#D6B36A] text-[10px] tracking-[0.6em] uppercase block mb-8 font-bold"
                     >
-                        Available 24/7
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="Heading-H1 text-white mb-8"
-                    >
-                        Begin Your <span className="Heading-Serif italic font-light text-[#B9A3D3]">Journey</span>
-                    </motion.h1>
+                        <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-4 font-bold">Available 24/7</span>
+                        <h1 className="Heading-Display text-white mb-6">
+                            Begin Your <span className="Heading-Serif italic font-light highlighted-text-gold">Journey</span>
+                        </h1>
+                    </motion.div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -54,7 +45,10 @@ export default function ContactUs() {
                                 viewport={{ once: true }}
                                 className="glass-card-light p-10 lg:p-12 border-[#5B2A86]/5"
                             >
-                                <h2 className="Heading-Serif text-3xl text-[#1B1326] mb-10">Direct <span className="italic font-light text-[#5B2A86]">Concierge</span></h2>
+                                <div className="flex flex-col items-start mb-8">
+                                    <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-2 font-bold">Direct</span>
+                                    <h2 className="Heading-H2 text-[#1B1326] !text-4xl">Concierge</h2>
+                                </div>
 
                                 <div className="space-y-10">
                                     <div className="flex gap-6 group">
@@ -157,7 +151,6 @@ export default function ContactUs() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

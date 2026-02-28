@@ -1,10 +1,8 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award, Heart } from "lucide-react";
+import { Award } from "lucide-react";
 
 const team = [
     {
@@ -47,7 +45,6 @@ const team = [
 export default function MeetTheTeam() {
     return (
         <main className="min-h-screen bg-[#F7F5F2]">
-            <Navbar />
 
             {/* HERO SECTION - Cinematic Leadership */}
             <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-premium-dark text-center">
@@ -62,22 +59,19 @@ export default function MeetTheTeam() {
                     <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(15,17,21,0.8)]" />
                 </div>
 
-                <div className="grid-container relative z-10 pt-20">
+                <div className="grid-container relative z-10 text-center pt-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        <span className="text-[#D6B36A] text-[10px] sm:text-xs tracking-[0.6em] uppercase block mb-8 font-bold">
-                            Visionary Leadership
-                        </span>
-                        <h1 className="Heading-Display text-white mb-8">
+                        <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-4 font-bold">Visionary Leadership</span>
+                        <h1 className="Heading-Display text-white mb-6">
                             Meet the <span className="Heading-Serif italic font-light highlighted-text-gold">Team</span>
                         </h1>
-                        <p className="text-[#F2F2F2]/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-10">
+                        <p className="text-[#F2F2F2]/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-8">
                             Our leadership team combines clinical expertise with a profound passion for personal dignity, ensuring your care is in the most capable hands.
                         </p>
-                        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent mx-auto" />
                     </motion.div>
                 </div>
 
@@ -135,8 +129,10 @@ export default function MeetTheTeam() {
                         transition={{ duration: 1.5 }}
                         className="mt-24 p-16 lg:p-24 glass-card-light text-center border-[#5B2A86]/10"
                     >
-                        <Heart className="w-10 h-10 text-[#5B2A86] mx-auto mb-8 opacity-40" />
-                        <h2 className="Heading-Serif text-4xl text-[#1B1326] mb-12">Driven by <span className="italic font-light text-[#5B2A86]">Collective Compassion.</span></h2>
+                        <div className="flex flex-col items-center mb-10">
+                            <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-4 font-bold">Driven by</span>
+                            <h2 className="Heading-H2 text-[#1B1326]">Collective <span className="italic font-light text-[#5B2A86]">Compassion.</span></h2>
+                        </div>
                         <div className="grid md:grid-cols-3 gap-12 text-left pt-12 border-t border-[#5B2A86]/5">
                             <div>
                                 <h3 className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#D6B36A] mb-4">The Human Touch</h3>
@@ -155,7 +151,6 @@ export default function MeetTheTeam() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

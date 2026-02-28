@@ -98,21 +98,21 @@ body {
 
   /* Optimized Global Spacing */
   .section-padding {
+    padding-top: clamp(2rem, 4vh, 4.5rem);
+    padding-bottom: clamp(2rem, 4vh, 4.5rem);
+  }
+
+  .section-padding-large {
     padding-top: clamp(3rem, 6vh, 6rem);
     padding-bottom: clamp(3rem, 6vh, 6rem);
   }
 
-  .section-padding-large {
-    padding-top: clamp(4rem, 8vh, 8rem);
-    padding-bottom: clamp(4rem, 8vh, 8rem);
-  }
-
   .content-gap-sm {
-    margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+    margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
   }
 
   .content-gap-md {
-    margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
   }
 
   .grid-container {

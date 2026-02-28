@@ -7,12 +7,22 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
+interface GlobeDataItem {
+    id: number;
+    text: string;
+    lat: number;
+    lng: number;
+    icon: React.ReactNode;
+}
+
 export default function InteractiveGlobe() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const globeEl = useRef<any>();
-    const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
+    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        setIsMounted(true);
         const handleResize = () => {
             const width = window.innerWidth;
             const height = window.innerHeight;
@@ -27,7 +37,41 @@ export default function InteractiveGlobe() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const globeData = useMemo(() => [
+    // Effect to handle auto-rotation lifecycle robustly
+    useEffect(() => {
+        if (!isMounted || !globeEl.current) return;
+
+        const globe = globeEl.current;
+        const setRotation = () => {
+            const controls = globe.controls();
+            if (controls) {
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 2.0;
+                // Force an update to the controls to ensure rotation starts
+                controls.update();
+            } else {
+                setTimeout(setRotation, 100);
+            }
+        };
+
+        setRotation();
+    }, [isMounted]);
+
+    // Initial setup for camera and basic control props
+    const handleGlobeReady = () => {
+        const globe = globeEl.current;
+        if (!globe) return;
+
+        // Initial camera position
+        globe.pointOfView({ lat: 5, lng: 0, altitude: 1.8 }, 1200);
+
+        const controls = globe.controls();
+        if (controls) {
+            controls.enableZoom = false;
+        }
+    };
+
+    const globeData = useMemo<GlobeDataItem[]>(() => [
         // SET 1 (Front: Longitude ~ 0)
         { id: 1, text: "Home Care", lat: 25, lng: -15, icon: <Home size={18} /> },
         { id: 2, text: "Live-in Care", lat: -15, lng: 15, icon: <UserCheck size={18} /> },
@@ -45,18 +89,12 @@ export default function InteractiveGlobe() {
         { id: 8, text: "Complex Care", lat: -15, lng: -75, icon: <Activity size={18} /> },
     ], []);
 
-    const handleGlobeReady = () => {
-        if (globeEl.current) {
-            const controls = globeEl.current.controls();
-            if (controls) {
-                controls.autoRotate = true;
-                controls.autoRotateSpeed = 1.0;
-                controls.enableZoom = false;
-            }
-            // Initial view centred on the equator
-            globeEl.current.pointOfView({ lat: 5, lng: 0, altitude: 1.6 }, 0);
-        }
-    };
+    // Performance: Don't render until client-ready and dimensions are calculated
+    if (!isMounted || dimensions.width === 0) {
+        return <div className="w-full h-full flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full border-2 border-[#5B2A86] border-t-transparent animate-spin opacity-50" />
+        </div>;
+    }
 
     return (
         <div className="relative flex items-center justify-center w-full h-full pointer-events-auto">
@@ -70,10 +108,10 @@ export default function InteractiveGlobe() {
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
 
                 htmlElementsData={globeData}
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                htmlElement={(d: any) => {
+                htmlElement={(d: object) => {
+                    const item = d as GlobeDataItem;
                     const el = document.createElement("div");
-                    const iconMarkup = renderToStaticMarkup(d.icon);
+                    const iconMarkup = renderToStaticMarkup(item.icon);
 
                     el.innerHTML = `
                         <div class="label-container flex flex-col items-center gap-1 cursor-pointer transition-all duration-300">
@@ -81,7 +119,7 @@ export default function InteractiveGlobe() {
                                 ${iconMarkup}
                             </div>
                             <span class="label-text font-bold text-[12px] leading-[1.25] tracking-wide text-center whitespace-pre-line" style="color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,1),0 0 12px rgba(0,0,0,0.9),0 0 24px rgba(0,0,0,0.8)">
-                                ${d.text}
+                                ${item.text}
                             </span>
                         </div>
                     `;
@@ -93,7 +131,7 @@ export default function InteractiveGlobe() {
                         el.querySelector('.label-container')?.classList.add('glow-active');
                     };
 
-                    // Hover effects using standard CSS in JS approach for the library
+                    // Simple Hover logic
                     el.onmouseenter = () => {
                         const controls = globeEl.current?.controls();
                         if (controls) controls.autoRotate = false;

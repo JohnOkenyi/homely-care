@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
 import { MessageCircle, X, Bot, Smile, Send, RefreshCw } from "lucide-react";
 
 /* ══════════════════════════════════════════════
@@ -457,7 +458,8 @@ export default function ChatBox() {
             {/* CHAT PANEL — full-screen on mobile, floating card on desktop */}
             <div
                 className={`fixed z-[9998] overflow-hidden flex flex-col transition-all duration-300
-                    top-0 left-0 w-full h-[100dvh] sm:top-auto sm:left-auto sm:bottom-24 sm:right-6 sm:w-[390px] sm:h-[540px] sm:max-h-[calc(100vh-120px)] sm:rounded-2xl
+                    bottom-20 right-4 w-[calc(100%-32px)] max-w-[390px] h-[500px] max-h-[calc(100vh-120px)] rounded-2xl
+                    sm:bottom-24 sm:right-6 sm:h-[540px]
                     ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
                 style={{
                     boxShadow: "0 25px 80px rgba(15, 17, 21, 0.25), 0 0 0 1px rgba(91, 42, 134, 0.08)"
@@ -491,11 +493,54 @@ export default function ChatBox() {
                     </button>
                     <button
                         onClick={() => setActiveTab("humor")}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeTab === "humor" ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white" : "text-[#1B1326]/40 hover:text-[#1B1326]/60"
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 relative group ${activeTab === "humor"
+                            ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white"
+                            : "text-[#1B1326]/80 hover:text-[#1B1326] hover:bg-black/[0.02]"
                             }`}
                     >
-                        <Smile className="w-3.5 h-3.5" />
+                        <div className="relative">
+                            <motion.div
+                                animate={activeTab !== "humor" ? {
+                                    x: [0, -2, 2, -2, 2, 0],
+                                    rotate: [0, -5, 5, -5, 5, 0],
+                                } : {}}
+                                transition={{
+                                    duration: 0.4,
+                                    repeat: Infinity,
+                                    repeatDelay: 2,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                <Smile className={`w-3.5 h-3.5 ${activeTab !== "humor" ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
+                            </motion.div>
+                            {activeTab !== "humor" && (
+                                <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
+                                </span>
+                            )}
+                        </div>
                         Humour
+                        {activeTab !== "humor" && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 5 }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                    scale: [1, 1.05, 1],
+                                }}
+                                transition={{
+                                    scale: {
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }
+                                }}
+                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10"
+                            >
+                                TRY ME!
+                            </motion.div>
+                        )}
                     </button>
                 </div>
 

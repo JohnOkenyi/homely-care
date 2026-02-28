@@ -177,7 +177,7 @@ export default function Home() {
                 <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Our Philosophy</span>
               </div>
 
-              <h2 className="Heading-Serif text-[clamp(2.5rem,5vw,4rem)] text-[#1A1A1A] leading-[1.1] mb-8 font-light">
+              <h2 className="Heading-Serif text-[clamp(2.2rem,4.5vw,3.5rem)] text-[#1A1A1A] leading-[1.1] mb-6 font-light">
                 Nurturing Dignity with <br />
                 <span className="italic text-[#5B2A86]">Boundless Compassion</span>
               </h2>
@@ -219,22 +219,17 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mb-8"
+            className="text-center mb-10"
           >
-            <h2 className="flex flex-col items-center gap-2 mb-8">
-              <span className="Heading-Serif text-[#F2F2F2] text-[clamp(2.2rem,5vw,4rem)] leading-tight font-normal">
+            <h2 className="flex flex-col items-center gap-2">
+              <span className="Heading-Serif text-[#F2F2F2] text-[clamp(2rem,4.5vw,3.5rem)] leading-tight font-normal">
                 Why Choose
               </span>
-              <span className="Heading-Serif italic text-[clamp(2.8rem,6.5vw,5.5rem)] leading-tight font-light" style={{ background: 'linear-gradient(90deg, #C9A84C, #D6B36A, #E8C97A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              <span className="Heading-Serif italic text-[clamp(2.5rem,6vw,4.5rem)] leading-tight font-light highlighted-text-gold">
                 Homely Health Care
               </span>
             </h2>
-
-            {/* Thin gold divider with glowing center dot */}
-            <div className="relative w-64 h-[1px] mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D6B36A]/50 to-transparent" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#D6B36A] shadow-[0_0_8px_#D6B36A,0_0_18px_#D6B36A]" />
-            </div>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent mx-auto mt-6" />
           </motion.div>
 
           {/* IVORY CONTAINER — holds only the 3 white feature cards */}
@@ -387,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 5: SERVICES OVERVIEW - Editorial Presentation */}
-      <section className="section-padding bg-premium-dark text-[#F2F2F2] overflow-hidden relative" >
+      <section className="py-12 md:py-16 bg-premium-dark text-[#F2F2F2] overflow-hidden relative" >
         <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-[#F7F5F2] to-transparent opacity-5" />
 
         <div className="grid-container relative z-10">
@@ -396,26 +391,26 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-12 text-center"
+            className="mb-8 text-center"
           >
-            <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-8 font-bold">Curated Care Packages</span>
-            <h2 className="Heading-H2">Our Services</h2>
+            <span className="text-[#D6B36A] text-[9px] tracking-[0.4em] uppercase block mb-3 font-bold">Curated Care Packages</span>
+            <h2 className="Heading-H2 text-white text-3xl md:text-4xl">Our Services</h2>
           </motion.div>
 
           {/* Service Cards - Editorial Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
             {[
               {
                 title: "Home Care",
                 tag: "Bespoke Support",
                 img: "/images/home-care.png",
-                desc: "Maintain independence with clinical precision and heartfelt companionship in your own home."
+                desc: "Clinical precision and heartfelt companionship in the comfort of your own home."
               },
               {
                 title: "Live-in Care",
                 tag: "24/7 Presence",
                 img: "/images/live-in-care.png",
-                desc: "Round-the-clock peace of mind delivered by a hand-picked team of dedicated professionals."
+                desc: "Round-the-clock peace of mind delivered by a hand-picked team of professionals."
               },
               {
                 title: "Supported Living",
@@ -427,7 +422,7 @@ export default function Home() {
                 title: "Complex Care",
                 tag: "Clinical Excellence",
                 img: "/images/complex-care.png",
-                desc: "Specialized nurse-led care for complex health conditions and intensive support needs."
+                desc: "Specialized nurse-led care for complex health conditions and intensive support."
               }
             ].map((srv, idx) => (
               <motion.div
@@ -436,23 +431,25 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group cursor-pointer"
+                className="group cursor-pointer relative"
               >
-                <div className="relative h-[360px] w-full mb-6 overflow-hidden rounded-sm">
-                  <Image src={srv.img} alt={srv.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-[#1B1326]/40 transition-colors duration-500 group-hover:bg-[#1B1326]/20" />
-                  <div className="absolute inset-0 border border-white/10 m-4 group-hover:m-6 transition-all duration-700" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[#D6B36A] text-[9px] uppercase tracking-[0.3em] font-bold mb-4">{srv.tag}</span>
-                  <div className="flex justify-between items-end">
-                    <h3 className="Heading-H3 text-[#F2F2F2] group-hover:text-[#D6B36A] transition-colors">{srv.title}</h3>
-                    <Link href="/services" className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#D6B36A] group-hover:bg-[#D6B36A] transition-all duration-500">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:text-[#1B1326] transition-colors"><path d="M7 17l10-10M17 17V7H7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                    </Link>
+                <div className="relative h-[280px] md:h-[320px] w-full overflow-hidden rounded-sm mb-4">
+                  <Image src={srv.img} alt={srv.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B1326] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+
+                  {/* Glassmorphism Badge */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 glass-card-dark border-white/10 flex flex-col gap-1 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="text-[#D6B36A] text-[8px] uppercase tracking-[0.3em] font-bold">{srv.tag}</span>
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-xl md:text-2xl font-serif italic text-white">{srv.title}</h3>
+                      <Link href="/services" className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#D6B36A] group-hover:border-[#D6B36A] transition-all duration-500">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:text-[#1B1326] transition-colors"><path d="M7 17l10-10M17 17V7H7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                      </Link>
+                    </div>
                   </div>
-                  <p className="mt-6 text-[#F2F2F2]/60 font-light leading-relaxed max-w-sm">{srv.desc}</p>
                 </div>
+                {/* Secondary Info (Only visible on larger screens or hover) */}
+                <p className="px-1 text-[#F2F2F2]/60 text-xs md:text-sm font-light leading-relaxed max-w-sm line-clamp-2 md:line-clamp-none opacity-80 group-hover:opacity-100 transition-opacity">{srv.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -476,13 +473,12 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-3 glass-card-light px-6 py-3 rounded-full mb-6 border-[#5B2A86]/10">
-                <Heart className="w-4 h-4 text-[#5B2A86] fill-[#5B2A86]" />
-                <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#5B2A86]">Social Responsibility</span>
+              <div className="flex flex-col items-start mb-6">
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-4">Social Responsibility</span>
+                <h2 className="Heading-H2 text-[#1B1326]">
+                  A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
+                </h2>
               </div>
-              <h2 className="Heading-H2 text-[#1B1326] content-gap-sm">
-                A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
-              </h2>
               <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-8 max-w-xl">
                 We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
               </p>
