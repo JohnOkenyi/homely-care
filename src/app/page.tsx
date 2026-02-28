@@ -204,40 +204,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: WHY CHOOSE HOMELY CARE - Dark + Ivory Container */}
-      <section className="relative section-padding-large overflow-hidden scroll-mt-20" style={{ background: 'linear-gradient(160deg, #1B1230 0%, #0F1115 100%)' }}>
-        {/* Very subtle ambient gradient only */}
+      {/* SECTION 3: WHY CHOOSE HOMELY CARE - Heading on Dark / Cards in Ivory Box */}
+      <section className="relative py-16 md:py-20 overflow-hidden scroll-mt-20" style={{ background: 'linear-gradient(160deg, #1B1230 0%, #0F1115 100%)' }}>
+        {/* Very subtle ambient glow */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full blur-[180px] opacity-[0.06]" style={{ background: '#5B2A86' }} />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[180px] opacity-[0.08]" style={{ background: '#5B2A86' }} />
         </div>
 
-        <div className="grid-container relative z-10">
+        <div className="grid-container relative z-10 flex flex-col items-center">
+
+          {/* HEADING — displayed directly on dark background */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#F7F5F2] rounded-[26px] shadow-[0_30px_80px_rgba(0,0,0,0.25)] p-12 md:p-16 lg:p-20"
+            className="text-center mb-8"
           >
-            {/* Heading inside container */}
-            <div className="text-center mb-14">
-              <h2 className="flex flex-col items-center gap-2 mb-8">
-                <span className="Heading-Serif text-[#1A1A1A] text-[clamp(2rem,5vw,3.5rem)] leading-tight font-normal">
-                  Why Choose
-                </span>
-                <span className="Heading-Serif italic text-[clamp(2.5rem,6vw,4.5rem)] leading-tight font-light" style={{ background: 'linear-gradient(90deg, #C9A84C, #D6B36A, #E8C97A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                  Homely Health Care
-                </span>
-              </h2>
+            <h2 className="flex flex-col items-center gap-2 mb-8">
+              <span className="Heading-Serif text-[#F2F2F2] text-[clamp(2.2rem,5vw,4rem)] leading-tight font-normal">
+                Why Choose
+              </span>
+              <span className="Heading-Serif italic text-[clamp(2.8rem,6.5vw,5.5rem)] leading-tight font-light" style={{ background: 'linear-gradient(90deg, #C9A84C, #D6B36A, #E8C97A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                Homely Health Care
+              </span>
+            </h2>
 
-              {/* Thin gold divider with glowing center dot */}
-              <div className="relative w-64 h-[1px] mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D6B36A]/60 to-transparent" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#D6B36A] shadow-[0_0_8px_#D6B36A,0_0_16px_#D6B36A]" />
-              </div>
+            {/* Thin gold divider with glowing center dot */}
+            <div className="relative w-64 h-[1px] mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D6B36A]/50 to-transparent" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#D6B36A] shadow-[0_0_8px_#D6B36A,0_0_18px_#D6B36A]" />
             </div>
+          </motion.div>
 
-            {/* 3 Feature Cards */}
+          {/* IVORY CONTAINER — holds only the 3 white feature cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full bg-[#F0EDE8] rounded-[24px] shadow-[0_25px_70px_rgba(0,0,0,0.3)] p-6 md:p-8"
+          >
             <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
@@ -258,31 +265,35 @@ export default function Home() {
               ].map((feature, idx) => (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.9, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex flex-col items-center text-center p-8 lg:p-10 bg-white rounded-[18px] border border-black/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-[6px] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] cursor-default"
+                  transition={{ duration: 0.9, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="group flex flex-col items-center text-center p-6 lg:p-8 bg-white rounded-[16px] border border-black/[0.04] shadow-[0_6px_24px_rgba(0,0,0,0.06)] transition-all duration-500 hover:-translate-y-[6px] hover:shadow-[0_18px_48px_rgba(0,0,0,0.10)] cursor-default"
                 >
-                  {/* Icon Badge */}
-                  <div className="relative mb-7">
-                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[10px]" style={{ background: '#D6B36A', transform: 'scale(1.1)' }} />
+                  {/* Purple icon badge with faint gold glow on hover */}
+                  <div className="relative mb-5">
+                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-[12px]" style={{ background: '#D6B36A', transform: 'scale(1.2)' }} />
                     <div className="relative w-14 h-14 rounded-full bg-[#5B2A86] flex items-center justify-center z-10">
                       <feature.icon className="w-6 h-6 text-white stroke-[1.5]" />
                     </div>
                   </div>
 
-                  <h3 className="Heading-Serif text-[#1A1A1A] text-xl mb-4 font-normal leading-snug">
+                  {/* Small gold divider under icon */}
+                  <div className="w-8 h-[1px] bg-[#D6B36A] mb-4" />
+
+                  <h3 className="Heading-Serif text-[#1A1A1A] text-[1.2rem] mb-4 font-normal leading-snug">
                     {feature.title}
                   </h3>
 
-                  <p className="text-[14px] leading-relaxed" style={{ color: 'rgba(0,0,0,0.62)' }}>
+                  <p className="text-[14px] leading-relaxed" style={{ color: 'rgba(0,0,0,0.58)' }}>
                     {feature.desc}
                   </p>
                 </motion.div>
               ))}
             </div>
           </motion.div>
+
         </div>
       </section>
 
