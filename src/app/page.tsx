@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
-import RotatingGlobe from "@/components/RotatingGlobe";
+import CustomGlobe from "@/components/CustomGlobe";
 
 export default function Home() {
   const container = useRef(null);
@@ -97,7 +97,7 @@ export default function Home() {
 
               {/* Globe */}
               <div className="absolute top-[2%] left-[6%] w-[88%] h-[88%] z-10 pointer-events-auto">
-                <RotatingGlobe />
+                <CustomGlobe />
               </div>
 
               {/* Hands — mix-blend-lighten makes black bg transparent on the dark hero, hands stay solid */}
