@@ -1,8 +1,12 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState, useMemo } from "react";
+import dynamic from "next/dynamic";
 import { Home, UserCheck, ShieldCheck, Activity } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
+
+// Dynamically import Globe with no SSR
+const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 interface GlobePoint {
   id: number;
@@ -13,36 +17,46 @@ interface GlobePoint {
 }
 
 export default function InteractiveGlobe() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const globeRef = useRef<any>(null);
-  const [size, setSize] = useState(800);
+  const globeEl = useRef<any>(null);
+  const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
 
   useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth;
-      const h = window.innerHeight;
-      const ew = w >= 1024 ? w * 0.75 : w;
-      const eh = w >= 1024 ? h * 0.95 : h * 0.7;
-      setSize(Math.min(ew, eh));
+    const handleResize = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const elWidth = width >= 1024 ? width * 0.75 : width;
+      const elHeight = width >= 1024 ? height * 0.95 : height * 0.7;
+      const size = Math.min(elWidth, elHeight);
+      setDimensions({ width: size, height: size });
     };
-    window.addEventListener("resize", update);
-    update();
-    return () => window.removeEventListener("resize", update);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const globeData = useMemo<GlobePoint[]>(() => [
-    { id: 1,  text: "Home Care",         lat: 51.5, lng: -0.1,  icon: <Home size={18} /> },
-    { id: 2,  text: "Live-in Care",      lat: -25,  lng: 25,    icon: <UserCheck size={18} /> },
-    { id: 3,  text: "Supported\nLiving", lat: 40,   lng: -75,   icon: <ShieldCheck size={18} /> },
-    { id: 4,  text: "TDDI &\nHomely",    lat: 35,   lng: 140,   icon: <Activity size={18} /> },
-    { id: 5,  text: "Home Care",         lat: -34,  lng: 151,   icon: <Home size={18} /> },
-    { id: 6,  text: "Live-in Care",      lat: 45,   lng: -120,  icon: <UserCheck size={18} /> },
-    { id: 7,  text: "Supported\nLiving", lat: 60,   lng: 100,   icon: <ShieldCheck size={18} /> },
-    { id: 8,  text: "TDDI &\nHomely",    lat: 10,   lng: 80,    icon: <Activity size={18} /> },
+    { id: 1, text: "Home Care",         lat: 51.5, lng: -0.1,  icon: <Home size={18} /> },
+    { id: 2, text: "Live-in Care",      lat: -25,  lng: 25,    icon: <UserCheck size={18} /> },
+    { id: 3, text: "Supported\nLiving", lat: 40,   lng: -75,   icon: <ShieldCheck size={18} /> },
+    { id: 4, text: "TDDI &\nHomely",    lat: 35,   lng: 140,   icon: <Activity size={18} /> },
+    { id: 5, text: "Home Care",         lat: -34,  lng: 151,   icon: <Home size={18} /> },
+    { id: 6, text: "Live-in Care",      lat: 45,   lng: -120,  icon: <UserCheck size={18} /> },
+    { id: 7, text: "Supported\nLiving", lat: 60,   lng: 100,   icon: <ShieldCheck size={18} /> },
+    { id: 8, text: "TDDI &\nHomely",    lat: 10,   lng: 80,    icon: <Activity size={18} /> },
   ], []);
 
-  // Build HTML label element for each point
-  const makeEl = (d: any, getGlobe: () => any) => {
+  const handleGlobeReady = () => {
+    if (!globeEl.current) return;
+    const ctrl = globeEl.current.controls();
+    if (ctrl) {
+      ctrl.autoRotate = true;
+      ctrl.autoRotateSpeed = 0.8;
+      ctrl.enableZoom = false;
+    }
+    globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
+  };
+
+  const getHtmlElement = (d: any) => {
     const el = document.createElement("div");
     const markup = renderToStaticMarkup(d.icon);
     el.innerHTML = `
@@ -53,71 +67,26 @@ export default function InteractiveGlobe() {
         <span style="color:#fce4aa;font-size:10px;font-weight:600;text-align:center;white-space:pre-line;text-shadow:0 0 8px rgba(252,228,170,0.5);">${d.text}</span>
       </div>`;
     el.style.pointerEvents = "auto";
-    el.onmouseenter = () => { try { getGlobe().controls().autoRotate = false; } catch { /* */ } };
-    el.onmouseleave = () => { try { getGlobe().controls().autoRotate = true; } catch { /* */ } };
+    el.onmouseenter = () => {
+      if (globeEl.current) globeEl.current.controls().autoRotate = false;
+    };
+    el.onmouseleave = () => {
+      if (globeEl.current) globeEl.current.controls().autoRotate = true;
+    };
     return el;
   };
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-    let cancelled = false;
-
-    (async () => {
-      const mod = await import("react-globe.gl");
-      if (cancelled || !containerRef.current) return;
-
-      // react-globe.gl default export is a factory function (not a class)
-      const GlobeFactory = (mod as any).default;
-      const globe = GlobeFactory({ animateIn: true });
-
-      globe(containerRef.current);
-      globeRef.current = globe;
-
-      globe
-        .width(size)
-        .height(size)
-        .backgroundColor("rgba(0,0,0,0)")
-        .globeImageUrl("//unpkg.com/three-globe/example/img/earth-night.jpg")
-        .htmlElementsData(globeData)
-        .htmlElement((d: any) => makeEl(d, () => globeRef.current));
-
-      // Enable autoRotate
-      const enableRotation = () => {
-        try {
-          const ctrl = globe.controls();
-          if (ctrl) {
-            ctrl.autoRotate = true;
-            ctrl.autoRotateSpeed = 0.8;
-            ctrl.enableZoom = false;
-            globe.pointOfView({ lat: 30, lng: 20, altitude: 1.4 });
-            return true;
-          }
-        } catch { /* */ }
-        return false;
-      };
-
-      if (!enableRotation()) {
-        let attempts = 0;
-        const iv = setInterval(() => {
-          attempts++;
-          if (enableRotation() || attempts > 30) clearInterval(iv);
-        }, 300);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-      try { globeRef.current?._destructor?.(); } catch { /* */ }
-      globeRef.current = null;
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Keep size in sync
-  useEffect(() => {
-    try { globeRef.current?.width(size).height(size); } catch { /* */ }
-  }, [size]);
-
-  return <div ref={containerRef} style={{ width: size, height: size }} />;
+  return (
+    <Globe
+      ref={globeEl}
+      width={dimensions.width}
+      height={dimensions.height}
+      backgroundColor="rgba(0,0,0,0)"
+      globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+      htmlElementsData={globeData}
+      htmlElement={getHtmlElement}
+      onGlobeReady={handleGlobeReady}
+    />
+  );
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
