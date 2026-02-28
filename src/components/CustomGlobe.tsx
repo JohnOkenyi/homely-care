@@ -63,7 +63,7 @@ export default function CustomGlobe() {
         const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); // Increased intensity
         scene.add(ambientLight);
 
-        const pointLight1 = new THREE.PointLight(0xffffff, 2); // Powerful front light
+        const pointLight1 = new THREE.PointLight(0xffffff, 3); // Extra powerful front light
         pointLight1.position.set(200, 100, 300);
         scene.add(pointLight1);
 
