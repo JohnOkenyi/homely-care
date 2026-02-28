@@ -1,16 +1,24 @@
 "use client";
 import { useEffect, useRef, useState, useMemo } from "react";
-import dynamic from "next/dynamic";
 import { Home, UserCheck, ShieldCheck, Activity } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let GlobeLib: any = null;
+
+interface GlobePoint {
+  id: number;
+  text: string;
+  lat: number;
+  lng: number;
+  icon: React.ReactElement;
+}
 
 export default function InteractiveGlobe() {
+  const mountRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const globeEl = useRef<any>();
+  const globeInstanceRef = useRef<any>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
-  const [globeMounted, setGlobeMounted] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,35 +34,7 @@ export default function InteractiveGlobe() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // After globe mounts, poll until controls() is available then enable autoRotate
-  useEffect(() => {
-    if (!globeMounted) return;
-    let attempts = 0;
-    const tryEnableRotation = () => {
-      attempts++;
-      try {
-        if (globeEl.current && typeof globeEl.current.controls === 'function') {
-          const controls = globeEl.current.controls();
-          if (controls) {
-            controls.autoRotate = true;
-            controls.autoRotateSpeed = 0.8;
-            controls.enableZoom = false;
-            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
-            return; // success, stop polling
-          }
-        }
-      } catch (e) {
-        // controls not ready yet
-      }
-      if (attempts < 40) {
-        setTimeout(tryEnableRotation, 250);
-      }
-    };
-    const timer = setTimeout(tryEnableRotation, 500);
-    return () => clearTimeout(timer);
-  }, [globeMounted]);
-
-  const globeData = useMemo(() => [
+  const globeData = useMemo<GlobePoint[]>(() => [
     { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> },
     { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> },
     { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> },
@@ -65,89 +45,90 @@ export default function InteractiveGlobe() {
     { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> },
   ], []);
 
-  return (
-    <div className="relative flex items-center justify-center w-full h-full pointer-events-auto">
-      <Globe
-        ref={globeEl}
-        width={dimensions.width}
-        height={dimensions.height}
-        backgroundColor="rgba(0,0,0,0)"
-        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-        onGlobeReady={() => {
-          // onGlobeReady fires when Three.js scene is fully initialized
-          // This is the primary trigger for autoRotate
-          setGlobeMounted(true);
-          try {
-            if (globeEl.current) {
-              const controls = globeEl.current.controls();
-              controls.autoRotate = true;
-              controls.autoRotateSpeed = 0.8;
-              controls.enableZoom = false;
-              globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
-            }
-          } catch (e) {
-            // polling via useEffect will handle it
-          }
-        }}
-        htmlElementsData={globeData}
+  useEffect(() => {
+    if (!mountRef.current) return;
+    let globe: any = null;
+    let cancelled = false;
+
+    const initGlobe = async () => {
+      if (!GlobeLib) {
+        const mod = await import('react-globe.gl');
+        GlobeLib = mod.default;
+      }
+      if (cancelled || !mountRef.current) return;
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      globe = new (GlobeLib as any)()(mountRef.current);
+      globeInstanceRef.current = globe;
+
+      globe
+        .width(dimensions.width)
+        .height(dimensions.height)
+        .backgroundColor('rgba(0,0,0,0)')
+        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+        .htmlElementsData(globeData)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        htmlElement={(d: any) => {
-          const el = document.createElement("div");
+        .htmlElement((d: any) => {
+          const el = document.createElement('div');
           const iconMarkup = renderToStaticMarkup(d.icon);
           el.innerHTML = `
-            <div class="label-container flex flex-col items-center gap-0 cursor-pointer transition-all duration-300">
-              <div class="icon-box flex items-center justify-center w-[34px] h-[34px] rounded-full backdrop-blur-md bg-white/10 border border-white/20 shadow-lg">
-                ${iconMarkup}
+            <div class="label-container" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;">
+              <div class="icon-box" style="background:rgba(252,228,170,0.15);border:1px solid rgba(252,228,170,0.6);border-radius:8px;padding:6px;margin-bottom:4px;transition:all 0.3s ease;">
+                <div style="color:#fce4aa;">${iconMarkup}</div>
               </div>
-              <span class="label-text font-bold text-[11px] leading-[1.1] tracking-wider text-center text-white whitespace-pre-line drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mt-[-2px]">
-                ${d.text}
-              </span>
+              <span class="label-text" style="color:#fce4aa;font-size:10px;font-weight:600;text-align:center;white-space:pre-line;text-shadow:0 0 8px rgba(252,228,170,0.5);">${d.text}</span>
             </div>
           `;
-          el.style.pointerEvents = "auto";
-          el.onclick = () => {
-            const containers = document.querySelectorAll('.label-container');
-            containers.forEach(c => c.classList.remove('glow-active'));
-            el.querySelector('.label-container')?.classList.add('glow-active');
-          };
-          el.onmouseenter = () => {
-            if (globeEl.current) {
-              try { globeEl.current.controls().autoRotate = false; } catch(e){}
-            }
-            el.querySelector('.label-container')?.classList.add('hover-glow');
-          };
-          el.onmouseleave = () => {
-            if (globeEl.current) {
-              try { globeEl.current.controls().autoRotate = true; } catch(e){}
-            }
-            el.querySelector('.label-container')?.classList.remove('hover-glow');
-          };
+          el.style.pointerEvents = 'auto';
+          el.onmouseenter = () => { try { globe.controls().autoRotate = false; } catch(e){} };
+          el.onmouseleave = () => { try { globe.controls().autoRotate = true; } catch(e){} };
           return el;
-        }}
-      />
-      <style jsx global>{`
-        .label-container { transition: all 0.3s ease; }
-        .label-container.hover-glow .icon-box {
-          background: rgba(252,228,170,0.4) !important;
-          border-color: rgba(252,228,170,1) !important;
-          box-shadow: 0 0 20px rgba(252,228,170,0.8) !important;
-          transform: scale(1.1);
-        }
-        .label-container.hover-glow .label-text {
-          color: #fce4aa !important;
-          text-shadow: 0 0 15px rgba(252,228,170,0.8) !important;
-        }
-        .label-container.glow-active .icon-box {
-          background: rgba(252,228,170,0.6) !important;
-          border-color: rgba(252,228,170,1) !important;
-          box-shadow: 0 0 30px rgba(252,228,170,1) !important;
-        }
-        .label-container.glow-active .label-text {
-          color: #fce4aa !important;
-          text-shadow: 0 0 20px rgba(252,228,170,1) !important;
-        }
-      `}</style>
-    </div>
+        });
+
+      // Enable auto-rotation
+      try {
+        const controls = globe.controls();
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.8;
+        controls.enableZoom = false;
+        globe.pointOfView({ lat: 30, lng: 20, altitude: 1.4 });
+      } catch(e) {
+        setTimeout(() => {
+          try {
+            const controls = globe.controls();
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 0.8;
+            controls.enableZoom = false;
+          } catch(err) {}
+        }, 1000);
+      }
+    };
+
+    initGlobe();
+
+    return () => {
+      cancelled = true;
+      if (globeInstanceRef.current) {
+        try { globeInstanceRef.current._destructor(); } catch(e) {}
+        globeInstanceRef.current = null;
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Update size when dimensions change
+  useEffect(() => {
+    if (globeInstanceRef.current) {
+      try {
+        globeInstanceRef.current.width(dimensions.width).height(dimensions.height);
+      } catch(e) {}
+    }
+  }, [dimensions]);
+
+  return (
+    <div
+      ref={mountRef}
+      style={{ width: dimensions.width, height: dimensions.height }}
+    />
   );
 }
