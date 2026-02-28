@@ -483,7 +483,7 @@ export default function Home() {
       </section>
 
       {/* THE CHARITY TRUST - Luxury Purpose */}
-      <section className="section-padding bg-[#F7F5F2] relative overflow-hidden bg-texture-linen">
+      <section className="section-padding bg-[#F7F5F2] relative overflow-hidden">
         <div className="grid-container relative z-10 mx-auto">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <motion.div
