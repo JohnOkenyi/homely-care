@@ -399,7 +399,7 @@ export default function Home() {
             className="mb-12 text-center"
           >
             <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-8 font-bold">Curated Care Packages</span>
-            <h2 className="Heading-H2">Our <span className="italic font-light text-[#B9A3D3]">Luxury</span> Services</h2>
+            <h2 className="Heading-H2">Our Services</h2>
           </motion.div>
 
           {/* Service Cards - Editorial Grid */}
