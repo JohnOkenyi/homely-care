@@ -46,11 +46,12 @@ export default function CustomGlobe() {
         let frameId: number;
 
         // --- THE GLOBE ---
-        const geometry = new THREE.SphereGeometry(100, 64, 64);
+        const geometry = new THREE.SphereGeometry(100, 128, 128); // Increased segments for perfect roundness
         const textureLoader = new THREE.TextureLoader();
-        // Using a more reliable and clearer texture URL
+
+        // Using a high-contrast texture which blends better with purple tinting
         const texture = textureLoader.load(
-            "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-blue-marble.jpg",
+            "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-night.jpg",
             () => console.log("🌍 Texture Loaded Successfully"),
             undefined,
             (err) => console.error("❌ Texture Load Error:", err)
@@ -58,25 +59,26 @@ export default function CustomGlobe() {
 
         const material = new THREE.MeshPhongMaterial({
             map: texture,
-            transparent: true,
+            transparent: false, // Made opaque as requested
             opacity: 1.0,
-            shininess: 15, // Reduced for a more natural look
-            color: 0xffffff, // White base color to show texture correctly
-            specular: 0x333333,
+            shininess: 40,
+            color: 0x5B2A86, // Royal Purple Brand Color
+            specular: 0xD6B36A, // Soft Gold Specular for luxury feel
+            emissive: 0x1B1326, // Deep purple ambient glow
         });
 
         const globe = new THREE.Mesh(geometry, material);
         scene.add(globe);
 
         // --- ENHANCED LIGHTING ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 2.0);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
         scene.add(ambientLight);
 
-        const pointLight1 = new THREE.PointLight(0xffffff, 4);
-        pointLight1.position.set(200, 100, 400);
+        const pointLight1 = new THREE.PointLight(0xffffff, 5); // Stronger front light
+        pointLight1.position.set(200, 150, 450);
         scene.add(pointLight1);
 
-        const pointLight2 = new THREE.PointLight(0xB9A3D3, 2);
+        const pointLight2 = new THREE.PointLight(0xD6B36A, 2); // Golden rim light
         pointLight2.position.set(-200, -100, -100);
         scene.add(pointLight2);
 
