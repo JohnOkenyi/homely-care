@@ -19,10 +19,11 @@ interface GlobePoint {
 export default function RotatingGlobe() {
     const globeRef = useRef<any>(null);
     const [isMounted, setIsMounted] = useState(false);
+    const [isGlobeReady, setIsGlobeReady] = useState(false);
     const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
     const isHoveredRef = useRef(false);
 
-    // Handle mounting and resizing
+    // Handle mounting and initial sizing
     useEffect(() => {
         setIsMounted(true);
         const handleResize = () => {
@@ -30,7 +31,7 @@ export default function RotatingGlobe() {
             const height = window.innerHeight;
             const elWidth = width >= 1024 ? width * 0.75 : width;
             const elHeight = width >= 1024 ? height * 0.95 : height * 0.7;
-            const size = Math.min(elWidth, elHeight);
+            const size = Math.min(elWidth, elHeight) || 600;
             setDimensions({ width: size, height: size });
         };
 
@@ -39,45 +40,39 @@ export default function RotatingGlobe() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Definitive Rotation Enforcement Loop
+    // Definitive Rotation Loop using requestAnimationFrame
     useEffect(() => {
-        if (!isMounted || !globeRef.current) return;
+        if (!isMounted || !isGlobeReady || !globeRef.current) return;
 
-        console.log("Globe rotation loop starting...");
+        console.log("🚀 STARTING ROBUST ROTATION LOOP");
+        let frameId: number;
 
-        const interval = setInterval(() => {
-            const globe = globeRef.current;
-            if (!globe) return;
-
-            const controls = globe.controls();
-            if (controls) {
-                if (!isHoveredRef.current) {
-                    if (!controls.autoRotate) {
-                        console.log("Forcing autoRotate to true");
-                        controls.autoRotate = true;
-                    }
+        const rotate = () => {
+            if (globeRef.current && !isHoveredRef.current) {
+                const controls = globeRef.current.controls();
+                if (controls) {
+                    controls.autoRotate = true;
                     controls.autoRotateSpeed = 2.0;
-                    controls.update();
-                } else {
-                    controls.autoRotate = false;
                     controls.update();
                 }
             }
-        }, 100);
+            frameId = requestAnimationFrame(rotate);
+        };
+
+        rotate();
+
         const heartbeat = setInterval(() => {
-            console.log("🌍 GLOBE HEARTBEAT", {
-                isMounted,
-                isHovered: isHoveredRef.current,
-                autoRotate: globeRef.current?.controls()?.autoRotate,
-                controlsReady: !!globeRef.current?.controls()
+            console.log("💓 GLOBE HEARTBEAT", {
+                hovered: isHoveredRef.current,
+                autoRotate: globeRef.current?.controls()?.autoRotate
             });
         }, 5000);
 
         return () => {
-            clearInterval(interval);
+            cancelAnimationFrame(frameId);
             clearInterval(heartbeat);
         };
-    }, [isMounted]);
+    }, [isMounted, isGlobeReady]);
 
     const globeData = useMemo<GlobePoint[]>(() => [
         { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> },
@@ -91,49 +86,45 @@ export default function RotatingGlobe() {
     ], []);
 
     const handleGlobeReady = () => {
-        if (!globeRef.current) return;
+        console.log("✅ GLOBE READY CALLBACK");
+        setIsGlobeReady(true);
 
-        console.log("Globe ready, setting initial POV");
-        // Initial camera position
-        globeRef.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 1000);
-
-        // Control constraints
-        const controls = globeRef.current.controls();
-        if (controls) {
-            controls.enableZoom = false;
-            controls.autoRotate = true;
-            controls.autoRotateSpeed = 2.0;
+        if (globeRef.current) {
+            // Initial POV
+            globeRef.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
+            const controls = globeRef.current.controls();
+            if (controls) {
+                controls.enableZoom = false;
+                controls.autoRotate = true;
+            }
         }
     };
 
     const createHtmlElement = (d: any) => {
         const el = document.createElement("div");
-        const iconMarkup = renderToStaticMarkup(d.icon);
+        let iconMarkup = "";
+        try {
+            iconMarkup = renderToStaticMarkup(d.icon);
+        } catch (e) {
+            console.error("Icon render error", e);
+            iconMarkup = "<span>📍</span>";
+        }
 
         el.innerHTML = `
       <div class="globe-label" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;">
         <div style="background:rgba(252,228,170,0.15);border:1px solid rgba(252,228,170,0.6);border-radius:8px;padding:6px;margin-bottom:4px;backdrop-filter:blur(4px);">
           <div style="color:#fce4aa;">${iconMarkup}</div>
         </div>
-        <span style="color:#fce4aa;font-size:10px;font-weight:600;text-align:center;white-space:pre-line;text-shadow:0 0 8px rgba(252,228,170,0.5);">${d.text}</span>
+        <span style="color:#fce4aa;font-size:10px;font-weight:600;text-align:center;white-space:pre-line;" class="label-text">${d.text}</span>
       </div>
     `;
 
         el.style.pointerEvents = "auto";
 
         el.onmouseenter = () => {
-            console.log("Label hovered, stopping rotation");
             isHoveredRef.current = true;
-            if (globeRef.current) {
-                const controls = globeRef.current.controls();
-                if (controls) {
-                    controls.autoRotate = false;
-                    controls.update();
-                }
-            }
         };
         el.onmouseleave = () => {
-            console.log("Label unhovered, resuming rotation");
             isHoveredRef.current = false;
         };
 
