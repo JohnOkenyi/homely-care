@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ShieldCheck, HeartHandshake, UserCheck, Check, Heart } from "lucide-react";
+import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
 import InteractiveGlobe from "@/components/InteractiveGlobe";
 
 export default function Home() {
@@ -134,73 +134,73 @@ export default function Home() {
       </section>
 
       {/* SECTION 2: TRUST BAR */}
-      <section className="bg-[#fdfcff] py-32 md:py-48 relative z-20 overflow-hidden">
-        <div className="grid-container w-full max-w-6xl">
+      <section className="bg-[#F7F5F2] py-24 md:py-32 relative z-20 overflow-hidden">
+        <div className="grid-container w-full max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Modern Layout Flow: Asymmetry */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-24 mb-16 md:mb-24">
-
-              {/* Left text */}
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-24 mb-16">
               <div className="text-center lg:text-left shrink-0">
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase text-[#1c1c1c]/40 block">
-                  REGULATED & TRUSTED BY
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1B1326]/40 block mb-2">
+                  Regulated & Trusted By
                 </span>
+                <div className="w-12 h-[1px] bg-[#D6B36A] mx-auto lg:mx-0" />
               </div>
 
               {/* Right Logos */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-end gap-12 md:gap-16 w-full">
-
-                {/* NHS Logo */}
-                <div className="relative group cursor-pointer w-20 h-8 flex justify-center items-center">
-                  <div className="relative w-full h-full opacity-60 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100">
-                    <Image src="https://upload.wikimedia.org/wikipedia/commons/f/fa/NHS-Logo.svg" alt="NHS Logo" fill className="object-contain" unoptimized />
-                  </div>
+              <div className="flex flex-wrap items-center justify-center lg:justify-end gap-16 md:gap-20 w-full">
+                <div className="relative group cursor-pointer w-16 h-8 opacity-40 grayscale transition-all duration-700 hover:grayscale-0 hover:opacity-100">
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/f/fa/NHS-Logo.svg" alt="NHS Logo" fill className="object-contain" unoptimized />
                 </div>
-
-                {/* CQC Logo */}
-                <div className="relative group cursor-pointer w-28 h-10 flex justify-center items-center">
-                  <div className="relative w-full h-full opacity-60 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100">
-                    <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Care_Quality_Commission_logo.svg/1024px-Care_Quality_Commission_logo.svg.png" alt="CQC Logo" fill className="object-contain" unoptimized />
-                  </div>
+                <div className="relative group cursor-pointer w-24 h-8 opacity-40 grayscale transition-all duration-700 hover:grayscale-0 hover:opacity-100">
+                  <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Care_Quality_Commission_logo.svg/1024px-Care_Quality_Commission_logo.svg.png" alt="CQC Logo" fill className="object-contain" unoptimized />
                 </div>
-
-                {/* Skills for Care Logo */}
-                <div className="relative group cursor-pointer w-32 h-10 flex justify-center items-center">
-                  <div className="relative w-full h-full opacity-60 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100">
-                    <Image src="https://www.skillsforcare.org.uk/images/Logo/Skills-for-Care-logo.svg" alt="Skills for Care" fill className="object-contain" unoptimized />
-                  </div>
+                <div className="relative group cursor-pointer w-28 h-8 opacity-40 grayscale transition-all duration-700 hover:grayscale-0 hover:opacity-100">
+                  <Image src="https://www.skillsforcare.org.uk/images/Logo/Skills-for-Care-logo.svg" alt="Skills for Care" fill className="object-contain" unoptimized />
                 </div>
               </div>
             </div>
-
-            <div className="w-px h-16 bg-[#1c1c1c]/10 mx-auto mb-16 md:mb-24" />
-
-            <h2 className="Heading-H2">
-              <span className="font-light">Why Choose</span> <br className="sm:hidden" />
-              <span className="Heading-Serif font-bold">Homely Health Care?</span>
-            </h2>
           </motion.div>
         </div>
+      </section>
 
-        <div className="grid-container">
-          <div className="grid md:grid-cols-3 gap-12 lg:gap-24 pt-16 border-t border-[#1c1c1c]/10">
+      {/* SECTION 3: WHY CHOOSE HOMELY CARE */}
+      <section className="bg-premium-dark py-32 md:py-48 relative z-20 overflow-hidden">
+        {/* Ambient Glows */}
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10" style={{ background: '#5B2A86' }} />
+        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-10" style={{ background: '#D6B36A' }} />
+
+        <div className="grid-container relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-24 text-center lg:text-left"
+          >
+            <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-6 font-bold">Uncompromising Quality</span>
+            <h2 className="Heading-H2 text-[#F2F2F2]">
+              <span className="font-light">Why Choose</span><br />
+              <span className="Heading-Serif italic font-light">Homely Health Care.</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.1 }}
-              className="space-y-6"
+              className="glass-card p-10 lg:p-12 hover:-translate-y-2 transition-transform duration-500 group"
             >
-              <div className="w-16 h-16 bg-[#fdfcff] border border-[#1c1c1c]/10 rounded-full flex items-center justify-center text-[#8da399] mb-8">
-                <UserCheck className="w-8 h-8 stroke-[1.5]" />
+              <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
+                <UserCheck className="w-7 h-7 stroke-[1.5]" />
               </div>
-              <h3 className="Heading-H4 text-[#1c1c1c]">Person-Centred Care</h3>
-              <p className="Text-16 text-[#1c1c1c]/80 font-light">
+              <h3 className="Heading-Serif text-2xl text-[#F2F2F2] mb-6">Person-Centred Care</h3>
+              <p className="text-sm text-[#F2F2F2]/60 font-light leading-relaxed">
                 We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity.
               </p>
             </motion.div>
@@ -208,15 +208,15 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="space-y-6"
+              className="glass-card p-10 lg:p-12 hover:-translate-y-2 transition-transform duration-500 group"
             >
-              <div className="w-16 h-16 bg-[#fdfcff] border border-[#1c1c1c]/10 rounded-full flex items-center justify-center text-[#8da399] mb-8">
-                <ShieldCheck className="w-8 h-8 stroke-[1.5]" />
+              <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
+                <ShieldCheck className="w-7 h-7 stroke-[1.5]" />
               </div>
-              <h3 className="Heading-H4 text-[#1c1c1c]">Rigorous Vetting</h3>
-              <p className="Text-16 text-[#1c1c1c]/80 font-light">
+              <h3 className="Heading-Serif text-2xl text-[#F2F2F2] mb-6">Rigorous Vetting</h3>
+              <p className="text-sm text-[#F2F2F2]/60 font-light leading-relaxed">
                 Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and appropriately trained to an exceptionally high standard.
               </p>
             </motion.div>
@@ -224,15 +224,15 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="space-y-6"
+              className="glass-card p-10 lg:p-12 hover:-translate-y-2 transition-transform duration-500 group"
             >
-              <div className="w-16 h-16 bg-[#fdfcff] border border-[#1c1c1c]/10 rounded-full flex items-center justify-center text-[#8da399] mb-8">
-                <HeartHandshake className="w-8 h-8 stroke-[1.5]" />
+              <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
+                <HeartHandshake className="w-7 h-7 stroke-[1.5]" />
               </div>
-              <h3 className="Heading-H4 text-[#1c1c1c]">Approachable Management</h3>
-              <p className="Text-16 text-[#1c1c1c]/80 font-light">
+              <h3 className="Heading-Serif text-2xl text-[#F2F2F2] mb-6">Expert Management</h3>
+              <p className="text-sm text-[#F2F2F2]/60 font-light leading-relaxed">
                 Our friendly management team and Field Care Managers visit you regularly to guarantee the care you receive always aligns with your expectations.
               </p>
             </motion.div>
@@ -240,78 +240,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: SOCIAL PROOF & TESTIMONIAL */}
-      <section className="bg-[#faf9f8] py-32 lg:py-48 relative z-20 overflow-hidden border-t border-[#1c1c1c]/5">
-        <div className="grid-container max-w-6xl">
-          <div className="grid lg:grid-cols-2 gap-24 lg:gap-0 items-center">
+      {/* SECTION 4: TESTIMONIALS - Luxury Ivory Theme */}
+      <section className="bg-[#F7F5F2] py-32 lg:py-48 relative z-20 overflow-hidden border-t border-[#5B2A86]/5">
+        <div className="grid-container max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
 
             {/* Left Column: Stats */}
-            <div className="flex flex-col gap-16 lg:border-r border-[#1c1c1c]/10 lg:pr-24">
+            <div className="flex flex-col gap-16 lg:border-r border-[#1B1326]/10 lg:pr-24">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="relative"
               >
                 <div className="flex items-baseline gap-1">
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 2 }}
-                    className="block text-[80px] lg:text-[100px] leading-none font-light text-[#1c1c1c] tracking-tighter"
-                  >
+                  <span className="block text-[100px] lg:text-[140px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
                     9.8
-                  </motion.span>
-                  <span className="text-4xl text-[#1c1c1c]/30 font-light">/10</span>
+                  </span>
+                  <span className="text-4xl text-[#1B1326]/20 font-light">/10</span>
                 </div>
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1c1c1c]/40 block mt-4">
-                  RATED BY FAMILIES
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-[#1B1326]/40 block mt-4">
+                  Family Trust Rating
                 </span>
+                <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#D6B36A]/10 rounded-full blur-3xl opacity-50" />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 1, delay: 0.2 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="flex items-baseline gap-1">
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 2 }}
-                    className="block text-[80px] lg:text-[100px] leading-none font-light text-[#1c1c1c] tracking-tighter"
-                  >
+                  <span className="block text-[100px] lg:text-[140px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
                     7
-                  </motion.span>
-                  <span className="text-[60px] lg:text-[80px] text-[#1c1c1c]/30 font-light">+</span>
+                  </span>
+                  <span className="text-[60px] lg:text-[100px] text-[#1B1326]/20 font-light">+</span>
                 </div>
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1c1c1c]/40 block mt-4">
-                  AVG. CARER EXPERIENCE (YEARS)
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-[#1B1326]/40 block mt-4">
+                  Average Years of Clinical Experience
                 </span>
               </motion.div>
             </div>
 
             {/* Right Column: Testimonial */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.4 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="lg:pl-24 relative"
             >
-              <div className="absolute -top-12 -left-4 lg:left-12 text-[#1c1c1c]/5 text-[150px] font-serif leading-none italic select-none">
+              <div className="absolute -top-24 -left-12 text-[#5B2A86]/5 text-[280px] font-serif leading-none italic select-none">
                 &ldquo;
               </div>
-              <p className="Heading-Serif text-[#1c1c1c] text-2xl lg:text-3xl leading-relaxed relative z-10 font-medium">
-                The level of dignity and true compassion the staff at Homely Health Care provides is unmatched. We feel so incredibly supported having them care for our mother.
+              <p className="Heading-Serif text-[#1B1326] text-3xl lg:text-4xl leading-relaxed relative z-10 font-light italic">
+                The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
               </p>
 
-              <div className="mt-12 flex items-center gap-6">
-                <div className="w-12 h-[1px] bg-[#8da399]" />
+              <div className="mt-16 flex items-center gap-8">
+                <div className="w-16 h-[1px] bg-[#D6B36A]" />
                 <div>
-                  <p className="font-medium text-[#1c1c1c] text-lg">Sarah Jenkins</p>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#1c1c1c]/50 mt-1">Daughter of Live-in Client, Dorset</p>
+                  <p className="font-bold text-[#5B2A86] text-xl tracking-wide uppercase">Sarah Jenkins</p>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-[#1B1326]/40 mt-2 font-bold">Private Client, Dorset</p>
                 </div>
               </div>
             </motion.div>
@@ -320,207 +312,131 @@ export default function Home() {
         </div>
       </section>
 
-      {/* OUR COMPREHENSIVE SERVICES - Editorial Roster */}
-      <section className="py-40 bg-[#ffffff] text-[#1c1c1c] overflow-hidden" >
-        <div className="grid-container">
+      {/* SECTION 5: SERVICES OVERVIEW - Editorial Presentation */}
+      <section className="py-40 bg-premium-dark text-[#F2F2F2] overflow-hidden relative" >
+        <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-[#F7F5F2] to-transparent opacity-5" />
+
+        <div className="grid-container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-32 md:mb-48 text-center"
+            className="mb-32 text-center"
           >
-            <span className="text-[#8da399] text-[10px] tracking-[0.4em] uppercase block mb-8 font-semibold">Expertise & Solutions</span>
-            <h2 className="Heading-H2">Our Care <span className="italic font-light">Services</span></h2>
+            <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-8 font-bold">Curated Care Packages</span>
+            <h2 className="Heading-H2">Our <span className="italic font-light text-[#B9A3D3]">Luxury</span> Services</h2>
           </motion.div>
 
-          {/* Service 1: Domiciliary Care (Image Right) */}
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center mb-32 md:mb-48">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="order-2 lg:order-1"
-            >
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#8da399] mb-6 block">Domiciliary Care</span>
-              <h3 className="Heading-H3 mb-8">Home Care</h3>
-              <p className="Text-18 text-[#1c1c1c]/70 font-light mb-10 max-w-lg leading-relaxed">
-                Receive necessary support while maintaining full independence in the comfort of your own home, surrounded by the things you love.
-              </p>
-              <ul className="space-y-6 mb-12">
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Personalised care plans agreed with family</li>
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Support ranging from a few hours to 7 days a week</li>
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Options for sleep-in or waking night security</li>
-              </ul>
-              <Link href="/services" className="inline-flex items-center px-8 py-4 bg-transparent border border-[#1c1c1c]/20 text-[#1c1c1c] text-xs uppercase tracking-[0.1em] font-medium hover:bg-[#1c1c1c] hover:text-white hover:border-transparent transition-all duration-500 hover:-translate-y-1">
-                Explore Home Care
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[60vh] lg:h-[80vh] w-full order-1 lg:order-2"
-            >
-              <Image src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop" alt="Home Care" fill className="object-cover" />
-            </motion.div>
+          {/* Service Cards - Editorial Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+            {[
+              {
+                title: "Home Care",
+                tag: "Bespoke Support",
+                img: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?q=80&w=1600&auto=format&fit=crop",
+                desc: "Maintain independence with clinical precision and heartfelt companionship in your own home."
+              },
+              {
+                title: "Live-in Care",
+                tag: "24/7 Presence",
+                img: "https://images.unsplash.com/photo-1581579205556-c3ccfe505d04?q=80&w=1600&auto=format&fit=crop",
+                desc: "Round-the-clock peace of mind delivered by a hand-picked team of dedicated professionals."
+              },
+              {
+                title: "Supported Living",
+                tag: "Independence First",
+                img: "https://images.unsplash.com/photo-1529156069898-49953eb1b5ae?q=80&w=1600&auto=format&fit=crop",
+                desc: "Empowering individuals to lead fulfilling lives within their local community."
+              },
+              {
+                title: "Complex Care",
+                tag: "Clinical Excellence",
+                img: "https://images.unsplash.com/photo-1628177142898-93e46e48c1be?q=80&w=2000&auto=format&fit=crop",
+                desc: "Specialized nurse-led care for complex health conditions and intensive support needs."
+              }
+            ].map((srv, idx) => (
+              <motion.div
+                key={srv.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group cursor-pointer"
+              >
+                <div className="relative h-[500px] w-full mb-10 overflow-hidden rounded-sm">
+                  <Image src={srv.img} alt={srv.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-[#1B1326]/40 transition-colors duration-500 group-hover:bg-[#1B1326]/20" />
+                  <div className="absolute inset-0 border border-white/10 m-4 group-hover:m-6 transition-all duration-700" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[#D6B36A] text-[9px] uppercase tracking-[0.3em] font-bold mb-4">{srv.tag}</span>
+                  <div className="flex justify-between items-end">
+                    <h3 className="Heading-H3 text-[#F2F2F2] group-hover:text-[#D6B36A] transition-colors">{srv.title}</h3>
+                    <Link href="/services" className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#D6B36A] group-hover:bg-[#D6B36A] transition-all duration-500">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:text-[#1B1326] transition-colors"><path d="M7 17l10-10M17 17V7H7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    </Link>
+                  </div>
+                  <p className="mt-6 text-[#F2F2F2]/60 font-light leading-relaxed max-w-sm">{srv.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          {/* Service 2: Live-in Care (Image Left) */}
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center mb-32 md:mb-48">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[60vh] lg:h-[80vh] w-full order-1"
-            >
-              <Image src="https://images.unsplash.com/photo-1581579205556-c3ccfe505d04?q=80&w=1600&auto=format&fit=crop" alt="Live-in Care" fill className="object-cover" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="order-2"
-            >
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#8da399] mb-6 block">24/7 Presence</span>
-              <h3 className="Heading-H3 mb-8">Live-in & Companionship</h3>
-              <p className="Text-18 text-[#1c1c1c]/70 font-light mb-10 max-w-lg leading-relaxed">
-                Round-the-clock support for those who need constant care but prefer to remain in their own homes, preserving their lifestyle and dignity.
-              </p>
-              <ul className="space-y-6 mb-12">
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Carefully matched carers based on likes and hobbies</li>
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Assistance with administration of medicine and domestic duties</li>
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Accompanied visits to appointments and social activities</li>
-              </ul>
-              <Link href="/services" className="inline-flex items-center px-8 py-4 bg-transparent border border-[#1c1c1c]/20 text-[#1c1c1c] text-xs uppercase tracking-[0.1em] font-medium hover:bg-[#1c1c1c] hover:text-white hover:border-transparent transition-all duration-500 hover:-translate-y-1">
-                Explore Live-in Care
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Service 3: Supported Living (Image Right) */}
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center mb-32 md:mb-48">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="order-2 lg:order-1"
-            >
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#8da399] mb-6 block">Independence Focus</span>
-              <h3 className="Heading-H3 mb-8">Supported Living</h3>
-              <p className="Text-18 text-[#1c1c1c]/70 font-light mb-10 max-w-lg leading-relaxed">
-                Empowering individuals with complex care needs, learning disabilities, or autism to live fully and independently within their communities.
-              </p>
-              <ul className="space-y-6 mb-12">
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Tailored support for individuals aged 18 and over</li>
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Flexible service ranging from a few hours to full-time</li>
-                <li className="flex items-start gap-4 text-sm text-[#1c1c1c]/70 font-light border-b border-[#1c1c1c]/10 pb-4"><Check className="w-5 h-5 text-[#8da399] mt-0 shrink-0" /> Skills development and community integration support</li>
-              </ul>
-              <Link href="/services" className="inline-flex items-center px-8 py-4 bg-transparent border border-[#1c1c1c]/20 text-[#1c1c1c] text-xs uppercase tracking-[0.1em] font-medium hover:bg-[#1c1c1c] hover:text-white hover:border-transparent transition-all duration-500 hover:-translate-y-1">
-                Explore Supported Living
-              </Link>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[60vh] lg:h-[80vh] w-full order-1 lg:order-2"
-            >
-              <Image src="https://images.unsplash.com/photo-1529156069898-49953eb1b5ae?q=80&w=1600&auto=format&fit=crop" alt="Supported Living" fill className="object-cover" />
-            </motion.div>
-          </div>
-
-          {/* Service 4: Complex Care (Full Width Hero Style) */}
-          <div className="pt-32 border-t border-[#1c1c1c]/10 text-center max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5 }}
-            >
-              <span className="text-[10px] uppercase tracking-[0.3em] font-medium text-[#8da399] mb-6 block">Clinical Expertise</span>
-              <h3 className="Heading-H2 mb-8 text-[#1c1c1c]">TDDI & Complex Care</h3>
-              <p className="Text-18 text-[#1c1c1c]/70 font-light mb-16 leading-relaxed max-w-3xl mx-auto">
-                A safe, highly-skilled service led by qualified nurses to support individuals managing, improving, or recovering from serious diagnosed health conditions.
-              </p>
-
-              <div className="relative h-[60vh] w-full mb-16">
-                <Image src="https://images.unsplash.com/photo-1628177142898-93e46e48c1be?q=80&w=2000&auto=format&fit=crop" alt="Complex Care" fill className="object-cover" />
-              </div>
-
-              <ul className="text-left grid md:grid-cols-3 gap-12 max-w-4xl mx-auto mb-16">
-                <li className="flex flex-col items-center gap-4 text-center text-sm text-[#1c1c1c]/70 font-light">
-                  <Check className="w-6 h-6 text-[#8da399] mb-2 stroke-[1.5]" />
-                  Nurse-led clinical interventions (e.g., tube feeding)
-                </li>
-                <li className="flex flex-col items-center gap-4 text-center text-sm text-[#1c1c1c]/70 font-light">
-                  <Check className="w-6 h-6 text-[#8da399] mb-2 stroke-[1.5]" />
-                  Support for neurological conditions & acquired injuries
-                </li>
-                <li className="flex flex-col items-center gap-4 text-center text-sm text-[#1c1c1c]/70 font-light">
-                  <Check className="w-6 h-6 text-[#8da399] mb-2 stroke-[1.5]" />
-                  Collaborative care with multidisciplinary teams
-                </li>
-              </ul>
-
-              <Link href="/services" className="inline-flex items-center px-10 py-5 bg-[#1c1c1c] text-white text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold hover:bg-[#8da399] hover:-translate-y-1 transition-all duration-300 shadow-xl">
-                Explore Clinical Care
-              </Link>
-            </motion.div>
+          <div className="mt-32 text-center">
+            <Link href="/services" className="inline-flex items-center px-12 py-5 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] hover:-translate-y-2 relative overflow-hidden group">
+              <span className="relative z-10">Experience All Services</span>
+              <div className="absolute inset-0 bg-[#D6B36A] opacity-0 group-hover:opacity-20 transition-opacity" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* THE CHARITY TRUST - Purpose driven luxury */}
-      <section className="py-32 bg-[#faf9f8] relative overflow-hidden" >
-        <div className="grid-container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* THE CHARITY TRUST - Luxury Purpose */}
+      <section className="py-40 bg-[#F7F5F2] relative overflow-hidden" >
+        <div className="grid-container relative z-10 mx-auto">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-2 bg-white border border-[#1c1c1c]/10 px-4 py-2 rounded-full mb-8">
-                <Heart className="w-4 h-4 text-[#8da399] fill-[#8da399]" />
-                <span className="text-xs uppercase tracking-widest font-medium text-[#1c1c1c]">We Donate a Portion of Every Booking</span>
+              <div className="inline-flex items-center gap-3 glass-card-light px-6 py-3 rounded-full mb-10 border-[#5B2A86]/10">
+                <Heart className="w-4 h-4 text-[#5B2A86] fill-[#5B2A86]" />
+                <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#5B2A86]">Social Responsibility</span>
               </div>
-              <h2 className="Heading-H2 text-[#1c1c1c] mb-8">
-                Giving Back to <br /><span className="italic font-light text-[#8da399]">The Rahula Trust.</span>
+              <h2 className="Heading-H2 text-[#1B1326] mb-10">
+                A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
               </h2>
-              <p className="Text-18 text-[#1c1c1c]/70 leading-relaxed font-light mb-10 max-w-xl">
-                Luxury care means caring profoundly. Homely Health Care proudly donates a percentage of its profits to The Rahula Trust, an extraordinary children&apos;s education charity. They tirelessly support underprivileged children&apos;s education in various parts of the world.
+              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-12 max-w-xl">
+                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
               </p>
               <a
                 href="http://www.rahula-trust.org/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 border border-[#1c1c1c] text-[#1c1c1c] text-xs uppercase tracking-[0.1em] font-medium hover:bg-[#1c1c1c] hover:text-white transition-all duration-500 hover:-translate-y-1"
+                className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
               >
-                Learn about The Rahula Trust
+                Discover The Rahula Trust
               </a>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[600px] overflow-hidden"
+              className="relative h-[700px] overflow-hidden rounded-sm shadow-2xl"
             >
               <Image
                 src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"
                 alt="Children receiving education"
                 fill
-                className="object-cover sepia-[0.2]"
+                className="object-cover transition-transform duration-[10s] hover:scale-110"
               />
-              <div className="absolute inset-0 bg-[#8da399]/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-[#5B2A86]/20 mix-blend-multiply transition-opacity duration-1000" />
+              <div className="absolute inset-0 border-[20px] border-[#F7F5F2] pointer-events-none" />
             </motion.div>
           </div>
         </div>

@@ -1,99 +1,141 @@
 "use client";
 
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Heart, Shield, Users } from "lucide-react";
 
 export default function AboutUs() {
     return (
-        <main className="min-h-screen pt-32 pb-24 bg-[#faf9f6]">
-            {/* Header */}
-            <section className="container mx-auto px-6 md:px-12 mb-24 text-center">
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-[#c5a265] text-xs uppercase tracking-[0.3em] font-bold mb-6"
-                >
-                    Our Story
-                </motion.p>
-                <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                    className="Heading-Display text-[#1c1c1c] max-w-4xl mx-auto"
-                >
-                    Compassionate care that is <span className="italic text-[#c5a265]">focused on you.</span>
-                </motion.h1>
-            </section>
+        <main className="min-h-screen bg-[#F7F5F2]">
+            <Navbar />
 
-            {/* Main Content */}
-            <section className="container mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-32">
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1 }}
-                    className="relative h-[600px] w-full rounded-sm overflow-hidden"
-                >
-                    <Image
-                        src="https://images.unsplash.com/photo-1576089172869-4f5f6f315620?q=80&w=2670&auto=format&fit=crop"
-                        alt="Compassionate Care"
-                        fill
-                        className="object-cover"
-                    />
-                </motion.div>
+            {/* HERO SECTION - Cinematic Breadcrumb */}
+            <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-premium-dark">
+                <Image
+                    src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2000&auto=format&fit=crop"
+                    alt="Luxury Interior"
+                    fill
+                    className="object-cover opacity-40 scale-105"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#1B1326]/60 to-[#1B1326]" />
 
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                    className="space-y-8 text-[#8e948c] text-lg font-light leading-relaxed"
-                >
-                    <h2 className="Heading-H2 text-[#1c1c1c]">Why Choose <br />Homely Health Care?</h2>
-                    <p>
-                        As a leading healthcare agency, Homely Health Care is committed to connecting you with exceptional care services tailored to your unique needs. We provide solutions to meet your needs as we believe that every individual is different and as a result your care and support must be person-centred.
-                    </p>
-                    <p>
-                        At Homely Health Care we are dedicated to creating an atmosphere of care and support which enables and encourages you to lead a full and independent life. Our friendly team of staff are highly trained to deliver person centred care which allows you to choose how you live whilst maintaining dignity and respect.
-                    </p>
-
-                    <div className="pt-8 border-t border-[#1c1c1c]/10">
-                        <h3 className="Heading-Serif text-2xl text-[#1c1c1c] mb-4">Our Commitment</h3>
-                        <p>
-                            We operate a robust recruitment and selection process which ensures that all staff are thoroughly referenced, DBS checked and appropriately trained to a high standard.
-                        </p>
-                    </div>
-                </motion.div>
-            </section>
-
-            {/* Charity Section */}
-            <section className="bg-[#1c1c1c] text-[#faf9f6] py-32">
-                <div className="container mx-auto px-6 md:px-12 text-center max-w-4xl">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                <div className="grid-container relative z-10 text-center">
+                    <motion.span
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        className="text-[#D6B36A] text-[10px] tracking-[0.6em] uppercase block mb-8 font-bold"
                     >
-                        <div className="w-16 h-16 mx-auto border border-[#c5a265] rounded-full flex items-center justify-center mb-8">
-                            <div className="w-4 h-4 bg-[#c5a265] rounded-full" />
-                        </div>
-                        <h2 className="Heading-Serif text-4xl md:text-5xl mb-8">Giving Back</h2>
-                        <p className="text-[#8e948c] text-lg lg:text-xl font-light leading-relaxed mb-12">
-                            We are proud to say that we give a percentage of our profits to a small children’s education charity, The Rahula Trust, who do amazing work to support children in their education in various parts of the world.
-                        </p>
-                        <a
-                            href="http://www.rahula-trust.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block border-b border-[#c5a265] pb-2 text-sm uppercase tracking-widest hover:text-[#c5a265] transition-colors"
-                        >
-                            Discover The Rahula Trust
-                        </a>
-                    </motion.div>
+                        Established with Purpose
+                    </motion.span>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="Heading-H1 text-white"
+                    >
+                        Our <span className="Heading-Serif italic font-light">Heritage</span>
+                    </motion.h1>
                 </div>
             </section>
+
+            {/* MANIFESTO SECTION - Warm Ivory Background */}
+            <section className="py-32 lg:py-48">
+                <div className="grid-container w-full max-w-5xl mx-auto">
+                    <div className="grid lg:grid-cols-12 gap-24 items-start">
+                        <div className="lg:col-span-5 relative">
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="aspect-[4/5] relative rounded-sm overflow-hidden shadow-2xl"
+                            >
+                                <Image
+                                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1600&auto=format&fit=crop"
+                                    alt="Caring interaction"
+                                    fill
+                                    className="object-cover transition-transform duration-[10s] hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-[#5B2A86]/10 mix-blend-overlay" />
+                            </motion.div>
+                            {/* Accent Circle */}
+                            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#D6B36A]/20 rounded-full blur-3xl" />
+                        </div>
+
+                        <div className="lg:col-span-7 flex flex-col justify-center">
+                            <motion.div
+                                initial={{ opacity: 0, x: 40 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                            >
+                                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-8 block">The Homely Manifesto</span>
+                                <h2 className="Heading-H2 text-[#1B1326] mb-12">
+                                    Redefining the <br />
+                                    <span className="Heading-Serif italic font-light text-[#5B2A86]">Gold Standard</span> of Home Care.
+                                </h2>
+                                <div className="space-y-8 text-lg font-light text-[#1B1326]/70 leading-relaxed">
+                                    <p>
+                                        Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between clinical excellence and emotional warmth.
+                                    </p>
+                                    <p>
+                                        We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like a clinical intervention and more like an extension of family.
+                                    </p>
+                                    <blockquote className="border-l-2 border-[#D6B36A] pl-8 py-4 my-12 italic text-2xl text-[#5B2A86] Heading-Serif font-light">
+                                        &ldquo;Our mission is to create a world where home care is synonymous with sanctuary.&rdquo;
+                                    </blockquote>
+                                </div>
+                            </motion.div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* PILLARS SECTION - Glassmorphism on Dark */}
+            <section className="py-32 lg:py-48 bg-premium-dark relative overflow-hidden">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#5B2A86]/10 rounded-full blur-[160px]" />
+
+                <div className="grid-container relative z-10 text-center">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="Heading-H2 text-white mb-24"
+                    >
+                        The Pillars of our <span className="italic font-light text-[#B9A3D3]">Promise</span>
+                    </motion.h2>
+
+                    <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+                        {[
+                            { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical well-being." },
+                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest clinical standards." },
+                            { icon: Users, title: "Dignity", desc: "Honouring the person behind the patient, respecting their history, choices, and autonomy." }
+                        ].map((pillar, idx) => (
+                            <motion.div
+                                key={pillar.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 1, delay: idx * 0.2 }}
+                                className="glass-card p-12 text-center group hover:-translate-y-2 transition-transform duration-500"
+                            >
+                                <div className="w-16 h-16 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mx-auto mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
+                                    <pillar.icon className="w-8 h-8 stroke-[1.5]" />
+                                </div>
+                                <h3 className="Heading-Serif text-2xl text-white mb-6 tracking-wide">{pillar.title}</h3>
+                                <p className="text-sm text-white/60 font-light leading-relaxed">{pillar.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
         </main>
     );
 }
