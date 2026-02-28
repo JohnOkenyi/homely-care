@@ -64,8 +64,19 @@ export default function RotatingGlobe() {
                 }
             }
         }, 100);
+        const heartbeat = setInterval(() => {
+            console.log("🌍 GLOBE HEARTBEAT", {
+                isMounted,
+                isHovered: isHoveredRef.current,
+                autoRotate: globeRef.current?.controls()?.autoRotate,
+                controlsReady: !!globeRef.current?.controls()
+            });
+        }, 5000);
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearInterval(heartbeat);
+        };
     }, [isMounted]);
 
     const globeData = useMemo<GlobePoint[]>(() => [
