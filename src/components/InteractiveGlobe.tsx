@@ -45,8 +45,6 @@ export default function InteractiveGlobe() {
         { id: 8, text: "Complex Care", lat: -15, lng: -75, icon: <Activity size={18} /> },
     ], []);
 
-    const isHovered = useRef(false);
-
     const handleGlobeReady = () => {
         if (globeEl.current) {
             const controls = globeEl.current.controls();
