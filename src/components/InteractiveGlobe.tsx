@@ -28,11 +28,11 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // 4 primary services tightly clustered in the initial view (Africa/Europe, lat:30, lng:20)
-        { id: 1, text: "Home Care", lat: 42, lng: 5, icon: <Home size={18} /> },
-        { id: 3, text: "Live-in Care", lat: 52, lng: 20, icon: <UserCheck size={18} /> },
-        { id: 4, text: "Supported\nLiving", lat: 22, lng: 35, icon: <ShieldCheck size={18} /> },
-        { id: 5, text: "TDDI &\nHomely care", lat: 10, lng: 8, icon: <Activity size={18} /> },
+        // 4 primary services clustered around Western Europe (initial view)
+        { id: 1, text: "Home Care", lat: 54, lng: -2, icon: <Home size={18} /> },        // UK
+        { id: 3, text: "Live-in Care", lat: 47, lng: 8, icon: <UserCheck size={18} /> },   // Switzerland
+        { id: 4, text: "Supported\nLiving", lat: 50, lng: 18, icon: <ShieldCheck size={18} /> }, // Eastern Europe
+        { id: 5, text: "TDDI &\nHomely care", lat: 38, lng: 5, icon: <Activity size={18} /> },    // Iberia/Med
 
         // Background duplicates on the back of the globe
         { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> },
@@ -47,8 +47,8 @@ export default function InteractiveGlobe() {
             globeEl.current.controls().autoRotateSpeed = 0.8;
             globeEl.current.controls().enableZoom = false;
 
-            // Initial view showing a nice sparse group of ~3
-            globeEl.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
+            // Initial view centred on Western Europe
+            globeEl.current.pointOfView({ lat: 50, lng: 5, altitude: 1.4 }, 0);
         }
     }, [dimensions]);
 
