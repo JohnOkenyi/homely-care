@@ -100,8 +100,8 @@ export default function Home() {
                 <InteractiveGlobe />
               </div>
 
-              {/* Hands — black bg blends seamlessly with dark hero background */}
-              <div className="absolute inset-0 z-20 pointer-events-none">
+              {/* Hands — mix-blend-lighten makes black bg transparent on the dark hero, hands stay solid */}
+              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands cradling globe"
