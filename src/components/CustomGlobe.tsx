@@ -46,69 +46,74 @@ export default function CustomGlobe() {
         let frameId: number;
 
         // --- THE GLOBE ---
-        const geometry = new THREE.SphereGeometry(100, 128, 128); // Increased segments for perfect roundness
+        const geometry = new THREE.SphereGeometry(100, 128, 128);
         const textureLoader = new THREE.TextureLoader();
 
-        // Using a high-contrast texture which blends better with purple tinting
-        const texture = textureLoader.load(
-            "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-night.jpg",
-            () => console.log("🌍 Texture Loaded Successfully"),
-            undefined,
-            (err) => console.error("❌ Texture Load Error:", err)
-        );
+        // High-quality textures from three-globe repository
+        const texture = textureLoader.load("https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-blue-marble.jpg");
+        const normalMap = textureLoader.load("https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-topology.png");
 
-        const material = new THREE.MeshPhongMaterial({
+        const material = new THREE.MeshPhysicalMaterial({
             map: texture,
-            transparent: false, // Made opaque as requested
+            normalMap: normalMap,
+            normalScale: new THREE.Vector2(0.85, 0.85),
+            transparent: false,
             opacity: 1.0,
-            shininess: 40,
-            color: 0x5B2A86, // Royal Purple Brand Color
-            specular: 0xD6B36A, // Soft Gold Specular for luxury feel
-            emissive: 0x1B1326, // Deep purple ambient glow
+            metalness: 0.15,
+            roughness: 0.45,
+            clearcoat: 0.3,
+            clearcoatRoughness: 0.25,
+            reflectivity: 0.5,
         });
 
         const globe = new THREE.Mesh(geometry, material);
+        // Initially rotate to show Europe/Africa
+        globe.rotation.y = Math.PI * 0.9;
         scene.add(globe);
 
-        // --- ENHANCED LIGHTING ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        // --- PREMIUM LIGHTING ---
+        // 1. Key Light (Warm White)
+        const keyLight = new THREE.DirectionalLight(0xfff5e6, 3.5);
+        keyLight.position.set(300, 200, 500);
+        scene.add(keyLight);
+
+        // 2. Fill Light (Soft Purple)
+        const fillLight = new THREE.PointLight(0x5B2A86, 2);
+        fillLight.position.set(-300, -100, 200);
+        scene.add(fillLight);
+
+        // 3. Rim Light (Golden)
+        const rimLight = new THREE.SpotLight(0xD6B36A, 12);
+        rimLight.position.set(-200, 300, -300);
+        rimLight.angle = 0.5;
+        scene.add(rimLight);
+
+        // 4. Subtle Ambient
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
         scene.add(ambientLight);
-
-        const pointLight1 = new THREE.PointLight(0xffffff, 5); // Stronger front light
-        pointLight1.position.set(200, 150, 450);
-        scene.add(pointLight1);
-
-        const pointLight2 = new THREE.PointLight(0xD6B36A, 2); // Golden rim light
-        pointLight2.position.set(-200, -100, -100);
-        scene.add(pointLight2);
 
         // --- CONTROLS ---
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableZoom = false;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 4.0;
-        controls.minPolarAngle = Math.PI / 2;
-        controls.maxPolarAngle = Math.PI / 2;
+        controls.autoRotateSpeed = 1.5; // Slower, more luxury rotation
+        controls.minPolarAngle = Math.PI / 2.2;
+        controls.maxPolarAngle = Math.PI / 1.8;
 
         // --- LABELS ---
         const labelContainer = document.createElement("div");
-        labelContainer.style.position = "absolute";
-        labelContainer.style.top = "0";
-        labelContainer.style.left = "0";
-        labelContainer.style.width = "100%";
-        labelContainer.style.height = "100%";
-        labelContainer.style.pointerEvents = "none";
+        labelContainer.className = "absolute top-0 left-0 w-full h-full pointer-events-none";
         container.appendChild(labelContainer);
 
         const htmlLabels = SERVICE_DATA.map(data => {
             const el = document.createElement("div");
             const iconMarkup = renderToStaticMarkup(data.icon);
             el.innerHTML = `
-                <div class="globe-label" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;pointer-events:auto;transition:all 0.3s ease;">
-                    <div style="background:rgba(91,42,134,0.4);border:1px solid rgba(185,163,211,0.6);border-radius:12px;padding:8px;margin-bottom:6px;backdrop-filter:blur(8px);box-shadow:0 4px 15px rgba(0,0,0,0.3);">
-                        <div style="color:#B9A3D3;">${iconMarkup}</div>
+                <div class="globe-label group flex flex-col items-center cursor-pointer pointer-events-auto transition-all duration-300">
+                    <div class="bg-purple-900/40 border border-[#B9A3D3]/60 rounded-xl p-2 mb-1.5 backdrop-blur-md shadow-lg group-hover:scale-110 transition-transform">
+                        <div class="text-[#B9A3D3]">${iconMarkup}</div>
                     </div>
-                    <span style="color:#F2F2F2;font-size:11px;font-weight:700;text-align:center;white-space:pre-line;text-shadow:0 2px 10px rgba(0,0,0,0.9);letter-spacing:0.05em;">${data.text}</span>
+                    <span class="text-white text-[11px] font-bold text-center leading-tight drop-shadow-lg tracking-wider">${data.text}</span>
                 </div>
             `;
             el.style.position = "absolute";
@@ -133,15 +138,15 @@ export default function CustomGlobe() {
                 const camDir = camera.position.clone().sub(pos).normalize();
                 const dot = normal.dot(camDir);
 
-                if (dot > 0.1) {
+                if (dot > 0.15) {
                     el.style.display = "block";
                     const projected = pos.clone().project(camera);
                     const x = (projected.x * 0.5 + 0.5) * currentWidth;
                     const y = (projected.y * -0.5 + 0.5) * currentHeight;
                     el.style.left = `${x}px`;
                     el.style.top = `${y}px`;
-                    el.style.opacity = `${Math.min(1, dot * 3)}`;
-                    el.style.scale = `${0.8 + (dot * 0.4)}`;
+                    el.style.opacity = `${Math.min(1, dot * 4)}`;
+                    el.style.scale = `${0.75 + (dot * 0.5)}`;
                 } else {
                     el.style.display = "none";
                 }
