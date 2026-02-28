@@ -330,75 +330,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: TESTIMONIALS - Luxury Ivory Theme */}
+      {/* SECTION 4: TRUST & TESTIMONIALS - Luxury Editorial Theme */}
       <section className="bg-[#F7F5F2] section-padding relative z-20 overflow-hidden border-t border-[#5B2A86]/5">
-        <div className="grid-container max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-
-            {/* Left Column: Stats */}
-            <div className="flex flex-col gap-16 lg:border-r border-[#1B1326]/10 lg:pr-24">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="relative"
-              >
-                <div className="flex items-baseline gap-1">
-                  <span className="block text-[100px] lg:text-[140px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
-                    9.8
-                  </span>
-                  <span className="text-4xl text-[#1B1326]/20 font-light">/10</span>
-                </div>
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-[#1B1326]/40 block mt-4">
-                  Family Trust Rating
-                </span>
-                <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#D6B36A]/10 rounded-full blur-3xl opacity-50" />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="flex items-baseline gap-1">
-                  <span className="block text-[100px] lg:text-[140px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
-                    7
-                  </span>
-                  <span className="text-[60px] lg:text-[100px] text-[#1B1326]/20 font-light">+</span>
-                </div>
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-[#1B1326]/40 block mt-4">
-                  Average Years of Clinical Experience
-                </span>
-              </motion.div>
-            </div>
-
-            {/* Right Column: Testimonial */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:pl-24 relative"
-            >
-              <div className="absolute -top-24 -left-12 text-[#5B2A86]/5 text-[280px] font-serif leading-none italic select-none">
-                &ldquo;
-              </div>
-              <p className="Heading-Serif text-[#1B1326] text-3xl lg:text-4xl leading-relaxed relative z-10 font-light italic">
-                The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
-              </p>
-
-              <div className="mt-16 flex items-center gap-8">
-                <div className="w-16 h-[1px] bg-[#D6B36A]" />
-                <div>
-                  <p className="font-bold text-[#5B2A86] text-xl tracking-wide uppercase">Sarah Jenkins</p>
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-[#1B1326]/40 mt-2 font-bold">Private Client, Dorset</p>
-                </div>
-              </div>
-            </motion.div>
-
+        <div className="grid-container w-full max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="Heading-Serif text-[#1A1A1A] text-3xl md:text-4xl mb-6">
+              Trusted by Families Across the UK
+            </h2>
+            <div className="w-16 h-[1px] bg-[#D6B36A] mx-auto" />
           </div>
+
+          {/* Unified Trust Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-10 md:p-16 relative overflow-hidden"
+          >
+            <div className="grid lg:grid-cols-[1fr_auto_2fr] gap-12 lg:gap-16 items-center">
+
+              {/* Left Column: Stats Container */}
+              <div className="flex flex-col gap-12 sm:flex-row lg:flex-col justify-center lg:justify-start">
+                {/* Stat 1 */}
+                <div className="text-center lg:text-left">
+                  <div className="flex items-baseline justify-center lg:justify-start gap-1">
+                    <span className="block text-[64px] lg:text-[80px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
+                      9.8
+                    </span>
+                    <span className="text-2xl text-[#1A1A1A]/30 font-light">/10</span>
+                  </div>
+                  <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1A1A1A]/60 block mt-3">
+                    Family Trust Rating
+                  </span>
+                </div>
+
+                {/* Stat 2 */}
+                <div className="text-center lg:text-left">
+                  <div className="flex items-baseline justify-center lg:justify-start gap-1">
+                    <span className="block text-[64px] lg:text-[80px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
+                      7
+                    </span>
+                    <span className="text-[40px] lg:text-[50px] text-[#1A1A1A]/30 font-light">+</span>
+                  </div>
+                  <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1A1A1A]/60 block mt-3">
+                    Years Clinical Experience
+                  </span>
+                </div>
+              </div>
+
+              {/* Faint Vertical Divider */}
+              <div className="hidden lg:block w-[1px] self-stretch bg-gradient-to-b from-transparent via-[#1A1A1A]/10 to-transparent" />
+              {/* Horizontal Divider for Mobile */}
+              <div className="lg:hidden h-[1px] w-full bg-gradient-to-r from-transparent via-[#1A1A1A]/10 to-transparent my-4" />
+
+              {/* Right Column: Testimonial */}
+              <div className="relative lg:pl-8">
+                <div className="absolute -top-16 -left-6 text-[#1A1A1A]/5 text-[180px] font-serif leading-none italic select-none pointer-events-none">
+                  &ldquo;
+                </div>
+                <p className="Heading-Serif text-[#1A1A1A] text-2xl md:text-3xl leading-relaxed relative z-10 font-light italic mb-12">
+                  The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
+                </p>
+
+                <div className="flex items-center gap-6">
+                  {/* Client Avatar */}
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 border border-[#1A1A1A]/10">
+                    <Image
+                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
+                      alt="Sarah Jenkins"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Client Info */}
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-4">
+                      <p className="font-bold text-[#5B2A86] text-base md:text-lg tracking-wide">Sarah Jenkins</p>
+                      <div className="w-8 h-[1px] bg-[#D6B36A]" />
+                    </div>
+                    <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/50 font-bold">Private Client, Dorset</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
         </div>
       </section>
 
