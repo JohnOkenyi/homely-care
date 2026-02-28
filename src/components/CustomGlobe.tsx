@@ -9,7 +9,8 @@ export default function CustomGlobe() {
 
     useEffect(() => {
         setIsMounted(true);
-        if (!containerRef.current) return;
+        const container = containerRef.current;
+        if (!container) return;
 
         console.log("🔥 ATTEMPTING NATIVE THREE.JS INITIALIZATION");
 
@@ -21,8 +22,8 @@ export default function CustomGlobe() {
 
         const init = () => {
             try {
-                const width = containerRef.current?.clientWidth || 800;
-                const height = containerRef.current?.clientHeight || 800;
+                const width = container.clientWidth || 800;
+                const height = container.clientHeight || 800;
 
                 scene = new THREE.Scene();
                 camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
@@ -31,7 +32,7 @@ export default function CustomGlobe() {
                 renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
                 renderer.setSize(width, height);
                 renderer.setPixelRatio(window.devicePixelRatio);
-                containerRef.current?.appendChild(renderer.domElement);
+                container.appendChild(renderer.domElement);
 
                 // --- THE GLOBE ---
                 const geometry = new THREE.SphereGeometry(100, 64, 64);
@@ -95,8 +96,8 @@ export default function CustomGlobe() {
         return () => {
             if (frameId) cancelAnimationFrame(frameId);
             clearInterval(hb);
-            if (renderer && containerRef.current) {
-                containerRef.current.removeChild(renderer.domElement);
+            if (renderer && container) {
+                container.removeChild(renderer.domElement);
                 renderer.dispose();
             }
             scene?.clear();
