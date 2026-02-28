@@ -41,13 +41,20 @@ export default function CustomGlobe() {
         // --- THE GLOBE ---
         const geometry = new THREE.SphereGeometry(100, 64, 64);
         const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load("//unpkg.com/three-globe/example/img/earth-night.jpg");
+        const texture = textureLoader.load(
+            "//unpkg.com/three-globe/example/img/earth-night.jpg",
+            () => console.log("🌍 Texture Loaded Successfully"),
+            undefined,
+            (err) => console.error("❌ Texture Load Error:", err)
+        );
 
         const material = new THREE.MeshPhongMaterial({
             map: texture,
             transparent: true,
-            opacity: 1.0, // Increased opacity for brightness
+            opacity: 1.0,
             shininess: 50,
+            color: 0x221144, // Backup deep purple color
+            emissive: 0x110022, // Slight glow
         });
 
         const globe = new THREE.Mesh(geometry, material);
