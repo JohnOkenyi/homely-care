@@ -19,11 +19,10 @@ interface GlobePoint {
 export default function RotatingGlobe() {
     const globeRef = useRef<any>(null);
     const [isMounted, setIsMounted] = useState(false);
-    const [isGlobeReady, setIsGlobeReady] = useState(false);
     const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
     const isHoveredRef = useRef(false);
 
-    // Handle mounting and initial sizing
+    // Handle mounting and resizing
     useEffect(() => {
         setIsMounted(true);
         const handleResize = () => {
@@ -40,39 +39,45 @@ export default function RotatingGlobe() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Definitive Rotation Loop using requestAnimationFrame
+    // Direct Three.js Animation Loop
     useEffect(() => {
-        if (!isMounted || !isGlobeReady || !globeRef.current) return;
+        if (!isMounted || !globeRef.current) return;
 
-        console.log("🚀 STARTING ROBUST ROTATION LOOP");
+        console.log("🚀 INITIALIZING DIRECT THREE.JS ROTATION ENGINE");
+
+        const globe = globeRef.current;
         let frameId: number;
 
-        const rotate = () => {
-            if (globeRef.current && !isHoveredRef.current) {
-                const controls = globeRef.current.controls();
+        const animate = () => {
+            if (globe && !isHoveredRef.current) {
+                const controls = globe.controls();
                 if (controls) {
+                    // Force autoRotate and speed every frame to prevent overrides
                     controls.autoRotate = true;
                     controls.autoRotateSpeed = 2.0;
                     controls.update();
                 }
             }
-            frameId = requestAnimationFrame(rotate);
+            frameId = requestAnimationFrame(animate);
         };
 
-        rotate();
+        animate();
 
         const heartbeat = setInterval(() => {
+            const controls = globe.controls();
             console.log("💓 GLOBE HEARTBEAT", {
-                hovered: isHoveredRef.current,
-                autoRotate: globeRef.current?.controls()?.autoRotate
+                active: !!globe,
+                controlsReady: !!controls,
+                autoRotate: controls?.autoRotate,
+                hovered: isHoveredRef.current
             });
-        }, 5000);
+        }, 3000);
 
         return () => {
             cancelAnimationFrame(frameId);
             clearInterval(heartbeat);
         };
-    }, [isMounted, isGlobeReady]);
+    }, [isMounted]);
 
     const globeData = useMemo<GlobePoint[]>(() => [
         { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> },
@@ -86,17 +91,14 @@ export default function RotatingGlobe() {
     ], []);
 
     const handleGlobeReady = () => {
-        console.log("✅ GLOBE READY CALLBACK");
-        setIsGlobeReady(true);
-
-        if (globeRef.current) {
-            // Initial POV
-            globeRef.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 0);
-            const controls = globeRef.current.controls();
-            if (controls) {
-                controls.enableZoom = false;
-                controls.autoRotate = true;
-            }
+        if (!globeRef.current) return;
+        console.log("✅ GLOBE COMPONENT READY");
+        globeRef.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 500);
+        const controls = globeRef.current.controls();
+        if (controls) {
+            controls.enableZoom = false;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 2.0;
         }
     };
 
@@ -106,27 +108,21 @@ export default function RotatingGlobe() {
         try {
             iconMarkup = renderToStaticMarkup(d.icon);
         } catch (e) {
-            console.error("Icon render error", e);
             iconMarkup = "<span>📍</span>";
         }
 
         el.innerHTML = `
       <div class="globe-label" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;">
-        <div style="background:rgba(252,228,170,0.15);border:1px solid rgba(252,228,170,0.6);border-radius:8px;padding:6px;margin-bottom:4px;backdrop-filter:blur(4px);">
+        <div style="background:rgba(252,228,170,0.15);border:1px solid rgba(252,228,170,0.6);border-radius:8px;padding:6px;margin-bottom:4px;backdrop-filter:blur(4px);pointer-events:none;">
           <div style="color:#fce4aa;">${iconMarkup}</div>
         </div>
-        <span style="color:#fce4aa;font-size:10px;font-weight:600;text-align:center;white-space:pre-line;" class="label-text">${d.text}</span>
+        <span style="color:#fce4aa;font-size:10px;font-weight:600;text-align:center;white-space:pre-line;pointer-events:none;">${d.text}</span>
       </div>
     `;
 
         el.style.pointerEvents = "auto";
-
-        el.onmouseenter = () => {
-            isHoveredRef.current = true;
-        };
-        el.onmouseleave = () => {
-            isHoveredRef.current = false;
-        };
+        el.onmouseenter = () => { isHoveredRef.current = true; };
+        el.onmouseleave = () => { isHoveredRef.current = false; };
 
         return el;
     };
