@@ -54,11 +54,11 @@ export default function CustomGlobe() {
         scene.add(globe);
 
         // --- ENHANCED LIGHTING FOR BRIGHTNESS ---
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.2); // Increased intensity
+        const ambientLight = new THREE.AmbientLight(0xffffff, 2.5); // Signficantly increased intensity
         scene.add(ambientLight);
 
-        const pointLight1 = new THREE.PointLight(0xffffff, 3); // Extra powerful front light
-        pointLight1.position.set(200, 100, 300);
+        const pointLight1 = new THREE.PointLight(0xffffff, 4); // Extra powerful front light
+        pointLight1.position.set(200, 100, 400);
         scene.add(pointLight1);
 
         const pointLight2 = new THREE.PointLight(0xB9A3D3, 1); // Subtle purple rim light
@@ -69,7 +69,7 @@ export default function CustomGlobe() {
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableZoom = false;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 2.0;
+        controls.autoRotateSpeed = 4.0; // Faster rotation
 
         // Restrict to horizontal rotation
         controls.minPolarAngle = Math.PI / 2;
@@ -131,6 +131,12 @@ export default function CustomGlobe() {
         // --- ANIMATION LOOP ---
         const animate = () => {
             frameId = requestAnimationFrame(animate);
+
+            // Force manual rotation as a backup to autoRotate
+            if (globe) {
+                globe.rotation.y += 0.005;
+            }
+
             controls.update();
             updateLabels();
             renderer.render(scene, camera);
