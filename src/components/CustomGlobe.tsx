@@ -16,7 +16,6 @@ const SERVICE_DATA = [
 export default function CustomGlobe() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMounted, setIsMounted] = useState(false);
-    const labelsRef = useRef<HTMLDivElement[]>([]);
 
     useEffect(() => {
         setIsMounted(true);
@@ -25,24 +24,19 @@ export default function CustomGlobe() {
 
         console.log("🚀 GLOBAL ACTIVATION - V3.0");
 
-        let renderer: THREE.WebGLRenderer;
-        let scene: THREE.Scene;
-        let camera: THREE.PerspectiveCamera;
-        let globe: THREE.Mesh;
-        let controls: OrbitControls;
-        let frameId: number;
-
+        const scene = new THREE.Scene();
         const width = container.clientWidth || 800;
         const height = container.clientHeight || 800;
 
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
         camera.position.z = 250;
 
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
+
+        let frameId: number;
 
         // --- THE GLOBE ---
         const geometry = new THREE.SphereGeometry(100, 64, 64);
@@ -56,7 +50,7 @@ export default function CustomGlobe() {
             shininess: 50,
         });
 
-        globe = new THREE.Mesh(geometry, material);
+        const globe = new THREE.Mesh(geometry, material);
         scene.add(globe);
 
         // --- ENHANCED LIGHTING FOR BRIGHTNESS ---
@@ -72,7 +66,7 @@ export default function CustomGlobe() {
         scene.add(pointLight2);
 
         // --- CONTROLS: HORIZONTAL ONLY ---
-        controls = new OrbitControls(camera, renderer.domElement);
+        const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableZoom = false;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 2.0;
