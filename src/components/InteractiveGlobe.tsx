@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { Home, UserCheck, ShieldCheck, Activity } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 let GlobeLib: any = null;
 
 interface GlobePoint {
@@ -16,7 +16,6 @@ interface GlobePoint {
 
 export default function InteractiveGlobe() {
   const mountRef = useRef<HTMLDivElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globeInstanceRef = useRef<any>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
 
@@ -57,7 +56,6 @@ export default function InteractiveGlobe() {
       }
       if (cancelled || !mountRef.current) return;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       globe = new (GlobeLib as any)()(mountRef.current);
       globeInstanceRef.current = globe;
 
@@ -67,7 +65,6 @@ export default function InteractiveGlobe() {
         .backgroundColor('rgba(0,0,0,0)')
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
         .htmlElementsData(globeData)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .htmlElement((d: any) => {
           const el = document.createElement('div');
           const iconMarkup = renderToStaticMarkup(d.icon);
@@ -80,26 +77,25 @@ export default function InteractiveGlobe() {
             </div>
           `;
           el.style.pointerEvents = 'auto';
-          el.onmouseenter = () => { try { globe.controls().autoRotate = false; } catch(e){} };
-          el.onmouseleave = () => { try { globe.controls().autoRotate = true; } catch(e){} };
+          el.onmouseenter = () => { try { globe.controls().autoRotate = false; } catch { /* ignore */ } };
+          el.onmouseleave = () => { try { globe.controls().autoRotate = true; } catch { /* ignore */ } };
           return el;
         });
 
-      // Enable auto-rotation
       try {
         const controls = globe.controls();
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.8;
         controls.enableZoom = false;
         globe.pointOfView({ lat: 30, lng: 20, altitude: 1.4 });
-      } catch(e) {
+      } catch {
         setTimeout(() => {
           try {
             const controls = globe.controls();
             controls.autoRotate = true;
             controls.autoRotateSpeed = 0.8;
             controls.enableZoom = false;
-          } catch(err) {}
+          } catch { /* ignore */ }
         }, 1000);
       }
     };
@@ -109,19 +105,18 @@ export default function InteractiveGlobe() {
     return () => {
       cancelled = true;
       if (globeInstanceRef.current) {
-        try { globeInstanceRef.current._destructor(); } catch(e) {}
+        try { globeInstanceRef.current._destructor(); } catch { /* ignore */ }
         globeInstanceRef.current = null;
       }
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Update size when dimensions change
   useEffect(() => {
     if (globeInstanceRef.current) {
       try {
         globeInstanceRef.current.width(dimensions.width).height(dimensions.height);
-      } catch(e) {}
+      } catch { /* ignore */ }
     }
   }, [dimensions]);
 
@@ -132,3 +127,4 @@ export default function InteractiveGlobe() {
     />
   );
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
