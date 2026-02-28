@@ -457,7 +457,7 @@ export default function ChatBox() {
             {/* CHAT PANEL — full-screen on mobile, floating card on desktop */}
             <div
                 className={`fixed z-[9998] overflow-hidden flex flex-col transition-all duration-300
-                    inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[390px] sm:h-[540px] sm:max-h-[calc(100vh-120px)] sm:rounded-2xl
+                    top-0 left-0 w-full h-[100dvh] sm:top-auto sm:left-auto sm:bottom-24 sm:right-6 sm:w-[390px] sm:h-[540px] sm:max-h-[calc(100vh-120px)] sm:rounded-2xl
                     ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
                 style={{
                     boxShadow: "0 25px 80px rgba(15, 17, 21, 0.25), 0 0 0 1px rgba(91, 42, 134, 0.08)"
@@ -538,7 +538,7 @@ export default function ChatBox() {
                                         onChange={e => setInput(e.target.value)}
                                         onKeyDown={handleKeyDown}
                                         placeholder="Ask me anything..."
-                                        className="flex-1 bg-white border border-[#5B2A86]/10 rounded-full px-4 py-2.5 text-sm text-[#1B1326] placeholder:text-[#1B1326]/30 focus:outline-none focus:ring-2 focus:ring-[#5B2A86]/20 transition-all"
+                                        className="flex-1 bg-white border border-[#5B2A86]/10 rounded-full px-4 py-2.5 text-[16px] sm:text-sm text-[#1B1326] placeholder:text-[#1B1326]/30 focus:outline-none focus:ring-2 focus:ring-[#5B2A86]/20 transition-all"
                                         disabled={isTyping}
                                     />
                                     <button
