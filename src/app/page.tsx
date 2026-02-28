@@ -102,8 +102,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Hands — mix-blend-lighten makes black bg transparent on the dark hero, hands stay solid */}
-              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
+              {/* Hands — testing with higher z-index but lower than globe? No, hands should be on top maybe? */}
+              <div className="absolute inset-0 z-20 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands cradling globe"
