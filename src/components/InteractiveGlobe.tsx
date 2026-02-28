@@ -28,11 +28,11 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // 4 primary services widely spaced across the visible hemisphere (centered on Europe)
-        { id: 1, text: "Home Care", lat: 62, lng: -15, icon: <Home size={18} /> },        // Iceland / North Atlantic (Top Left)
-        { id: 3, text: "Live-in Care", lat: 55, lng: 35, icon: <UserCheck size={18} /> },   // Eastern Europe / Russia (Top Right)
-        { id: 4, text: "Supported\nLiving", lat: 20, lng: -5, icon: <ShieldCheck size={18} /> }, // West Africa (Bottom Left)
-        { id: 5, text: "TDDI &\nHomely care", lat: 25, lng: 30, icon: <Activity size={18} /> },    // Egypt / Middle East (Bottom Right)
+        // 4 primary services explicitly positioned: Top, Middle, Bottom, Right
+        { id: 1, text: "Home Care", lat: 80, lng: 5, icon: <Home size={18} /> },        // TOP (Arctic)
+        { id: 3, text: "Live-in Care", lat: 50, lng: -5, icon: <UserCheck size={18} /> },   // MIDDLE (UK/Ireland)
+        { id: 4, text: "Supported\nLiving", lat: 15, lng: 15, icon: <ShieldCheck size={18} /> }, // BOTTOM (North Africa)
+        { id: 5, text: "TDDI &\nHomely care", lat: 45, lng: 50, icon: <Activity size={18} /> },    // RIGHT (Caspian Sea)
 
         // Background duplicates on the back of the globe
         { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> },
