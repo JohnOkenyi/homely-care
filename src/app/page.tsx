@@ -204,129 +204,85 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: WHY CHOOSE HOMELY CARE - Cinematic Luxury Version */}
-      <section className="relative section-padding-large overflow-hidden bg-premium-dark scroll-mt-20">
-        {/* Background Depth Layers */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          {/* Main Cinematic Gradient Overlay */}
-          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_50%_50%,rgba(91,42,134,0.15),transparent_70%)]" />
-
-          {/* Soft Vignette */}
-          <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(15,17,21,0.9)]" />
-
-          {/* Atmospheric Light Particles */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-[10%] left-[20%] w-1 h-1 bg-[#B9A3D3] rounded-full blur-[2px] animate-pulse" />
-            <div className="absolute top-[40%] left-[15%] w-1.5 h-1.5 bg-[#D6B36A] rounded-full blur-[3px] animate-pulse [animation-delay:1.5s]" />
-            <div className="absolute top-[80%] left-[25%] w-0.5 h-0.5 bg-white rounded-full blur-[1px] animate-pulse [animation-delay:3s]" />
-            <div className="absolute top-[20%] right-[30%] w-1 h-1 bg-[#B9A3D3] rounded-full blur-[2px] animate-pulse [animation-delay:0.5s]" />
-            <div className="absolute top-[60%] right-[10%] w-1 h-1 bg-[#D6B36A] rounded-full blur-[2px] animate-pulse [animation-delay:2s]" />
-          </div>
-
-          {/* Ambient Glows */}
-          <div className="absolute top-0 left-1/4 w-[800px] h-[600px] rounded-full blur-[160px] opacity-10" style={{ background: '#5B2A86' }} />
-          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full blur-[140px] opacity-5" style={{ background: '#D6B36A' }} />
+      {/* SECTION 3: WHY CHOOSE HOMELY CARE - Dark + Ivory Container */}
+      <section className="relative section-padding-large overflow-hidden scroll-mt-20" style={{ background: 'linear-gradient(160deg, #1B1230 0%, #0F1115 100%)' }}>
+        {/* Very subtle ambient gradient only */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full blur-[180px] opacity-[0.06]" style={{ background: '#5B2A86' }} />
         </div>
 
-        <div className="grid-container relative z-10 flex flex-col items-center">
-          {/* HEADER AREA */}
+        <div className="grid-container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="content-gap-md text-center flex flex-col items-center relative"
+            className="bg-[#F7F5F2] rounded-[26px] shadow-[0_30px_80px_rgba(0,0,0,0.25)] p-12 md:p-16 lg:p-20"
           >
-            {/* Ambient Purple Light behind text */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-48 bg-[#5B2A86]/10 blur-[100px] -z-10 pointer-events-none" />
+            {/* Heading inside container */}
+            <div className="text-center mb-14">
+              <h2 className="flex flex-col items-center gap-2 mb-8">
+                <span className="Heading-Serif text-[#1A1A1A] text-[clamp(2rem,5vw,3.5rem)] leading-tight font-normal">
+                  Why Choose
+                </span>
+                <span className="Heading-Serif italic text-[clamp(2.5rem,6vw,4.5rem)] leading-tight font-light" style={{ background: 'linear-gradient(90deg, #C9A84C, #D6B36A, #E8C97A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  Homely Health Care
+                </span>
+              </h2>
 
-            <span className="text-[#D6B36A] text-[13px] sm:text-[14px] tracking-[0.8em] uppercase block mb-4 font-bold animate-shimmer bg-gradient-to-r from-[#D6B36A] via-white/50 to-[#D6B36A] bg-[length:200%_auto] bg-clip-text text-transparent">
-              Uncompromising Quality
-            </span>
+              {/* Thin gold divider with glowing center dot */}
+              <div className="relative w-64 h-[1px] mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D6B36A]/60 to-transparent" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#D6B36A] shadow-[0_0_8px_#D6B36A,0_0_16px_#D6B36A]" />
+              </div>
+            </div>
 
-            <h2 className="text-[#F2F2F2] mb-6 flex flex-col items-center gap-1">
-              <span className="Heading-Serif text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.9] font-light opacity-95">Why Choose</span>
-              <span className="Heading-Serif italic text-[clamp(3.5rem,9vw,6.5rem)] font-light highlighted-text-gold drop-shadow-[0_0_15px_rgba(185,163,211,0.2)] leading-[0.9]">
-                Homely Health Care
-              </span>
-            </h2>
+            {/* 3 Feature Cards */}
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+              {[
+                {
+                  icon: UserCheck,
+                  title: "Person-Centred Care",
+                  desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity."
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Rigorous Vetting",
+                  desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and trained to an exceptionally high standard."
+                },
+                {
+                  icon: HeartHandshake,
+                  title: "Expert Management",
+                  desc: "Our friendly management team and Field Care Managers visit you regularly to ensure the care you receive always meets your expectations."
+                }
+              ].map((feature, idx) => (
+                <motion.div
+                  key={feature.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.9, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative flex flex-col items-center text-center p-8 lg:p-10 bg-white rounded-[18px] border border-black/[0.04] shadow-[0_8px_32px_rgba(0,0,0,0.05)] transition-all duration-500 hover:-translate-y-[6px] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] cursor-default"
+                >
+                  {/* Icon Badge */}
+                  <div className="relative mb-7">
+                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-[10px]" style={{ background: '#D6B36A', transform: 'scale(1.1)' }} />
+                    <div className="relative w-14 h-14 rounded-full bg-[#5B2A86] flex items-center justify-center z-10">
+                      <feature.icon className="w-6 h-6 text-white stroke-[1.5]" />
+                    </div>
+                  </div>
 
-            {/* Glowing Divider with Flare */}
-            <div className="relative w-64 h-[1px] mt-4">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D6B36A]/60 to-transparent" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#D6B36A] blur-[6px] shadow-[0_0_15px_#D6B36A]" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]" />
+                  <h3 className="Heading-Serif text-[#1A1A1A] text-xl mb-4 font-normal leading-snug">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-[14px] leading-relaxed" style={{ color: 'rgba(0,0,0,0.62)' }}>
+                    {feature.desc}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 w-full">
-            {[
-              {
-                icon: UserCheck,
-                title: "Person-Centred Care",
-                desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity."
-              },
-              {
-                icon: ShieldCheck,
-                title: "Rigorous Vetting",
-                desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and appropriately trained to an exceptionally high standard.",
-                isFeatured: true
-              },
-              {
-                icon: HeartHandshake,
-                title: "Expert Management",
-                desc: "Our friendly management team and Field Care Managers visit you regularly to guarantee the care you receive always aligns with your expectations."
-              }
-            ].map((feature, idx) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: idx * 0.15 }}
-                className={`relative flex flex-col p-8 lg:p-10 rounded-[32px] border transition-all duration-700 hover:-translate-y-2 cursor-default group overflow-hidden glass-card ${feature.isFeatured ? 'border-[#D6B36A]/30 ring-1 ring-[#D6B36A]/10 shadow-[0_20px_50px_-12px_rgba(214,179,106,0.15)]' : 'border-[#B9A3D3]/10 hover:border-[#B9A3D3]/30 shadow-2xl'}`}
-              >
-                {/* Surface Reflection - Refined */}
-                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.05] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                {/* Shimmering Border Effect for Featured Card */}
-                {feature.isFeatured && (
-                  <div className="absolute inset-0 z-0 pointer-events-none">
-                    <div className="absolute inset-0 border border-[#D6B36A]/20 rounded-[32px] animate-shimmer bg-gradient-to-r from-transparent via-[#D6B36A]/10 to-transparent bg-[length:200%_auto]" />
-                  </div>
-                )}
-
-                {/* Card Interior Glow */}
-                {feature.isFeatured && (
-                  <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-[#D6B36A]/5 rounded-full blur-[60px] pointer-events-none transition-opacity duration-1000 group-hover:opacity-100 opacity-40" />
-                )}
-
-                {/* Glowing Halo Icon */}
-                <div className="relative mb-8 flex">
-                  {/* Halo Ambient - Refined */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full blur-[12px] bg-[#B9A3D3]/20 group-hover:bg-[#D6B36A]/30 transition-all duration-700" />
-
-                  <div className="relative w-14 h-14 border border-[#B9A3D3]/10 bg-white/[0.04] rounded-full flex items-center justify-center text-[#F2F2F2]/90 group-hover:text-[#D6B36A] transition-all duration-700 z-10">
-                    <feature.icon className="w-7 h-7 stroke-[1.2] transition-transform duration-700 group-hover:rotate-[5deg]" />
-                  </div>
-                </div>
-
-                <h3 className="Heading-Serif text-2xl text-white mb-4 font-light group-hover:text-[#D6B36A] transition-all duration-700">
-                  {feature.title}
-                </h3>
-
-                <p className="text-[14px] text-[#F2F2F2]/95 font-light leading-relaxed mb-2 opacity-90 group-hover:opacity-100 transition-opacity">
-                  {feature.desc}
-                </p>
-
-                {/* Subtle Luxury Edge Highlight */}
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A]/0 to-transparent group-hover:via-[#D6B36A]/30 transition-all duration-1000" />
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Luxury Reflection/Glow beneath the center card container */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-[#5B2A86]/5 blur-[100px] pointer-events-none" />
         </div>
       </section>
 
