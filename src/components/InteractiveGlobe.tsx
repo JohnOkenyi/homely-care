@@ -28,27 +28,31 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // 4 primary services explicitly positioned: Top, Middle, Bottom, Right
-        { id: 1, text: "Home Care", lat: 80, lng: 5, icon: <Home size={18} /> },        // TOP (Arctic)
-        { id: 3, text: "Live-in Care", lat: 50, lng: -5, icon: <UserCheck size={18} /> },   // MIDDLE (UK/Ireland)
-        { id: 4, text: "Supported\nLiving", lat: 15, lng: 15, icon: <ShieldCheck size={18} /> }, // BOTTOM (North Africa)
-        { id: 5, text: "TDDI &\nHomely care", lat: 45, lng: 50, icon: <Activity size={18} /> },    // RIGHT (Caspian Sea)
+        // SET 1 (Front: Longitude ~ 0)
+        { id: 1, text: "Home Care", lat: 25, lng: -15, icon: <Home size={18} /> },
+        { id: 2, text: "Live-in Care", lat: -15, lng: 15, icon: <UserCheck size={18} /> },
 
-        // Background duplicates on the back of the globe
-        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> },
-        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> },
-        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> },
-        { id: 10, text: "TDDI &\nHomely care", lat: -10, lng: -60, icon: <Activity size={18} /> },
+        // SET 2 (Right: Longitude ~ 90)
+        { id: 3, text: "Supported\nLiving", lat: 25, lng: 75, icon: <ShieldCheck size={18} /> },
+        { id: 4, text: "Complex Care", lat: -15, lng: 105, icon: <Activity size={18} /> },
+
+        // SET 3 (Back: Longitude ~ 180)
+        { id: 5, text: "Home Care", lat: 25, lng: 165, icon: <Home size={18} /> },
+        { id: 6, text: "Live-in Care", lat: -15, lng: 195, icon: <UserCheck size={18} /> },
+
+        // SET 4 (Left: Longitude ~ -90)
+        { id: 7, text: "Supported\nLiving", lat: 25, lng: -105, icon: <ShieldCheck size={18} /> },
+        { id: 8, text: "Complex Care", lat: -15, lng: -75, icon: <Activity size={18} /> },
     ], []);
 
     useEffect(() => {
         if (globeEl.current) {
             globeEl.current.controls().autoRotate = true;
-            globeEl.current.controls().autoRotateSpeed = 0.8;
+            globeEl.current.controls().autoRotateSpeed = 1.2; // Slightly faster for continuous engagement
             globeEl.current.controls().enableZoom = false;
 
-            // Initial view centred on Western Europe
-            globeEl.current.pointOfView({ lat: 50, lng: 5, altitude: 1.4 }, 0);
+            // Initial view centred on the equator to ensure pairs are perfectly visible
+            globeEl.current.pointOfView({ lat: 5, lng: 0, altitude: 1.6 }, 0);
         }
     }, [dimensions]);
 
