@@ -330,10 +330,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: TRUST & TESTIMONIALS - Exact Mockup Replication */}
+      {/* SECTION 4: TRUST & TESTIMONIALS - 3D Box Mockup Replica */}
       <section className="bg-[#F7F5F2] section-padding relative z-20 overflow-hidden">
-        {/* Subtle Noise Overlay */}
-        <div className="absolute inset-0 opacity-[0.2] pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
 
         <div className="grid-container w-full max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
@@ -348,18 +346,18 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Unified Trust Card */}
+          {/* Unified Trust Card - Outer 3D Box */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#FCFBFA]/90 backdrop-blur-xl rounded-[2rem] shadow-[0_15px_60px_rgba(0,0,0,0.04)] p-12 md:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-16 lg:gap-20 items-center border border-white"
+            className="bg-[#FCFBFA] rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-12 md:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-16 lg:gap-20 items-center border border-black/[0.03]"
           >
-            {/* Left Column: 3D Stat Cards */}
+            {/* Left Column: Inner 3D Stat Cards */}
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 shrink-0">
               {/* Card 1 */}
-              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.02] transform transition-transform hover:-translate-y-1 duration-500">
+              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.04] transform transition-transform hover:-translate-y-1 duration-500">
                 <div className="flex items-baseline gap-1 mb-4">
                   <span className="text-[64px] md:text-[76px] leading-none font-medium text-[#4B3061] tracking-tighter Heading-Serif">9.8</span>
                   <span className="text-2xl md:text-3xl text-[#1A1A1A]/20 font-light">/10</span>
@@ -370,7 +368,7 @@ export default function Home() {
               </div>
 
               {/* Card 2 */}
-              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.02] transform transition-transform hover:-translate-y-1 duration-500">
+              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.04] transform transition-transform hover:-translate-y-1 duration-500">
                 <div className="flex items-baseline gap-1 mb-4">
                   <span className="text-[64px] md:text-[76px] leading-none font-medium text-[#4B3061] tracking-tighter Heading-Serif">7</span>
                   <span className="text-[40px] md:text-[50px] text-[#1A1A1A]/20 font-light">+</span>
