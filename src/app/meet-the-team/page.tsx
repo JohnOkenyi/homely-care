@@ -35,35 +35,40 @@ export default function MeetTheTeam() {
         <main className="min-h-screen bg-[#F7F5F2]">
             <Navbar />
 
-            {/* HERO SECTION */}
-            <section className="relative pt-40 pb-20 overflow-hidden bg-premium-dark text-center">
-                <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
+            {/* HERO SECTION - Cinematic Leadership */}
+            <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden bg-premium-dark text-center">
+                {/* Background Depth Layers */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                    {/* Ambient star field */}
+                    <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,163,211,0.9) 1px, transparent 1px)', backgroundSize: '70px 70px' }} />
+                    {/* Atmospheric Glows */}
+                    <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-20" style={{ background: '#5B2A86' }} />
+                    <div className="absolute -right-32 bottom-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-10" style={{ background: '#D6B36A' }} />
+                    {/* Subtle Vignette */}
+                    <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(15,17,21,0.8)]" />
+                </div>
 
-                <div className="grid-container relative z-10">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-[#D6B36A] text-[10px] tracking-[0.6em] uppercase block mb-8 font-bold"
-                    >
-                        Visionary Leadership
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="Heading-H1 text-white mb-8"
-                    >
-                        Meet the <span className="Heading-Serif italic font-light">Team</span>
-                    </motion.h1>
-                    <motion.p
+                <div className="grid-container relative z-10 pt-20">
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-[#F2F2F2]/60 text-lg font-light max-w-2xl mx-auto leading-relaxed"
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        Our leadership team combines clinical expertise with a profound passion for personal dignity, ensuring your care is in the most capable hands.
-                    </motion.p>
+                        <span className="text-[#D6B36A] text-[10px] sm:text-xs tracking-[0.6em] uppercase block mb-8 font-bold">
+                            Visionary Leadership
+                        </span>
+                        <h1 className="Heading-Display text-white mb-8">
+                            Meet the <span className="Heading-Serif italic font-light highlighted-text-gold">Team</span>
+                        </h1>
+                        <p className="text-[#F2F2F2]/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed mb-10">
+                            Our leadership team combines clinical expertise with a profound passion for personal dignity, ensuring your care is in the most capable hands.
+                        </p>
+                        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent mx-auto" />
+                    </motion.div>
                 </div>
+
+                {/* Bottom Cinematic Fade */}
+                <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#F7F5F2] to-transparent z-20" />
             </section>
 
             {/* TEAM GRID - Editorial Style */}
@@ -73,29 +78,36 @@ export default function MeetTheTeam() {
                         {team.map((member, idx) => (
                             <motion.div
                                 key={member.name}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="group"
+                                transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                                className="group relative"
                             >
-                                <div className="relative aspect-[3/4] overflow-hidden rounded-sm mb-10 shadow-2xl">
-                                    <Image src={member.img} alt={member.name} fill className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1B1326]/80 via-transparent to-transparent opacity-60" />
-                                    <div className="absolute bottom-8 left-8">
-                                        <div className="flex items-center gap-3 bg-[#D6B36A]/90 backdrop-blur-sm px-4 py-2 rounded-full">
-                                            <Award className="w-4 h-4 text-[#1B1326]" />
-                                            <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#1B1326]">{member.accolade}</span>
+                                <div className="relative aspect-[3/4] overflow-hidden rounded-sm mb-10 shadow-2xl glass-card overflow-hidden">
+                                    <Image src={member.img} alt={member.name} fill className="object-cover grayscale transition-all duration-[1s] group-hover:grayscale-0 group-hover:scale-110" />
+
+                                    {/* Luxury Overlays */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1B1326] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-700" />
+                                    <div className="absolute inset-0 border border-white/10 group-hover:border-[#D6B36A]/30 transition-colors duration-700" />
+
+                                    <div className="absolute bottom-8 left-8 right-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                                        <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-3 rounded-full border border-white/20 w-fit">
+                                            <Award className="w-4 h-4 text-[#D6B36A]" />
+                                            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white">{member.accolade}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="text-center lg:text-left px-4 lg:px-0">
-                                    <span className="text-[#5B2A86] text-[10px] uppercase tracking-[0.4em] font-bold mb-3 block">{member.role}</span>
-                                    <h2 className="Heading-Serif text-3xl text-[#1B1326] mb-6 group-hover:text-[#5B2A86] transition-colors">{member.name}</h2>
-                                    <p className="text-base text-[#1B1326]/70 font-light leading-relaxed mb-8">
+                                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                                        <div className="w-8 h-[1px] bg-[#D6B36A]" />
+                                        <span className="text-[#5B2A86] text-[10px] uppercase tracking-[0.4em] font-bold">{member.role}</span>
+                                    </div>
+                                    <h2 className="Heading-Serif text-4xl text-[#1A1A1A] mb-6 group-hover:text-[#5B2A86] transition-colors duration-500">{member.name}</h2>
+                                    <p className="text-base md:text-lg text-[#1A1A1A]/70 font-light leading-relaxed mb-10">
                                         {member.bio}
                                     </p>
-                                    <div className="h-[1px] w-12 bg-[#D6B36A] group-hover:w-full transition-all duration-700" />
+                                    <div className="h-[2px] w-12 bg-gradient-to-r from-[#D6B36A] to-transparent group-hover:w-full transition-all duration-700 ease-out" />
                                 </div>
                             </motion.div>
                         ))}

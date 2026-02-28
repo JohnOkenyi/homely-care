@@ -12,34 +12,43 @@ export default function AboutUs() {
             <Navbar />
 
             {/* HERO SECTION - Cinematic Breadcrumb */}
-            <section className="relative h-[45vh] lg:h-[50vh] flex items-center justify-center overflow-hidden bg-premium-dark">
+            <section className="relative h-[55vh] lg:h-[60vh] flex items-center justify-center overflow-hidden bg-premium-dark">
+                {/* Background Depth Layers */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                    {/* Ambient star field */}
+                    <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,163,211,0.9) 1px, transparent 1px)', backgroundSize: '70px 70px' }} />
+                    {/* Atmospheric Glows */}
+                    <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-20" style={{ background: '#5B2A86' }} />
+                    <div className="absolute -right-32 bottom-0 w-[500px] h-[500px] rounded-full blur-[100px] opacity-10" style={{ background: '#D6B36A' }} />
+                </div>
+
                 <Image
                     src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2000&auto=format&fit=crop"
                     alt="Luxury Interior"
                     fill
-                    className="object-cover opacity-40 scale-105"
+                    className="object-cover opacity-30 scale-105"
                     priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#1B1326]/60 to-[#1B1326]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0F1115]/80 via-[#1B1326]/60 to-[#1B1326]" />
 
                 <div className="grid-container relative z-10 text-center">
-                    <motion.span
+                    <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1 }}
-                        className="text-[#D6B36A] text-[10px] tracking-[0.6em] uppercase block mb-8 font-bold"
+                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     >
-                        Established with Purpose
-                    </motion.span>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className="Heading-H1 text-white"
-                    >
-                        Our <span className="Heading-Serif italic font-light">Heritage</span>
-                    </motion.h1>
+                        <span className="text-[#D6B36A] text-[10px] sm:text-xs tracking-[0.6em] uppercase block mb-8 font-bold">
+                            Established with Purpose
+                        </span>
+                        <h1 className="Heading-Display text-white mb-6">
+                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Heritage</span>
+                        </h1>
+                        <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent mx-auto" />
+                    </motion.div>
                 </div>
+
+                {/* Bottom Cinematic Fade */}
+                <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#F7F5F2] to-transparent z-20" />
             </section>
 
             {/* MANIFESTO SECTION - Warm Ivory Background */}
@@ -73,19 +82,19 @@ export default function AboutUs() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             >
-                                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] content-gap-sm block">The Homely Manifesto</span>
-                                <h2 className="Heading-H2 text-[#1B1326] mb-10">
+                                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#D6B36A] content-gap-sm block">The Homely Manifesto</span>
+                                <h2 className="Heading-Display text-[#1A1A1A] mb-10 leading-[1.1]">
                                     Redefining the <br />
-                                    <span className="Heading-Serif italic font-light text-[#5B2A86]">Gold Standard</span> of Home Care.
+                                    <span className="Heading-Serif italic font-light highlighted-text-gold">Gold Standard</span> of Care.
                                 </h2>
-                                <div className="space-y-8 text-lg font-light text-[#1B1326]/70 leading-relaxed">
+                                <div className="space-y-8 text-lg md:text-xl font-light text-[#1A1A1A]/70 leading-relaxed">
                                     <p>
                                         Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between clinical excellence and emotional warmth.
                                     </p>
                                     <p>
                                         We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like a clinical intervention and more like an extension of family.
                                     </p>
-                                    <blockquote className="border-l-2 border-[#D6B36A] pl-8 py-4 my-12 italic text-2xl text-[#5B2A86] Heading-Serif font-light">
+                                    <blockquote className="border-l-2 border-[#D6B36A] pl-10 py-4 my-14 italic text-2xl md:text-3xl text-[#5B2A86] Heading-Serif font-light leading-snug">
                                         &ldquo;Our mission is to create a world where home care is synonymous with sanctuary.&rdquo;
                                     </blockquote>
                                 </div>
@@ -105,9 +114,9 @@ export default function AboutUs() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1 }}
-                        className="Heading-H2 text-white content-gap-md"
+                        className="Heading-Display text-white content-gap-md"
                     >
-                        The Pillars of our <span className="italic font-light text-[#B9A3D3]">Promise</span>
+                        The Pillars of our <span className="Heading-Serif italic font-light highlighted-text-gold">Promise</span>
                     </motion.h2>
 
                     <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
@@ -122,13 +131,13 @@ export default function AboutUs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 1, delay: idx * 0.2 }}
-                                className="glass-card p-12 text-center group hover:-translate-y-2 transition-transform duration-500"
+                                className="glass-card p-12 text-center group hover:-translate-y-2 transition-all duration-500 glow-gold-hover"
                             >
-                                <div className="w-16 h-16 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mx-auto mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
-                                    <pillar.icon className="w-8 h-8 stroke-[1.5]" />
+                                <div className="w-20 h-20 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mx-auto mb-10 transition-all duration-500 group-hover:bg-[#5B2A86]/40 group-hover:scale-110">
+                                    <pillar.icon className="w-10 h-10 stroke-[1]" />
                                 </div>
-                                <h3 className="Heading-Serif text-2xl text-white mb-6 tracking-wide">{pillar.title}</h3>
-                                <p className="text-sm text-white/60 font-light leading-relaxed">{pillar.desc}</p>
+                                <h3 className="Heading-Serif text-3xl text-white mb-6 tracking-wide group-hover:text-[#D6B36A] transition-colors duration-500">{pillar.title}</h3>
+                                <p className="text-base text-white/60 font-light leading-relaxed">{pillar.desc}</p>
                             </motion.div>
                         ))}
                     </div>
