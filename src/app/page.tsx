@@ -107,23 +107,17 @@ export default function Home() {
                 />
               </div>
 
-              {/* Layer 2: Globe (Masked into the Hands Center) */}
+              {/* Layer 2: Globe (Surgically seated) */}
               <div className="absolute inset-0 z-20 pointer-events-auto flex items-center justify-center">
-                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.8)] ring-1 ring-white/5">
-                  {/* Internal black fill for the sphere area */}
+                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[inset_0_0_22px_rgba(0,0,0,0.25)] ring-1 ring-white/5">
                   <div className="absolute inset-0 z-0 bg-black rounded-full" />
-
-                  {/* The actual Three.js Globe */}
                   <div className="relative z-10 w-full h-full">
                     <CustomGlobe />
                   </div>
-
-                  {/* Heavy inner vignette to blend globe into hands */}
-                  <div className="absolute inset-0 z-20 pointer-events-none rounded-full shadow-[inset_0_0_70px_rgba(0,0,0,1)]" />
                 </div>
               </div>
 
-              {/* Layer 3: Foreground Finger Occlusion (Inner Rim) */}
+              {/* Layer 3: Surgical Foreground Occlusion (Finger tips ONLY) */}
               <div className="absolute inset-0 z-30 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
@@ -131,8 +125,8 @@ export default function Home() {
                   fill
                   className="object-contain object-bottom select-none"
                   style={{
-                    maskImage: 'radial-gradient(circle at 50% 46%, transparent 22%, black 23%, black 26%, transparent 28%)',
-                    WebkitMaskImage: 'radial-gradient(circle at 50% 46%, transparent 22%, black 23%, black 26%, transparent 28%)'
+                    maskImage: 'radial-gradient(circle at 50% 46%, transparent 22.8%, black 23%, black 23.2%, transparent 23.4%)',
+                    WebkitMaskImage: 'radial-gradient(circle at 50% 46%, transparent 22.8%, black 23%, black 23.2%, transparent 23.4%)'
                   }}
                   priority
                   unoptimized={true}

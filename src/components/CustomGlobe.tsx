@@ -60,9 +60,9 @@ export default function CustomGlobe() {
             transparent: false,
             opacity: 1.0,
             metalness: 0.15,
-            roughness: 0.52,
-            clearcoat: 0.25,
-            clearcoatRoughness: 0.65,
+            roughness: 0.5,
+            clearcoat: 0.3,
+            clearcoatRoughness: 0.6,
             reflectivity: 0.5,
         });
 
