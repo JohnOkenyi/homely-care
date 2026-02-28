@@ -41,7 +41,7 @@ export default function Home() {
                 className="mb-6 lg:mb-8"
               >
                 <span className="text-[10px] md:text-xs font-bold tracking-[0.35em] uppercase" style={{ color: '#B9A3D3' }}>
-                  Home Care Services
+                  The Gold Standard of Care
                 </span>
               </motion.div>
 
@@ -51,7 +51,7 @@ export default function Home() {
                 className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6 lg:mb-8 tracking-tight"
               >
                 <span className="font-light block" style={{ color: '#F2F2F2' }}>A Life of</span>
-                <span className="font-bold block" style={{ color: '#F2F2F2' }}>Dignity,</span>
+                <span className="font-bold block" style={{ color: '#F2F2F2' }}>Refinement,</span>
                 <span className="font-light italic block" style={{ background: 'linear-gradient(90deg, #B9A3D3 0%, #D6B36A 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Tailored to You.</span>
               </motion.h1>
 
@@ -61,7 +61,7 @@ export default function Home() {
                 className="Text-18 font-light mb-10 max-w-md leading-relaxed"
                 style={{ color: 'rgba(242,242,242,0.7)' }}
               >
-                Experience world-class, person-centred support in the comfort of your own home, delivered by compassionate professionals.
+                Experience world-class healthcare within your own private sanctuary, where every detail is meticulously curated for your well-being.
               </motion.p>
 
               {/* CTAs */}
@@ -76,7 +76,7 @@ export default function Home() {
                   onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 32px rgba(214,179,106,0.35), 0 4px 24px rgba(91,42,134,0.45)')}
                   onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(91,42,134,0.45)')}
                 >
-                  24/7 Dedicated Care
+                  Explore the Standard
                   <Heart className="w-4 h-4 stroke-[2]" />
                 </Link>
                 <Link href="/services" className="group relative text-xs uppercase tracking-[0.2em] font-medium inline-flex items-center gap-2 transition-colors duration-300" style={{ color: 'rgba(185,163,211,0.85)' }}>
@@ -174,21 +174,21 @@ export default function Home() {
               {/* Small Gold Label */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-[1.5px] bg-[#D6B36A]" />
-                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Trusted Expertise</span>
+                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Our Philosophy</span>
               </div>
 
               <h2 className="Heading-Serif text-[clamp(2.5rem,5vw,4rem)] text-[#1A1A1A] leading-[1.1] mb-8 font-light">
-                Dedicated Home Care with <br />
-                <span className="italic text-[#5B2A86]">Dignity & Compassion</span>
+                Nurturing Dignity with <br />
+                <span className="italic text-[#5B2A86]">Boundless Compassion</span>
               </h2>
 
               <div className="space-y-6 mb-10">
                 <p className="text-lg md:text-xl text-[#1A1A1A]/70 font-light leading-relaxed">
-                  Experience exceptional person-centred care in the comfort of your own home, delivered by compassionate professionals who treat you like family.
+                  Exceptional person-centred support is more than a service—it’s a deep commitment to treating every client like a cherished member of our family.
                 </p>
                 <div className="flex items-center gap-2 text-[#5B2A86] font-medium">
                   <Heart className="w-5 h-5 fill-[#5B2A86]" />
-                  <span className="text-sm tracking-wide">Committed to your well-being</span>
+                  <span className="text-sm tracking-wide">A Legacy of Unwavering Trust</span>
                 </div>
               </div>
 
