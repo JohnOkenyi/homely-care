@@ -20,6 +20,7 @@ export default function RotatingGlobe() {
     const globeRef = useRef<any>(null);
     const [isMounted, setIsMounted] = useState(false);
     const [dimensions, setDimensions] = useState({ width: 800, height: 800 });
+    const isHoveredRef = useRef(false);
 
     // Handle mounting and resizing
     useEffect(() => {
@@ -38,25 +39,33 @@ export default function RotatingGlobe() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Robust Rotation Logic
+    // Definitive Rotation Enforcement Loop
     useEffect(() => {
         if (!isMounted || !globeRef.current) return;
 
-        const globe = globeRef.current;
+        console.log("Globe rotation loop starting...");
 
-        const startRotation = () => {
+        const interval = setInterval(() => {
+            const globe = globeRef.current;
+            if (!globe) return;
+
             const controls = globe.controls();
             if (controls) {
-                controls.autoRotate = true;
-                controls.autoRotateSpeed = 2.0;
-                controls.update();
-            } else {
-                // Retry shortly if controls are not yet initialized
-                setTimeout(startRotation, 100);
+                if (!isHoveredRef.current) {
+                    if (!controls.autoRotate) {
+                        console.log("Forcing autoRotate to true");
+                        controls.autoRotate = true;
+                    }
+                    controls.autoRotateSpeed = 2.0;
+                    controls.update();
+                } else {
+                    controls.autoRotate = false;
+                    controls.update();
+                }
             }
-        };
+        }, 100);
 
-        startRotation();
+        return () => clearInterval(interval);
     }, [isMounted]);
 
     const globeData = useMemo<GlobePoint[]>(() => [
@@ -73,6 +82,7 @@ export default function RotatingGlobe() {
     const handleGlobeReady = () => {
         if (!globeRef.current) return;
 
+        console.log("Globe ready, setting initial POV");
         // Initial camera position
         globeRef.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 1000);
 
@@ -80,6 +90,8 @@ export default function RotatingGlobe() {
         const controls = globeRef.current.controls();
         if (controls) {
             controls.enableZoom = false;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 2.0;
         }
     };
 
@@ -99,12 +111,19 @@ export default function RotatingGlobe() {
         el.style.pointerEvents = "auto";
 
         el.onmouseenter = () => {
-            const controls = globeRef.current?.controls();
-            if (controls) controls.autoRotate = false;
+            console.log("Label hovered, stopping rotation");
+            isHoveredRef.current = true;
+            if (globeRef.current) {
+                const controls = globeRef.current.controls();
+                if (controls) {
+                    controls.autoRotate = false;
+                    controls.update();
+                }
+            }
         };
         el.onmouseleave = () => {
-            const controls = globeRef.current?.controls();
-            if (controls) controls.autoRotate = true;
+            console.log("Label unhovered, resuming rotation");
+            isHoveredRef.current = false;
         };
 
         return el;
