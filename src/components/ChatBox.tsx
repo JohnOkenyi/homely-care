@@ -444,7 +444,7 @@ export default function ChatBox() {
             {/* FLOATING BUBBLE */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+                className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
                 style={{
                     background: "linear-gradient(135deg, #5B2A86, #7A4FB3)",
                     boxShadow: "0 6px 24px rgba(91, 42, 134, 0.4)"
@@ -454,13 +454,12 @@ export default function ChatBox() {
                 {isOpen ? <X className="w-5 h-5" /> : <MessageCircle className="w-5 h-5" />}
             </button>
 
-            {/* CHAT PANEL */}
+            {/* CHAT PANEL — full-screen on mobile, floating card on desktop */}
             <div
-                className={`fixed bottom-24 right-6 z-[9998] w-[360px] sm:w-[390px] rounded-2xl overflow-hidden flex flex-col transition-all duration-300 ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
-                    }`}
+                className={`fixed z-[9998] overflow-hidden flex flex-col transition-all duration-300
+                    inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-[390px] sm:h-[540px] sm:max-h-[calc(100vh-120px)] sm:rounded-2xl
+                    ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
                 style={{
-                    height: "540px",
-                    maxHeight: "calc(100vh - 120px)",
                     boxShadow: "0 25px 80px rgba(15, 17, 21, 0.25), 0 0 0 1px rgba(91, 42, 134, 0.08)"
                 }}
             >
@@ -510,8 +509,8 @@ export default function ChatBox() {
                                     <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                                         <div
                                             className={`max-w-[85%] rounded-2xl px-4 py-3 text-[13px] leading-relaxed ${msg.role === "user"
-                                                    ? "bg-[#5B2A86] text-white rounded-br-md"
-                                                    : "bg-[#F4F2EF] text-[#1B1326] rounded-bl-md"
+                                                ? "bg-[#5B2A86] text-white rounded-br-md"
+                                                : "bg-[#F4F2EF] text-[#1B1326] rounded-bl-md"
                                                 }`}
                                         >
                                             {renderMarkdown(msg.text)}
@@ -563,8 +562,8 @@ export default function ChatBox() {
                                         key={cat}
                                         onClick={() => { setSelectedCategory(cat); setCurrentJoke(null); setUsedJokes([]); }}
                                         className={`whitespace-nowrap px-3 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all duration-200 ${selectedCategory === cat
-                                                ? "bg-[#5B2A86] text-white"
-                                                : "bg-[#F4F2EF] text-[#1B1326]/40 hover:text-[#1B1326]/60"
+                                            ? "bg-[#5B2A86] text-white"
+                                            : "bg-[#F4F2EF] text-[#1B1326]/40 hover:text-[#1B1326]/60"
                                             }`}
                                     >
                                         {cat}
