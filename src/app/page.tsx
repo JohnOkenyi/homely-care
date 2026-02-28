@@ -134,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 2: TRUST BAR */}
-      <section className="bg-[#F7F5F2] py-24 md:py-32 relative z-20 overflow-hidden">
+      <section className="bg-[#F7F5F2] py-16 md:py-24 relative z-20 overflow-hidden">
         <div className="grid-container w-full max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -167,81 +167,127 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 3: WHY CHOOSE HOMELY CARE */}
-      <section className="bg-premium-dark py-32 md:py-48 relative z-20 overflow-hidden">
-        {/* Ambient Glows */}
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10" style={{ background: '#5B2A86' }} />
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-10" style={{ background: '#D6B36A' }} />
+      {/* SECTION 3: WHY CHOOSE HOMELY CARE - Cinematic Luxury Version */}
+      <section className="relative section-padding-large overflow-hidden bg-premium-dark scroll-mt-20">
+        {/* Background Depth Layers */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          {/* Main Cinematic Gradient Overlay */}
+          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_50%_50%,rgba(91,42,134,0.15),transparent_70%)]" />
 
-        <div className="grid-container relative z-10">
+          {/* Soft Vignette */}
+          <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(15,17,21,0.9)]" />
+
+          {/* Atmospheric Light Particles */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-[10%] left-[20%] w-1 h-1 bg-[#B9A3D3] rounded-full blur-[2px] animate-pulse" />
+            <div className="absolute top-[40%] left-[15%] w-1.5 h-1.5 bg-[#D6B36A] rounded-full blur-[3px] animate-pulse [animation-delay:1.5s]" />
+            <div className="absolute top-[80%] left-[25%] w-0.5 h-0.5 bg-white rounded-full blur-[1px] animate-pulse [animation-delay:3s]" />
+            <div className="absolute top-[20%] right-[30%] w-1 h-1 bg-[#B9A3D3] rounded-full blur-[2px] animate-pulse [animation-delay:0.5s]" />
+            <div className="absolute top-[60%] right-[10%] w-1 h-1 bg-[#D6B36A] rounded-full blur-[2px] animate-pulse [animation-delay:2s]" />
+          </div>
+
+          {/* Ambient Glows */}
+          <div className="absolute top-0 left-1/4 w-[800px] h-[600px] rounded-full blur-[160px] opacity-10" style={{ background: '#5B2A86' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full blur-[140px] opacity-5" style={{ background: '#D6B36A' }} />
+        </div>
+
+        <div className="grid-container relative z-10 flex flex-col items-center">
+          {/* HEADER AREA */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-24 text-center lg:text-left"
+            className="content-gap-md text-center flex flex-col items-center relative"
           >
-            <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-6 font-bold">Uncompromising Quality</span>
-            <h2 className="Heading-H2 text-[#F2F2F2]">
-              <span className="font-light">Why Choose</span><br />
-              <span className="Heading-Serif italic font-light">Homely Health Care.</span>
+            {/* Ambient Purple Light behind text */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-48 bg-[#5B2A86]/10 blur-[100px] -z-10 pointer-events-none" />
+
+            <span className="text-[#D6B36A] text-[13px] sm:text-[14px] tracking-[0.8em] uppercase block mb-4 font-bold animate-shimmer bg-gradient-to-r from-[#D6B36A] via-white/50 to-[#D6B36A] bg-[length:200%_auto] bg-clip-text text-transparent">
+              Uncompromising Quality
+            </span>
+
+            <h2 className="text-[#F2F2F2] mb-6 flex flex-col items-center gap-1">
+              <span className="Heading-Serif text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.9] font-light opacity-95">Why Choose</span>
+              <span className="Heading-Serif italic text-[clamp(3.5rem,9vw,6.5rem)] font-light highlighted-text-gold drop-shadow-[0_0_15px_rgba(185,163,211,0.2)] leading-[0.9]">
+                Homely Health Care
+              </span>
             </h2>
+
+            {/* Glowing Divider with Flare */}
+            <div className="relative w-64 h-[1px] mt-4">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D6B36A]/60 to-transparent" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#D6B36A] blur-[6px] shadow-[0_0_15px_#D6B36A]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]" />
+            </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.1 }}
-              className="glass-card p-10 lg:p-12 hover:-translate-y-2 transition-transform duration-500 group"
-            >
-              <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
-                <UserCheck className="w-7 h-7 stroke-[1.5]" />
-              </div>
-              <h3 className="Heading-Serif text-2xl text-[#F2F2F2] mb-6">Person-Centred Care</h3>
-              <p className="text-sm text-[#F2F2F2]/60 font-light leading-relaxed">
-                We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity.
-              </p>
-            </motion.div>
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10 w-full">
+            {[
+              {
+                icon: UserCheck,
+                title: "Person-Centred Care",
+                desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity."
+              },
+              {
+                icon: ShieldCheck,
+                title: "Rigorous Vetting",
+                desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and appropriately trained to an exceptionally high standard.",
+                isFeatured: true
+              },
+              {
+                icon: HeartHandshake,
+                title: "Expert Management",
+                desc: "Our friendly management team and Field Care Managers visit you regularly to guarantee the care you receive always aligns with your expectations."
+              }
+            ].map((feature, idx) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: idx * 0.15 }}
+                className={`relative flex flex-col p-10 lg:p-12 rounded-[40px] border border-[#B9A3D3]/10 glass-card transition-all duration-700 hover:-translate-y-3 cursor-default group overflow-hidden ${feature.isFeatured ? 'ring-1 ring-[#D6B36A]/20' : ''}`}
+              >
+                {/* Surface Reflection */}
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="glass-card p-10 lg:p-12 hover:-translate-y-2 transition-transform duration-500 group"
-            >
-              <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
-                <ShieldCheck className="w-7 h-7 stroke-[1.5]" />
-              </div>
-              <h3 className="Heading-Serif text-2xl text-[#F2F2F2] mb-6">Rigorous Vetting</h3>
-              <p className="text-sm text-[#F2F2F2]/60 font-light leading-relaxed">
-                Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and appropriately trained to an exceptionally high standard.
-              </p>
-            </motion.div>
+                {/* Center Card Featured Glow */}
+                {feature.isFeatured && (
+                  <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#D6B36A]/5 rounded-full blur-[80px] pointer-events-none transition-opacity duration-1000 group-hover:opacity-100 opacity-60" />
+                )}
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="glass-card p-10 lg:p-12 hover:-translate-y-2 transition-transform duration-500 group"
-            >
-              <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#5B2A86]/30 rounded-full flex items-center justify-center text-[#D6B36A] mb-10 transition-colors group-hover:bg-[#5B2A86]/40">
-                <HeartHandshake className="w-7 h-7 stroke-[1.5]" />
-              </div>
-              <h3 className="Heading-Serif text-2xl text-[#F2F2F2] mb-6">Expert Management</h3>
-              <p className="text-sm text-[#F2F2F2]/60 font-light leading-relaxed">
-                Our friendly management team and Field Care Managers visit you regularly to guarantee the care you receive always aligns with your expectations.
-              </p>
-            </motion.div>
+                {/* Glowing Halo Icon */}
+                <div className="relative mb-12 flex">
+                  {/* Halo Ambient */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full blur-[15px] bg-[#B9A3D3]/20 group-hover:bg-[#D6B36A]/20 transition-all duration-700" />
+
+                  <div className="relative w-16 h-16 border border-[#B9A3D3]/10 bg-white/[0.02] rounded-full flex items-center justify-center text-[#F2F2F2]/90 group-hover:text-[#D6B36A] transition-all duration-700 z-10">
+                    <feature.icon className="w-8 h-8 stroke-[1.2] transition-transform duration-700 group-hover:rotate-[5deg]" />
+                  </div>
+                </div>
+
+                <h3 className="Heading-Serif text-3xl text-white mb-6 font-light group-hover:tracking-wide transition-all duration-700">
+                  {feature.title}
+                </h3>
+
+                <p className="text-[15px] text-[#F2F2F2]/70 font-light leading-relaxed mb-4">
+                  {feature.desc}
+                </p>
+
+                {/* Subtle Light Reflection Beneath Only on Hover */}
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A]/0 to-transparent group-hover:via-[#D6B36A]/20 transition-all duration-1000" />
+              </motion.div>
+            ))}
           </div>
+
+          {/* Luxury Reflection/Glow beneath the center card container */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-32 bg-[#5B2A86]/5 blur-[100px] pointer-events-none" />
         </div>
       </section>
 
       {/* SECTION 4: TESTIMONIALS - Luxury Ivory Theme */}
-      <section className="bg-[#F7F5F2] py-32 lg:py-48 relative z-20 overflow-hidden border-t border-[#5B2A86]/5">
+      <section className="bg-[#F7F5F2] section-padding relative z-20 overflow-hidden border-t border-[#5B2A86]/5">
         <div className="grid-container max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
 
@@ -313,7 +359,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 5: SERVICES OVERVIEW - Editorial Presentation */}
-      <section className="py-40 bg-premium-dark text-[#F2F2F2] overflow-hidden relative" >
+      <section className="section-padding bg-premium-dark text-[#F2F2F2] overflow-hidden relative" >
         <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-[#F7F5F2] to-transparent opacity-5" />
 
         <div className="grid-container relative z-10">
@@ -393,7 +439,7 @@ export default function Home() {
       </section>
 
       {/* THE CHARITY TRUST - Luxury Purpose */}
-      <section className="py-40 bg-[#F7F5F2] relative overflow-hidden" >
+      <section className="section-padding bg-[#F7F5F2] relative overflow-hidden" >
         <div className="grid-container relative z-10 mx-auto">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <motion.div
@@ -406,7 +452,7 @@ export default function Home() {
                 <Heart className="w-4 h-4 text-[#5B2A86] fill-[#5B2A86]" />
                 <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#5B2A86]">Social Responsibility</span>
               </div>
-              <h2 className="Heading-H2 text-[#1B1326] mb-10">
+              <h2 className="Heading-H2 text-[#1B1326] content-gap-sm">
                 A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
               </h2>
               <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-12 max-w-xl">

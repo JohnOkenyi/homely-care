@@ -96,12 +96,31 @@ body {
     box-shadow: 0 0 30px rgba(214, 179, 106, 0.3);
   }
 
+  /* Optimized Global Spacing */
+  .section-padding {
+    padding-top: clamp(4rem, 10vh, 10rem);
+    padding-bottom: clamp(4rem, 10vh, 10rem);
+  }
+
+  .section-padding-large {
+    padding-top: clamp(6rem, 15vh, 14rem);
+    padding-bottom: clamp(6rem, 15vh, 14rem);
+  }
+
+  .content-gap-sm {
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+  }
+
+  .content-gap-md {
+    margin-bottom: clamp(2rem, 5vh, 4rem);
+  }
+
   .grid-container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: clamp(1.5rem, 5vw, 4rem);
+    padding-right: clamp(1.5rem, 5vw, 4rem);
   }
 }
 
@@ -130,4 +149,28 @@ html.lenis {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Luxury Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 6s infinite linear;
+}
+
+.highlighted-text-gold {
+  background: linear-gradient(135deg, #D6B36A 0%, #F2F2F2 50%, #D6B36A 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+  animation: shimmer 8s infinite linear;
 }

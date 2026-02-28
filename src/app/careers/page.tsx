@@ -32,7 +32,7 @@ export default function Careers() {
             <Navbar />
 
             {/* HERO SECTION */}
-            <section className="relative pt-48 pb-32 overflow-hidden bg-premium-dark text-center">
+            <section className="relative pt-40 pb-20 overflow-hidden bg-premium-dark text-center">
                 <div className="absolute top-1/2 left-0 w-[500px] h-[500px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#D6B36A' }} />
 
                 <div className="grid-container relative z-10">
@@ -63,7 +63,7 @@ export default function Careers() {
             </section>
 
             {/* CULTURE SECTION */}
-            <section className="py-32 lg:py-48 bg-white/40">
+            <section className="section-padding bg-white/40">
                 <div className="grid-container">
                     <div className="grid md:grid-cols-3 gap-16 text-center">
                         {[
@@ -91,9 +91,9 @@ export default function Careers() {
             </section>
 
             {/* JOB LISTINGS */}
-            <section className="py-32 lg:py-48">
+            <section className="section-padding">
                 <div className="grid-container">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
                         <div className="max-w-2xl">
                             <span className="text-[#5B2A86] text-[10px] uppercase tracking-[0.4em] font-bold mb-6 block">Current Opportunities</span>
                             <h2 className="Heading-H2 text-[#1B1326]">Find Your Place in Our <span className="Heading-Serif italic font-light text-[#5B2A86]">Community</span></h2>

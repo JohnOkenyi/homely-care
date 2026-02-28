@@ -11,7 +11,7 @@ export default function ContactUs() {
             <Navbar />
 
             {/* HERO / CONTACT HEADER */}
-            <section className="relative pt-48 pb-32 bg-premium-dark overflow-hidden">
+            <section className="relative pt-40 pb-20 bg-premium-dark overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
 
                 <div className="grid-container relative z-10 text-center">
@@ -42,7 +42,7 @@ export default function ContactUs() {
             </section>
 
             {/* CONTACT BODY */}
-            <section className="py-32 lg:py-48 -mt-16 relative z-20">
+            <section className="section-padding -mt-20 relative z-20">
                 <div className="grid-container">
                     <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
 
@@ -54,7 +54,7 @@ export default function ContactUs() {
                                 viewport={{ once: true }}
                                 className="glass-card-light p-10 lg:p-12 border-[#5B2A86]/5"
                             >
-                                <h2 className="Heading-Serif text-3xl text-[#1B1326] mb-12">Direct <span className="italic font-light text-[#5B2A86]">Concierge</span></h2>
+                                <h2 className="Heading-Serif text-3xl text-[#1B1326] mb-10">Direct <span className="italic font-light text-[#5B2A86]">Concierge</span></h2>
 
                                 <div className="space-y-10">
                                     <div className="flex gap-6 group">

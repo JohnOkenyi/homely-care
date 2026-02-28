@@ -42,7 +42,7 @@ export default function Services() {
             <Navbar />
 
             {/* HERO SECTION */}
-            <section className="relative pt-48 pb-32 overflow-hidden bg-premium-dark">
+            <section className="relative pt-40 pb-20 overflow-hidden bg-premium-dark">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
 
                 <div className="grid-container relative z-10 text-center">
@@ -73,7 +73,7 @@ export default function Services() {
             </section>
 
             {/* SERVICES GRID */}
-            <section className="py-32 lg:py-48 relative -mt-16 z-20">
+            <section className="section-padding relative -mt-16 z-20">
                 <div className="grid-container">
                     <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
                         {services.map((srv, idx) => (
@@ -115,7 +115,7 @@ export default function Services() {
             </section>
 
             {/* CALL TO ACTION - Cinematic */}
-            <section className="py-32 lg:py-48 bg-premium-dark relative overflow-hidden">
+            <section className="section-padding bg-premium-dark relative overflow-hidden">
                 <div className="absolute bottom-0 left-0 w-full h-full opacity-10 pointer-events-none">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#D6B36A]/20 rounded-full blur-[140px]" />
                 </div>

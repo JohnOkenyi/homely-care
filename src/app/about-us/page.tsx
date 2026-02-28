@@ -12,7 +12,7 @@ export default function AboutUs() {
             <Navbar />
 
             {/* HERO SECTION - Cinematic Breadcrumb */}
-            <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-premium-dark">
+            <section className="relative h-[45vh] lg:h-[50vh] flex items-center justify-center overflow-hidden bg-premium-dark">
                 <Image
                     src="https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?q=80&w=2000&auto=format&fit=crop"
                     alt="Luxury Interior"
@@ -43,7 +43,7 @@ export default function AboutUs() {
             </section>
 
             {/* MANIFESTO SECTION - Warm Ivory Background */}
-            <section className="py-32 lg:py-48">
+            <section className="section-padding">
                 <div className="grid-container w-full max-w-5xl mx-auto">
                     <div className="grid lg:grid-cols-12 gap-24 items-start">
                         <div className="lg:col-span-5 relative">
@@ -73,8 +73,8 @@ export default function AboutUs() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             >
-                                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-8 block">The Homely Manifesto</span>
-                                <h2 className="Heading-H2 text-[#1B1326] mb-12">
+                                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] content-gap-sm block">The Homely Manifesto</span>
+                                <h2 className="Heading-H2 text-[#1B1326] mb-10">
                                     Redefining the <br />
                                     <span className="Heading-Serif italic font-light text-[#5B2A86]">Gold Standard</span> of Home Care.
                                 </h2>
@@ -96,7 +96,7 @@ export default function AboutUs() {
             </section>
 
             {/* PILLARS SECTION - Glassmorphism on Dark */}
-            <section className="py-32 lg:py-48 bg-premium-dark relative overflow-hidden">
+            <section className="section-padding bg-premium-dark relative overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#5B2A86]/10 rounded-full blur-[160px]" />
 
                 <div className="grid-container relative z-10 text-center">
@@ -105,7 +105,7 @@ export default function AboutUs() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1 }}
-                        className="Heading-H2 text-white mb-24"
+                        className="Heading-H2 text-white content-gap-md"
                     >
                         The Pillars of our <span className="italic font-light text-[#B9A3D3]">Promise</span>
                     </motion.h2>

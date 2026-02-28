@@ -36,7 +36,7 @@ export default function MeetTheTeam() {
             <Navbar />
 
             {/* HERO SECTION */}
-            <section className="relative pt-48 pb-32 overflow-hidden bg-premium-dark text-center">
+            <section className="relative pt-40 pb-20 overflow-hidden bg-premium-dark text-center">
                 <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
 
                 <div className="grid-container relative z-10">
@@ -67,7 +67,7 @@ export default function MeetTheTeam() {
             </section>
 
             {/* TEAM GRID - Editorial Style */}
-            <section className="py-32 lg:py-48 relative z-20">
+            <section className="section-padding relative z-20">
                 <div className="grid-container">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
                         {team.map((member, idx) => (
@@ -107,9 +107,9 @@ export default function MeetTheTeam() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.5 }}
-                        className="mt-40 p-16 lg:p-24 glass-card-light text-center border-[#5B2A86]/10"
+                        className="mt-24 p-16 lg:p-24 glass-card-light text-center border-[#5B2A86]/10"
                     >
-                        <Heart className="w-12 h-12 text-[#5B2A86] mx-auto mb-10 opacity-40" />
+                        <Heart className="w-10 h-10 text-[#5B2A86] mx-auto mb-8 opacity-40" />
                         <h2 className="Heading-Serif text-4xl text-[#1B1326] mb-12">Driven by <span className="italic font-light text-[#5B2A86]">Collective Compassion.</span></h2>
                         <div className="grid md:grid-cols-3 gap-12 text-left pt-12 border-t border-[#5B2A86]/5">
                             <div>
