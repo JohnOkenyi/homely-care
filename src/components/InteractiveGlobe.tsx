@@ -46,6 +46,8 @@ export default function InteractiveGlobe() {
     ], []);
 
     useEffect(() => {
+        let animationFrameId: number;
+
         if (globeEl.current) {
             globeEl.current.controls().autoRotate = true;
             globeEl.current.controls().autoRotateSpeed = 1.2; // Slightly faster for continuous engagement
@@ -53,7 +55,22 @@ export default function InteractiveGlobe() {
 
             // Initial view centred on the equator to ensure pairs are perfectly visible
             globeEl.current.pointOfView({ lat: 5, lng: 0, altitude: 1.6 }, 0);
+
+            // Force rendering loop for auto-rotation
+            const animate = () => {
+                if (globeEl.current) {
+                    globeEl.current.controls().update();
+                }
+                animationFrameId = requestAnimationFrame(animate);
+            };
+            animate();
         }
+
+        return () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
     }, [dimensions]);
 
     return (
