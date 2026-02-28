@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
-import InteractiveGlobe from "@/components/InteractiveGlobe";
+import RotatingGlobe from "@/components/RotatingGlobe";
 
 export default function Home() {
   const container = useRef(null);
@@ -97,7 +97,7 @@ export default function Home() {
 
               {/* Globe */}
               <div className="absolute top-[2%] left-[6%] w-[88%] h-[88%] z-10 pointer-events-auto">
-                <InteractiveGlobe />
+                <RotatingGlobe />
               </div>
 
               {/* Hands — mix-blend-lighten makes black bg transparent on the dark hero, hands stay solid */}
