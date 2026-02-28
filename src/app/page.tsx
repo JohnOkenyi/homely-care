@@ -134,9 +134,9 @@ export default function Home() {
       </section>
 
       {/* SECTION 2: TRUSTED CARE - Clean Ivory Restructure */}
-      <section className="relative w-full py-20 lg:py-32 bg-[#F7F5F2] overflow-hidden">
+      <section className="relative w-full py-14 lg:py-20 bg-[#F7F5F2] overflow-hidden">
         <div className="grid-container w-full max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
             {/* Left: Image Container - Soft Rounded with breathing room */}
             <motion.div
@@ -302,7 +302,7 @@ export default function Home() {
 
         <div className="grid-container w-full max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16 relative">
+          <div className="text-center mb-10 relative">
             <h2 className="Heading-Serif text-[#1A1A1A] text-3xl md:text-[42px] mb-8 font-normal tracking-tight">
               Trusted by Families Across the UK
             </h2>
@@ -319,7 +319,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#FCFBFA] rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-12 md:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-16 lg:gap-20 items-center border border-black/[0.03]"
+            className="bg-[#FCFBFA] rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-8 md:p-12 relative overflow-hidden flex flex-col lg:flex-row gap-10 lg:gap-14 items-center border border-black/[0.03]"
           >
             {/* Left Column: Inner 3D Stat Cards */}
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 shrink-0">
@@ -362,7 +362,7 @@ export default function Home() {
                 The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
               </p>
 
-              <div className="flex items-center gap-6 mt-14 relative z-10">
+              <div className="flex items-center gap-6 mt-8 relative z-10">
                 {/* Client Avatar with soft ring and shadow */}
                 <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5">
                   <Image
@@ -396,14 +396,14 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-32 text-center"
+            className="mb-12 text-center"
           >
             <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-8 font-bold">Curated Care Packages</span>
             <h2 className="Heading-H2">Our <span className="italic font-light text-[#B9A3D3]">Luxury</span> Services</h2>
           </motion.div>
 
           {/* Service Cards - Editorial Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {[
               {
                 title: "Home Care",
@@ -438,7 +438,7 @@ export default function Home() {
                 transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="group cursor-pointer"
               >
-                <div className="relative h-[500px] w-full mb-10 overflow-hidden rounded-sm">
+                <div className="relative h-[360px] w-full mb-6 overflow-hidden rounded-sm">
                   <Image src={srv.img} alt={srv.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-[#1B1326]/40 transition-colors duration-500 group-hover:bg-[#1B1326]/20" />
                   <div className="absolute inset-0 border border-white/10 m-4 group-hover:m-6 transition-all duration-700" />
@@ -457,7 +457,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-32 text-center">
+          <div className="mt-16 text-center">
             <Link href="/services" className="inline-flex items-center px-12 py-5 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] hover:-translate-y-2 relative overflow-hidden group">
               <span className="relative z-10">Experience All Services</span>
               <div className="absolute inset-0 bg-[#D6B36A] opacity-0 group-hover:opacity-20 transition-opacity" />
@@ -469,21 +469,21 @@ export default function Home() {
       {/* THE CHARITY TRUST - Luxury Purpose */}
       <section className="section-padding bg-[#F7F5F2] relative overflow-hidden">
         <div className="grid-container relative z-10 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-3 glass-card-light px-6 py-3 rounded-full mb-10 border-[#5B2A86]/10">
+              <div className="inline-flex items-center gap-3 glass-card-light px-6 py-3 rounded-full mb-6 border-[#5B2A86]/10">
                 <Heart className="w-4 h-4 text-[#5B2A86] fill-[#5B2A86]" />
                 <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#5B2A86]">Social Responsibility</span>
               </div>
               <h2 className="Heading-H2 text-[#1B1326] content-gap-sm">
                 A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
               </h2>
-              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-12 max-w-xl">
+              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-8 max-w-xl">
                 We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
               </p>
               <a
@@ -501,7 +501,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[700px] overflow-hidden rounded-sm shadow-2xl"
+              className="relative h-[500px] overflow-hidden rounded-sm shadow-2xl"
             >
               <Image
                 src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"

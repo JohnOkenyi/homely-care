@@ -98,29 +98,29 @@ body {
 
   /* Optimized Global Spacing */
   .section-padding {
-    padding-top: clamp(4rem, 10vh, 10rem);
-    padding-bottom: clamp(4rem, 10vh, 10rem);
+    padding-top: clamp(3rem, 6vh, 6rem);
+    padding-bottom: clamp(3rem, 6vh, 6rem);
   }
 
   .section-padding-large {
-    padding-top: clamp(6rem, 15vh, 14rem);
-    padding-bottom: clamp(6rem, 15vh, 14rem);
+    padding-top: clamp(4rem, 8vh, 8rem);
+    padding-bottom: clamp(4rem, 8vh, 8rem);
   }
 
   .content-gap-sm {
-    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+    margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
   }
 
   .content-gap-md {
-    margin-bottom: clamp(2rem, 5vh, 4rem);
+    margin-bottom: clamp(1.5rem, 3vh, 2.5rem);
   }
 
   .grid-container {
-    max-width: 1400px;
+    max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: clamp(1.5rem, 5vw, 4rem);
-    padding-right: clamp(1.5rem, 5vw, 4rem);
+    padding-left: clamp(1.25rem, 4vw, 3rem);
+    padding-right: clamp(1.25rem, 4vw, 3rem);
   }
 }
 
