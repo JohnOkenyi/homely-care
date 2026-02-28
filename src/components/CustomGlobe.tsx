@@ -189,17 +189,6 @@ export default function CustomGlobe() {
                 style={{ cursor: 'grab' }}
             />
 
-            {/* Rotation Hint */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 pointer-events-none select-none">
-                <div className="flex items-center gap-4 text-[#B9A3D3]">
-                    <span className="text-[9px] tracking-[0.4em] uppercase font-bold">Slide to rotate</span>
-                </div>
-                <div className="flex items-center gap-6">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B9A3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse"><path d="m15 18-6-6 6-6" /></svg>
-                    <div className="w-10 h-[1px] bg-gradient-to-r from-transparent via-[#B9A3D3] to-transparent" />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B9A3D3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-pulse"><path d="m9 18 6-6-6-6" /></svg>
-                </div>
-            </div>
         </div>
     );
 }

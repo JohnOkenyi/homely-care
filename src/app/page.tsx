@@ -109,7 +109,7 @@ export default function Home() {
 
               {/* Layer 2: Globe (Surgically seated) */}
               <div className="absolute inset-0 z-20 pointer-events-auto flex items-center justify-center">
-                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[inset_0_0_22px_rgba(0,0,0,0.25)] ring-1 ring-white/5">
+                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[inset_0_0_22px_rgba(0,0,0,0.22)]">
                   <div className="absolute inset-0 z-0 bg-black rounded-full" />
                   <div className="relative z-10 w-full h-full">
                     <CustomGlobe />
@@ -120,14 +120,10 @@ export default function Home() {
               {/* Layer 3: Surgical Foreground Occlusion (Finger tips ONLY) */}
               <div className="absolute inset-0 z-30 pointer-events-none">
                 <Image
-                  src="/hands-globe.png"
+                  src="/hands-occlusion-rim.png"
                   alt="Hands foreground occlusion"
                   fill
                   className="object-contain object-bottom select-none"
-                  style={{
-                    maskImage: 'radial-gradient(circle at 50% 46%, transparent 22.8%, black 23%, black 23.2%, transparent 23.4%)',
-                    WebkitMaskImage: 'radial-gradient(circle at 50% 46%, transparent 22.8%, black 23%, black 23.2%, transparent 23.4%)'
-                  }}
                   priority
                   unoptimized={true}
                 />
