@@ -92,10 +92,10 @@ export default function Home() {
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
             <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[5%]">
 
-              {/* Layer 0: Guaranteed Solid Background Base */}
+              {/* Layer 0: Solid Background Base */}
               <div className="absolute inset-0 z-0 bg-[#0B0612] rounded-3xl overflow-hidden" />
 
-              {/* Layer 1: Background Hands (Back) */}
+              {/* Layer 1: Solid Hands (Base) */}
               <div className="absolute inset-0 z-10 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
@@ -107,28 +107,20 @@ export default function Home() {
                 />
               </div>
 
-              {/* Layer 2: Middle Globe (Circular Clip + Shadow) */}
+              {/* Layer 2: Globe (Masked into the Hands Center) */}
               <div className="absolute inset-0 z-20 pointer-events-auto flex items-center justify-center">
-                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[0_0_100px_rgba(91,42,134,0.4)] ring-1 ring-white/10">
+                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[0_0_120px_rgba(0,0,0,0.9)] ring-1 ring-white/5">
+                  {/* Internal black fill for the sphere area */}
                   <div className="absolute inset-0 z-0 bg-black rounded-full" />
+
+                  {/* The actual Three.js Globe */}
                   <div className="relative z-10 w-full h-full">
                     <CustomGlobe />
                   </div>
-                  {/* Subtle inner vignette for the sphere */}
-                  <div className="absolute inset-0 z-20 pointer-events-none rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.9)]" />
-                </div>
-              </div>
 
-              {/* Layer 3: Foreground Hands Cutout (Top) */}
-              <div className="absolute inset-0 z-30 pointer-events-none">
-                <Image
-                  src="/hands-front-cutout.png"
-                  alt="Hands cradling globe foreground"
-                  fill
-                  className="object-contain object-bottom select-none"
-                  priority
-                  unoptimized={true}
-                />
+                  {/* Heavy inner vignette to blend globe into hands */}
+                  <div className="absolute inset-0 z-20 pointer-events-none rounded-full shadow-[inset_0_0_80px_rgba(0,0,0,1)]" />
+                </div>
               </div>
 
               {/* Bottom fade to next section */}
