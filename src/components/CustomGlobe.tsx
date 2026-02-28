@@ -60,9 +60,9 @@ export default function CustomGlobe() {
             transparent: false,
             opacity: 1.0,
             metalness: 0.15,
-            roughness: 0.45,
-            clearcoat: 0.3,
-            clearcoatRoughness: 0.25,
+            roughness: 0.52,
+            clearcoat: 0.25,
+            clearcoatRoughness: 0.65,
             reflectivity: 0.5,
         });
 
@@ -73,17 +73,17 @@ export default function CustomGlobe() {
 
         // --- PREMIUM LIGHTING ---
         // 1. Key Light (Warm White)
-        const keyLight = new THREE.DirectionalLight(0xfff5e6, 3.5);
+        const keyLight = new THREE.DirectionalLight(0xfff5e6, 3.0);
         keyLight.position.set(300, 200, 500);
         scene.add(keyLight);
 
         // 2. Fill Light (Soft Purple)
-        const fillLight = new THREE.PointLight(0x5B2A86, 2);
+        const fillLight = new THREE.PointLight(0x5B2A86, 1.5);
         fillLight.position.set(-300, -100, 200);
         scene.add(fillLight);
 
         // 3. Rim Light (Golden)
-        const rimLight = new THREE.SpotLight(0xD6B36A, 12);
+        const rimLight = new THREE.SpotLight(0xD6B36A, 8.0);
         rimLight.position.set(-200, 300, -300);
         rimLight.angle = 0.5;
         scene.add(rimLight);
