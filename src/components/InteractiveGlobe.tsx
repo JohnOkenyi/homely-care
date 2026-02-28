@@ -47,48 +47,24 @@ export default function InteractiveGlobe() {
 
     const isHovered = useRef(false);
 
-    useEffect(() => {
-        let animationFrameId: number;
-        let lastTime = performance.now();
-
+    const handleGlobeReady = () => {
         if (globeEl.current) {
-            globeEl.current.controls().enableZoom = false;
-
-            // Initial view centred on the equator to ensure pairs are perfectly visible
-            globeEl.current.pointOfView({ lat: 5, lng: 0, altitude: 1.6 }, 0);
-
-            // Manual rendering loop for guaranteed auto-rotation
-            const animate = (time: number) => {
-                const delta = time - lastTime;
-                lastTime = time;
-
-                if (globeEl.current && !isHovered.current) {
-                    const currentPov = globeEl.current.pointOfView();
-                    // Rotate ~8 degrees per second
-                    const rotateAmount = (8 * delta) / 1000;
-
-                    globeEl.current.pointOfView({
-                        lat: currentPov.lat,
-                        lng: currentPov.lng + rotateAmount,
-                        altitude: currentPov.altitude
-                    }, 0);
-                }
-                animationFrameId = requestAnimationFrame(animate);
-            };
-            animationFrameId = requestAnimationFrame(animate);
-        }
-
-        return () => {
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
+            const controls = globeEl.current.controls();
+            if (controls) {
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 1.0;
+                controls.enableZoom = false;
             }
-        };
-    }, [dimensions]);
+            // Initial view centred on the equator
+            globeEl.current.pointOfView({ lat: 5, lng: 0, altitude: 1.6 }, 0);
+        }
+    };
 
     return (
         <div className="relative flex items-center justify-center w-full h-full pointer-events-auto">
             <Globe
                 ref={globeEl}
+                onGlobeReady={handleGlobeReady}
                 width={dimensions.width}
                 height={dimensions.height}
                 backgroundColor="rgba(0,0,0,0)"
@@ -121,11 +97,13 @@ export default function InteractiveGlobe() {
 
                     // Hover effects using standard CSS in JS approach for the library
                     el.onmouseenter = () => {
-                        isHovered.current = true;
+                        const controls = globeEl.current?.controls();
+                        if (controls) controls.autoRotate = false;
                         el.querySelector('.label-container')?.classList.add('hover-glow');
                     };
                     el.onmouseleave = () => {
-                        isHovered.current = false;
+                        const controls = globeEl.current?.controls();
+                        if (controls) controls.autoRotate = true;
                         el.querySelector('.label-container')?.classList.remove('hover-glow');
                     };
 
