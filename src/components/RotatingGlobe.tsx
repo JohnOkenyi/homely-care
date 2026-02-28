@@ -39,43 +39,46 @@ export default function RotatingGlobe() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Direct Three.js Animation Loop
+    // Definitive Rotation Engine
     useEffect(() => {
         if (!isMounted || !globeRef.current) return;
 
-        console.log("🚀 INITIALIZING DIRECT THREE.JS ROTATION ENGINE");
+        // We expose these to the window for debugging, as requested by the user's situation
+        (window as any).globeRef = globeRef.current;
 
-        const globe = globeRef.current;
+        console.log("🛠️ INITIALIZING ROTATION ENGINE...");
+
         let frameId: number;
+        const globe = globeRef.current;
 
-        const animate = () => {
+        const rotationLoop = () => {
             if (globe && !isHoveredRef.current) {
                 const controls = globe.controls();
                 if (controls) {
-                    // Force autoRotate and speed every frame to prevent overrides
                     controls.autoRotate = true;
                     controls.autoRotateSpeed = 2.0;
                     controls.update();
                 }
             }
-            frameId = requestAnimationFrame(animate);
+            frameId = requestAnimationFrame(rotationLoop);
         };
 
-        animate();
+        // Kick off the loop
+        rotationLoop();
 
-        const heartbeat = setInterval(() => {
+        // Heartbeat to confirm execution
+        const hb = setInterval(() => {
             const controls = globe.controls();
-            console.log("💓 GLOBE HEARTBEAT", {
-                active: !!globe,
-                controlsReady: !!controls,
+            console.log("💓 HEARTBEAT", {
+                hovered: isHoveredRef.current,
                 autoRotate: controls?.autoRotate,
-                hovered: isHoveredRef.current
+                controlsReady: !!controls
             });
-        }, 3000);
+        }, 2000);
 
         return () => {
             cancelAnimationFrame(frameId);
-            clearInterval(heartbeat);
+            clearInterval(hb);
         };
     }, [isMounted]);
 
@@ -92,7 +95,7 @@ export default function RotatingGlobe() {
 
     const handleGlobeReady = () => {
         if (!globeRef.current) return;
-        console.log("✅ GLOBE COMPONENT READY");
+        console.log("✅ GLOBE READY");
         globeRef.current.pointOfView({ lat: 30, lng: 20, altitude: 1.4 }, 500);
         const controls = globeRef.current.controls();
         if (controls) {
