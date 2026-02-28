@@ -51,6 +51,7 @@ export default function Navbar() {
                             width={80}
                             height={80}
                             className="object-contain"
+                            style={{ filter: 'saturate(1.5) brightness(1.2) contrast(1.1)' }}
                             priority
                         />
                     </Link>

@@ -28,15 +28,17 @@ export default function InteractiveGlobe() {
     }, []);
 
     const globeData = useMemo(() => [
-        // Spaced out globally to ensure ~3 per view and no clustering
-        { id: 1, text: "Home Care", lat: 51.5, lng: -0.1, icon: <Home size={18} /> }, // London
-        { id: 3, text: "Live-in Care", lat: -25, lng: 25, icon: <UserCheck size={18} /> }, // Southern Africa
-        { id: 4, text: "Supported\nLiving", lat: 40, lng: -75, icon: <ShieldCheck size={18} /> }, // USA East
-        { id: 5, text: "TDDI &\nHomely care", lat: 35, lng: 140, icon: <Activity size={18} /> }, // Japan
-        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> }, // Australia
-        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> }, // USA West
-        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> }, // Asia North
-        { id: 10, text: "TDDI &\nHomely care", lat: 10, lng: 80, icon: <Activity size={18} /> }, // India
+        // 4 primary services tightly clustered in the initial view (Africa/Europe, lat:30, lng:20)
+        { id: 1, text: "Home Care", lat: 42, lng: 5, icon: <Home size={18} /> },
+        { id: 3, text: "Live-in Care", lat: 52, lng: 20, icon: <UserCheck size={18} /> },
+        { id: 4, text: "Supported\nLiving", lat: 22, lng: 35, icon: <ShieldCheck size={18} /> },
+        { id: 5, text: "TDDI &\nHomely care", lat: 10, lng: 8, icon: <Activity size={18} /> },
+
+        // Background duplicates on the back of the globe
+        { id: 6, text: "Home Care", lat: -34, lng: 151, icon: <Home size={18} /> },
+        { id: 8, text: "Live-in Care", lat: 45, lng: -120, icon: <UserCheck size={18} /> },
+        { id: 9, text: "Supported\nLiving", lat: 60, lng: 100, icon: <ShieldCheck size={18} /> },
+        { id: 10, text: "TDDI &\nHomely care", lat: -10, lng: -60, icon: <Activity size={18} /> },
     ], []);
 
     useEffect(() => {
@@ -67,11 +69,11 @@ export default function InteractiveGlobe() {
                     const iconMarkup = renderToStaticMarkup(d.icon);
 
                     el.innerHTML = `
-                        <div class="label-container flex flex-col items-center gap-0 cursor-pointer transition-all duration-300">
-                            <div class="icon-box flex items-center justify-center w-[36px] h-[36px] rounded-full" style="background:rgba(91,42,134,0.25);border:1px solid rgba(185,163,211,0.4);backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(91,42,134,0.3)">
+                        <div class="label-container flex flex-col items-center gap-1 cursor-pointer transition-all duration-300">
+                            <div class="icon-box flex items-center justify-center w-[38px] h-[38px] rounded-full" style="background:rgba(91,42,134,0.55);border:1.5px solid rgba(255,255,255,0.7);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(91,42,134,0.5),0 0 0 1px rgba(185,163,211,0.2)">
                                 ${iconMarkup}
                             </div>
-                            <span class="label-text font-semibold text-[11px] leading-[1.2] tracking-wide text-center whitespace-pre-line mt-[-1px]" style="color:#F2F2F2;text-shadow:0 2px 8px rgba(15,17,21,0.9)">
+                            <span class="label-text font-bold text-[12px] leading-[1.25] tracking-wide text-center whitespace-pre-line" style="color:#FFFFFF;text-shadow:0 1px 3px rgba(0,0,0,1),0 0 12px rgba(0,0,0,0.9),0 0 24px rgba(0,0,0,0.8)">
                                 ${d.text}
                             </span>
                         </div>
@@ -103,8 +105,9 @@ export default function InteractiveGlobe() {
                     transition: all 0.3s ease;
                 }
                 .label-container .icon-box svg {
-                    color: #B9A3D3;
-                    stroke: #B9A3D3;
+                    color: #ffffff;
+                    stroke: #ffffff;
+                    opacity: 0.95;
                 }
                 .label-container.hover-glow .icon-box {
                     background: rgba(214,179,106,0.25) !important;
