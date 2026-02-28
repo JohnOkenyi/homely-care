@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import ChatBox from "@/components/ChatBox";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ChatBox />
         </SmoothScroll>
       </body>
     </html>
