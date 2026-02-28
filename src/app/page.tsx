@@ -330,15 +330,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION 4: TRUST & TESTIMONIALS - Luxury Editorial Theme */}
-      <section className="bg-[#F7F5F2] section-padding relative z-20 overflow-hidden border-t border-[#5B2A86]/5">
-        <div className="grid-container w-full max-w-6xl mx-auto">
+      {/* SECTION 4: TRUST & TESTIMONIALS - Exact Mockup Replication */}
+      <section className="bg-[#F7F5F2] section-padding relative z-20 overflow-hidden">
+        {/* Subtle Noise Overlay */}
+        <div className="absolute inset-0 opacity-[0.2] pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+
+        <div className="grid-container w-full max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="Heading-Serif text-[#1A1A1A] text-3xl md:text-4xl mb-6">
+          <div className="text-center mb-16 relative">
+            <h2 className="Heading-Serif text-[#1A1A1A] text-3xl md:text-[42px] mb-8 font-normal tracking-tight">
               Trusted by Families Across the UK
             </h2>
-            <div className="w-16 h-[1px] bg-[#D6B36A] mx-auto" />
+            {/* Glowing divider line */}
+            <div className="relative w-80 h-[1px] mx-auto bg-gradient-to-r from-transparent via-[#D6B36A]/40 to-transparent">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-[1px] bg-[#D6B36A] shadow-[0_0_12px_rgba(214,179,106,1)]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-[2px] bg-white rounded-full blur-[1px] shadow-[0_0_10px_rgba(255,255,255,1)]" />
+            </div>
           </div>
 
           {/* Unified Trust Card */}
@@ -347,76 +354,69 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-10 md:p-16 relative overflow-hidden"
+            className="bg-[#FCFBFA]/90 backdrop-blur-xl rounded-[2rem] shadow-[0_15px_60px_rgba(0,0,0,0.04)] p-12 md:p-16 relative overflow-hidden flex flex-col lg:flex-row gap-16 lg:gap-20 items-center border border-white"
           >
-            <div className="grid lg:grid-cols-[1fr_auto_2fr] gap-12 lg:gap-16 items-center">
-
-              {/* Left Column: Stats Container */}
-              <div className="flex flex-col gap-12 sm:flex-row lg:flex-col justify-center lg:justify-start">
-                {/* Stat 1 */}
-                <div className="text-center lg:text-left">
-                  <div className="flex items-baseline justify-center lg:justify-start gap-1">
-                    <span className="block text-[64px] lg:text-[80px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
-                      9.8
-                    </span>
-                    <span className="text-2xl text-[#1A1A1A]/30 font-light">/10</span>
-                  </div>
-                  <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1A1A1A]/60 block mt-3">
-                    Family Trust Rating
-                  </span>
+            {/* Left Column: 3D Stat Cards */}
+            <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 shrink-0">
+              {/* Card 1 */}
+              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.02] transform transition-transform hover:-translate-y-1 duration-500">
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className="text-[64px] md:text-[76px] leading-none font-medium text-[#4B3061] tracking-tighter Heading-Serif">9.8</span>
+                  <span className="text-2xl md:text-3xl text-[#1A1A1A]/20 font-light">/10</span>
                 </div>
-
-                {/* Stat 2 */}
-                <div className="text-center lg:text-left">
-                  <div className="flex items-baseline justify-center lg:justify-start gap-1">
-                    <span className="block text-[64px] lg:text-[80px] leading-none font-light text-[#5B2A86] tracking-tighter Heading-Serif">
-                      7
-                    </span>
-                    <span className="text-[40px] lg:text-[50px] text-[#1A1A1A]/30 font-light">+</span>
-                  </div>
-                  <span className="text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-[#1A1A1A]/60 block mt-3">
-                    Years Clinical Experience
-                  </span>
-                </div>
+                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/40 text-center leading-[1.8] mt-2">
+                  Family Trust<br />Rating
+                </span>
               </div>
 
-              {/* Faint Vertical Divider */}
-              <div className="hidden lg:block w-[1px] self-stretch bg-gradient-to-b from-transparent via-[#1A1A1A]/10 to-transparent" />
-              {/* Horizontal Divider for Mobile */}
-              <div className="lg:hidden h-[1px] w-full bg-gradient-to-r from-transparent via-[#1A1A1A]/10 to-transparent my-4" />
-
-              {/* Right Column: Testimonial */}
-              <div className="relative lg:pl-8">
-                <div className="absolute -top-16 -left-6 text-[#1A1A1A]/5 text-[180px] font-serif leading-none italic select-none pointer-events-none">
-                  &ldquo;
+              {/* Card 2 */}
+              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.02] transform transition-transform hover:-translate-y-1 duration-500">
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className="text-[64px] md:text-[76px] leading-none font-medium text-[#4B3061] tracking-tighter Heading-Serif">7</span>
+                  <span className="text-[40px] md:text-[50px] text-[#1A1A1A]/20 font-light">+</span>
                 </div>
-                <p className="Heading-Serif text-[#1A1A1A] text-2xl md:text-3xl leading-relaxed relative z-10 font-light italic mb-12">
-                  The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
-                </p>
-
-                <div className="flex items-center gap-6">
-                  {/* Client Avatar */}
-                  <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 border border-[#1A1A1A]/10">
-                    <Image
-                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
-                      alt="Sarah Jenkins"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  {/* Client Info */}
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-4">
-                      <p className="font-bold text-[#5B2A86] text-base md:text-lg tracking-wide">Sarah Jenkins</p>
-                      <div className="w-8 h-[1px] bg-[#D6B36A]" />
-                    </div>
-                    <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/50 font-bold">Private Client, Dorset</p>
-                  </div>
-                </div>
+                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/40 text-center leading-[1.8] mt-2">
+                  Years Clinical<br />Experience
+                </span>
               </div>
-
             </div>
+
+            {/* Faint Vertical Divider */}
+            <div className="hidden lg:block w-[1px] self-stretch bg-gradient-to-b from-transparent via-[#1A1A1A]/[0.06] to-transparent mx-2" />
+            {/* Horizontal Divider for Mobile */}
+            <div className="lg:hidden h-[1px] w-full bg-gradient-to-r from-transparent via-[#1A1A1A]/[0.06] to-transparent" />
+
+            {/* Right Column: Testimonial */}
+            <div className="relative flex-1">
+              {/* Elegant Quotation Mark */}
+              <div className="absolute -top-16 -left-10 text-[#E4DDF0] text-[160px] font-serif leading-none select-none pointer-events-none transform -rotate-12">
+                &ldquo;
+              </div>
+
+              <p className="Heading-Serif text-[#1A1A1A] text-[24px] md:text-[28px] leading-[1.3] relative z-10 font-normal italic tracking-tight text-balance">
+                The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
+              </p>
+
+              <div className="flex items-center gap-6 mt-14 relative z-10">
+                {/* Client Avatar with soft ring and shadow */}
+                <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5">
+                  <Image
+                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
+                    alt="Sarah Jenkins"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Client Info Block */}
+                <div className="flex flex-col gap-2 pt-1">
+                  <div className="w-12 h-[1px] bg-[#D6B36A] mb-1" />
+                  <p className="font-bold text-[#4B3061] text-sm md:text-sm tracking-[0.1em] uppercase">Sarah Jenkins</p>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 font-bold">Private Client, Dorset</p>
+                </div>
+              </div>
+            </div>
+
           </motion.div>
         </div>
       </section>
