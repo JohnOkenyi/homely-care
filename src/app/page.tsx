@@ -98,7 +98,7 @@ export default function Home() {
                   src="/hands-globe.png"
                   alt="Hands cradling globe"
                   fill
-                  className="object-contain object-bottom select-none opacity-40 grayscale-[20%]"
+                  className="object-contain object-bottom select-none"
                   priority
                   unoptimized={true}
                 />
