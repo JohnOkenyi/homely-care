@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Home, UserCheck, ShieldCheck, Activity } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
 
