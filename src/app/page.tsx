@@ -96,14 +96,14 @@ export default function Home() {
               <div className="absolute top-[8%] left-[8%] w-[84%] h-[84%] rounded-full z-0 blur-[80px] opacity-35" style={{ background: 'radial-gradient(circle, #5B2A86 0%, transparent 70%)' }} />
 
               {/* Globe */}
-              <div className="absolute inset-0 z-50 pointer-events-auto flex items-center justify-center">
-                <div className="w-[85%] h-[85%] mt-[-5%] bg-red-500/20">
+              <div className="absolute inset-0 z-30 pointer-events-auto flex items-center justify-center">
+                <div className="w-[85%] h-[85%] mt-[-5%]">
                   <CustomGlobe />
                 </div>
               </div>
 
-              {/* Hands — testing with higher z-index but lower than globe? No, hands should be on top maybe? */}
-              <div className="absolute inset-0 z-20 pointer-events-none">
+              {/* Hands — mix-blend-lighten makes black bg transparent on the dark hero, hands stay solid */}
+              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-lighten">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands cradling globe"
