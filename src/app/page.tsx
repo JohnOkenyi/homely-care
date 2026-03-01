@@ -117,18 +117,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Layer 3: Surgical Foreground Occlusion (Finger tips ONLY) */}
-              <div className="absolute inset-0 z-30 pointer-events-none">
-                <Image
-                  src="/hands-occlusion-rim.png"
-                  alt="Hands foreground occlusion"
-                  fill
-                  className="object-contain object-bottom select-none"
-                  priority
-                  unoptimized={true}
-                />
-              </div>
-
               {/* Bottom fade to next section */}
               <div className="absolute bottom-[-10%] inset-x-0 h-1/3 z-40 pointer-events-none" style={{ background: 'linear-gradient(to top, #0F1115, rgba(15,17,21,0.6), transparent)' }} />
 
