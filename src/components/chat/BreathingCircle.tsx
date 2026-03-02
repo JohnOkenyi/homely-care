@@ -96,22 +96,22 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                             scale: { duration, ease: "easeInOut" },
                             rotate: { duration: 20, repeat: Infinity, ease: "linear" }
                         }}
-                        className="absolute w-[1.5px] h-[1.5px] bg-[#A878FF] rounded-full shadow-[0_0_6px_#A878FF]"
+                        className="absolute w-[1.2px] h-[1.2px] bg-[#A878FF] rounded-full shadow-[0_0_5px_#A878FF]"
                         style={{
-                            transform: `rotate(${p.angle}deg) translateY(-110px)` // Reduced radius
+                            transform: `rotate(${p.angle}deg) translateY(-85px)` // Further reduced radius
                         }}
                     />
                 ))}
             </div>
 
             {/* Orb Wrapper - Ensuring no cropping */}
-            <div className="w-full flex justify-center items-center py-2" style={{ marginTop: "5px", marginBottom: "5px" }}>
+            <div className="w-full flex justify-center items-center py-1">
                 <div
                     className="relative flex items-center justify-center transition-all ease-in-out"
                     style={{
-                        width: "min(210px, 55vw)", // Reduced size
-                        aspectRatio: "1/1",
-                        maxHeight: "45vh"
+                        width: "170px", // Drastically reduced size
+                        height: "170px",
+                        aspectRatio: "1/1"
                     }}
                 >
                     {/* Orb Implementation */}
@@ -122,42 +122,42 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                         style={{
                             borderRadius: "999px",
                             background: "radial-gradient(circle at 30% 30%, #4C1D95 0%, #1E1B4B 100%)",
-                            boxShadow: "0 0 40px rgba(168, 120, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)"
+                            boxShadow: "0 0 30px rgba(168, 120, 255, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.1)"
                         }}
                     >
                         {/* Digital Grid Overlay */}
                         <div className="absolute inset-0 opacity-10 pointer-events-none rounded-full"
-                            style={{ backgroundImage: "linear-gradient(#A878FF 1px, transparent 1px), linear-gradient(90deg, #A878FF 1px, transparent 1px)", backgroundSize: "15px 15px" }}
+                            style={{ backgroundImage: "linear-gradient(#A878FF 1px, transparent 1px), linear-gradient(90deg, #A878FF 1px, transparent 1px)", backgroundSize: "12px 12px" }}
                         />
 
                         {/* Holographic Glowing Core */}
                         <motion.div
                             animate={{
-                                opacity: [0.4, 0.7, 0.4],
+                                opacity: [0.3, 0.6, 0.3],
                                 scale: [0.8, 1, 0.8]
                             }}
                             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                             className="absolute inset-4 rounded-full"
                             style={{
-                                background: "radial-gradient(circle at center, rgba(168, 120, 255, 0.4) 0%, transparent 70%)",
-                                filter: "blur(20px)"
+                                background: "radial-gradient(circle at center, rgba(168, 120, 255, 0.3) 0%, transparent 70%)",
+                                filter: "blur(15px)"
                             }}
                         />
 
-                        {/* Internal Text - Fixed Spacing to prevent overlap */}
+                        {/* Internal Text - Drastically Scaled Down */}
                         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full select-none">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={phase}
-                                    initial={{ opacity: 0, y: 10 }}
+                                    initial={{ opacity: 0, y: 5 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
+                                    exit={{ opacity: 0, y: -5 }}
                                     className="flex flex-col items-center"
                                 >
-                                    <span className="text-[9px] sm:text-[10px] text-[#A878FF]/80 uppercase tracking-[0.3em] font-bold mb-3">
+                                    <span className="text-[8px] text-[#A878FF]/80 uppercase tracking-[0.2em] font-bold mb-2">
                                         {getGuidanceText()}
                                     </span>
-                                    <span className="text-3xl sm:text-4xl font-light text-white tabular-nums tracking-tighter">
+                                    <span className="text-3xl font-light text-white tabular-nums tracking-tighter">
                                         {String(phaseTimeRemaining).padStart(2, '0')}
                                     </span>
                                 </motion.div>
@@ -167,10 +167,10 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                 </div>
             </div>
 
-            {/* Session Progress - Pushed down slightly more */}
-            <div className="mt-8 flex flex-col items-center gap-1 opacity-40 select-none">
-                <span className="text-[8px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Session Time</span>
-                <div className="text-white text-[9px] font-medium tabular-nums">
+            {/* Session Progress - Compacted to prevent clustering */}
+            <div className="mt-6 flex flex-col items-center opacity-30 select-none">
+                <span className="text-[7px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Time Left</span>
+                <div className="text-white text-[8px] font-medium tabular-nums">
                     {Math.floor((totalDuration - secondsElapsed) / 60)}:{String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
                 </div>
             </div>
