@@ -72,25 +72,25 @@ export default function CalmCorner() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex-1 flex flex-col relative z-10 px-8 py-4 items-center justify-between overflow-x-hidden min-h-0 sm:overflow-hidden"
+                        className="flex-1 flex flex-col relative z-10 px-8 items-center justify-between overflow-x-hidden min-h-0 sm:overflow-hidden h-full"
                     >
-                        {/* Header - Raised further up */}
-                        <div className="text-center pt-2 space-y-0.5 shrink-0 z-20">
+                        {/* Header - Pinned to absolute top */}
+                        <div className="text-center pt-0 space-y-0 shrink-0 z-20">
                             <h2 className="text-base sm:text-lg font-light text-[#D6B36A] tracking-wider" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                 Calm Corner
                             </h2>
-                            <p className="text-[7px] text-white/30 uppercase tracking-[0.2em] font-bold">
+                            <p className="text-[7px] text-white/40 uppercase tracking-[0.2em] font-bold">
                                 Take 60 seconds to reset.
                             </p>
                         </div>
 
-                        {/* Centered Breathing Area - Pushed down away from header */}
-                        <div className="w-full flex-1 flex items-center justify-center mt-6 mb-2 min-h-0">
+                        {/* Centered Breathing Area - given massive flex space */}
+                        <div className="w-full flex-1 flex items-center justify-center min-h-0">
                             <BreathingCircle isPaused={isPaused} onComplete={handleComplete} />
                         </div>
 
-                        {/* Controls - Pushed further down away from timer */}
-                        <div className="shrink-0 pb-12 pt-6 flex items-center justify-center gap-4 z-20">
+                        {/* Controls - Pinned to absolute bottom near cancel button level */}
+                        <div className="shrink-0 pb-6 flex items-center justify-center gap-4 z-20 w-full mb-2">
                             <button
                                 onClick={handleStart}
                                 disabled={!isPaused}

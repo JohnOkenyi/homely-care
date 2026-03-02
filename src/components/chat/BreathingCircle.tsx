@@ -154,10 +154,10 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                                     exit={{ opacity: 0, y: -5 }}
                                     className="flex flex-col items-center"
                                 >
-                                    <span className="text-[8px] text-[#A878FF]/80 uppercase tracking-[0.2em] font-bold mb-2">
+                                    <span className="text-[9px] text-white uppercase tracking-[0.25em] font-black mb-1 drop-shadow-[0_0_8px_rgba(168,120,255,0.8)]">
                                         {getGuidanceText()}
                                     </span>
-                                    <span className="text-3xl font-light text-white tabular-nums tracking-tighter">
+                                    <span className="text-4xl font-light text-white tabular-nums tracking-tighter drop-shadow-lg">
                                         {String(phaseTimeRemaining).padStart(2, '0')}
                                     </span>
                                 </motion.div>
