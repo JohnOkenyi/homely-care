@@ -67,98 +67,87 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
         }
     };
 
-    const getScale = () => {
-        switch (phase) {
-            case "inhale": return 1.12;
-            case "hold": return 1.12;
-            case "exhale": return 0.88;
-        }
-    };
-
-    const getDuration = () => {
-        switch (phase) {
-            case "inhale": return 4;
-            case "hold": return 4;
-            case "exhale": return 6;
-        }
-    };
+    // State derived CSS values
+    const scale = phase === "inhale" ? 1.12 : phase === "hold" ? 1.12 : 0.92;
+    const halo = phase === "inhale" ? 0.95 : phase === "hold" ? 0.85 : 0.70;
+    const duration = phase === "exhale" ? 6 : 4;
 
     return (
-        <div className="flex flex-col items-center justify-center py-4 space-y-8 w-full">
-            {/* The Orb Container */}
-            <div className="relative flex items-center justify-center w-[clamp(180px,55vw,220px)] aspect-square max-h-[30vh]">
-
-                {/* Outer Halo Glow */}
-                <motion.div
-                    animate={{
-                        scale: getScale() * 1.25,
-                        opacity: phase === "inhale" ? [0.15, 0.35] : phase === "exhale" ? [0.35, 0.15] : 0.35,
-                    }}
-                    transition={{
-                        duration: getDuration(),
-                        ease: "easeInOut",
-                    }}
-                    className="absolute inset-[-20%] rounded-full bg-[#7A4FB3]/25 blur-3xl"
-                />
-
-                {/* Second Halo Layer */}
-                <motion.div
-                    animate={{
-                        scale: getScale() * 1.1,
-                        opacity: phase === "hold" ? 0.3 : 0.2,
-                    }}
-                    transition={{
-                        duration: getDuration(),
-                        ease: "easeInOut",
-                    }}
-                    className="absolute inset-0 rounded-full border border-[#D6B36A]/20 blur-sm"
-                />
-
-                {/* Main Premium Orb */}
-                <motion.div
-                    animate={{
-                        scale: getScale(),
-                    }}
-                    transition={{
-                        duration: getDuration(),
-                        ease: "easeInOut",
-                    }}
-                    className="relative w-full h-full rounded-full flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(91,42,134,0.5)]"
+        <div className="flex-1 flex flex-col items-center justify-center w-full min-h-0" style={{ gap: "24px" }}>
+            {/* Orb Wrapper */}
+            <div className="w-full flex justify-center items-center py-4" style={{ marginTop: "10px", marginBottom: "10px" }}>
+                <div
+                    className="relative flex items-center justify-center transition-all ease-in-out"
                     style={{
-                        background: "radial-gradient(circle at 35% 35%, #9b6dd3 0%, #5B2A86 45%, #3e1b5c 100%)",
-                        border: "1px solid rgba(255, 255, 255, 0.12)"
+                        width: "min(240px, 70%)",
+                        aspectRatio: "1/1",
+                        maxHeight: "55vh" // Constraint to prevent vertical overflow
                     }}
                 >
-                    {/* Inner highlighting glaze */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+                    {/* Orb Implementation with requested exact CSS */}
+                    <div
+                        className="orb-container relative w-full h-full rounded-full flex items-center justify-center transition-all"
+                        style={{
+                            borderRadius: "999px",
+                            background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(168,120,255,0.28) 25%, rgba(120,70,210,0.50) 55%, rgba(60,25,120,0.90) 100%)",
+                            boxShadow: "0 0 0 1px rgba(255,255,255,0.08) inset, 0 22px 60px rgba(0,0,0,0.35), 0 0 70px rgba(168,120,255,0.35)",
+                            transform: `scale(${scale})`,
+                            transition: `transform ${duration}s ease-in-out`
+                        } as React.CSSProperties}
+                    >
+                        {/* Orb::before (Halo) */}
+                        <div
+                            className="absolute rounded-full transition-opacity"
+                            style={{
+                                inset: "-22%",
+                                background: "radial-gradient(circle, rgba(200,160,255,0.22), rgba(200,160,255,0.08) 40%, rgba(200,160,255,0.00) 70%)",
+                                filter: "blur(10px)",
+                                opacity: halo,
+                                transition: "opacity 2s ease-in-out",
+                                pointerEvents: "none",
+                                zIndex: -1
+                            }}
+                        />
 
-                    {/* Centered Phase Text */}
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={phase}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 1 }}
-                            className="flex flex-col items-center justify-center text-center px-4"
-                        >
-                            <span className="text-white font-light tracking-widest uppercase text-[10px] sm:text-[12px] mb-1 opacity-90" style={{ fontFamily: "var(--font-playfair), serif" }}>
-                                {getGuidanceText()}
-                            </span>
-                            <span className="text-[#D6B36A] text-2xl sm:text-3xl font-light tabular-nums drop-shadow-sm">
-                                {String(phaseTimeRemaining).padStart(2, '0')}
-                            </span>
-                        </motion.div>
-                    </AnimatePresence>
-                </motion.div>
+                        {/* Orb::after (Highlight Glaze) */}
+                        <div
+                            className="absolute rounded-full"
+                            style={{
+                                inset: "10%",
+                                background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.0) 70%)",
+                                filter: "blur(1px)",
+                                opacity: 0.9,
+                                pointerEvents: "none"
+                            }}
+                        />
+
+                        {/* Phase Text & Countdown on top of Orb */}
+                        <div className="relative z-10 text-center select-none" style={{ textShadow: "0 8px 24px rgba(0,0,0,0.45)" }}>
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={phase}
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -5 }}
+                                    className="flex flex-col items-center"
+                                >
+                                    <span className="text-white text-[12px] sm:text-[14px] font-medium tracking-[0.1em] uppercase mb-1">
+                                        {getGuidanceText()}
+                                    </span>
+                                    <span className="text-white text-3xl sm:text-4xl font-light tabular-nums">
+                                        {String(phaseTimeRemaining).padStart(2, '0')}
+                                    </span>
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* Countdown / Progress */}
-            <div className="flex flex-col items-center space-y-2">
-                <div className="text-[9px] uppercase tracking-[0.2em] text-[#1B1326]/40 font-bold">
-                    Session Progress
-                </div>
-                <div className="text-[#1B1326]/60 text-xs font-medium tabular-nums px-3 py-1 bg-[#F4F2EF] rounded-full">
+            {/* Session Timer / Status Indicator */}
+            <div className="flex flex-col items-center gap-1.5 opacity-60">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Session Progress</span>
+                <div className="text-white text-xs font-light tabular-nums">
                     {Math.floor((totalDuration - secondsElapsed) / 60)}:
                     {String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
                 </div>
