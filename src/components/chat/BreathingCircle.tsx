@@ -1,49 +1,64 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface BreathingCircleProps {
     isPaused: boolean;
     onComplete: () => void;
 }
 
+type Phase = "inhale" | "hold" | "exhale";
+
 export default function BreathingCircle({ isPaused, onComplete }: BreathingCircleProps) {
-    const [phase, setPhase] = useState<"inhale" | "hold" | "exhale">("inhale");
+    const [phase, setPhase] = useState<Phase>("inhale");
+    const [phaseTimeRemaining, setPhaseTimeRemaining] = useState(4);
     const [secondsElapsed, setSecondsElapsed] = useState(0);
+    const totalDuration = 60;
+
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
-        if (isPaused) return;
+        if (isPaused) {
+            if (timerRef.current) clearInterval(timerRef.current);
+            return;
+        }
 
-        const totalDuration = 60; // 60 seconds total
-        const timer = setInterval(() => {
+        timerRef.current = setInterval(() => {
             setSecondsElapsed((prev) => {
-                if (prev >= totalDuration) {
-                    clearInterval(timer);
+                if (prev >= totalDuration - 1) {
+                    if (timerRef.current) clearInterval(timerRef.current);
                     onComplete();
                     return totalDuration;
                 }
                 return prev + 1;
             });
+
+            setPhaseTimeRemaining((prev) => {
+                if (prev <= 1) {
+                    // Phase switch logic
+                    setPhase((currentPhase) => {
+                        if (currentPhase === "inhale") {
+                            setPhaseTimeRemaining(4); // Hold for 4s
+                            return "hold";
+                        } else if (currentPhase === "hold") {
+                            setPhaseTimeRemaining(6); // Exhale for 6s
+                            return "exhale";
+                        } else {
+                            setPhaseTimeRemaining(4); // Inhale for 4s
+                            return "inhale";
+                        }
+                    });
+                    return 0; // Will be set in the setPhase block above
+                }
+                return prev - 1;
+            });
         }, 1000);
 
-        return () => clearInterval(timer);
+        return () => {
+            if (timerRef.current) clearInterval(timerRef.current);
+        };
     }, [isPaused, onComplete]);
-
-    useEffect(() => {
-        if (isPaused) return;
-
-        // Phase cycle: 4s inhale, 4s hold, 6s exhale = 14s total cycle
-        const cycleTime = secondsElapsed % 14;
-
-        if (cycleTime < 4) {
-            setPhase("inhale");
-        } else if (cycleTime < 8) {
-            setPhase("hold");
-        } else {
-            setPhase("exhale");
-        }
-    }, [secondsElapsed, isPaused]);
 
     const getGuidanceText = () => {
         switch (phase) {
@@ -53,76 +68,104 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
         }
     };
 
-    return (
-        <div className="flex flex-col items-center justify-center p-6 h-full space-y-8">
-            <div className="relative flex items-center justify-center w-64 h-64">
-                {/* Outer Halo */}
-                <motion.div
-                    animate={{
-                        scale: phase === "inhale" ? 1.4 : phase === "hold" ? 1.4 : 1,
-                        opacity: [0.1, 0.2, 0.1],
-                    }}
-                    transition={{
-                        duration: phase === "inhale" ? 4 : phase === "hold" ? 4 : 6,
-                        ease: "easeInOut",
-                    }}
-                    className="absolute w-full h-full rounded-full bg-[#5B2A86]/10 blur-2xl"
-                />
+    const getScale = () => {
+        switch (phase) {
+            case "inhale": return 1.15;
+            case "hold": return 1.15;
+            case "exhale": return 0.85;
+        }
+    };
 
-                {/* Outer Glow */}
+    const getDuration = () => {
+        switch (phase) {
+            case "inhale": return 4;
+            case "hold": return 4;
+            case "exhale": return 6;
+        }
+    };
+
+    return (
+        <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-10 relative overflow-hidden">
+            {/* Starry Background Effect */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-10 left-10 w-1 h-1 bg-white rounded-full opacity-20 animate-pulse" />
+                <div className="absolute top-20 right-20 w-1.5 h-1.5 bg-white rounded-full opacity-10 animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-white rounded-full opacity-30 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-[#D6B36A]/20 rounded-full blur-sm" />
+            </div>
+
+            <div className="relative flex items-center justify-center w-72 h-72">
+                {/* Glow & Halo */}
                 <motion.div
                     animate={{
-                        scale: phase === "inhale" ? 1.2 : phase === "hold" ? 1.2 : 1,
-                        opacity: phase === "hold" ? 0.6 : 0.4
+                        scale: getScale() * 1.3,
+                        opacity: phase === "hold" ? 0.3 : [0.1, 0.2, 0.1],
                     }}
                     transition={{
-                        duration: phase === "inhale" ? 4 : phase === "hold" ? 4 : 6,
-                        ease: "easeInOut",
+                        duration: getDuration(),
+                        ease: "linear",
                     }}
-                    className="absolute w-40 h-40 rounded-full bg-[#7A4FB3]/20 blur-xl"
+                    className="absolute w-full h-full rounded-full bg-[#7A4FB3]/20 blur-3xl"
                 />
 
                 {/* Main Circle */}
                 <motion.div
                     animate={{
-                        scale: phase === "inhale" ? 1.5 : phase === "hold" ? 1.5 : 1,
+                        scale: getScale(),
                     }}
                     transition={{
-                        duration: phase === "inhale" ? 4 : phase === "hold" ? 4 : 6,
-                        ease: "easeInOut",
+                        duration: getDuration(),
+                        ease: "linear",
                     }}
-                    className="relative w-32 h-32 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(91,42,134,0.3)]"
+                    className="relative w-56 h-56 rounded-full flex flex-col items-center justify-center shadow-[0_0_60px_rgba(91,42,134,0.4)] overflow-hidden"
                     style={{
-                        background: "linear-gradient(135deg, #5B2A86, #7A4FB3)",
-                        border: "1px solid rgba(255, 255, 255, 0.1)"
+                        background: "radial-gradient(circle at 30% 30%, #7A4FB3, #5B2A86)",
+                        border: "1px solid rgba(255, 255, 255, 0.15)"
                     }}
                 >
-                    <div className="absolute inset-0 rounded-full bg-white/5" />
+                    {/* Inner Texture/Glaze */}
+                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none" />
+
+                    {/* Inner Text Guidance */}
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={phase}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 1 }}
+                            className="flex flex-col items-center text-center space-y-2 z-10"
+                        >
+                            <span className="text-white/90 text-sm font-light tracking-widest uppercase">
+                                {getGuidanceText().split('...')[0]}
+                            </span>
+                            <span className="text-white text-5xl font-light tabular-nums">
+                                {String(phaseTimeRemaining).padStart(2, '0')}
+                            </span>
+                        </motion.div>
+                    </AnimatePresence>
+
+                    {/* Soft inner glow overlay */}
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
                 </motion.div>
             </div>
 
-            <div className="h-12 flex items-center justify-center">
-                <AnimatePresence mode="wait">
-                    <motion.p
-                        key={phase}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="text-lg font-light text-[#1B1326] tracking-wide"
-                        style={{ fontFamily: "var(--font-playfair), serif" }}
-                    >
-                        {getGuidanceText()}
-                    </motion.p>
-                </AnimatePresence>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="w-full max-w-[200px] h-1 bg-[#F4F2EF] rounded-full overflow-hidden">
-                <motion.div
-                    animate={{ width: `${(secondsElapsed / 60) * 100}%` }}
-                    className="h-full bg-[#D6B36A] rounded-full"
-                />
+            {/* Session Timer & Progress */}
+            <div className="flex flex-col items-center space-y-3 z-20">
+                <div className="flex flex-col items-center">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#1B1326]/40 font-bold mb-1">Session Progress</span>
+                    <span className="text-[#1B1326]/60 text-xs font-medium tabular-nums">
+                        {Math.floor((totalDuration - secondsElapsed) / 60)}:
+                        {String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
+                        <span className="ml-1 text-[9px] text-[#1B1326]/30">Remaining</span>
+                    </span>
+                </div>
+                <div className="w-48 h-1 bg-[#F4F2EF] rounded-full overflow-hidden shadow-inner">
+                    <motion.div
+                        animate={{ width: `${(secondsElapsed / totalDuration) * 100}%` }}
+                        className="h-full bg-gradient-to-r from-[#5B2A86] to-[#D6B36A] rounded-full"
+                    />
+                </div>
             </div>
         </div>
     );
