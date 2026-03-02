@@ -81,7 +81,7 @@ export default function Home() {
                     }}
                   >
                     <span className="block">Compassionate</span>
-                    <span className="block">care</span>
+                    <span className="block">care (v2.2)</span>
                   </h1>
                   <p
                     className="italic highlighted-text-gold font-medium"
