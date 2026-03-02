@@ -63,7 +63,7 @@ export default function CustomGlobe({ isHero = false }: { isHero?: boolean }) {
         const height = container.clientHeight || 500;
 
         const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-        camera.position.z = width < 768 ? 330 : 250; // Restored desktop (250) and slightly larger mobile (330)
+        camera.position.z = width < 768 ? 245 : 250; // Mobile: closer for bigger globe; Desktop: 250
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
@@ -108,11 +108,11 @@ export default function CustomGlobe({ isHero = false }: { isHero?: boolean }) {
         const globe = new THREE.Mesh(geometry, material);
         // Africa/Europe initial view
         globe.rotation.y = Math.PI * 0.9;
-        // PERSPECTIVE SQUASH: Match camera angle of hands photo only in Hero section
-        if (isHero) {
-            globe.scale.set(1.0, 0.97, 1.0);
+        // PERSPECTIVE SQUASH: Only on desktop to match camera angle of hands photo
+        if (isHero && width >= 768) {
+            globe.scale.set(1.0, 0.97, 1.0); // Slight squash only on desktop
         } else {
-            globe.scale.set(1.0, 1.0, 1.0);
+            globe.scale.set(1.0, 1.0, 1.0); // Perfectly round on mobile
         }
         scene.add(globe);
 
