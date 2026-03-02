@@ -244,8 +244,8 @@ export default function CustomGlobe() {
         <div className="relative w-full h-full flex flex-col items-center justify-center overflow-visible">
             <div
                 ref={containerRef}
-                className="w-full h-full min-h-[500px] flex items-center justify-center overflow-visible"
-                style={{ cursor: 'grab' }}
+                className="w-full h-full relative overflow-visible"
+                style={{ minHeight: '300px', cursor: 'grab' }} // Minimal safety height
             />
 
             {/* CREATIVE INTERACTION HINT */}

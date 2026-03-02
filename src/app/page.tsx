@@ -148,7 +148,7 @@ export default function Home() {
 
           {/* Right: Interactive Globe + Hands - TRUE DEPTH STACK */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
-            <div className="relative w-full lg:w-[120%] sm:lg:w-[110%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
+            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
 
               {/* Layer 0: Depth Ambiance (Luxury Blur) */}
               <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
@@ -163,7 +163,13 @@ export default function Home() {
               </div>
 
               {/* Layer 2: Contact Occlusion (Subtle Skin-Shadow) */}
-              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-25">
+              <div
+                className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-25"
+                style={{
+                  maskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)'
+                }}
+              >
                 <Image
                   src="/hands-occlusion-rim.png"
                   alt="Contact Shadow"
@@ -175,7 +181,13 @@ export default function Home() {
               </div>
 
               {/* Layer 3: TRUE Foreground (The Hands Cutout) */}
-              <div className="absolute inset-0 z-30 pointer-events-none">
+              <div
+                className="absolute inset-0 z-30 pointer-events-none"
+                style={{
+                  maskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)'
+                }}
+              >
                 <Image
                   src="/hands-front-cutout.png"
                   alt="Hands foreground"
