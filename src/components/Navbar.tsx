@@ -97,10 +97,10 @@ export default function Navbar() {
                     <div className="hidden lg:block relative z-50">
                         <Link
                             href="/contact-us"
-                            className="text-[10px] uppercase tracking-[0.25em] px-10 py-4 font-bold transition-all duration-500 text-white inline-block rounded-sm relative overflow-hidden group"
+                            className="text-[10px] uppercase tracking-[0.25em] px-10 py-4 font-bold transition-all duration-500 text-white inline-block rounded-2xl relative overflow-hidden group"
                             style={{ background: 'linear-gradient(135deg, #5B2A86, #7A4FB3)' }}
                         >
-                            <span className="relative z-10">Contact Us</span>
+                            <span className="relative z-10">Request Consultation</span>
                             <div className="absolute inset-0 bg-[#D6B36A] opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
                             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                 style={{ boxShadow: 'inset 0 0 20px rgba(214,179,106,0.5), 0 0 30px rgba(214,179,106,0.3)' }} />
