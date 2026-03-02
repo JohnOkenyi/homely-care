@@ -146,7 +146,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe + Hands - TRUE OCCLUSION STACK */}
+          {/* Right: Interactive Globe + Hands - TRUE DEPTH STACK */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
             <div className="relative w-full lg:w-[120%] sm:lg:w-[110%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
 
@@ -155,27 +155,15 @@ export default function Home() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[55%] h-[55%] bg-[#5B2A86]/40 rounded-full blur-[90px]" />
               </div>
 
-              {/* Layer 1: The Base (Palms & Background) */}
-              <div className="absolute inset-0 z-10 pointer-events-none">
-                <Image
-                  src="/hands-globe.png"
-                  alt="Hands base"
-                  fill
-                  className="object-contain object-bottom select-none"
-                  priority
-                  unoptimized={true}
-                />
-              </div>
-
-              {/* Layer 2: The Globe (Seated Integration) */}
-              <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+              {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
+              <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
                 <div className="relative w-[45.8%] h-[45.8%] mt-[-16.2%] pointer-events-auto">
                   <CustomGlobe />
                 </div>
               </div>
 
-              {/* Layer 3: Contact Occlusion (Subtle Skin-Shadow) */}
-              <div className="absolute inset-0 z-30 pointer-events-none mix-blend-multiply opacity-40">
+              {/* Layer 2: Contact Occlusion (Subtle Skin-Shadow) */}
+              <div className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-25">
                 <Image
                   src="/hands-occlusion-rim.png"
                   alt="Contact Shadow"
@@ -186,11 +174,11 @@ export default function Home() {
                 />
               </div>
 
-              {/* Layer 4: TRUE Foreground (Alpha Fingers Cutout) */}
-              <div className="absolute inset-0 z-40 pointer-events-none">
+              {/* Layer 3: TRUE Foreground (The Hands Cutout) */}
+              <div className="absolute inset-0 z-30 pointer-events-none">
                 <Image
                   src="/hands-front-cutout.png"
-                  alt="Hands foreground fingers"
+                  alt="Hands foreground"
                   fill
                   className="object-contain object-bottom select-none"
                   priority
