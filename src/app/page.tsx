@@ -123,24 +123,36 @@ export default function Home() {
               >
                 <Link
                   href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-full text-white text-xs uppercase tracking-[0.2em] font-bold transition-all duration-500 shadow-xl overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, #5B2A86, #7A4FB3)', boxShadow: '0 4px 24px rgba(91,42,134,0.45)' }}
+                  className="group relative inline-flex items-center justify-center gap-4 px-10 py-5 w-full sm:w-auto rounded-full text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
+                  style={{
+                    backgroundColor: '#F7F5F2',
+                    color: '#1B1326',
+                    border: '1px solid #D6B36A',
+                    boxShadow: '0 10px 40px -10px rgba(91,42,134,0.15), 0 0 20px rgba(214,179,106,0.1)'
+                  }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.boxShadow = '0 0 32px rgba(214,179,106,0.3), 0 4px 24px rgba(91,42,134,0.45)';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 0 40px rgba(214,179,106,0.25), 0 10px 50px -10px rgba(91,42,134,0.2)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = '#F7F5F2';
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.boxShadow = '0 4px 24px rgba(91,42,134,0.45)';
+                    e.currentTarget.style.boxShadow = '0 10px 40px -10px rgba(91,42,134,0.15), 0 0 20px rgba(214,179,106,0.1)';
                     e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = '#D6B36A';
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                  Request Care Consultation
-                  <Heart className="w-4 h-4 stroke-[2]" />
+                  <div className="absolute inset-0 bg-[#D6B36A]/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-1000 ease-in-out" />
+                  <span className="relative z-10">Request Consultation</span>
+                  <Heart className="w-4 h-4 text-[#D6B36A] group-hover:scale-110 transition-transform duration-500 relative z-10" />
                 </Link>
-                <Link href="/services" className="group relative text-xs uppercase tracking-[0.2em] font-medium inline-flex items-center gap-2 transition-colors duration-300" style={{ color: 'rgba(185,163,211,0.85)' }}>
-                  Explore Our Services
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] transition-all duration-300 group-hover:w-[94%] group-hover:left-[3%]" style={{ background: '#B9A3D3' }} />
+
+                <Link
+                  href="/services"
+                  className="group relative text-[10px] uppercase tracking-[0.3em] font-bold inline-flex items-center gap-3 transition-all duration-500 py-2 pl-4"
+                  style={{ color: '#F7F5F2' }}
+                >
+                  <span className="opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500">Explore Services</span>
+                  <div className="w-8 h-[1px] bg-[#D6B36A] transition-all duration-500 group-hover:w-12" />
                 </Link>
               </motion.div>
             </motion.div>
