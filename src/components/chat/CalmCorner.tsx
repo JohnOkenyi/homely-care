@@ -72,10 +72,10 @@ export default function CalmCorner() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex-1 flex flex-col relative z-10"
+                        className="flex-1 flex flex-col relative z-10 p-5 gap-4 items-center justify-start overflow-y-auto overflow-x-hidden"
                     >
                         {/* Header during session */}
-                        <div className="text-center pt-8 pb-4 space-y-1">
+                        <div className="text-center pt-2 pb-2 space-y-1 shrink-0">
                             <h2 className="text-2xl font-light text-[#D6B36A]" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                 Calm Corner
                             </h2>
@@ -84,7 +84,7 @@ export default function CalmCorner() {
                             </p>
                         </div>
 
-                        <div className="flex-1 flex flex-col justify-center min-h-0">
+                        <div className="w-full flex-1 flex flex-col items-center justify-start min-h-0">
                             <BreathingCircle isPaused={isPaused} onComplete={handleComplete} />
                         </div>
 
