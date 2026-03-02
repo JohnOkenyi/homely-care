@@ -74,12 +74,12 @@ export default function CalmCorner() {
                         exit={{ opacity: 0 }}
                         className="flex-1 flex flex-col relative z-10 px-8 items-center justify-between overflow-x-hidden min-h-0 sm:overflow-hidden h-full"
                     >
-                        {/* Header - Pinned to absolute top */}
-                        <div className="text-center pt-0 space-y-0 shrink-0 z-20">
-                            <h2 className="text-base sm:text-lg font-light text-[#D6B36A] tracking-wider" style={{ fontFamily: "var(--font-playfair), serif" }}>
+                        {/* Header - Larger on Mobile, pinned to top on Desktop */}
+                        <div className="text-center pt-8 sm:pt-0 space-y-1 sm:space-y-0 shrink-0 z-20">
+                            <h2 className="text-xl sm:text-lg font-light text-[#D6B36A] tracking-wider" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                 Calm Corner
                             </h2>
-                            <p className="text-[7px] text-white/40 uppercase tracking-[0.2em] font-bold">
+                            <p className="text-[9px] sm:text-[7px] text-white/40 uppercase tracking-[0.2em] font-bold">
                                 Take 60 seconds to reset.
                             </p>
                         </div>

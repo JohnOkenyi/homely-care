@@ -98,19 +98,27 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                         }}
                         className="absolute w-[1.2px] h-[1.2px] bg-[#A878FF] rounded-full shadow-[0_0_5px_#A878FF]"
                         style={{
-                            transform: `rotate(${p.angle}deg) translateY(-85px)` // Further reduced radius
+                            transform: `rotate(${p.angle}deg) translateY(var(--particle-translate, -85px))`
                         }}
                     />
                 ))}
+                <style jsx>{`
+                    div :global(.absolute.w-\[1\.2px\]) {
+                        --particle-translate: -110px;
+                    }
+                    @media (min-width: 640px) {
+                        div :global(.absolute.w-\[1\.2px\]) {
+                            --particle-translate: -85px;
+                        }
+                    }
+                `}</style>
             </div>
 
-            {/* Orb Wrapper - Ensuring no cropping */}
+            {/* Orb Wrapper - Responsive sizing */}
             <div className="w-full flex justify-center items-center py-1">
                 <div
-                    className="relative flex items-center justify-center transition-all ease-in-out"
+                    className="relative flex items-center justify-center transition-all ease-in-out w-[210px] h-[210px] sm:w-[170px] sm:h-[170px]"
                     style={{
-                        width: "170px", // Drastically reduced size
-                        height: "170px",
                         aspectRatio: "1/1"
                     }}
                 >
@@ -144,7 +152,7 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                             }}
                         />
 
-                        {/* Internal Text - Drastically Scaled Down */}
+                        {/* Internal Text - Responsive Scaling */}
                         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full select-none">
                             <AnimatePresence mode="wait">
                                 <motion.div
@@ -154,10 +162,10 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                                     exit={{ opacity: 0, y: -5 }}
                                     className="flex flex-col items-center"
                                 >
-                                    <span className="text-[9px] text-white uppercase tracking-[0.25em] font-black mb-1 drop-shadow-[0_0_8px_rgba(168,120,255,0.8)]">
+                                    <span className="text-[10px] sm:text-[9px] text-white uppercase tracking-[0.25em] font-black mb-1 drop-shadow-[0_0_8px_rgba(168,120,255,0.8)]">
                                         {getGuidanceText()}
                                     </span>
-                                    <span className="text-4xl font-light text-white tabular-nums tracking-tighter drop-shadow-lg">
+                                    <span className="text-4xl sm:text-3xl font-light text-white tabular-nums tracking-tighter drop-shadow-lg leading-none">
                                         {String(phaseTimeRemaining).padStart(2, '0')}
                                     </span>
                                 </motion.div>
@@ -167,10 +175,10 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                 </div>
             </div>
 
-            {/* Session Progress - Tighter to orb to leave room for buttons below */}
-            <div className="mt-4 flex flex-col items-center opacity-30 select-none">
-                <span className="text-[7px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Time Left</span>
-                <div className="text-white text-[8px] font-medium tabular-nums">
+            {/* Session Progress - Larger on Mobile */}
+            <div className="mt-4 flex flex-col items-center opacity-40 sm:opacity-30 select-none">
+                <span className="text-[9px] sm:text-[7px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Time Left</span>
+                <div className="text-white text-[10px] sm:text-[8px] font-medium tabular-nums">
                     {Math.floor((totalDuration - secondsElapsed) / 60)}:{String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
                 </div>
             </div>
