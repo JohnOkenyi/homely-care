@@ -158,13 +158,13 @@ export default function Home() {
                     values="1 0 0 0 0
                             0 1 0 0 0
                             0 0 1 0 0
-                            -1 -1 -1 1 0"
+                            1.5 1.5 1.5 0 -0.1"
                   />
                 </filter>
               </svg>
             </div>
 
-            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
+            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[26%]">
 
               {/* Layer 0: Depth Ambiance (Luxury Blur) */}
               <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
