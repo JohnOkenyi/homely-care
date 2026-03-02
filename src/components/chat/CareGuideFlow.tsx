@@ -153,41 +153,41 @@ export default function CareGuideFlow({ onReset }: CareGuideFlowProps) {
                         key="recommendation"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="flex-1 bg-[#FAFAF8] flex flex-col"
+                        className="flex-1 bg-[#FAFAF8] flex flex-col min-h-0 sm:overflow-hidden"
                     >
-                        <div className="flex-1 p-6 flex flex-col justify-center space-y-6">
-                            <div className="text-center space-y-2">
-                                <h3 className="text-[#1B1326]/40 text-[10px] uppercase tracking-widest font-black">Well done. Need support today?</h3>
+                        <div className="flex-1 p-4 sm:p-6 flex flex-col justify-center space-y-4 sm:space-y-6 min-h-0">
+                            <div className="text-center">
+                                <h3 className="text-[#1B1326]/40 text-[8px] sm:text-[9px] uppercase tracking-widest font-black">Well done. Need support today?</h3>
                             </div>
 
-                            <div className="bg-white p-6 rounded-3xl shadow-sm border border-black/5 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-24 h-24 bg-[#5B2A86]/5 rounded-full -mr-12 -mt-12 blur-xl" />
+                            <div className="bg-white p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-sm border border-black/5 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-20 h-20 bg-[#5B2A86]/5 rounded-full -mr-10 -mt-10 blur-xl" />
 
-                                <div className="space-y-4">
+                                <div className="space-y-2 sm:space-y-3">
                                     <div className="flex items-center gap-2 text-[#D6B36A]">
-                                        <ArrowRight className="w-4 h-4" />
-                                        <span className="text-[9px] uppercase tracking-[0.2em] font-black">Recommendation</span>
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                        <span className="text-[8px] uppercase tracking-[0.2em] font-black">Recommendation</span>
                                     </div>
-                                    <h3 className="text-2xl font-light text-[#5B2A86]" style={{ fontFamily: "var(--font-playfair), serif" }}>
+                                    <h3 className="text-lg sm:text-2xl font-light text-[#5B2A86]" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                         {getRecommendation().title}
                                     </h3>
-                                    <p className="text-sm text-[#1B1326]/70 font-light leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-[#1B1326]/70 font-light leading-relaxed">
                                         {getRecommendation().text}
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="space-y-3">
+                            <div className="space-y-2">
                                 <a
                                     href="/contact-us"
-                                    className="w-full py-4 bg-[#5B2A86] text-white rounded-2xl flex items-center justify-center gap-2 text-sm font-bold shadow-lg shadow-[#5B2A86]/20 hover:scale-[1.02] transition-all"
+                                    className="w-full py-3 sm:py-4 bg-[#5B2A86] text-white rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 text-[11px] sm:text-sm font-bold shadow-lg shadow-[#5B2A86]/20 hover:scale-[1.02] transition-all"
                                 >
                                     Request Care Consultation
-                                    <ArrowRight className="w-4 h-4" />
+                                    <ArrowRight className="w-3.5 h-3.5" />
                                 </a>
                                 <a
                                     href={getRecommendation().link}
-                                    className="w-full py-4 bg-white border border-[#1B1326]/10 text-[#1B1326] rounded-2xl text-center text-xs font-bold tracking-widest uppercase hover:bg-[#FAFAF8] transition-all"
+                                    className="w-full py-3 sm:py-4 bg-white border border-[#1B1326]/10 text-[#1B1326] rounded-xl sm:rounded-2xl text-center text-[10px] sm:text-xs font-bold tracking-widest uppercase hover:bg-[#FAFAF8] transition-all"
                                 >
                                     Learn More
                                 </a>
@@ -196,7 +196,7 @@ export default function CareGuideFlow({ onReset }: CareGuideFlowProps) {
 
                         <button
                             onClick={onReset}
-                            className="bg-white border-t border-black/5 p-4 text-center text-[10px] uppercase tracking-[0.2em] text-[#1B1326]/30 font-black hover:text-[#5B2A86] transition-colors"
+                            className="bg-white border-t border-black/5 p-3 sm:p-4 text-center text-[9px] uppercase tracking-[0.2em] text-[#1B1326]/30 font-black hover:text-[#5B2A86] transition-colors"
                         >
                             Return to Calm Corner
                         </button>

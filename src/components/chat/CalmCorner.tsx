@@ -72,42 +72,42 @@ export default function CalmCorner() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex-1 flex flex-col relative z-10 px-6 py-4 items-center justify-between overflow-y-auto overflow-x-hidden min-h-0"
+                        className="flex-1 flex flex-col relative z-10 px-6 py-2 items-center justify-between overflow-x-hidden min-h-0 sm:overflow-hidden"
                     >
                         {/* Header pushed to top - ensuring it's unclipped */}
                         <div className="text-center pt-2 space-y-1 shrink-0 z-20">
-                            <h2 className="text-xl font-light text-[#D6B36A] tracking-wide" style={{ fontFamily: "var(--font-playfair), serif" }}>
+                            <h2 className="text-base sm:text-lg font-light text-[#D6B36A] tracking-wider" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                 Calm Corner
                             </h2>
-                            <p className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-bold">
+                            <p className="text-[8px] text-white/40 uppercase tracking-[0.2em] font-bold">
                                 Take 60 seconds to reset.
                             </p>
                         </div>
 
                         {/* Centered Breathing Area - given enough flex space */}
-                        <div className="w-full flex-1 flex items-center justify-center py-6 min-h-[300px]">
+                        <div className="w-full flex-1 flex items-center justify-center py-2 min-h-0">
                             <BreathingCircle isPaused={isPaused} onComplete={handleComplete} />
                         </div>
 
                         {/* Controls - Pinned to bottom with safe padding */}
-                        <div className="shrink-0 pb-12 pt-2 flex items-center justify-center gap-4 z-20">
+                        <div className="shrink-0 pb-8 pt-2 flex items-center justify-center gap-3 z-20">
                             <button
                                 onClick={handleStart}
                                 disabled={!isPaused}
-                                className={`px-7 py-3 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all duration-300 ${!isPaused ? "bg-white/10 text-white/20 border border-white/5" : "bg-gradient-to-r from-[#D6B36A] to-[#B8924A] text-[#1B1326] shadow-xl shadow-[#D6B36A]/20 hover:scale-105 active:scale-95"}`}
+                                className={`px-6 py-2.5 rounded-full text-[9px] uppercase tracking-widest font-bold transition-all duration-300 ${!isPaused ? "bg-white/10 text-white/20 border border-white/5" : "bg-gradient-to-r from-[#D6B36A] to-[#B8924A] text-[#1B1326] shadow-xl shadow-[#D6B36A]/20 hover:scale-105 active:scale-95"}`}
                             >
                                 Start
                             </button>
                             <button
                                 onClick={() => setIsPaused(true)}
                                 disabled={isPaused}
-                                className={`px-7 py-3 rounded-full text-[10px] uppercase tracking-widest font-bold transition-all duration-300 ${isPaused ? "bg-white/10 text-white/20 border border-white/5" : "bg-white/5 text-white/80 border border-white/15 hover:bg-white/10 active:scale-95"}`}
+                                className={`px-6 py-2.5 rounded-full text-[9px] uppercase tracking-widest font-bold transition-all duration-300 ${isPaused ? "bg-white/10 text-white/20 border border-white/5" : "bg-white/5 text-white/80 border border-white/15 hover:bg-white/10 active:scale-95"}`}
                             >
                                 Pause
                             </button>
                             <button
                                 onClick={handleReset}
-                                className="px-7 py-3 rounded-full bg-white/5 border border-white/15 text-white/80 text-[10px] uppercase tracking-widest font-bold hover:bg-white/10 transition-all active:scale-95"
+                                className="px-6 py-2.5 rounded-full bg-white/5 border border-white/15 text-white/80 text-[9px] uppercase tracking-widest font-bold hover:bg-white/10 transition-all active:scale-95"
                             >
                                 Reset
                             </button>

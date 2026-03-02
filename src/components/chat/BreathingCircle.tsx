@@ -82,7 +82,7 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
     return (
         <div className="flex flex-col items-center justify-center w-full min-h-0 relative">
             {/* Particle Ring - Artistic Digital Effect */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
                 {particles.map((p) => (
                     <motion.div
                         key={p.id}
@@ -96,22 +96,22 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                             scale: { duration, ease: "easeInOut" },
                             rotate: { duration: 20, repeat: Infinity, ease: "linear" }
                         }}
-                        className="absolute w-[2px] h-[2px] bg-[#A878FF] rounded-full shadow-[0_0_8px_#A878FF]"
+                        className="absolute w-[1.5px] h-[1.5px] bg-[#A878FF] rounded-full shadow-[0_0_6px_#A878FF]"
                         style={{
-                            transform: `rotate(${p.angle}deg) translateY(-140px)`
+                            transform: `rotate(${p.angle}deg) translateY(-110px)` // Reduced radius
                         }}
                     />
                 ))}
             </div>
 
             {/* Orb Wrapper - Ensuring no cropping */}
-            <div className="w-full flex justify-center items-center py-4" style={{ marginTop: "10px", marginBottom: "10px" }}>
+            <div className="w-full flex justify-center items-center py-2" style={{ marginTop: "5px", marginBottom: "5px" }}>
                 <div
                     className="relative flex items-center justify-center transition-all ease-in-out"
                     style={{
-                        width: "min(280px, 75vw)",
+                        width: "min(210px, 55vw)", // Reduced size
                         aspectRatio: "1/1",
-                        maxHeight: "50vh" // Safe-constraint with increased desktop height
+                        maxHeight: "45vh"
                     }}
                 >
                     {/* Orb Implementation */}
@@ -127,7 +127,7 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                     >
                         {/* Digital Grid Overlay */}
                         <div className="absolute inset-0 opacity-10 pointer-events-none rounded-full"
-                            style={{ backgroundImage: "linear-gradient(#A878FF 1px, transparent 1px), linear-gradient(90deg, #A878FF 1px, transparent 1px)", backgroundSize: "20px 20px" }}
+                            style={{ backgroundImage: "linear-gradient(#A878FF 1px, transparent 1px), linear-gradient(90deg, #A878FF 1px, transparent 1px)", backgroundSize: "15px 15px" }}
                         />
 
                         {/* Holographic Glowing Core */}
@@ -154,10 +154,10 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                                     exit={{ opacity: 0, y: -10 }}
                                     className="flex flex-col items-center"
                                 >
-                                    <span className="text-[10px] sm:text-[11px] text-[#A878FF]/80 uppercase tracking-[0.3em] font-bold mb-4">
+                                    <span className="text-[9px] sm:text-[10px] text-[#A878FF]/80 uppercase tracking-[0.3em] font-bold mb-3">
                                         {getGuidanceText()}
                                     </span>
-                                    <span className="text-4xl sm:text-5xl font-light text-white tabular-nums tracking-tighter">
+                                    <span className="text-3xl sm:text-4xl font-light text-white tabular-nums tracking-tighter">
                                         {String(phaseTimeRemaining).padStart(2, '0')}
                                     </span>
                                 </motion.div>
@@ -168,9 +168,9 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
             </div>
 
             {/* Session Progress - Pushed down slightly more */}
-            <div className="mt-12 flex flex-col items-center gap-1 opacity-40 select-none">
-                <span className="text-[9px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Session Time</span>
-                <div className="text-white text-[10px] font-medium tabular-nums">
+            <div className="mt-8 flex flex-col items-center gap-1 opacity-40 select-none">
+                <span className="text-[8px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Session Time</span>
+                <div className="text-white text-[9px] font-medium tabular-nums">
                     {Math.floor((totalDuration - secondsElapsed) / 60)}:{String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
                 </div>
             </div>
