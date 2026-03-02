@@ -197,7 +197,7 @@ export default function Home() {
 
               {/* Layer 2: Contact Occlusion */}
               <div
-                className="block absolute inset-[-25%] lg:inset-[3%] z-20 pointer-events-none"
+                className="block absolute inset-[-32%] lg:inset-[3%] z-20 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
                   opacity: 0.8
@@ -205,7 +205,7 @@ export default function Home() {
               />
 
               {/* Layer 3: Hands */}
-              <div className="block absolute inset-[-25%] lg:inset-[3%] z-30 pointer-events-none">
+              <div className="block absolute inset-[-32%] lg:inset-[3%] z-30 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands foreground"
