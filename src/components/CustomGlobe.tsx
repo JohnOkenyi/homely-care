@@ -51,14 +51,14 @@ export default function CustomGlobe() {
 
         // ACES Tone Mapping for realistic light blending - Luxury Exposure
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.0; // Slightly reduced for "Blue Marble" depth
+        renderer.toneMappingExposure = 0.95; // Slightly deeper for more cinematic weight
 
         container.appendChild(renderer.domElement);
 
         let frameId: number;
 
         // --- THE GLOBE ---
-        const geometry = new THREE.SphereGeometry(100, 64, 64);
+        const geometry = new THREE.SphereGeometry(108, 64, 64); // Scaled for snug fit
         const textureLoader = new THREE.TextureLoader();
 
         // High-quality textures
@@ -68,11 +68,11 @@ export default function CustomGlobe() {
         const material = new THREE.MeshPhysicalMaterial({
             map: texture,
             normalMap: normalMap,
-            normalScale: new THREE.Vector2(0.5, 0.5), // Softer topology
+            normalScale: new THREE.Vector2(0.4, 0.4), // Very soft topology
             transparent: false,
             opacity: 1.0,
             metalness: 0.0,
-            roughness: 0.9, // Matte finish to match hand lighting
+            roughness: 0.95, // Matte finish to match hand photography
             clearcoat: 0.0,
             reflectivity: 0.0,
         });
@@ -80,6 +80,8 @@ export default function CustomGlobe() {
         const globe = new THREE.Mesh(geometry, material);
         // Africa/Europe initial view
         globe.rotation.y = Math.PI * 0.9;
+        // PERSPECTIVE SQUASH: Match camera angle of hands photo
+        globe.scale.set(1.0, 0.97, 1.0);
         scene.add(globe);
 
         // --- Interaction Restriction Logic ---
@@ -119,12 +121,12 @@ export default function CustomGlobe() {
         window.addEventListener('pointerup', onPointerUp);
         renderer.domElement.addEventListener('pointerleave', onPointerLeave);
 
-        // --- REVERTED TO ORIGINAL CONTACT US LIGHTING ---
-        const sunLight = new THREE.DirectionalLight(0xffffff, 1.5);
-        sunLight.position.set(300, 400, 500);
+        // --- Lighting: Matching Hands Image (Warm, Top-Center Soft Light) ---
+        const sunLight = new THREE.DirectionalLight(0xfff4e6, 1.2); // Warm Sunlight Tint
+        sunLight.position.set(0, 500, 150); // From top-forward for natural shadowing
         scene.add(sunLight);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
         scene.add(ambientLight);
         // --- CONTROLS ---
         const controls = new OrbitControls(camera, renderer.domElement);

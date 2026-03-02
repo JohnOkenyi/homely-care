@@ -146,8 +146,24 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe + Hands - TRUE DEPTH STACK */}
+          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
+
+            {/* SVG Filter for Pure Alpha (Black to Transparent) */}
+            <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+              <svg>
+                <filter id="blackToAlpha">
+                  <feColorMatrix
+                    type="matrix"
+                    values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            -1 -1 -1 1 0"
+                  />
+                </filter>
+              </svg>
+            </div>
+
             <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
 
               {/* Layer 0: Depth Ambiance (Luxury Blur) */}
@@ -157,18 +173,14 @@ export default function Home() {
 
               {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
               <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
-                <div className="relative w-[45.8%] h-[45.8%] mt-[-16.2%] pointer-events-auto">
+                <div className="relative w-[48%] h-[48%] mt-[-16.8%] pointer-events-auto">
                   <CustomGlobe />
                 </div>
               </div>
 
               {/* Layer 2: Contact Occlusion (Subtle Skin-Shadow) */}
               <div
-                className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-25"
-                style={{
-                  maskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)',
-                  WebkitMaskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)'
-                }}
+                className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-15"
               >
                 <Image
                   src="/hands-occlusion-rim.png"
@@ -177,24 +189,22 @@ export default function Home() {
                   className="object-contain object-bottom select-none"
                   priority
                   unoptimized={true}
+                  style={{ filter: 'url(#blackToAlpha)' }}
                 />
               </div>
 
-              {/* Layer 3: TRUE Foreground (The Hands Cutout) */}
+              {/* Layer 3: TRUE Foreground (Pure Alpha Hands) */}
               <div
                 className="absolute inset-0 z-30 pointer-events-none"
-                style={{
-                  maskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)',
-                  WebkitMaskImage: 'radial-gradient(circle at center 42%, transparent 20%, black 25%)'
-                }}
               >
                 <Image
-                  src="/hands-front-cutout.png"
+                  src="/hands-globe.png"
                   alt="Hands foreground"
                   fill
                   className="object-contain object-bottom select-none"
                   priority
                   unoptimized={true}
+                  style={{ filter: 'url(#blackToAlpha)' }}
                 />
               </div>
 
