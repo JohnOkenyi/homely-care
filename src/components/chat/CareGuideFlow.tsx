@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ArrowRight, Heart, Users, Home, Clipboard, UserPlus, Info } from "lucide-react";
 
 interface CareGuideFlowProps {
@@ -92,7 +92,7 @@ export default function CareGuideFlow({ onReset }: CareGuideFlowProps) {
                 {(step === "who" || step === "type") && (
                     <motion.div
                         key="questionnaire"
-                        initial={{ opacity: 0, bg: "white" }}
+                        initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className="flex-1 bg-white flex flex-col p-6 space-y-6"
                     >
