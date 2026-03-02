@@ -40,6 +40,21 @@ export default function RootLayout({
           <Footer />
           <ChatBox />
         </SmoothScroll>
+
+        {/* Global SVG Filter for Pure Alpha (Black to Transparent) */}
+        <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+          <svg>
+            <filter id="blackToAlpha">
+              <feColorMatrix
+                type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        1.5 1.5 1.5 0 -0.1"
+              />
+            </filter>
+          </svg>
+        </div>
       </body>
     </html>
   );
