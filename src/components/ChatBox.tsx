@@ -496,6 +496,8 @@ export default function ChatBox() {
                     rounded-3xl
                     sm:bottom-6 sm:right-6 
                     sm:w-[clamp(320px,28vw,420px)]
+                    sm:h-[clamp(650px,80vh,880px)]
+                    sm:max-h-[92vh]
                     max-sm:max-w-[92vw] max-sm:h-[75vh] max-sm:rounded-2xl
                     ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
                 style={{
