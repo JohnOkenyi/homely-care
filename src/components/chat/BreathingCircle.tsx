@@ -61,95 +61,108 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
 
     const getGuidanceText = () => {
         switch (phase) {
-            case "inhale": return "Breathe in...";
-            case "hold": return "Hold gently...";
-            case "exhale": return "Release...";
+            case "inhale": return "Breathe in";
+            case "hold": return "Hold gently";
+            case "exhale": return "Release";
         }
     };
 
-    // State derived CSS values for the Premium Orb
-    const scale = phase === "inhale" ? 1.12 : phase === "hold" ? 1.12 : 0.92;
-    const halo = phase === "inhale" ? 0.95 : phase === "hold" ? 0.85 : 0.70;
+    // Animation values
+    const scale = phase === "inhale" ? 1.15 : phase === "hold" ? 1.15 : 0.85;
+    const particleOpacity = phase === "inhale" ? 0.8 : phase === "hold" ? 1 : 0.4;
     const duration = phase === "exhale" ? 6 : 4;
 
+    // Generate static particles for the digital effect
+    const particles = Array.from({ length: 12 }).map((_, i) => ({
+        id: i,
+        angle: (i * 360) / 12,
+        delay: i * 0.1
+    }));
+
     return (
-        <div className="flex-1 flex flex-col items-center justify-center w-full min-h-0" style={{ gap: "24px" }}>
-            {/* Orb Wrapper - Ensuring no cropping */}
-            <div className="w-full flex justify-center items-center py-4" style={{ marginTop: "10px", marginBottom: "10px" }}>
-                <div
-                    className="relative flex items-center justify-center transition-all ease-in-out"
-                    style={{
-                        width: "min(240px, 70%)",
-                        aspectRatio: "1/1",
-                        maxHeight: "45vh" // Safe-constraint to prevent vertical overflow/clipping
-                    }}
-                >
-                    {/* Orb Implementation with EXACT requested premium CSS */}
-                    <div
-                        className="orb-container relative w-full h-full rounded-full flex items-center justify-center transition-all bg-no-repeat"
+        <div className="flex flex-col items-center justify-center w-full min-h-0 relative">
+            {/* Particle Ring - Artistic Digital Effect */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                {particles.map((p) => (
+                    <motion.div
+                        key={p.id}
+                        initial={false}
+                        animate={{
+                            scale: phase === "inhale" ? [1, 1.4, 1.2] : phase === "hold" ? 1.2 : 0.8,
+                            opacity: particleOpacity,
+                            rotate: [p.angle, p.angle + 360],
+                        }}
+                        transition={{
+                            scale: { duration, ease: "easeInOut" },
+                            rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+                        }}
+                        className="absolute w-[2px] h-[2px] bg-[#A878FF] rounded-full shadow-[0_0_8px_#A878FF]"
                         style={{
-                            borderRadius: "999px",
-                            background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(168,120,255,0.28) 25%, rgba(120,70,210,0.50) 55%, rgba(60,25,120,0.90) 100%)",
-                            boxShadow: "0 0 0 1px rgba(255,255,255,0.08) inset, 0 22px 60px rgba(0,0,0,0.35), 0 0 70px rgba(168,120,255,0.35)",
-                            transform: `scale(${scale})`,
-                            transition: `transform ${duration}s ease-in-out`
-                        } as React.CSSProperties}
-                    >
-                        {/* Orb::before (Halo) */}
-                        <div
-                            className="absolute rounded-full transition-opacity"
-                            style={{
-                                inset: "-22%",
-                                background: "radial-gradient(circle, rgba(200,160,255,0.22), rgba(200,160,255,0.08) 40%, rgba(200,160,255,0.00) 70%)",
-                                filter: "blur(10px)",
-                                opacity: halo,
-                                transition: "opacity 2s ease-in-out",
-                                pointerEvents: "none",
-                                zIndex: -1
-                            }}
-                        />
-
-                        {/* Orb::after (Highlight Glaze) */}
-                        <div
-                            className="absolute rounded-full"
-                            style={{
-                                inset: "10%",
-                                background: "radial-gradient(circle at 35% 35%, rgba(255,255,255,0.18), rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.0) 70%)",
-                                filter: "blur(1px)",
-                                opacity: 0.9,
-                                pointerEvents: "none"
-                            }}
-                        />
-
-                        {/* Phase Text & Countdown on top of Orb */}
-                        <div className="relative z-10 text-center select-none px-4" style={{ textShadow: "0 8px 24px rgba(0,0,0,0.45)" }}>
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={phase}
-                                    initial={{ opacity: 0, y: 5 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -5 }}
-                                    className="flex flex-col items-center"
-                                >
-                                    <span className="text-white text-[12px] sm:text-[14px] font-medium tracking-[0.1em] uppercase mb-1">
-                                        {getGuidanceText()}
-                                    </span>
-                                    <span className="text-white text-3xl sm:text-4xl font-light tabular-nums">
-                                        {String(phaseTimeRemaining).padStart(2, '0')}
-                                    </span>
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-                    </div>
-                </div>
+                            transform: `rotate(${p.angle}deg) translateY(-140px)`
+                        }}
+                    />
+                ))}
             </div>
 
-            {/* Session Status Display */}
-            <div className="flex flex-col items-center gap-1.5 opacity-60 pb-4">
-                <span className="text-[10px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Session Progress</span>
-                <div className="text-white text-xs font-light tabular-nums">
-                    {Math.floor((totalDuration - secondsElapsed) / 60)}:
-                    {String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
+            {/* Orb Wrapper */}
+            <div className="relative flex items-center justify-center">
+                <motion.div
+                    animate={{ scale }}
+                    transition={{ duration, ease: "easeInOut" }}
+                    className="relative flex items-center justify-center rounded-full overflow-hidden"
+                    style={{
+                        width: "min(220px, 60vw)",
+                        aspectRatio: "1/1",
+                        background: "radial-gradient(circle at 30% 30%, #4C1D95 0%, #1E1B4B 100%)",
+                        boxShadow: "0 0 40px rgba(168, 120, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)"
+                    }}
+                >
+                    {/* Digital Grid Overlay */}
+                    <div className="absolute inset-0 opacity-10 pointer-events-none"
+                        style={{ backgroundImage: "linear-gradient(#A878FF 1px, transparent 1px), linear-gradient(90deg, #A878FF 1px, transparent 1px)", backgroundSize: "20px 20px" }}
+                    />
+
+                    {/* Holographic Glowing Core */}
+                    <motion.div
+                        animate={{
+                            opacity: [0.4, 0.7, 0.4],
+                            scale: [0.8, 1, 0.8]
+                        }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute inset-4 rounded-full"
+                        style={{
+                            background: "radial-gradient(circle at center, rgba(168, 120, 255, 0.4) 0%, transparent 70%)",
+                            filter: "blur(20px)"
+                        }}
+                    />
+
+                    {/* Internal Text - Fixed Spacing to prevent overlap */}
+                    <div className="relative z-10 flex flex-col items-center justify-center h-full w-full select-none">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={phase}
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="flex flex-col items-center"
+                            >
+                                <span className="text-[10px] sm:text-[11px] text-[#A878FF]/80 uppercase tracking-[0.3em] font-bold mb-4">
+                                    {getGuidanceText()}
+                                </span>
+                                <span className="text-4xl sm:text-5xl font-light text-white tabular-nums tracking-tighter">
+                                    {String(phaseTimeRemaining).padStart(2, '0')}
+                                </span>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                </motion.div>
+            </div>
+
+            {/* Session Progress - Pushed down slightly more */}
+            <div className="mt-12 flex flex-col items-center gap-1 opacity-40 select-none">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Session Time</span>
+                <div className="text-white text-[10px] font-medium tabular-nums">
+                    {Math.floor((totalDuration - secondsElapsed) / 60)}:{String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
                 </div>
             </div>
         </div>

@@ -72,24 +72,25 @@ export default function CalmCorner() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex-1 flex flex-col relative z-10 p-5 gap-4 items-center justify-start overflow-y-auto overflow-x-hidden"
+                        className="flex-1 flex flex-col relative z-10 p-5 items-center justify-between"
                     >
-                        {/* Header during session */}
-                        <div className="text-center pt-2 pb-2 space-y-1 shrink-0">
-                            <h2 className="text-2xl font-light text-[#D6B36A]" style={{ fontFamily: "var(--font-playfair), serif" }}>
+                        {/* Header pushed to top to prevent overlap with orb */}
+                        <div className="text-center pt-2 space-y-1 shrink-0 z-20">
+                            <h2 className="text-xl font-light text-[#D6B36A]" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                 Calm Corner
                             </h2>
-                            <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">
+                            <p className="text-[9px] text-white/40 uppercase tracking-[0.2em] font-bold">
                                 Take 60 seconds to reset.
                             </p>
                         </div>
 
-                        <div className="w-full flex-1 flex flex-col items-center justify-start min-h-0">
+                        {/* Centered Breathing Area */}
+                        <div className="w-full flex-1 flex items-center justify-center min-h-0 py-4">
                             <BreathingCircle isPaused={isPaused} onComplete={handleComplete} />
                         </div>
 
                         {/* Controls - Styled as per screenshot */}
-                        <div className="shrink-0 pt-4 pb-12 flex items-center justify-center gap-3">
+                        <div className="shrink-0 pb-10 flex items-center justify-center gap-3 z-20">
                             <button
                                 onClick={handleStart} // Start/Resume effectively
                                 disabled={!isPaused}
