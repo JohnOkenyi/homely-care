@@ -195,17 +195,17 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Layer 2: Contact Occlusion — desktop only */}
+              {/* Layer 2: Contact Occlusion */}
               <div
-                className="hidden lg:block absolute inset-[3%] z-20 pointer-events-none"
+                className="block absolute inset-[1%] lg:inset-[3%] z-20 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
                   opacity: 0.8
                 }}
               />
 
-              {/* Layer 3: Hands — desktop only */}
-              <div className="hidden lg:block absolute inset-[3%] z-30 pointer-events-none">
+              {/* Layer 3: Hands */}
+              <div className="block absolute inset-[1%] lg:inset-[3%] z-30 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands foreground"
