@@ -115,7 +115,7 @@ export default function MeetTheTeam() {
                                     <p className="text-base md:text-lg text-[#1A1A1A]/70 font-light leading-relaxed mb-10">
                                         {member.bio}
                                     </p>
-                                    <div className="h-[2px] w-12 bg-gradient-to-r from-[#D6B36A] to-transparent group-hover:w-full transition-all duration-700 ease-out" />
+                                    <div className="h-[2px] w-12 bg-gradient-to-r from-[#D6B36A] to-transparent group-hover:w-full transition-all duration-700 ease-out select-none" />
                                 </div>
                             </motion.div>
                         ))}
@@ -127,7 +127,7 @@ export default function MeetTheTeam() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.5 }}
-                        className="mt-24 p-16 lg:p-24 glass-card-light text-center border-[#5B2A86]/10"
+                        className="mt-24 p-16 lg:p-24 glass-card-light text-center border-[#5B2A86]/10 select-none"
                     >
                         <div className="flex flex-col items-center mb-10">
                             <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-4 font-bold">Driven by</span>

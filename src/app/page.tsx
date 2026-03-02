@@ -1,4 +1,4 @@
-"use client"; // Trigger rebuild: 2026-02-28T16:23:00
+"use client"; // Trigger rebuild: 2026-03-02T01:00:00
 
 import { useRef } from "react";
 import Link from "next/link";
@@ -11,7 +11,7 @@ export default function Home() {
   const container = useRef(null);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       {/* HERO SECTION - Luxury Purple Dark Theme */}
       <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F1115 0%, #1B1326 55%, #24163A 100%)' }}>
 
@@ -21,68 +21,126 @@ export default function Home() {
           <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,163,211,0.9) 1px, transparent 1px)', backgroundSize: '70px 70px' }} />
           {/* Purple glow — left ambient */}
           <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-25" style={{ background: '#5B2A86' }} />
-          {/* Text-readability gradient overlay */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(15,17,21,0.97) 0%, rgba(27,19,38,0.9) 30%, rgba(36,22,58,0.5) 55%, transparent 78%)' }} />
+          {/* Text-readability gradient overlay — Unified dark backdrop */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(15,17,21,0.99) 0%, rgba(27,19,38,0.98) 45%, rgba(36,22,58,0.95) 75%, rgba(36,22,58,0.9) 100%)' }} />
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-8 gap-12 lg:gap-8 min-h-[100svh]">
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-8 gap-12 lg:gap-8">
 
           {/* Left: Typography */}
-          <div className="w-full lg:w-[45%] flex flex-col z-40">
+          <div className="relative w-full lg:w-[48%] flex flex-col z-40 lg:-ml-12">
+            {/* Subtle Spotlight Glow behind text */}
+            <div className="absolute -inset-10 bg-[radial-gradient(circle_at_center,rgba(185,163,211,0.1),transparent_70%)] blur-3xl pointer-events-none" />
+
             <motion.div
-              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.18, delayChildren: 0.15 } } }}
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.3 } } }}
               initial="hidden"
               animate="visible"
             >
               {/* Label */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } } }}
-                className="mb-6 lg:mb-8"
+                variants={{
+                  hidden: { opacity: 0, y: 16, filter: 'blur(10px)' },
+                  visible: { opacity: 0.8, y: 0, filter: 'blur(0px)', transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }
+                }}
+                className="mb-8 lg:mb-10"
               >
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.35em] uppercase" style={{ color: '#B9A3D3' }}>
+                <span className="text-[10px] font-bold tracking-[0.45em] uppercase" style={{ color: '#B9A3D3' }}>
                   The Gold Standard of Care
                 </span>
               </motion.div>
 
-              {/* Headline */}
-              <motion.h1
-                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } } }}
-                className="Heading-Serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-6 lg:mb-8 tracking-tight"
+              {/* Headline & Subheadline - Unified Anchored Block */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 32, filter: 'blur(12px)' },
+                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] } }
+                }}
+                className="relative mb-4 pl-8 border-l border-[#D4AF37]/30"
               >
-                <span className="font-light block" style={{ color: '#F2F2F2' }}>A Life of</span>
-                <span className="font-bold block" style={{ color: '#F2F2F2' }}>Refinement,</span>
-                <span className="font-light italic block" style={{ background: 'linear-gradient(90deg, #B9A3D3 0%, #D6B36A 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Tailored to You.</span>
-              </motion.h1>
+                {/* Vertical Gold Spine Accent */}
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: '100%' }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute left-0 top-0 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37] to-transparent shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                />
 
-              {/* Supporting text */}
-              <motion.p
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
-                className="Text-18 font-light mb-10 max-w-md leading-relaxed"
-                style={{ color: 'rgba(242,242,242,0.7)' }}
-              >
-                Experience world-class healthcare within your own private sanctuary, where every detail is meticulously curated for your well-being.
-              </motion.p>
+                {/* Main Headline Unit */}
+                <div className="mb-2">
+                  <h1
+                    className="Heading-Serif tracking-tight font-light"
+                    style={{
+                      fontSize: 'clamp(40px, 7vw, 72px)',
+                      background: 'linear-gradient(to bottom, #FFFFFF 0%, #E0E0E0 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      lineHeight: '1.0',
+                      marginBottom: '0px'
+                    }}
+                  >
+                    <span className="block">Compassionate</span>
+                    <span className="block">care</span>
+                  </h1>
+                  <p
+                    className="italic highlighted-text-gold font-medium"
+                    style={{
+                      fontSize: 'clamp(18px, 3vw, 32px)',
+                      color: '#D4AF37',
+                      opacity: 0.9,
+                      marginTop: '8px',
+                      filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.2))'
+                    }}
+                  >
+                    focused on you.
+                  </p>
+                </div>
+
+                {/* Supporting Text - Now Anchored under the gold line */}
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
+                    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }
+                  }}
+                  className="Text-18 font-light max-w-lg mb-0"
+                  style={{
+                    color: 'rgba(242,242,242,0.92)',
+                    lineHeight: '1.65'
+                  }}
+                >
+                  Dedicated clinical and personal support tailored to your life, your needs, and your independence.
+                </motion.p>
+              </motion.div>
 
               {/* CTAs */}
               <motion.div
-                variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } } }}
+                variants={{
+                  hidden: { opacity: 0, y: 16, filter: 'blur(5px)' },
+                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
+                }}
                 className="flex flex-col sm:flex-row items-center gap-4"
               >
                 <Link
                   href="/contact-us"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-full text-white text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 shadow-xl"
+                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 w-full sm:w-auto rounded-full text-white text-xs uppercase tracking-[0.2em] font-bold transition-all duration-500 shadow-xl overflow-hidden"
                   style={{ background: 'linear-gradient(135deg, #5B2A86, #7A4FB3)', boxShadow: '0 4px 24px rgba(91,42,134,0.45)' }}
-                  onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 4px 32px rgba(214,179,106,0.35), 0 4px 24px rgba(91,42,134,0.45)')}
-                  onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 24px rgba(91,42,134,0.45)')}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.boxShadow = '0 0 32px rgba(214,179,106,0.3), 0 4px 24px rgba(91,42,134,0.45)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.boxShadow = '0 4px 24px rgba(91,42,134,0.45)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
                 >
-                  Explore the Standard
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                  Request Care Consultation
                   <Heart className="w-4 h-4 stroke-[2]" />
                 </Link>
                 <Link href="/services" className="group relative text-xs uppercase tracking-[0.2em] font-medium inline-flex items-center gap-2 transition-colors duration-300" style={{ color: 'rgba(185,163,211,0.85)' }}>
-                  Discover More
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full" style={{ background: '#B9A3D3' }} />
+                  Explore Our Services
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] transition-all duration-300 group-hover:w-[94%] group-hover:left-[3%]" style={{ background: '#B9A3D3' }} />
                 </Link>
               </motion.div>
             </motion.div>
@@ -90,10 +148,13 @@ export default function Home() {
 
           {/* Right: Interactive Globe + Hands */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
-            <div className="relative w-[120%] sm:w-[110%] md:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[5%]">
+            <div className="relative w-full lg:w-[120%] sm:lg:w-[110%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
 
-              {/* Layer 0: Solid Background Base */}
-              <div className="absolute inset-0 z-0 bg-[#0B0612] rounded-3xl overflow-hidden" />
+              {/* Layer 0: Realism Glows (Contact Us Style) */}
+              <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[#5B2A86]/40 rounded-full blur-[80px]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-[#D6B36A]/20 rounded-full blur-[60px] translate-y-10" />
+              </div>
 
               {/* Layer 1: Solid Hands (Back) */}
               <div className="absolute inset-0 z-10 pointer-events-none">
@@ -107,35 +168,39 @@ export default function Home() {
                 />
               </div>
 
-              {/* Layer 2: Globe (Surgically seated) */}
-              <div className="absolute inset-0 z-20 pointer-events-auto flex items-center justify-center">
-                <div className="relative w-[46%] h-[46%] mt-[-4%] rounded-full overflow-hidden shadow-[inset_0_0_22px_rgba(0,0,0,0.22)]">
-                  <div className="absolute inset-0 z-0 bg-black rounded-full" />
-                  <div className="relative z-10 w-full h-full">
+              {/* Layer 2: Globe (Pure seated integration) */}
+              <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
+                <div className="relative w-[46%] h-[46%] mt-[-16%] pointer-events-auto overflow-visible">
+                  <div className="w-full h-full">
                     <CustomGlobe />
                   </div>
                 </div>
               </div>
 
-              {/* Bottom fade to next section */}
-              <div className="absolute bottom-[-10%] inset-x-0 h-1/3 z-40 pointer-events-none" style={{ background: 'linear-gradient(to top, #0F1115, rgba(15,17,21,0.6), transparent)' }} />
+              {/* Layer 3: Overlay Hands (The "Cradle" Effect) */}
+              <div
+                className="absolute inset-0 z-30 pointer-events-none"
+                style={{
+                  WebkitMaskImage: 'radial-gradient(circle at center 42%, transparent 22%, black 25%)',
+                  maskImage: 'radial-gradient(circle at center 42%, transparent 22%, black 25%)'
+                }}
+              >
+                <Image
+                  src="/hands-globe.png"
+                  alt="Hands overlay"
+                  fill
+                  className="object-contain object-bottom select-none opacity-90"
+                  priority
+                  unoptimized={true}
+                />
+              </div>
+
+              {/* Bottom transition removed for Unified Clean Cut edge */}
 
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="hidden lg:flex absolute bottom-10 left-12 xl:left-24 items-center gap-4 z-30">
-          <div className="w-[1px] h-12 overflow-hidden relative" style={{ background: 'rgba(185,163,211,0.25)' }}>
-            <motion.div
-              className="w-full h-full"
-              style={{ background: '#D6B36A' }}
-              animate={{ y: ["-100%", "100%"] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
-          <span className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: 'rgba(185,163,211,0.7)' }}>Discover more</span>
-        </div>
       </section>
 
       {/* SECTION 2: TRUSTED CARE - Clean Ivory Restructure */}
@@ -210,7 +275,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 3: WHY CHOOSE HOMELY CARE - Heading on Dark / Cards in Ivory Box */}
-      <section className="relative py-16 md:py-20 overflow-hidden scroll-mt-20" style={{ background: 'linear-gradient(160deg, #1B1230 0%, #0F1115 100%)' }}>
+      <section className="relative py-16 md:py-20 scroll-mt-20" style={{ background: 'linear-gradient(160deg, #1B1230 0%, #0F1115 100%)' }}>
         {/* Very subtle ambient glow */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[180px] opacity-[0.08]" style={{ background: '#5B2A86' }} />
@@ -243,9 +308,9 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full bg-[#F0EDE8] rounded-[24px] shadow-[0_25px_70px_rgba(0,0,0,0.3)] p-6 md:p-8"
+            className="w-full bg-[#F0EDE8] rounded-[24px] shadow-[0_25px_70px_rgba(0,0,0,0.3)] p-6 md:p-10 perspective-[1200px] overflow-visible select-none"
           >
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
               {[
                 {
                   icon: UserCheck,
@@ -269,26 +334,48 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.9, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group flex flex-col items-center text-center p-6 lg:p-8 bg-white rounded-[16px] border border-black/[0.04] shadow-[0_6px_24px_rgba(0,0,0,0.06)] transition-all duration-500 hover:-translate-y-[6px] hover:shadow-[0_18px_48px_rgba(0,0,0,0.10)] cursor-default"
+                  className="group relative"
                 >
-                  {/* Purple icon badge with faint gold glow on hover */}
-                  <div className="relative mb-5">
-                    <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-[12px]" style={{ background: '#D6B36A', transform: 'scale(1.2)' }} />
-                    <div className="relative w-14 h-14 rounded-full bg-[#5B2A86] flex items-center justify-center z-10">
-                      <feature.icon className="w-6 h-6 text-white stroke-[1.5]" />
+                  <motion.div
+                    whileHover={{
+                      scale: 1.15,
+                      z: 150,
+                      rotateX: -5,
+                      rotateY: 5,
+                      transition: { duration: 0.4, ease: "easeOut" }
+                    }}
+                    whileTap={{
+                      scale: 1.15,
+                      z: 150,
+                      rotateX: -5,
+                      rotateY: 5,
+                      transition: { duration: 0.1, ease: "easeOut" }
+                    }}
+                    style={{ transformStyle: 'preserve-3d' }}
+                    className="flex flex-col items-center text-center p-8 lg:p-10 bg-white rounded-[20px] border border-black/[0.04] shadow-[0_10px_30px_rgba(0,0,0,0.05)] active:shadow-[0_100px_200px_rgba(0,0,0,0.5),0_0_40px_rgba(214,179,106,0.2)] transition-all duration-500 group-hover:shadow-[0_50px_100px_rgba(0,0,0,0.2)] cursor-default h-full will-change-transform"
+                  >
+                    {/* Purple icon badge with dynamic gold glow on hover */}
+                    <div className="relative mb-6">
+                      <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-700 blur-[15px]" style={{ background: '#D6B36A', transform: 'scale(1.3)' }} />
+                      <div className="relative w-16 h-16 rounded-full bg-[#5B2A86] flex items-center justify-center z-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
+                        <feature.icon className="w-7 h-7 text-white stroke-[1.5]" />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Small gold divider under icon */}
-                  <div className="w-8 h-[1px] bg-[#D6B36A] mb-4" />
+                    {/* Small gold divider under icon */}
+                    <div className="w-10 h-[1.5px] bg-[#D6B36A] mb-5 transform transition-transform duration-700 group-hover:scale-x-150" />
 
-                  <h3 className="Heading-Serif text-[#1A1A1A] text-[1.2rem] mb-4 font-normal leading-snug">
-                    {feature.title}
-                  </h3>
+                    <h3 className="Heading-Serif text-[#1A1A1A] text-xl md:text-2xl mb-4 font-normal leading-snug group-hover:text-[#5B2A86] transition-colors duration-500">
+                      {feature.title}
+                    </h3>
 
-                  <p className="text-[14px] leading-relaxed" style={{ color: 'rgba(0,0,0,0.58)' }}>
-                    {feature.desc}
-                  </p>
+                    <p className="text-[15px] leading-relaxed font-light group-hover:text-black transition-colors duration-500" style={{ color: 'rgba(0,0,0,0.6)' }}>
+                      {feature.desc}
+                    </p>
+
+                    {/* Subtle Corner Accent */}
+                    <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-[#D6B36A]/0 group-hover:border-[#D6B36A]/40 transition-all duration-700" />
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
@@ -319,7 +406,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="bg-[#FCFBFA] rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-8 md:p-12 relative overflow-hidden flex flex-col lg:flex-row gap-10 lg:gap-14 items-center border border-black/[0.03]"
+            className="bg-[#FCFBFA] rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] p-8 md:p-12 relative overflow-hidden flex flex-col lg:flex-row gap-10 lg:gap-14 items-center border border-black/[0.03] select-none"
           >
             {/* Left Column: Inner 3D Stat Cards */}
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 shrink-0">
@@ -387,7 +474,7 @@ export default function Home() {
       </section>
 
       {/* SECTION 5: SERVICES OVERVIEW - Editorial Presentation */}
-      <section className="py-12 md:py-16 bg-premium-dark text-[#F2F2F2] overflow-hidden relative" >
+      <section className="py-12 md:py-16 bg-premium-dark text-[#F2F2F2] relative" >
         <div className="absolute top-0 inset-x-0 h-64 bg-gradient-to-b from-[#F7F5F2] to-transparent opacity-5" />
 
         <div className="grid-container relative z-10">
@@ -436,25 +523,66 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group cursor-pointer relative"
+                className="group relative h-[320px] perspective-[1200px] overflow-visible"
               >
-                <div className="relative h-[280px] md:h-[320px] w-full overflow-hidden rounded-sm mb-4">
-                  <Image src={srv.img} alt={srv.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B1326] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                {/* 3D EXTRUDE CARD */}
+                <motion.div
+                  whileHover={{
+                    scale: 1.04,
+                    z: 50,
+                    rotateX: -2,
+                    rotateY: 2,
+                    transition: { duration: 0.5, ease: "easeOut" }
+                  }}
+                  whileTap={{
+                    scale: 1.04,
+                    z: 50,
+                    rotateX: -2,
+                    rotateY: 2,
+                    transition: { duration: 0.1, ease: "easeOut" }
+                  }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                  className="relative w-full h-full rounded-xl overflow-hidden glass-card-dark border-white/10 shadow-xl transition-all duration-500 group-hover:border-[#D6B36A]/50 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(214,179,106,0.15)] group-hover:bg-[#1B1326]/90 active:shadow-[0_80px_180px_rgba(0,0,0,0.8),0_0_30px_rgba(214,179,106,0.3)] will-change-transform select-none"
+                >
+                  {/* Background Image - Subtle Zoom */}
+                  <Image
+                    src={srv.img}
+                    alt={srv.title}
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                  />
 
-                  {/* Glassmorphism Badge */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 glass-card-dark border-white/10 flex flex-col gap-1 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                    <span className="text-[#D6B36A] text-[8px] uppercase tracking-[0.3em] font-bold">{srv.tag}</span>
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-xl md:text-2xl font-serif italic text-white">{srv.title}</h3>
-                      <Link href="/services" className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#D6B36A] group-hover:border-[#D6B36A] transition-all duration-500">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:text-[#1B1326] transition-colors"><path d="M7 17l10-10M17 17V7H7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                      </Link>
-                    </div>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F1115] via-[#0F1115]/20 to-transparent" />
+
+                  {/* Content - Compact Layout */}
+                  <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                    <motion.div className="relative z-10">
+                      <span className="text-[#D6B36A] text-[10px] uppercase tracking-[0.4em] font-extrabold block mb-2">{srv.tag}</span>
+                      <h3 className="Heading-Serif text-3xl lg:text-4xl italic text-white mb-3 leading-tight tracking-tight">{srv.title}</h3>
+                      <p className="text-white text-sm md:text-base font-medium leading-relaxed mb-6 line-clamp-2 md:line-clamp-none opacity-100 shadow-sm">
+                        {srv.desc}
+                      </p>
+
+                      <div className="flex items-center gap-4">
+                        <Link
+                          href="/services"
+                          className="px-6 py-2.5 rounded-full border border-white/30 text-white text-[10px] uppercase tracking-[0.2em] font-extrabold transition-all duration-500 hover:bg-[#D6B36A] hover:text-[#1B1326] hover:border-[#D6B36A] bg-white/5"
+                        >
+                          View Service
+                        </Link>
+                        <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                            <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
-                </div>
-                {/* Secondary Info (Only visible on larger screens or hover) */}
-                <p className="px-1 text-[#F2F2F2]/60 text-xs md:text-sm font-light leading-relaxed max-w-sm line-clamp-2 md:line-clamp-none opacity-80 group-hover:opacity-100 transition-opacity">{srv.desc}</p>
+
+                  {/* Highlight Border */}
+                  <div className="absolute inset-0 pointer-events-none border border-white/5 rounded-xl group-hover:border-white/30 transition-colors duration-500" />
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -469,7 +597,7 @@ export default function Home() {
       </section>
 
       {/* THE CHARITY TRUST - Luxury Purpose */}
-      <section className="section-padding bg-[#F7F5F2] relative overflow-hidden">
+      <section className="section-padding bg-[#F7F5F2] relative">
         <div className="grid-container relative z-10 mx-auto">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <motion.div

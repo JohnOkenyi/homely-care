@@ -1,147 +1,193 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+import CustomGlobe from "@/components/CustomGlobe";
 
 export default function ContactUs() {
     return (
-        <main className="min-h-screen bg-[#F7F5F2]">
+        <main className="min-h-screen bg-[#0F1115] text-[#F2F2F2] overflow-hidden">
 
-            {/* HERO / CONTACT HEADER */}
-            <section className="relative pt-40 pb-20 bg-premium-dark overflow-hidden">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
+            {/* HERO / 3D SECTION */}
+            <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-16 overflow-hidden">
+                {/* Background Glows */}
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none" style={{ background: '#5B2A86' }} />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 pointer-events-none" style={{ background: '#D6B36A' }} />
 
-                <div className="grid-container relative z-10 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                    >
-                        <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-4 font-bold">Available 24/7</span>
-                        <h1 className="Heading-Display text-white mb-6">
-                            Begin Your <span className="Heading-Serif italic font-light highlighted-text-gold">Journey</span>
-                        </h1>
-                    </motion.div>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-[#F2F2F2]/60 text-lg font-light max-w-2xl mx-auto leading-relaxed"
-                    >
-                        Our care specialists are ready to provide a confidential consultation tailored to your unique requirements.
-                    </motion.p>
+                <div className="grid-container relative z-10 w-full">
+                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+
+                        {/* LEFT: TEXT CONTENT */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start"
+                        >
+                            <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">World-Class Care Excellence</span>
+                            <h1 className="Heading-Serif text-4xl xs:text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] mb-8">
+                                Connect with <br className="hidden xs:block" />
+                                <span className="italic font-light highlighted-text-gold">Perfection</span>
+                            </h1>
+                            <p className="text-white/80 text-base md:text-xl font-light leading-relaxed mb-10 max-w-lg">
+                                Experience a new paradigm of healthcare. Our consultants are available globally to tailor a sanctuary for your recovery.
+                            </p>
+
+                            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                                <motion.a
+                                    href="#enquiry-form"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-8 py-4 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.3em] font-bold rounded-full shadow-2xl hover:bg-[#7A4FB3] transition-all"
+                                >
+                                    Start Enquiry
+                                </motion.a>
+                                <motion.div
+                                    className="flex items-center gap-3 px-6 py-4 rounded-full border border-white/10 backdrop-blur-md"
+                                >
+                                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                                    <span className="text-[10px] uppercase tracking-widest font-bold text-white/60">Concierge Online</span>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1.5, delay: 0.2 }}
+                            className="relative w-full max-w-[500px] lg:max-w-none h-[450px] sm:h-[500px] lg:h-[700px] flex items-center justify-center lg:justify-end overflow-hidden mt-12 lg:mt-0 rounded-3xl lg:rounded-none"
+                        >
+                            <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
+                            <div className="absolute inset-0 z-10 lg:hidden bg-black/5 backdrop-blur-[2px]" />
+                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
+                                <CustomGlobe />
+                            </div>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
-            {/* CONTACT BODY */}
-            <section className="section-padding -mt-20 relative z-20">
+            {/* CONTACT CARDS & FORM */}
+            <section id="enquiry-form" className="py-24 relative z-20 bg-white selection:bg-[#5B2A86] selection:text-white">
                 <div className="grid-container">
-                    <div className="grid lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+                    <div className="grid lg:grid-cols-12 gap-16 items-start">
 
                         {/* INFO PANEL */}
-                        <div className="lg:col-span-5 space-y-12">
+                        <div className="lg:col-span-5 space-y-8">
                             <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="glass-card-light p-10 lg:p-12 border-[#5B2A86]/5"
+                                className="bg-[#0F1115] p-7 xs:p-10 lg:p-14 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden group"
                             >
-                                <div className="flex flex-col items-start mb-8">
-                                    <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-2 font-bold">Direct</span>
-                                    <h2 className="Heading-H2 text-[#1B1326] !text-4xl">Concierge</h2>
-                                </div>
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#5B2A86]/10 blur-3xl group-hover:bg-[#5B2A86]/20 transition-all duration-700" />
 
-                                <div className="space-y-10">
-                                    <div className="flex gap-6 group">
-                                        <div className="w-12 h-12 bg-[#5B2A86]/5 rounded-full flex items-center justify-center text-[#5B2A86] group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500">
-                                            <Phone className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Call Us</p>
-                                            <p className="text-xl text-[#1B1326] font-light">0203 916 5797</p>
-                                        </div>
-                                    </div>
+                                <div className="relative z-10">
+                                    <h2 className="Heading-Serif text-4xl text-white mb-12">The <span className="italic font-light text-[#D6B36A]">Grand</span> Concierge</h2>
 
-                                    <div className="flex gap-6 group">
-                                        <div className="w-12 h-12 bg-[#5B2A86]/5 rounded-full flex items-center justify-center text-[#5B2A86] group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500">
-                                            <Mail className="w-5 h-5" />
+                                    <div className="space-y-12">
+                                        <div className="flex gap-4 md:gap-6 items-center">
+                                            <div className="w-12 h-12 md:w-14 md:h-14 bg-white/5 rounded-2xl flex items-center justify-center text-[#B9A3D3] group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500 shrink-0">
+                                                <Phone className="w-5 h-5 md:w-6 md:h-6" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Private Line</p>
+                                                <p className="text-xl md:text-2xl text-white font-light">0203 916 5797</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Email Us</p>
-                                            <p className="text-xl text-[#1B1326] font-light">info@homelyhealthcare.org.uk</p>
-                                        </div>
-                                    </div>
 
-                                    <div className="flex gap-6 group">
-                                        <div className="w-12 h-12 bg-[#5B2A86]/5 rounded-full flex items-center justify-center text-[#5B2A86] group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500">
-                                            <MapPin className="w-5 h-5" />
+                                        <div className="flex gap-4 md:gap-6 items-center">
+                                            <div className="w-12 h-12 md:w-14 md:h-14 bg-white/5 rounded-2xl flex items-center justify-center text-[#B9A3D3] group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500 shrink-0">
+                                                <Mail className="w-5 h-5 md:w-6 md:h-6" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Direct Liaison</p>
+                                                <p className="text-lg md:text-xl text-white font-light break-all xs:break-normal">info@homelyhealthcare.org.uk</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Visit Us</p>
-                                            <p className="text-xl text-[#1B1326] font-light leading-relaxed">
-                                                Suite 6A, Wessex House<br />
-                                                St. Leonards Road, Charminster<br />
-                                                Bournemouth, Dorset, BH8 8QS
-                                            </p>
+
+                                        <div className="flex gap-4 md:gap-6 items-start">
+                                            <div className="w-12 h-12 md:w-14 md:h-14 bg-white/5 rounded-2xl flex items-center justify-center text-[#B9A3D3] group-hover:bg-[#5B2A86] group-hover:text-white transition-all duration-500 shrink-0">
+                                                <MapPin className="w-5 h-5 md:w-6 md:h-6" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Global HQ</p>
+                                                <p className="text-base md:text-lg text-white font-light leading-relaxed">
+                                                    Suite 6A, Wessex House<br />
+                                                    St. Leonards Road, Charminster<br />
+                                                    Bournemouth, BH8 8QS
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
 
-                            <div className="p-8 text-center border border-[#5B2A86]/10 rounded-sm">
-                                <p className="text-[11px] uppercase tracking-[0.2em] text-[#1B1326]/50">Registered Provider</p>
-                                <p className="text-[9px] uppercase tracking-[0.1em] text-[#1B1326]/30 mt-2 italic">NHS Framework Approved • CQC Regulated</p>
-                            </div>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                className="p-4 md:p-8 rounded-full md:rounded-3xl border border-black/5 bg-[#F7F5F2] flex items-center justify-center md:justify-between"
+                            >
+                                <div className="flex items-center gap-3 md:gap-4">
+                                    <div className="w-8 h-8 md:w-10 md:h-10 bg-black/5 rounded-full flex items-center justify-center shrink-0">
+                                        <MessageCircle className="w-4 h-4 md:w-5 md:h-5 text-[#5B2A86]" />
+                                    </div>
+                                    <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-black/40 text-center md:text-left">Registered Provider • CQC Good</p>
+                                </div>
+                            </motion.div>
                         </div>
 
-                        {/* FORM PANEL */}
-                        <div className="lg:col-span-7">
+                        <div className="lg:col-span-7 w-full overflow-hidden">
                             <motion.div
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="bg-white p-12 lg:p-16 shadow-[0_40px_100px_-20px_rgba(27,19,38,0.1)] rounded-sm border border-[#5B2A86]/5"
+                                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                                className="bg-[#F7F5F2] p-8 xs:p-10 lg:p-16 rounded-3xl md:rounded-[40px] shadow-sm border border-black/[0.03] w-full"
                             >
-                                <h3 className="Heading-Serif text-3xl text-[#1B1326] mb-12">Enquiry <span className="italic font-light text-[#5B2A86]">Form</span></h3>
+                                <div className="mb-8 md:mb-12 text-center md:text-left">
+                                    <h3 className="Heading-Serif text-3xl sm:text-4xl md:text-5xl text-[#0F1115] mb-4">Request <span className="italic font-light text-[#5B2A86]">Consultation</span></h3>
+                                    <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Complete the form below and an ambassador will reach out shortly.</p>
+                                </div>
 
-                                <form className="space-y-8">
-                                    <div className="grid md:grid-cols-2 gap-8">
-                                        <div className="space-y-2">
-                                            <label className="text-[10px] uppercase tracking-widest font-bold text-[#1B1326]/40">Full Name</label>
-                                            <input type="text" className="w-full bg-[#F7F5F2] border-none px-6 py-4 text-[#1B1326] placeholder-[#1B1326]/20 focus:ring-2 focus:ring-[#5B2A86]/20 transition-all" placeholder="John Doe" />
+                                <form className="space-y-6 md:space-y-10">
+                                    <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+                                        <div className="space-y-2 md:space-y-3">
+                                            <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Identity</label>
+                                            <input type="text" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Full Name" />
                                         </div>
-                                        <div className="space-y-2">
-                                            <label className="text-[10px] uppercase tracking-widest font-bold text-[#1B1326]/40">Phone Number</label>
-                                            <input type="tel" className="w-full bg-[#F7F5F2] border-none px-6 py-4 text-[#1B1326] placeholder-[#1B1326]/20 focus:ring-2 focus:ring-[#5B2A86]/20 transition-all" placeholder="+44 20" />
+                                        <div className="space-y-2 md:space-y-3">
+                                            <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Liaison Line</label>
+                                            <input type="tel" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Phone Number" />
                                         </div>
                                     </div>
 
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest font-bold text-[#1B1326]/40">Email Address</label>
-                                        <input type="email" className="w-full bg-[#F7F5F2] border-none px-6 py-4 text-[#1B1326] placeholder-[#1B1326]/20 focus:ring-2 focus:ring-[#5B2A86]/20 transition-all" placeholder="john@example.com" />
+                                    <div className="space-y-2 md:space-y-3">
+                                        <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Digital Address</label>
+                                        <input type="email" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Email Address" />
                                     </div>
 
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest font-bold text-[#1B1326]/40">Nature of Enquiry</label>
-                                        <select className="w-full bg-[#F7F5F2] border-none px-6 py-4 text-[#1B1326] focus:ring-2 focus:ring-[#5B2A86]/20 transition-all appearance-none cursor-pointer">
-                                            <option>General Care Enquiry</option>
-                                            <option>Live-in Care</option>
-                                            <option>Complex Care</option>
-                                            <option>Employment</option>
+                                    <div className="space-y-2 md:space-y-3">
+                                        <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Service Requirement</label>
+                                        <select className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer">
+                                            <option>Bespoke Home Care</option>
+                                            <option>Elite Live-in Support</option>
+                                            <option>Complex Medical Care</option>
+                                            <option>Growth & Careers</option>
                                         </select>
                                     </div>
 
-                                    <div className="space-y-2">
-                                        <label className="text-[10px] uppercase tracking-widest font-bold text-[#1B1326]/40">Your Message</label>
-                                        <textarea rows={4} className="w-full bg-[#F7F5F2] border-none px-6 py-4 text-[#1B1326] placeholder-[#1B1326]/20 focus:ring-2 focus:ring-[#5B2A86]/20 transition-all resize-none" placeholder="How Can We Assist You?" />
+                                    <div className="space-y-2 md:space-y-3">
+                                        <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Personal Message</label>
+                                        <textarea rows={2} className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none resize-none transition-all" placeholder="How may we assist you?" />
                                     </div>
 
                                     <motion.button
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
-                                        className="w-full py-6 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] flex items-center justify-center gap-4 group"
+                                        className="w-full py-5 md:py-6 bg-[#0F1115] text-[#D6B36A] text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold rounded-xl md:rounded-2xl shadow-2xl transition-all duration-500 hover:bg-[#5B2A86] hover:text-white flex items-center justify-center gap-4 group"
                                     >
-                                        <span>Submit Enquiry</span>
+                                        <span>Secure Transmission</span>
                                         <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </motion.button>
                                 </form>
@@ -150,7 +196,6 @@ export default function ContactUs() {
                     </div>
                 </div>
             </section>
-
         </main>
     );
 }

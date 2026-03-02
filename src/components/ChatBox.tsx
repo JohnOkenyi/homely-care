@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, X, Bot, Smile, Send, RefreshCw } from "lucide-react";
+import { MessageCircle, X, Bot, Smile, Send, RefreshCw, Wind } from "lucide-react";
+import CalmCorner from "./chat/CalmCorner";
 
 /* ══════════════════════════════════════════════
    KNOWLEDGE BASE — sourced from website + research
@@ -257,6 +258,13 @@ const jokes: Joke[] = [
     { setup: "How do nurses stay cool under pressure?", punchline: "They have lots of fans — their patients! 💨", category: "Nurses" },
     { setup: "What did the patient say to the nurse?", punchline: "\"You make my heart monitor race!\" 💓", category: "Nurses" },
     { setup: "Why don't nurses ever take shortcuts?", punchline: "Because they follow the proper care pathway — always! 🗺️", category: "Nurses" },
+    { setup: "What did the banana say to the nurse?", punchline: "I'm here to see the doctor. I am not peeling well.", category: "Nurses" },
+    { setup: "How do you know when a nurse is having a bad day?", punchline: "She won’t stop needling people!", category: "Nurses" },
+    { setup: "What did the nurse say to the man who fainted at the airport terminal?", punchline: "I think you might have a terminal illness.", category: "Nurses" },
+    { setup: "Why didn’t one nurse find the other nurse’s joke funny?", punchline: "She had an irony deficiency.", category: "Nurses" },
+    { setup: "Why did the robot ask the nurse to call the doctor immediately?", punchline: "Because it had a virus! 🦠", category: "Nurses" },
+    { setup: "What is it called when a hospital runs out of maternity nurses?", punchline: "A mid-wife crisis.", category: "Nurses" },
+    { setup: "Never upset a pediatric nurse.", punchline: "They have very little patients.", category: "Nurses" },
 
     // ── HOSPITAL JOKES ──
     { setup: "Why did the doctor carry a red pen to the hospital?", punchline: "In case they needed to draw blood — wait, that's the nurse's job! 🩺", category: "Hospital" },
@@ -264,6 +272,27 @@ const jokes: Joke[] = [
     { setup: "Why did the thermometer go to school?", punchline: "Because it wanted more degrees! 🌡️📚", category: "Hospital" },
     { setup: "Why don't hospitals ever get lonely?", punchline: "Because they always have patience (patients)! 🏥", category: "Hospital" },
     { setup: "What did one bandage say to the other?", punchline: "\"I've got you covered, mate!\" 🩹", category: "Hospital" },
+    { setup: "Organ coordinator: Here’s our list of donor lungs, hearts and kidneys in alphabetical order.", punchline: "Transplant surgeon: Impressive! It’s very organ-ized.", category: "Hospital" },
+    { setup: "When you get a bladder infection...", punchline: "Ur-ine trouble.", category: "Hospital" },
+    { setup: "Recent studies show patients who have a cold feel better on Saturdays and Sundays.", punchline: "Evidence points to a weekend immune system.", category: "Hospital" },
+    { setup: "A man was wheeled into the operating room...", punchline: "But at the last minute, he had a change of heart.", category: "Hospital" },
+    { setup: "I tried to play hide-and-seek when I was in the hospital...", punchline: "But the security kept finding me in the ICU.", category: "Hospital" },
+    { setup: "I went to the library to get a medical book on abdominal pain.", punchline: "Somebody had ripped the appendix out.", category: "Hospital" },
+    { setup: "I once heard a joke about amnesia...", punchline: "But I forgot how it goes.", category: "Hospital" },
+    { setup: "Dogs can’t operate an MRI machine...", punchline: "But CAT-scan! 🐱", category: "Hospital" },
+    { setup: "If you steal someone's heart...", punchline: "Do you get cardiac arrested?", category: "Hospital" },
+    { setup: "I just had a successful liver transplant operation.", punchline: "That surgeon really de-livered!", category: "Hospital" },
+    { setup: "Why do your heart, liver, and lungs all fit in your body?", punchline: "Because they are well organized.", category: "Hospital" },
+    { setup: "The doctor told a patient, 'You have acute appendicitis.'", punchline: "The patient replied, 'Is that better than an ugly one?'", category: "Hospital" },
+    { setup: "I've got this awful disease where I can't stop telling airport puns.", punchline: "The doctor says it's terminal.", category: "Hospital" },
+    { setup: "Why did they take paracetamol to prison?", punchline: "Because it’s a pain killer.", category: "Hospital" },
+    { setup: "A patient said to the doctor, 'I keep dreaming my eyes change color.'", punchline: "The doctor says 'It's just a pigment of your imagination.'", category: "Hospital" },
+    { setup: "For years I was against organ transplants.", punchline: "Then I had a change of heart.", category: "Hospital" },
+    { setup: "I woke up this morning coughing badly, think I may have pneumonoultramicroscopicsilicovolcanoconiosis...", punchline: "But it’s hard to say.", category: "Hospital" },
+    { setup: "When the lung fell in love...", punchline: "It took its breath away.", category: "Hospital" },
+    { setup: "Bad medical puns...", punchline: "Are hard to stomach.", category: "Hospital" },
+    { setup: "An organ’s favorite boat...", punchline: "Is a blood vessel.", category: "Hospital" },
+    { setup: "Dentists always get to the root of the problem.", punchline: "They really know their drill!", category: "Hospital" },
 
     // ── CARE HOME JOKES ──
     { setup: "Why did the care home start a band?", punchline: "Because they already had outstanding support staff! 🎸", category: "Care Home" },
@@ -299,6 +328,7 @@ const jokes: Joke[] = [
     { setup: "What's a carer's favourite exercise?", punchline: "Running late — and lifting spirits! 💪😄", category: "Staff" },
     { setup: "Why do carers make great friends?", punchline: "Because they always check up on you! 🤗", category: "Staff" },
     { setup: "What did the carer say at the end of a long shift?", punchline: "\"I've really taken care of business!\" 💼", category: "Staff" },
+    { setup: "Never lie to an X-ray technician.", punchline: "They can see right through you.", category: "Staff" },
     { setup: "What's a care worker's favourite key on the keyboard?", punchline: "The 'Home' key, of course! 🏠⌨️", category: "Staff" },
     { setup: "How does a support worker fix a broken heart?", punchline: "With a cup of tea and a good chat! ☕💜", category: "Staff" },
     { setup: "What do you call a carer who also does magic tricks?", punchline: "A care-dician — they make worries disappear! ✨", category: "Staff" },
@@ -377,7 +407,7 @@ interface ChatMessage {
    ══════════════════════════ */
 export default function ChatBox() {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState<"ai" | "humor">("ai");
+    const [activeTab, setActiveTab] = useState<"ai" | "humor" | "calm">("ai");
 
     // AI Chat state
     const [messages, setMessages] = useState<ChatMessage[]>([
@@ -466,7 +496,7 @@ export default function ChatBox() {
                 }}
             >
                 {/* HEADER */}
-                <div className="px-5 py-4 flex items-center gap-3 shrink-0" style={{ background: "linear-gradient(135deg, #1B1326, #2a1a40)" }}>
+                <div className="px-5 py-4 flex items-center gap-3 shrink-0" style={{ background: "linear-gradient(135deg, #5B2A86, #7A4FB3)" }}>
                     <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
                         <MessageCircle className="w-4 h-4 text-[#D6B36A]" />
                     </div>
@@ -521,7 +551,7 @@ export default function ChatBox() {
                             )}
                         </div>
                         Humour
-                        {activeTab !== "humor" && (
+                        {activeTab !== "humor" && activeTab !== "calm" && (
                             <motion.div
                                 initial={{ opacity: 0, y: 5 }}
                                 animate={{
@@ -541,6 +571,14 @@ export default function ChatBox() {
                                 TRY ME!
                             </motion.div>
                         )}
+                    </button>
+                    <button
+                        onClick={() => setActiveTab("calm")}
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeTab === "calm" ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white" : "text-[#1B1326]/40 hover:text-[#1B1326]/60"
+                            }`}
+                    >
+                        <Wind className="w-3.5 h-3.5" />
+                        Calm Corner
                     </button>
                 </div>
 
@@ -597,8 +635,7 @@ export default function ChatBox() {
                                 </div>
                             </div>
                         </>
-                    ) : (
-                        /* ── HUMOUR TAB ── */
+                    ) : activeTab === "humor" ? (
                         <div className="flex-1 flex flex-col overflow-hidden">
                             {/* Category pills */}
                             <div className="shrink-0 px-4 pt-3 pb-2 overflow-x-auto flex gap-2" style={{ scrollbarWidth: "none" }}>
@@ -674,6 +711,8 @@ export default function ChatBox() {
                                 )}
                             </div>
                         </div>
+                    ) : (
+                        <CalmCorner />
                     )}
                 </div>
 

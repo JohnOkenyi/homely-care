@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Waves, HeartPulse, Home, Users2 } from "lucide-react";
+import { Waves, HeartPulse, Home, Users2 } from "lucide-react";
 
 const services = [
     {
@@ -36,11 +36,11 @@ const services = [
 
 export default function Services() {
     return (
-        <main className="min-h-screen bg-[#F7F5F2]">
+        <main className="min-h-screen bg-[#F7F5F2] overflow-x-hidden">
 
             {/* HERO SECTION */}
-            <section className="relative pt-32 pb-12 overflow-hidden bg-premium-dark">
-                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none" style={{ background: '#5B2A86' }} />
+            <section className="relative pt-32 pb-12 overflow-x-hidden bg-premium-dark">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none overflow-hidden" style={{ background: '#5B2A86' }} />
 
                 <div className="grid-container relative z-10 text-center">
                     <motion.div
@@ -74,32 +74,53 @@ export default function Services() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="glass-card-light p-8 md:p-10 border-[#5B2A86]/5 group hover:border-[#5B2A86]/20 transition-all duration-700 relative overflow-hidden"
+                                className="group relative h-auto md:h-[320px] lg:h-[300px] perspective-1000 mb-4"
                             >
-                                <div className="flex flex-col md:flex-row md:items-start gap-8">
-                                    <div className="w-16 h-16 bg-[#5B2A86]/5 border border-[#5B2A86]/10 rounded-full flex items-center justify-center text-[#5B2A86] shrink-0 transition-all duration-700 group-hover:bg-[#5B2A86]/10 group-hover:scale-105">
-                                        <srv.icon className="w-8 h-8 stroke-[1.2]" />
-                                    </div>
-                                    <div className="flex-1">
-                                        <span className="text-[8px] uppercase tracking-[0.4em] font-bold text-[#D6B36A] mb-3 block">
-                                            {srv.subtitle}
-                                        </span>
-                                        <h2 className="text-2xl md:text-3xl font-serif italic text-[#1B1326] mb-4">{srv.title}</h2>
-                                        <p className="text-sm md:text-base text-[#1B1326]/70 font-light leading-relaxed mb-8">
-                                            {srv.description}
-                                        </p>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.05,
+                                        z: 50,
+                                        rotateX: -2,
+                                        rotateY: 2,
+                                        transition: { duration: 0.4, ease: "easeOut" }
+                                    }}
+                                    whileTap={{
+                                        scale: 1.05,
+                                        z: 50,
+                                        rotateX: -2,
+                                        rotateY: 2,
+                                        transition: { duration: 0.1, ease: "easeOut" }
+                                    }}
+                                    style={{ transformStyle: 'preserve-3d' }}
+                                    className="relative w-full h-full rounded-2xl p-6 md:p-8 glass-card-light border-[#5B2A86]/5 shadow-lg transition-all duration-500 group-hover:border-[#D6B36A]/40 group-hover:shadow-2xl group-hover:bg-white flex flex-col justify-center select-none cursor-default"
+                                >
+                                    <div className="flex flex-col md:flex-row md:items-center gap-6">
+                                        <div className="w-16 h-16 bg-[#5B2A86]/5 border border-[#5B2A86]/10 rounded-xl flex items-center justify-center text-[#5B2A86] shrink-0 transition-all duration-500 group-hover:bg-[#5B2A86] group-hover:text-white">
+                                            <srv.icon className="w-8 h-8 stroke-[1.5]" />
+                                        </div>
+                                        <div className="flex-1">
+                                            <span className="text-[10px] uppercase tracking-[0.4em] font-extrabold text-[#D6B36A] mb-3 block">
+                                                {srv.subtitle}
+                                            </span>
+                                            <h2 className="text-3xl md:text-4xl font-serif italic text-[#1B1326] mb-4 tracking-tight">{srv.title}</h2>
+                                            <p className="text-sm md:text-base text-[#1B1326] font-medium leading-relaxed mb-6 max-w-2xl opacity-90">
+                                                {srv.description}
+                                            </p>
 
-                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
-                                            {srv.features.map(feat => (
-                                                <li key={feat} className="flex items-center gap-2 text-[10px] tracking-wider text-[#1B1326]/60 uppercase font-black">
-                                                    <CheckCircle2 className="w-3.5 h-3.5 text-[#5B2A86]" />
-                                                    {feat}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8">
+                                                {srv.features.map(feat => (
+                                                    <li key={feat} className="flex items-center gap-3 text-[10px] md:text-[11px] tracking-[0.05em] text-[#1B1326] uppercase font-bold">
+                                                        <div className="w-1.5 h-1.5 rounded-full bg-[#D6B36A] shrink-0" />
+                                                        {feat}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#D6B36A]/5 rounded-full -mr-16 -mt-16 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                                    {/* Interaction Decoration */}
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D6B36A]/10 to-transparent rounded-full -mr-16 -mt-16 blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                                </motion.div>
                             </motion.div>
                         ))}
                     </div>

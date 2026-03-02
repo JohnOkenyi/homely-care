@@ -3,19 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { Home, UserCheck, ShieldCheck, Activity } from "lucide-react";
+import { Home, UserCheck, ShieldCheck, Activity, Brain, HeartPulse, Clock, Stethoscope, Waves, HandHeart } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 const SERVICE_DATA = [
     { id: 1, text: "Home Care", lat: 25, lng: 10, icon: <Home size={18} /> },
     { id: 2, text: "Live-in Care", lat: 10, lng: 40, icon: <UserCheck size={18} /> },
-    { id: 3, text: "Supported\nLiving", lat: 45, lng: -20, icon: <ShieldCheck size={18} /> },
+    { id: 3, text: "Supported\nLiving", lat: 45, lng: -70, icon: <ShieldCheck size={18} /> },
     { id: 4, text: "Complex Care", lat: -10, lng: 20, icon: <Activity size={18} /> },
+    { id: 5, text: "Dementia Care", lat: 35, lng: 140, icon: <Brain size={18} /> },
+    { id: 6, text: "Palliative Care", lat: -30, lng: -40, icon: <HeartPulse size={18} /> },
+    { id: 7, text: "Respite Care", lat: 15, lng: -140, icon: <Clock size={18} /> },
+    { id: 8, text: "Nursing Care", lat: -45, lng: 100, icon: <Stethoscope size={18} /> },
+    { id: 9, text: "End of Life", lat: 55, lng: 60, icon: <Waves size={18} /> },
+    { id: 10, text: "Personal Care", lat: -20, lng: -110, icon: <HandHeart size={18} /> },
 ];
 
 export default function CustomGlobe() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMounted, setIsMounted] = useState(false);
+    const [showHint, setShowHint] = useState(true);
 
     useEffect(() => {
         setIsMounted(true);
@@ -32,21 +39,26 @@ export default function CustomGlobe() {
         const scene = new THREE.Scene();
 
         // Use container dimensions or fallback
-        const width = container.clientWidth || 800;
-        const height = container.clientHeight || 800;
+        const width = container.clientWidth || (typeof window !== 'undefined' ? window.innerWidth : 800);
+        const height = container.clientHeight || 500;
 
         const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-        camera.position.z = 250;
+        camera.position.z = width < 768 ? 330 : 250; // Restored desktop (250) and slightly larger mobile (330)
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
         renderer.setPixelRatio(window.devicePixelRatio);
+
+        // HDR/ACES Tone Mapping for realistic light blending
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+
         container.appendChild(renderer.domElement);
 
         let frameId: number;
 
         // --- THE GLOBE ---
-        const geometry = new THREE.SphereGeometry(100, 128, 128);
+        const geometry = new THREE.SphereGeometry(100, 64, 64);
         const textureLoader = new THREE.TextureLoader();
 
         // High-quality textures from three-globe repository
@@ -59,11 +71,10 @@ export default function CustomGlobe() {
             normalScale: new THREE.Vector2(0.85, 0.85),
             transparent: false,
             opacity: 1.0,
-            metalness: 0.15,
-            roughness: 0.5,
-            clearcoat: 0.3,
-            clearcoatRoughness: 0.6,
-            reflectivity: 0.5,
+            metalness: 0.0,
+            roughness: 0.7, // Reverted to realistic soft diffuse
+            clearcoat: 0.0,
+            reflectivity: 0.0,
         });
 
         const globe = new THREE.Mesh(geometry, material);
@@ -71,34 +82,70 @@ export default function CustomGlobe() {
         globe.rotation.y = Math.PI * 0.9;
         scene.add(globe);
 
-        // --- PREMIUM LIGHTING ---
-        // 1. Key Light (Warm White)
-        const keyLight = new THREE.DirectionalLight(0xfff5e6, 3.0);
-        keyLight.position.set(300, 200, 500);
-        scene.add(keyLight);
+        // --- Interaction Restriction Logic ---
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
 
-        // 2. Fill Light (Soft Purple)
-        const fillLight = new THREE.PointLight(0x5B2A86, 1.5);
-        fillLight.position.set(-300, -100, 200);
-        scene.add(fillLight);
+        const onPointerDown = (event: PointerEvent) => {
+            if (!container) return;
+            const rect = container.getBoundingClientRect();
+            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-        // 3. Rim Light (Golden)
-        const rimLight = new THREE.SpotLight(0xD6B36A, 8.0);
-        rimLight.position.set(-200, 300, -300);
-        rimLight.angle = 0.5;
-        scene.add(rimLight);
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObject(globe);
 
-        // 4. Subtle Ambient
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            if (intersects.length > 0) {
+                controls.enabled = true;
+                controls.autoRotate = false; // Stop rotation during touch
+                setShowHint(false); // Hide hint on interaction
+            } else {
+                controls.enabled = false;
+            }
+        };
+
+        const onPointerUp = () => {
+            controls.enabled = false; // Disable controls so page can scroll
+            controls.autoRotate = true; // Resume auto-rotation
+        };
+
+        const onPointerLeave = () => {
+            controls.enabled = false;
+            controls.autoRotate = true;
+        };
+
+        // Attach to domElement for precise targeting
+        renderer.domElement.addEventListener('pointerdown', onPointerDown);
+        window.addEventListener('pointerup', onPointerUp);
+        renderer.domElement.addEventListener('pointerleave', onPointerLeave);
+
+        // --- REVERTED TO ORIGINAL CONTACT US LIGHTING ---
+        const sunLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        sunLight.position.set(300, 400, 500);
+        scene.add(sunLight);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
         scene.add(ambientLight);
-
         // --- CONTROLS ---
         const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enabled = false;
         controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.08; // More premium weight
+        controls.rotateSpeed = 0.8; // Controlled smoothness
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 1.5; // Slower, more luxury rotation
+        controls.autoRotateSpeed = 1.5;
         controls.minPolarAngle = Math.PI / 2.2;
         controls.maxPolarAngle = Math.PI / 1.8;
+
+        // FORCE LOCK DISTANCE TO PREVENT ZOOMING
+        const dist = camera.position.z;
+        controls.minDistance = dist;
+        controls.maxDistance = dist;
+
+        renderer.domElement.style.touchAction = 'pan-y';
+        container.style.touchAction = 'pan-y'; // Force on container too
 
         // --- LABELS ---
         const labelContainer = document.createElement("div");
@@ -109,7 +156,7 @@ export default function CustomGlobe() {
             const el = document.createElement("div");
             const iconMarkup = renderToStaticMarkup(data.icon);
             el.innerHTML = `
-                <div class="globe-label group flex flex-col items-center cursor-pointer pointer-events-auto transition-all duration-300">
+                <div class="globe-label group flex flex-col items-center cursor-pointer pointer-events-none lg:pointer-events-auto transition-all duration-300">
                     <div class="bg-purple-900/40 border border-[#B9A3D3]/60 rounded-xl p-2 mb-1.5 backdrop-blur-md shadow-lg group-hover:scale-110 transition-transform">
                         <div class="text-[#B9A3D3]">${iconMarkup}</div>
                     </div>
@@ -154,13 +201,21 @@ export default function CustomGlobe() {
         };
 
         const handleResize = () => {
+            if (!container) return;
             const newW = container.clientWidth;
             const newH = container.clientHeight;
+            if (newW === 0 || newH === 0) return;
+
             renderer.setSize(newW, newH);
             camera.aspect = newW / newH;
+            camera.position.z = newW < 768 ? 330 : 250;
             camera.updateProjectionMatrix();
         };
+
         window.addEventListener('resize', handleResize);
+
+        // Initial resize check after mount
+        const resizeTimeout = setTimeout(handleResize, 100);
 
         const animate = () => {
             frameId = requestAnimationFrame(animate);
@@ -172,14 +227,18 @@ export default function CustomGlobe() {
         animate();
 
         return () => {
+            clearTimeout(resizeTimeout);
             window.removeEventListener('resize', handleResize);
+            renderer.domElement.removeEventListener('pointerdown', onPointerDown);
+            window.removeEventListener('pointerup', onPointerUp);
+            renderer.domElement.removeEventListener('pointerleave', onPointerLeave);
             if (frameId) cancelAnimationFrame(frameId);
             if (labelContainer && container.contains(labelContainer)) container.removeChild(labelContainer);
             if (renderer.domElement && container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
             renderer.dispose();
             scene.clear();
         };
-    }, [isMounted]);
+    }, [isMounted, setShowHint]);
 
     return (
         <div className="relative w-full h-full flex flex-col items-center justify-center overflow-visible">
@@ -189,6 +248,45 @@ export default function CustomGlobe() {
                 style={{ cursor: 'grab' }}
             />
 
+            {/* CREATIVE INTERACTION HINT */}
+            {showHint && (
+                <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-30">
+                    <div className="flex flex-col items-center gap-4 animate-pulse-slow">
+                        <div className="flex items-center gap-3 bg-white/5 border border-white/10 backdrop-blur-md px-5 py-2.5 rounded-full shadow-2xl">
+                            <div className="w-5 h-5 flex items-center justify-center text-[#D6B36A]">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce-horizontal">
+                                    <path d="M18 8L22 12L18 16" />
+                                    <path d="M2 12H22" />
+                                </svg>
+                            </div>
+                            <span className="text-white/60 text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium pt-0.5">Drag to Explore</span>
+                            <div className="w-5 h-5 flex items-center justify-center text-[#D6B36A] rotate-180">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce-horizontal">
+                                    <path d="M18 8L22 12L18 16" />
+                                    <path d="M2 12H22" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <style jsx>{`
+                @keyframes bounceHorizontal {
+                    0%, 100% { transform: translateX(0); }
+                    50% { transform: translateX(4px); }
+                }
+                .animate-bounce-horizontal {
+                    animation: bounceHorizontal 2s infinite ease-in-out;
+                }
+                @keyframes pulseSlow {
+                    0%, 100% { opacity: 0.6; scale: 1; }
+                    50% { opacity: 1; scale: 1.05; }
+                }
+                .animate-pulse-slow {
+                    animation: pulseSlow 3s infinite ease-in-out;
+                }
+            `}</style>
         </div>
     );
 }

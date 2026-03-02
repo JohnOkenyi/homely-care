@@ -110,7 +110,7 @@ export default function AboutUs() {
                         </h2>
                     </motion.div>
 
-                    <div className="grid md:grid-cols-3 gap-4 lg:gap-6">
+                    <div className="grid md:grid-cols-3 gap-6 lg:gap-8 perspective-2000">
                         {[
                             { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical well-being." },
                             { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest clinical standards." },
@@ -122,13 +122,36 @@ export default function AboutUs() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 1, delay: idx * 0.1 }}
-                                className="glass-card-dark p-8 text-center group transition-all duration-500 hover:border-[#D6B36A]/30"
+                                className="relative group cursor-default"
                             >
-                                <div className="w-14 h-14 bg-[#5B2A86]/20 border border-[#D6B36A]/20 rounded-full flex items-center justify-center text-[#D6B36A] mx-auto mb-6 transition-all duration-500 group-hover:bg-[#5B2A86]/40 group-hover:scale-105">
-                                    <pillar.icon className="w-6 h-6 stroke-[1.2]" />
-                                </div>
-                                <h3 className="text-xl font-serif italic text-white mb-4 group-hover:text-[#D6B36A] transition-colors">{pillar.title}</h3>
-                                <p className="text-xs md:text-sm text-white/50 font-light leading-relaxed">{pillar.desc}</p>
+                                <motion.div
+                                    whileHover={{
+                                        scale: 1.06,
+                                        z: 60,
+                                        rotateX: -2,
+                                        rotateY: 2,
+                                        transition: { duration: 0.4, ease: "easeOut" }
+                                    }}
+                                    className="bg-[#0F1115]/60 backdrop-blur-2xl border border-white/10 p-8 rounded-2xl shadow-2xl transition-all duration-500 group-hover:shadow-[0_40px_100px_rgba(0,0,0,0.4)] group-hover:bg-[#1B1326]/80 group-hover:border-[#D6B36A]/40 h-full flex flex-col items-center text-center relative overflow-hidden"
+                                >
+                                    {/* Luxury Glow Effect */}
+                                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#D6B36A]/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                                    <div className="w-14 h-14 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-[#D6B36A] mb-6 transition-all duration-700 group-hover:bg-[#D6B36A] group-hover:text-[#1B1326] group-hover:rotate-6">
+                                        <pillar.icon className="w-6 h-6 stroke-[1.5]" />
+                                    </div>
+
+                                    <h3 className="text-xl md:text-2xl font-serif italic text-white mb-4 group-hover:text-[#D6B36A] transition-colors duration-500">
+                                        {pillar.title}
+                                    </h3>
+
+                                    <p className="text-sm text-white/70 font-medium leading-relaxed group-hover:text-white transition-colors duration-500">
+                                        {pillar.desc}
+                                    </p>
+
+                                    {/* Bottom Decorative Edge */}
+                                    <div className="absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 ease-out" />
+                                </motion.div>
                             </motion.div>
                         ))}
                     </div>

@@ -7,6 +7,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // Disable smooth scroll on mobile for native ultra-fast response
+        if (typeof window !== 'undefined' && window.innerWidth < 1024) return;
+
         setMounted(true);
         const lenis = new Lenis({
             duration: 1.5,
