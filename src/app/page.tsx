@@ -180,7 +180,7 @@ export default function Home() {
 
               {/* Layer 2: Contact Occlusion (Clean CSS Shadow, NO CHECKERS) */}
               <div
-                className="absolute inset-0 z-20 pointer-events-none"
+                className="absolute inset-[4%] z-20 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
                   opacity: 0.8
@@ -189,7 +189,7 @@ export default function Home() {
 
               {/* Layer 3: TRUE Foreground (Pure Alpha Hands - Black to Transparent) */}
               <div
-                className="absolute inset-0 z-30 pointer-events-none"
+                className="absolute inset-[4%] z-30 pointer-events-none"
               >
                 <Image
                   src="/hands-globe.png"
