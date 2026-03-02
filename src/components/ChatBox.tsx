@@ -487,7 +487,7 @@ export default function ChatBox() {
 
             {/* CHAT PANEL — full-screen on mobile, floating card on desktop */}
             <div
-                className={`fixed z-[9998] overflow-hidden flex flex-col transition-all duration-500
+                className={`fixed z-[9998] overflow-hidden flex flex-col transition-all duration-300
                     bottom-6 right-6 
                     w-[clamp(320px,28vw,420px)] 
                     h-[clamp(520px,70vh,720px)] 
