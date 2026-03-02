@@ -36,20 +36,19 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
 
             setPhaseTimeRemaining((prev) => {
                 if (prev <= 1) {
-                    // Phase switch logic
                     setPhase((currentPhase) => {
                         if (currentPhase === "inhale") {
-                            setPhaseTimeRemaining(4); // Hold for 4s
+                            setPhaseTimeRemaining(4);
                             return "hold";
                         } else if (currentPhase === "hold") {
-                            setPhaseTimeRemaining(6); // Exhale for 6s
+                            setPhaseTimeRemaining(6);
                             return "exhale";
                         } else {
-                            setPhaseTimeRemaining(4); // Inhale for 4s
+                            setPhaseTimeRemaining(4);
                             return "inhale";
                         }
                     });
-                    return 0; // Will be set in the setPhase block above
+                    return 0;
                 }
                 return prev - 1;
             });
@@ -70,9 +69,9 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
 
     const getScale = () => {
         switch (phase) {
-            case "inhale": return 1.15;
-            case "hold": return 1.15;
-            case "exhale": return 0.85;
+            case "inhale": return 1.12;
+            case "hold": return 1.12;
+            case "exhale": return 0.88;
         }
     };
 
@@ -85,48 +84,55 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
     };
 
     return (
-        <div className="flex-1 flex flex-col items-center justify-center p-6 space-y-10 relative overflow-hidden">
-            {/* Starry Background Effect */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-10 left-10 w-1 h-1 bg-white rounded-full opacity-20 animate-pulse" />
-                <div className="absolute top-20 right-20 w-1.5 h-1.5 bg-white rounded-full opacity-10 animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-white rounded-full opacity-30 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-[#D6B36A]/20 rounded-full blur-sm" />
-            </div>
+        <div className="flex flex-col items-center justify-center py-4 space-y-8 w-full">
+            {/* The Orb Container */}
+            <div className="relative flex items-center justify-center w-[clamp(180px,55vw,220px)] aspect-square max-h-[30vh]">
 
-            <div className="relative flex items-center justify-center w-72 h-72">
-                {/* Glow & Halo */}
+                {/* Outer Halo Glow */}
                 <motion.div
                     animate={{
-                        scale: getScale() * 1.3,
-                        opacity: phase === "hold" ? 0.3 : [0.1, 0.2, 0.1],
+                        scale: getScale() * 1.25,
+                        opacity: phase === "inhale" ? [0.15, 0.35] : phase === "exhale" ? [0.35, 0.15] : 0.35,
                     }}
                     transition={{
                         duration: getDuration(),
-                        ease: "linear",
+                        ease: "easeInOut",
                     }}
-                    className="absolute w-full h-full rounded-full bg-[#7A4FB3]/20 blur-3xl"
+                    className="absolute inset-[-20%] rounded-full bg-[#7A4FB3]/25 blur-3xl"
                 />
 
-                {/* Main Circle */}
+                {/* Second Halo Layer */}
+                <motion.div
+                    animate={{
+                        scale: getScale() * 1.1,
+                        opacity: phase === "hold" ? 0.3 : 0.2,
+                    }}
+                    transition={{
+                        duration: getDuration(),
+                        ease: "easeInOut",
+                    }}
+                    className="absolute inset-0 rounded-full border border-[#D6B36A]/20 blur-sm"
+                />
+
+                {/* Main Premium Orb */}
                 <motion.div
                     animate={{
                         scale: getScale(),
                     }}
                     transition={{
                         duration: getDuration(),
-                        ease: "linear",
+                        ease: "easeInOut",
                     }}
-                    className="relative w-56 h-56 rounded-full flex flex-col items-center justify-center shadow-[0_0_60px_rgba(91,42,134,0.4)] overflow-hidden"
+                    className="relative w-full h-full rounded-full flex items-center justify-center overflow-hidden shadow-[0_0_50px_rgba(91,42,134,0.5)]"
                     style={{
-                        background: "radial-gradient(circle at 30% 30%, #7A4FB3, #5B2A86)",
-                        border: "1px solid rgba(255, 255, 255, 0.15)"
+                        background: "radial-gradient(circle at 35% 35%, #9b6dd3 0%, #5B2A86 45%, #3e1b5c 100%)",
+                        border: "1px solid rgba(255, 255, 255, 0.12)"
                     }}
                 >
-                    {/* Inner Texture/Glaze */}
-                    <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none" />
+                    {/* Inner highlighting glaze */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
 
-                    {/* Inner Text Guidance */}
+                    {/* Centered Phase Text */}
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={phase}
@@ -134,37 +140,27 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 1 }}
-                            className="flex flex-col items-center text-center space-y-2 z-10"
+                            className="flex flex-col items-center justify-center text-center px-4"
                         >
-                            <span className="text-white/90 text-sm font-light tracking-widest uppercase">
-                                {getGuidanceText().split('...')[0]}
+                            <span className="text-white font-light tracking-widest uppercase text-[10px] sm:text-[12px] mb-1 opacity-90" style={{ fontFamily: "var(--font-playfair), serif" }}>
+                                {getGuidanceText()}
                             </span>
-                            <span className="text-white text-5xl font-light tabular-nums">
+                            <span className="text-[#D6B36A] text-2xl sm:text-3xl font-light tabular-nums drop-shadow-sm">
                                 {String(phaseTimeRemaining).padStart(2, '0')}
                             </span>
                         </motion.div>
                     </AnimatePresence>
-
-                    {/* Soft inner glow overlay */}
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/5 to-transparent pointer-events-none" />
                 </motion.div>
             </div>
 
-            {/* Session Timer & Progress */}
-            <div className="flex flex-col items-center space-y-3 z-20">
-                <div className="flex flex-col items-center">
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#1B1326]/40 font-bold mb-1">Session Progress</span>
-                    <span className="text-[#1B1326]/60 text-xs font-medium tabular-nums">
-                        {Math.floor((totalDuration - secondsElapsed) / 60)}:
-                        {String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
-                        <span className="ml-1 text-[9px] text-[#1B1326]/30">Remaining</span>
-                    </span>
+            {/* Countdown / Progress */}
+            <div className="flex flex-col items-center space-y-2">
+                <div className="text-[9px] uppercase tracking-[0.2em] text-[#1B1326]/40 font-bold">
+                    Session Progress
                 </div>
-                <div className="w-48 h-1 bg-[#F4F2EF] rounded-full overflow-hidden shadow-inner">
-                    <motion.div
-                        animate={{ width: `${(secondsElapsed / totalDuration) * 100}%` }}
-                        className="h-full bg-gradient-to-r from-[#5B2A86] to-[#D6B36A] rounded-full"
-                    />
+                <div className="text-[#1B1326]/60 text-xs font-medium tabular-nums px-3 py-1 bg-[#F4F2EF] rounded-full">
+                    {Math.floor((totalDuration - secondsElapsed) / 60)}:
+                    {String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
                 </div>
             </div>
         </div>

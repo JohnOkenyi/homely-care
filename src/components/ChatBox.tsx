@@ -488,8 +488,14 @@ export default function ChatBox() {
             {/* CHAT PANEL — full-screen on mobile, floating card on desktop */}
             <div
                 className={`fixed z-[9998] overflow-hidden flex flex-col transition-all duration-300
-                    bottom-20 right-4 w-[calc(100%-32px)] max-w-[390px] h-[500px] max-h-[calc(100vh-120px)] rounded-2xl
-                    sm:bottom-24 sm:right-6 sm:h-[540px]
+                    bottom-6 right-6 
+                    w-[clamp(320px,28vw,420px)] 
+                    h-[clamp(520px,70vh,720px)] 
+                    max-h-[80vh] 
+                    max-w-[92vw]
+                    rounded-3xl
+                    sm:right-6
+                    max-sm:left-3 max-sm:right-3 max-sm:bottom-3 max-sm:w-auto max-sm:h-[75vh] max-sm:rounded-2xl
                     ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"}`}
                 style={{
                     boxShadow: "0 25px 80px rgba(15, 17, 21, 0.25), 0 0 0 1px rgba(91, 42, 134, 0.08)"
@@ -583,7 +589,7 @@ export default function ChatBox() {
                 </div>
 
                 {/* BODY */}
-                <div className="flex-1 flex flex-col bg-white overflow-hidden">
+                <div className="flex-1 flex flex-col bg-white overflow-y-auto overflow-x-hidden" style={{ scrollbarWidth: "thin" }}>
                     {activeTab === "ai" ? (
                         <>
                             {/* Messages */}
