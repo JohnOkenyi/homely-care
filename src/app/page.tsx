@@ -146,7 +146,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK VER_2 */}
+          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK VER_3 */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
 
             {/* SVG Filter for Pure Alpha (Black to Transparent) */}
@@ -178,22 +178,16 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Layer 2: Contact Occlusion (Subtle Skin-Shadow) */}
+              {/* Layer 2: Contact Occlusion (Clean CSS Shadow, NO CHECKERS) */}
               <div
-                className="absolute inset-0 z-20 pointer-events-none mix-blend-multiply opacity-15"
-              >
-                <Image
-                  src="/hands-occlusion-rim.png"
-                  alt="Contact Shadow"
-                  fill
-                  className="object-contain object-bottom select-none"
-                  priority
-                  unoptimized={true}
-                  style={{ filter: 'url(#blackToAlpha)' }}
-                />
-              </div>
+                className="absolute inset-0 z-20 pointer-events-none"
+                style={{
+                  background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
+                  opacity: 0.8
+                }}
+              />
 
-              {/* Layer 3: TRUE Foreground (Pure Alpha Hands) */}
+              {/* Layer 3: TRUE Foreground (Pure Alpha Hands - Black to Transparent) */}
               <div
                 className="absolute inset-0 z-30 pointer-events-none"
               >
