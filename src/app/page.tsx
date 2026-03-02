@@ -129,7 +129,7 @@ export default function Home() {
               >
                 <Link
                   href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-3.5 w-full sm:w-auto rounded-2xl text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-3.5 w-full sm:w-auto rounded-full text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
                   style={{
                     backgroundColor: '#5B2A86',
                     color: '#FFFFFF',
@@ -180,7 +180,7 @@ export default function Home() {
               </svg>
             </div>
 
-            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[32%]">
+            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[26%]">
 
               {/* Layer 0: Depth Ambiance (Luxury Blur) */}
               <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
