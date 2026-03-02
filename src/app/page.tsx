@@ -190,7 +190,7 @@ export default function Home() {
               {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
               <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
                 {/* Mobile: big centered globe, no offset. Desktop: positioned behind hands */}
-                <div className="relative w-[88%] h-[88%] mt-0 lg:w-[48%] lg:h-[48%] lg:mt-[-16%] pointer-events-auto">
+                <div className="relative w-[88%] h-[88%] mt-[-15%] lg:w-[48%] lg:h-[48%] lg:mt-[-16%] pointer-events-auto">
                   <CustomGlobe isHero={true} />
                 </div>
               </div>
