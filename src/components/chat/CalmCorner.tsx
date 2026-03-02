@@ -74,8 +74,8 @@ export default function CalmCorner() {
                         exit={{ opacity: 0 }}
                         className="flex-1 flex flex-col relative z-10 px-8 py-4 items-center justify-between overflow-x-hidden min-h-0 sm:overflow-hidden"
                     >
-                        {/* Header pushed to top - ensuring it's unclipped & shrunken */}
-                        <div className="text-center pt-2 space-y-1 shrink-0 z-20">
+                        {/* Header - Raised further up */}
+                        <div className="text-center pt-2 space-y-0.5 shrink-0 z-20">
                             <h2 className="text-base sm:text-lg font-light text-[#D6B36A] tracking-wider" style={{ fontFamily: "var(--font-playfair), serif" }}>
                                 Calm Corner
                             </h2>
@@ -84,13 +84,13 @@ export default function CalmCorner() {
                             </p>
                         </div>
 
-                        {/* Centered Breathing Area - spacious gap around orb */}
-                        <div className="w-full flex-1 flex items-center justify-center my-4 min-h-0">
+                        {/* Centered Breathing Area - Pushed down away from header */}
+                        <div className="w-full flex-1 flex items-center justify-center mt-6 mb-2 min-h-0">
                             <BreathingCircle isPaused={isPaused} onComplete={handleComplete} />
                         </div>
 
-                        {/* Controls - Compact & spaced out to prevent overlap */}
-                        <div className="shrink-0 pb-10 pt-4 flex items-center justify-center gap-4 z-20">
+                        {/* Controls - Pushed further down away from timer */}
+                        <div className="shrink-0 pb-12 pt-6 flex items-center justify-center gap-4 z-20">
                             <button
                                 onClick={handleStart}
                                 disabled={!isPaused}

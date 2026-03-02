@@ -167,8 +167,8 @@ export default function BreathingCircle({ isPaused, onComplete }: BreathingCircl
                 </div>
             </div>
 
-            {/* Session Progress - Compacted to prevent clustering */}
-            <div className="mt-6 flex flex-col items-center opacity-30 select-none">
+            {/* Session Progress - Tighter to orb to leave room for buttons below */}
+            <div className="mt-4 flex flex-col items-center opacity-30 select-none">
                 <span className="text-[7px] uppercase tracking-[0.2em] text-[#D6B36A] font-bold">Time Left</span>
                 <div className="text-white text-[8px] font-medium tabular-nums">
                     {Math.floor((totalDuration - secondsElapsed) / 60)}:{String((totalDuration - secondsElapsed) % 60).padStart(2, '0')}
