@@ -177,17 +177,17 @@ export default function CareGuideFlow({ onReset }: CareGuideFlowProps) {
                                 </div>
                             </div>
 
-                            <div className="space-y-2 max-w-[340px] mx-auto w-full">
+                            <div className="space-y-3 max-w-[340px] mx-auto w-full">
                                 <a
                                     href="/contact-us"
-                                    className="w-full py-3 bg-[#5B2A86] text-white rounded-xl flex items-center justify-center gap-2 text-[10px] sm:text-xs font-bold shadow-lg shadow-[#5B2A86]/20 hover:scale-[1.02] transition-all"
+                                    className="w-full py-3.5 bg-[#5B2A86] text-white rounded-xl flex items-center justify-center gap-2 text-[10px] sm:text-xs font-bold shadow-lg shadow-[#5B2A86]/20 hover:scale-[1.02] transition-all"
                                 >
                                     Request Care Consultation
-                                    <ArrowRight className="w-3 h-3" />
+                                    <ArrowRight className="w-3.5 h-3.5" />
                                 </a>
                                 <a
                                     href={getRecommendation().link}
-                                    className="w-full py-3 bg-white border border-[#1B1326]/10 text-[#1B1326] rounded-xl text-center text-[9px] sm:text-[10px] font-bold tracking-widest uppercase hover:bg-[#FAFAF8] transition-all"
+                                    className="w-full py-3.5 bg-transparent border border-[#D6B36A]/40 text-[#1B1326] rounded-xl text-center text-[9px] sm:text-[10px] font-bold tracking-[0.15em] uppercase hover:bg-[#D6B36A]/5 hover:border-[#D6B36A] hover:text-[#B8924A] transition-all duration-300"
                                 >
                                     Learn More
                                 </a>
