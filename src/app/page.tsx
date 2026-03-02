@@ -146,21 +146,20 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe + Hands */}
+          {/* Right: Interactive Globe + Hands - TRUE OCCLUSION STACK */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
             <div className="relative w-full lg:w-[120%] sm:lg:w-[110%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[5%] lg:translate-y-[22%]">
 
-              {/* Layer 0: Realism Glows (Contact Us Style) */}
-              <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[#5B2A86]/40 rounded-full blur-[80px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-[#D6B36A]/20 rounded-full blur-[60px] translate-y-10" />
+              {/* Layer 0: Depth Ambiance (Luxury Blur) */}
+              <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[55%] h-[55%] bg-[#5B2A86]/40 rounded-full blur-[90px]" />
               </div>
 
-              {/* Layer 1: Solid Hands (Back) */}
+              {/* Layer 1: The Base (Palms & Background) */}
               <div className="absolute inset-0 z-10 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
-                  alt="Hands background"
+                  alt="Hands base"
                   fill
                   className="object-contain object-bottom select-none"
                   priority
@@ -168,34 +167,36 @@ export default function Home() {
                 />
               </div>
 
-              {/* Layer 2: Globe (Pure seated integration) */}
+              {/* Layer 2: The Globe (Seated Integration) */}
               <div className="absolute inset-0 z-20 pointer-events-none flex items-center justify-center">
-                <div className="relative w-[46%] h-[46%] mt-[-16%] pointer-events-auto overflow-visible">
-                  <div className="w-full h-full">
-                    <CustomGlobe />
-                  </div>
+                <div className="relative w-[45.8%] h-[45.8%] mt-[-16.2%] pointer-events-auto">
+                  <CustomGlobe />
                 </div>
               </div>
 
-              {/* Layer 3: Overlay Hands (The "Cradle" Effect) */}
-              <div
-                className="absolute inset-0 z-30 pointer-events-none"
-                style={{
-                  WebkitMaskImage: 'radial-gradient(circle at center 42%, transparent 22%, black 25%)',
-                  maskImage: 'radial-gradient(circle at center 42%, transparent 22%, black 25%)'
-                }}
-              >
+              {/* Layer 3: Contact Occlusion (Subtle Skin-Shadow) */}
+              <div className="absolute inset-0 z-30 pointer-events-none mix-blend-multiply opacity-40">
                 <Image
-                  src="/hands-globe.png"
-                  alt="Hands overlay"
+                  src="/hands-occlusion-rim.png"
+                  alt="Contact Shadow"
                   fill
-                  className="object-contain object-bottom select-none opacity-90"
+                  className="object-contain object-bottom select-none"
                   priority
                   unoptimized={true}
                 />
               </div>
 
-              {/* Bottom transition removed for Unified Clean Cut edge */}
+              {/* Layer 4: TRUE Foreground (Alpha Fingers Cutout) */}
+              <div className="absolute inset-0 z-40 pointer-events-none">
+                <Image
+                  src="/hands-front-cutout.png"
+                  alt="Hands foreground fingers"
+                  fill
+                  className="object-contain object-bottom select-none"
+                  priority
+                  unoptimized={true}
+                />
+              </div>
 
             </div>
           </div>

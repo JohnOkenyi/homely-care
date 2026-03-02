@@ -49,9 +49,9 @@ export default function CustomGlobe() {
         renderer.setSize(width, height);
         renderer.setPixelRatio(window.devicePixelRatio);
 
-        // HDR/ACES Tone Mapping for realistic light blending
+        // ACES Tone Mapping for realistic light blending - Luxury Exposure
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.2;
+        renderer.toneMappingExposure = 1.0; // Slightly reduced for "Blue Marble" depth
 
         container.appendChild(renderer.domElement);
 
@@ -61,24 +61,24 @@ export default function CustomGlobe() {
         const geometry = new THREE.SphereGeometry(100, 64, 64);
         const textureLoader = new THREE.TextureLoader();
 
-        // High-quality textures from three-globe repository
+        // High-quality textures
         const texture = textureLoader.load("https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-blue-marble.jpg");
-        const normalMap = textureLoader.load("https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-topology.png");
+        const normalMap = textureLoader.load("https://raw.githubusercontent.com/vasturiano/earth-topology/master/topology.png");
 
         const material = new THREE.MeshPhysicalMaterial({
             map: texture,
             normalMap: normalMap,
-            normalScale: new THREE.Vector2(0.85, 0.85),
+            normalScale: new THREE.Vector2(0.5, 0.5), // Softer topology
             transparent: false,
             opacity: 1.0,
             metalness: 0.0,
-            roughness: 0.7, // Reverted to realistic soft diffuse
+            roughness: 0.9, // Matte finish to match hand lighting
             clearcoat: 0.0,
             reflectivity: 0.0,
         });
 
         const globe = new THREE.Mesh(geometry, material);
-        // Initially rotate to show Europe/Africa
+        // Africa/Europe initial view
         globe.rotation.y = Math.PI * 0.9;
         scene.add(globe);
 
