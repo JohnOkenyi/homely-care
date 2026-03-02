@@ -165,6 +165,20 @@ export default function Home() {
           {/* Right: Interactive Globe + Hands - FINAL REALISM STACK VER_3 */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
 
+            {/* SVG Filter for Pure Alpha (Black to Transparent) */}
+            <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+              <svg>
+                <filter id="blackToAlpha">
+                  <feColorMatrix
+                    type="matrix"
+                    values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            1.5 1.5 1.5 0 -0.1"
+                  />
+                </filter>
+              </svg>
+            </div>
 
             <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[26%]">
 
