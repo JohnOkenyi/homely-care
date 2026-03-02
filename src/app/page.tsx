@@ -5,7 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
-import CustomGlobe from "@/components/CustomGlobe";
+import dynamic from "next/dynamic";
+
+// Dynamic Import for the heavy Globe component to improve LCP/TTI
+const CustomGlobe = dynamic(() => import("@/components/CustomGlobe"), {
+  ssr: false,
+  loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
+});
 
 export default function Home() {
   const container = useRef(null);
@@ -13,7 +19,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* HERO SECTION - Luxury Purple Dark Theme */}
-      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F1115 0%, #1B1326 55%, #24163A 100%)' }}>
+      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-[100svh] overflow-hidden" style={{ background: 'linear-gradient(135deg, #0F1115 0%, #1B1326 50%, #000000 100%)' }}>
 
         {/* Depth layers */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -22,7 +28,7 @@ export default function Home() {
           {/* Purple glow — left ambient */}
           <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-25" style={{ background: '#5B2A86' }} />
           {/* Text-readability gradient overlay — Unified dark backdrop */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(15,17,21,0.99) 0%, rgba(27,19,38,0.98) 45%, rgba(36,22,58,0.95) 75%, rgba(36,22,58,0.9) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(15,17,21,0.99) 0%, rgba(27,19,38,0.98) 45%, rgba(27,19,38,0.95) 60%, rgba(0,0,0,1) 85%)' }} />
         </div>
 
         {/* Content Wrapper */}
@@ -123,25 +129,23 @@ export default function Home() {
               >
                 <Link
                   href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-4 px-10 py-5 w-full sm:w-auto rounded-full text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-3.5 w-full sm:w-auto rounded-full text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
                   style={{
-                    backgroundColor: '#F7F5F2',
-                    color: '#1B1326',
+                    backgroundColor: '#5B2A86',
+                    color: '#FFFFFF',
                     border: '1px solid #D6B36A',
-                    boxShadow: '0 10px 40px -10px rgba(91,42,134,0.15), 0 0 20px rgba(214,179,106,0.1)'
+                    boxShadow: '0 4px 15px rgba(0,0,0,0.2), 0 0 15px rgba(214,179,106,0.1)'
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.boxShadow = '0 0 40px rgba(214,179,106,0.25), 0 10px 50px -10px rgba(91,42,134,0.2)';
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.borderColor = '#F7F5F2';
+                    e.currentTarget.style.boxShadow = '0 0 30px rgba(214,179,106,0.3), 0 8px 25px rgba(0,0,0,0.3)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
                   }}
                   onMouseLeave={e => {
-                    e.currentTarget.style.boxShadow = '0 10px 40px -10px rgba(91,42,134,0.15), 0 0 20px rgba(214,179,106,0.1)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.2), 0 0 15px rgba(214,179,106,0.1)';
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = '#D6B36A';
                   }}
                 >
-                  <div className="absolute inset-0 bg-[#D6B36A]/10 -translate-x-full group-hover:translate-x-0 transition-transform duration-1000 ease-in-out" />
+                  <div className="absolute inset-x-0 bottom-0 h-0 group-hover:h-full bg-[#D6B36A]/10 transition-all duration-700 ease-out" />
                   <span className="relative z-10">Request Consultation</span>
                   <Heart className="w-4 h-4 text-[#D6B36A] group-hover:scale-110 transition-transform duration-500 relative z-10" />
                 </Link>
@@ -186,7 +190,7 @@ export default function Home() {
               {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
               <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
                 <div className="relative w-[48%] h-[48%] mt-[-16%] pointer-events-auto">
-                  <CustomGlobe />
+                  <CustomGlobe isHero={true} />
                 </div>
               </div>
 
@@ -209,7 +213,6 @@ export default function Home() {
                   fill
                   className="object-contain object-bottom select-none"
                   priority
-                  unoptimized={true}
                   style={{ filter: 'url(#blackToAlpha)' }}
                 />
               </div>
@@ -524,7 +527,7 @@ export default function Home() {
               {
                 title: "Supported Living",
                 tag: "Independence First",
-                img: "https://images.unsplash.com/photo-1529156069898-49953eb1b5ae?q=80&w=1600&auto=format&fit=crop",
+                img: "/images/supported-living.png",
                 desc: "Empowering individuals to lead fulfilling lives within their local community."
               },
               {

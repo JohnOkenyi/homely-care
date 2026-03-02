@@ -2,7 +2,13 @@
 
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
-import CustomGlobe from "@/components/CustomGlobe";
+import dynamic from "next/dynamic";
+
+// Dynamic Import for the heavy Globe component to improve page load
+const CustomGlobe = dynamic(() => import("@/components/CustomGlobe"), {
+    ssr: false,
+    loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
+});
 
 export default function ContactUs() {
     return (
@@ -25,7 +31,7 @@ export default function ContactUs() {
                             className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start"
                         >
                             <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">World-Class Care Excellence</span>
-                            <h1 className="Heading-Serif text-4xl xs:text-5xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] mb-8">
+                            <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
                                 Connect with <br className="hidden xs:block" />
                                 <span className="italic font-light highlighted-text-gold">Perfection</span>
                             </h1>
@@ -55,7 +61,7 @@ export default function ContactUs() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1.5, delay: 0.2 }}
-                            className="relative w-full max-w-[500px] lg:max-w-none h-[450px] sm:h-[500px] lg:h-[700px] flex items-center justify-center lg:justify-end overflow-hidden mt-12 lg:mt-0 rounded-3xl lg:rounded-none"
+                            className="relative w-full max-w-[500px] lg:max-w-none h-[400px] sm:h-[450px] lg:h-[580px] flex items-center justify-center lg:justify-end overflow-hidden mt-12 lg:mt-0 rounded-3xl lg:rounded-none"
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
                             <div className="absolute inset-0 z-10 lg:hidden bg-black/5 backdrop-blur-[2px]" />

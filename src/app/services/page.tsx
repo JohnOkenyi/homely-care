@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Waves, HeartPulse, Home, Users2 } from "lucide-react";
+import Image from "next/image";
 
 const services = [
     {
@@ -39,7 +40,7 @@ export default function Services() {
         <main className="min-h-screen bg-[#F7F5F2] overflow-x-hidden">
 
             {/* HERO SECTION */}
-            <section className="relative pt-32 pb-12 overflow-x-hidden bg-premium-dark">
+            <section className="relative pt-32 pb-12 overflow-hidden bg-premium-dark">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-10 pointer-events-none overflow-hidden" style={{ background: '#5B2A86' }} />
 
                 <div className="grid-container relative z-10 text-center">
@@ -74,52 +75,49 @@ export default function Services() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                className="group relative h-auto md:h-[320px] lg:h-[300px] perspective-1000 mb-4"
+                                className={`group relative perspective-1000 mb-4 ${'image' in srv ? 'h-auto' : 'h-auto md:h-[320px] lg:h-[300px]'}`}
                             >
                                 <motion.div
                                     whileHover={{
-                                        scale: 1.05,
-                                        z: 50,
-                                        rotateX: -2,
-                                        rotateY: 2,
+                                        scale: 1.02,
+                                        z: 30,
                                         transition: { duration: 0.4, ease: "easeOut" }
                                     }}
                                     whileTap={{
-                                        scale: 1.05,
-                                        z: 50,
-                                        rotateX: -2,
-                                        rotateY: 2,
+                                        scale: 1.02,
                                         transition: { duration: 0.1, ease: "easeOut" }
                                     }}
                                     style={{ transformStyle: 'preserve-3d' }}
-                                    className="relative w-full h-full rounded-2xl p-6 md:p-8 glass-card-light border-[#5B2A86]/5 shadow-lg transition-all duration-500 group-hover:border-[#D6B36A]/40 group-hover:shadow-2xl group-hover:bg-white flex flex-col justify-center select-none cursor-default"
+                                    className="relative w-full h-full rounded-2xl overflow-hidden glass-card-light border-[#5B2A86]/5 shadow-lg transition-all duration-500 group-hover:border-[#D6B36A]/40 group-hover:shadow-2xl group-hover:bg-white flex flex-col justify-center select-none cursor-default"
                                 >
-                                    <div className="flex flex-col md:flex-row md:items-center gap-6">
-                                        <div className="w-16 h-16 bg-[#5B2A86]/5 border border-[#5B2A86]/10 rounded-xl flex items-center justify-center text-[#5B2A86] shrink-0 transition-all duration-500 group-hover:bg-[#5B2A86] group-hover:text-white">
-                                            <srv.icon className="w-8 h-8 stroke-[1.5]" />
-                                        </div>
-                                        <div className="flex-1">
-                                            <span className="text-[10px] uppercase tracking-[0.4em] font-extrabold text-[#D6B36A] mb-3 block">
-                                                {srv.subtitle}
-                                            </span>
-                                            <h2 className="text-3xl md:text-4xl font-serif italic text-[#1B1326] mb-4 tracking-tight">{srv.title}</h2>
-                                            <p className="text-sm md:text-base text-[#1B1326] font-medium leading-relaxed mb-6 max-w-2xl opacity-90">
-                                                {srv.description}
-                                            </p>
+                                    <div className="p-6 md:p-8 flex flex-col justify-center flex-1">
+                                        <div className="flex flex-col md:flex-row md:items-center gap-6">
+                                            <div className="w-16 h-16 bg-[#5B2A86]/5 border border-[#5B2A86]/10 rounded-xl flex items-center justify-center text-[#5B2A86] shrink-0 transition-all duration-500 group-hover:bg-[#5B2A86] group-hover:text-white">
+                                                <srv.icon className="w-8 h-8 stroke-[1.5]" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <span className="text-[10px] uppercase tracking-[0.4em] font-extrabold text-[#D6B36A] mb-3 block">
+                                                    {srv.subtitle}
+                                                </span>
+                                                <h2 className="text-3xl md:text-4xl font-serif italic text-[#1B1326] mb-4 tracking-tight">{srv.title}</h2>
+                                                <p className="text-sm md:text-base text-[#1B1326] font-medium leading-relaxed mb-6 max-w-2xl opacity-90">
+                                                    {srv.description}
+                                                </p>
 
-                                            <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8">
-                                                {srv.features.map(feat => (
-                                                    <li key={feat} className="flex items-center gap-3 text-[10px] md:text-[11px] tracking-[0.05em] text-[#1B1326] uppercase font-bold">
-                                                        <div className="w-1.5 h-1.5 rounded-full bg-[#D6B36A] shrink-0" />
-                                                        {feat}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8">
+                                                    {srv.features.map(feat => (
+                                                        <li key={feat} className="flex items-center gap-3 text-[10px] md:text-[11px] tracking-[0.05em] text-[#1B1326] uppercase font-bold">
+                                                            <div className="w-1.5 h-1.5 rounded-full bg-[#D6B36A] shrink-0" />
+                                                            {feat}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
                                         </div>
+
+                                        {/* Interaction Decoration */}
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D6B36A]/10 to-transparent rounded-full -mr-16 -mt-16 blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                     </div>
-
-                                    {/* Interaction Decoration */}
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D6B36A]/10 to-transparent rounded-full -mr-16 -mt-16 blur-2xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                 </motion.div>
                             </motion.div>
                         ))}

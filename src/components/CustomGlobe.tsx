@@ -6,6 +6,26 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Home, UserCheck, ShieldCheck, Activity, Brain, HeartPulse, Clock, Stethoscope, Waves, HandHeart } from "lucide-react";
 import { renderToStaticMarkup } from "react-dom/server";
 
+// ── Global texture cache: textures load ONCE, reused on every mount ──
+const _textureCache: Record<string, THREE.Texture> = {};
+function loadCachedTexture(
+    url: string,
+    renderer: THREE.WebGLRenderer,
+    onReady?: () => void
+): THREE.Texture {
+    if (_textureCache[url]) {
+        onReady?.(); // Already loaded – call immediately
+        return _textureCache[url];
+    }
+    const loader = new THREE.TextureLoader();
+    const tex = loader.load(url, (loadedTex) => {
+        loadedTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        _textureCache[url] = loadedTex;
+        onReady?.();
+    });
+    return tex;
+}
+
 const SERVICE_DATA = [
     { id: 1, text: "Home Care", lat: 25, lng: 10, icon: <Home size={18} /> },
     { id: 2, text: "Live-in Care", lat: 10, lng: 40, icon: <UserCheck size={18} /> },
@@ -19,7 +39,7 @@ const SERVICE_DATA = [
     { id: 10, text: "Personal Care", lat: -20, lng: -110, icon: <HandHeart size={18} /> },
 ];
 
-export default function CustomGlobe() {
+export default function CustomGlobe({ isHero = false }: { isHero?: boolean }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMounted, setIsMounted] = useState(false);
     const [showHint, setShowHint] = useState(true);
@@ -47,7 +67,11 @@ export default function CustomGlobe() {
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
-        renderer.setPixelRatio(window.devicePixelRatio);
+        // Cap at 2 – no visual gain above 2x, prevents 4x overdraw on HiDPI screens
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // Make canvas invisible until textures are decoded (prevents black flash)
+        renderer.domElement.style.opacity = '0';
+        renderer.domElement.style.transition = 'opacity 0.6s ease';
 
         // ACES Tone Mapping for realistic light blending - Luxury Exposure
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -59,11 +83,15 @@ export default function CustomGlobe() {
 
         // --- THE GLOBE ---
         const geometry = new THREE.SphereGeometry(108, 64, 64); // Scaled for snug fit
-        const textureLoader = new THREE.TextureLoader();
 
-        // High-quality textures
-        const texture = textureLoader.load("https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-blue-marble.jpg");
-        const normalMap = textureLoader.load("https://raw.githubusercontent.com/vasturiano/three-globe/master/example/img/earth-topology.png");
+        // High-quality textures – served from cache after first load, fade-in on ready
+        let texturesReady = 0;
+        const revealWhenReady = () => {
+            texturesReady++;
+            if (texturesReady >= 1) renderer.domElement.style.opacity = '1';
+        };
+        const texture = loadCachedTexture("/earth-blue-marble.jpg", renderer, revealWhenReady);
+        const normalMap = loadCachedTexture("/earth-topology.png", renderer);
 
         const material = new THREE.MeshPhysicalMaterial({
             map: texture,
@@ -80,8 +108,12 @@ export default function CustomGlobe() {
         const globe = new THREE.Mesh(geometry, material);
         // Africa/Europe initial view
         globe.rotation.y = Math.PI * 0.9;
-        // PERSPECTIVE SQUASH: Match camera angle of hands photo
-        globe.scale.set(1.0, 0.97, 1.0);
+        // PERSPECTIVE SQUASH: Match camera angle of hands photo only in Hero section
+        if (isHero) {
+            globe.scale.set(1.0, 0.97, 1.0);
+        } else {
+            globe.scale.set(1.0, 1.0, 1.0);
+        }
         scene.add(globe);
 
         // --- Interaction Restriction Logic ---
