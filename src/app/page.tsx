@@ -180,7 +180,7 @@ export default function Home() {
               </svg>
             </div>
 
-            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[26%]">
+            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[15%] lg:translate-y-[26%]">
 
               {/* Layer 0: Depth Ambiance (Luxury Blur) */}
               <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
@@ -197,7 +197,7 @@ export default function Home() {
 
               {/* Layer 2: Contact Occlusion */}
               <div
-                className="block absolute inset-[-32%] lg:inset-[3%] z-20 pointer-events-none"
+                className="block absolute inset-[-42%] lg:inset-[3%] z-20 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
                   opacity: 0.8
@@ -205,7 +205,7 @@ export default function Home() {
               />
 
               {/* Layer 3: Hands */}
-              <div className="block absolute inset-[-32%] lg:inset-[3%] z-30 pointer-events-none">
+              <div className="block absolute inset-[-42%] lg:inset-[3%] z-30 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands foreground"
