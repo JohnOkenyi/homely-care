@@ -146,7 +146,7 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK */}
+          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK VER_2 */}
           <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
 
             {/* SVG Filter for Pure Alpha (Black to Transparent) */}
