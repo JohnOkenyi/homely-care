@@ -189,24 +189,23 @@ export default function Home() {
 
               {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
               <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
-                <div className="relative w-[65%] h-[65%] lg:w-[48%] lg:h-[48%] mt-[-16%] pointer-events-auto">
+                {/* Mobile: big centered globe, no offset. Desktop: positioned behind hands */}
+                <div className="relative w-[80%] h-[80%] mt-0 lg:w-[48%] lg:h-[48%] lg:mt-[-16%] pointer-events-auto">
                   <CustomGlobe isHero={true} />
                 </div>
               </div>
 
-              {/* Layer 2: Contact Occlusion (Clean CSS Shadow, NO CHECKERS) */}
+              {/* Layer 2: Contact Occlusion — desktop only */}
               <div
-                className="absolute inset-[2%] lg:inset-[10%] z-20 pointer-events-none"
+                className="hidden lg:block absolute inset-[10%] z-20 pointer-events-none"
                 style={{
                   background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
                   opacity: 0.8
                 }}
               />
 
-              {/* Layer 3: TRUE Foreground (Pure Alpha Hands - Black to Transparent) */}
-              <div
-                className="absolute inset-[2%] lg:inset-[10%] z-30 pointer-events-none"
-              >
+              {/* Layer 3: Hands — desktop only */}
+              <div className="hidden lg:block absolute inset-[10%] z-30 pointer-events-none">
                 <Image
                   src="/hands-globe.png"
                   alt="Hands foreground"

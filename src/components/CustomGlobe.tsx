@@ -63,7 +63,7 @@ export default function CustomGlobe({ isHero = false }: { isHero?: boolean }) {
         const height = container.clientHeight || 500;
 
         const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-        camera.position.z = width < 768 ? 245 : 250; // Mobile: closer for bigger globe; Desktop: 250
+        camera.position.z = width < 768 ? 270 : 250; // Mobile: pulled back for full globe; Desktop: 250
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(width, height);
