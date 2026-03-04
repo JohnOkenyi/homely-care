@@ -4,7 +4,11 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
-import ChatBox from "@/components/ChatBox";
+import dynamic from "next/dynamic";
+
+const ChatBox = dynamic(() => import("@/components/ChatBox"), {
+  ssr: false,
+});
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
