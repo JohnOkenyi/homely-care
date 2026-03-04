@@ -373,48 +373,67 @@ export default function SeniorLiving3D() {
             b.castShadow = true;
             return b;
         };
-        // Shelf 1 left (retained and slight variety)
+
+        const surfaceCabinet = by + 1.5;
+        const surfaceSh1 = by + 2.55;
+        const surfaceSh2 = by + 3.55;
+
+        // Cabinet Top Left side (retained and slight variety)
         for (let i = 0; i < 8; i++) {
-            const b = createBook(0.12 + Math.random() * 0.05, 0.5 + Math.random() * 0.3, 0.5, i);
-            b.position.set(bx - 1.5 + i * 0.14, by + 1.5 + 0.05 + (0.5 * (Math.random() * 0.1)), bz);
-            if (i === 7) b.rotation.z = -0.25;
+            const h = 0.5 + Math.random() * 0.3;
+            const w = 0.12 + Math.random() * 0.05;
+            const b = createBook(w, h, 0.5, i);
+            let yCenter = surfaceCabinet + h / 2;
+            if (i === 7) {
+                b.rotation.z = -0.25;
+                yCenter = surfaceCabinet + (w / 2) * Math.sin(0.25) + (h / 2) * Math.cos(0.25);
+            }
+            b.position.set(bx - 1.5 + i * 0.14, yCenter, bz);
             bcGroup.add(b);
         }
 
-        // Shelf 2 (sh2 - by + 2.5 is the shelf height, but let's check positions)
-        // sh1 is at by + 2.5, sh2 at by + 3.5, sh3 at by + 4.5
-        // Let's add books to sh1 (first shelf above cabinet) and sh2 (second shelf)
-
-        // Shelf 1 Right side (next to plant)
+        // Cabinet Top Right side (next to plant)
         for (let i = 0; i < 4; i++) {
-            const b = createBook(0.14, 0.6, 0.5, i + 10);
-            b.position.set(bx + 0.3 + i * 0.16, by + 1.5 + 0.05, bz);
+            const h = 0.6;
+            const b = createBook(0.14, h, 0.5, i + 10);
+            b.position.set(bx + 0.3 + i * 0.16, surfaceCabinet + h / 2, bz);
             bcGroup.add(b);
         }
 
-        // Shelf 2 Left side
+        // Shelf 1 Left side
         for (let i = 0; i < 10; i++) {
-            const b = createBook(0.12, 0.5 + Math.random() * 0.2, 0.45, i + 20);
-            b.position.set(bx - 1.6 + i * 0.13, by + 2.5 + 0.05, bz);
-            if (i === 4) b.rotation.z = 0.15;
+            const h = 0.5 + Math.random() * 0.2;
+            const w = 0.12;
+            const b = createBook(w, h, 0.45, i + 20);
+            let yCenter = surfaceSh1 + h / 2;
+            if (i === 4) {
+                b.rotation.z = 0.15;
+                yCenter = surfaceSh1 + (w / 2) * Math.sin(0.15) + (h / 2) * Math.cos(0.15);
+            }
+            b.position.set(bx - 1.6 + i * 0.13, yCenter, bz);
             bcGroup.add(b);
         }
 
-        // Shelf 2 Right side
+        // Shelf 1 Right side
         for (let i = 0; i < 6; i++) {
-            const b = createBook(0.15, 0.4, 0.5, i + 30);
-            b.position.set(bx + 0.6 + i * 0.18, by + 2.5 + 0.05, bz);
+            const h = 0.4;
+            const b = createBook(0.15, h, 0.5, i + 30);
+            b.position.set(bx + 0.6 + i * 0.18, surfaceSh1 + h / 2, bz);
             bcGroup.add(b);
         }
 
-        // Shelf 3 (Top shelf) - sparse books
-        const bTop1 = createBook(0.18, 0.7, 0.5, 5);
-        bTop1.position.set(bx - 1.0, by + 3.5 + 0.35, bz);
+        // Shelf 2 - sparse books
+        const bTop1_h = 0.7;
+        const bTop1_w = 0.18;
+        const bTop1 = createBook(bTop1_w, bTop1_h, 0.5, 5);
         bTop1.rotation.z = 0.4;
+        const bTop1_y = surfaceSh2 + (bTop1_w / 2) * Math.sin(0.4) + (bTop1_h / 2) * Math.cos(0.4);
+        bTop1.position.set(bx - 1.0, bTop1_y, bz);
         bcGroup.add(bTop1);
 
-        const bTop2 = createBook(0.15, 0.6, 0.5, 2);
-        bTop2.position.set(bx + 0.8, by + 3.5 + 0.05, bz);
+        const bTop2_h = 0.6;
+        const bTop2 = createBook(0.15, bTop2_h, 0.5, 2);
+        bTop2.position.set(bx + 0.8, surfaceSh2 + bTop2_h / 2, bz);
         bcGroup.add(bTop2);
         // Small plant decor on Shelf 1 right
         const dPot = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.2, 16), matWallBeige);
