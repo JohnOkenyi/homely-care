@@ -57,11 +57,6 @@ export default function TestimonialSlider() {
         setIndex((prev) => (prev + 1) % testimonials.length);
     }, []);
 
-    const prevStep = useCallback(() => {
-        setDirection(-1);
-        setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    }, []);
-
     useEffect(() => {
         const timer = setInterval(nextStep, 6000);
         return () => clearInterval(timer);
