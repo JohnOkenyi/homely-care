@@ -1,0 +1,1174 @@
+﻿
+> temp-app@0.1.0 build
+> next build
+
+  Ôû▓ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+node.exe : Failed to 
+compile.
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo      
+        : NotSpecified  
+  : (Failed to compil   
+ e.:String) [], Remo    
+teException
+    + FullyQualifiedErr 
+   orId : NativeComman  
+  dError
+ 
+
+./src/components/SeniorL
+iving3D.tsx
+Error: 
+  [31mx[0m the name 
+`armL` is defined 
+multiple times
+     ,-[[36;1;4mC:\User
+s\Admin\OneDrive\Documen
+ts\Homely Care\src\compo
+nents\SeniorLiving3D.tsx
+[0m:410:1]
+ [2m410[0m |         
+chairGroup.add(wingR);
+ [2m411[0m | 
+ [2m412[0m |         
+// Armrests
+ [2m413[0m |         
+const armL = new THREE.M
+esh(getRoundedBox(0.35, 
+0.7, 1.4, 0.08), 
+matChair);
+     : [31;1m          
+    ^^|^[0m
+     :                 
+[31;1m`-- 
+[31;1mprevious 
+definition of `armL` 
+here[0m[0m
+ [2m414[0m |         a
+rmL.position.set(-0.65, 
+1.2, 0.1);
+ [2m415[0m |         
+armL.castShadow = true;
+ [2m416[0m |         
+chairGroup.add(armL);
+ [2m417[0m |         
+const armR = 
+armL.clone();
+ [2m418[0m |         
+armR.position.x = 0.65;
+ [2m419[0m |         
+chairGroup.add(armR);
+ [2m420[0m | 
+ [2m421[0m |         
+// Wooden Legs
+ [2m422[0m |         
+const legG = new THREE.C
+ylinderGeometry(0.07, 
+0.04, 0.8, 16);
+ [2m423[0m |         
+const lg1 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg1.position.set(-0.6, 
+0.4, -0.6); 
+lg1.rotation.x = -0.1; 
+chairGroup.add(lg1); 
+lg1.castShadow = true;
+ [2m424[0m |         
+const lg2 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg2.position.set(0.6, 
+0.4, -0.6); 
+lg2.rotation.x = -0.1; 
+chairGroup.add(lg2); 
+lg2.castShadow = true;
+ [2m425[0m |         
+const lg3 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg3.position.set(-0.6, 
+0.4, 0.6); 
+lg3.rotation.x = 0.1; 
+chairGroup.add(lg3); 
+lg3.castShadow = true;
+ [2m426[0m |         
+const lg4 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg4.position.set(0.6, 
+0.4, 0.6); 
+lg4.rotation.x = 0.1; 
+chairGroup.add(lg4); 
+lg4.castShadow = true;
+ [2m427[0m | 
+ [2m428[0m |         
+// Blanket draped on 
+right armrest
+ [2m429[0m |         
+const blanket = new THRE
+E.Mesh(getRoundedBox(0.4
+, 0.8, 0.8, 0.05), 
+matBlanket);
+ [2m430[0m |         b
+lanket.position.set(0.65
+, 1.4, 0.1);
+ [2m431[0m |         
+blanket.rotation.z = 
+-0.2;
+ [2m432[0m |         
+blanket.castShadow = 
+true;
+ [2m433[0m |         
+chairGroup.add(blanket);
+ [2m434[0m | 
+ [2m435[0m |         c
+hairGroup.position.set(1
+.0, 0.4, -2.0);
+ [2m436[0m |         
+chairGroup.rotation.y = 
+-0.3; // Angled 
+slightly towards center
+ [2m437[0m |         
+diorama.add(chairGroup);
+ [2m438[0m | 
+ [2m439[0m | 
+ [2m440[0m |         
+// 10. WOODEN SIDE 
+TABLE + CUP
+ [2m441[0m |         
+const tableGroup = new 
+THREE.Group();
+ [2m442[0m |         
+const tableTop = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.7, 0.7, 
+0.1, 32), matTrimWood);
+ [2m443[0m |         t
+ableTop.position.set(0, 
+1.4, 0);
+ [2m444[0m |         
+tableTop.castShadow = 
+true;
+ [2m445[0m |         
+tableTop.receiveShadow 
+= true;
+ [2m446[0m |         t
+ableGroup.add(tableTop);
+ [2m447[0m | 
+ [2m448[0m |         
+const tableBase = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.3, 0.4, 
+0.1, 32), matTrimWood);
+ [2m449[0m |         t
+ableBase.position.set(0,
+ 0.05, 0);
+ [2m450[0m |         t
+ableGroup.add(tableBase)
+;
+ [2m451[0m | 
+ [2m452[0m |         
+const tableLeg = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.08, 
+0.08, 1.3, 16), 
+matTrimWood);
+ [2m453[0m |         t
+ableLeg.position.set(0, 
+0.75, 0);
+ [2m454[0m |         
+tableLeg.castShadow = 
+true;
+ [2m455[0m |         t
+ableGroup.add(tableLeg);
+ [2m456[0m | 
+ [2m457[0m |         
+// White Cup
+ [2m458[0m |         
+const cup = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.15, 
+0.12, 0.3, 24), 
+matRugCream);
+ [2m459[0m |         
+cup.position.set(0.2, 
+1.6, 0);
+ [2m460[0m |         
+cup.castShadow = true;
+ [2m461[0m |         
+tableGroup.add(cup);
+ [2m462[0m | 
+ [2m463[0m |         
+// Single Book
+ [2m464[0m |         
+const book = new 
+THREE.Mesh(new 
+THREE.BoxGeometry(0.4, 
+0.06, 0.6), 
+matBooks[0]);
+ [2m465[0m |         
+book.position.set(-0.2, 
+1.48, 0);
+ [2m466[0m |         
+book.rotation.y = 0.5;
+ [2m467[0m |         
+book.castShadow = true;
+ [2m468[0m |         
+tableGroup.add(book);
+ [2m469[0m | 
+ [2m470[0m |         t
+ableGroup.position.set(2
+.6, 0.4, -1.6);
+ [2m471[0m |         
+diorama.add(tableGroup);
+ [2m472[0m | 
+ [2m473[0m | 
+ [2m474[0m |         
+// 11. TALL FLOOR LAMP
+ [2m475[0m |         
+const lampGroup = new 
+THREE.Group();
+ [2m476[0m |         
+// Base
+ [2m477[0m |         
+const lrBase = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.5, 0.5, 
+0.06, 32), 
+matLampBrass);
+ [2m478[0m |         
+lrBase.position.y = 
+0.03;
+ [2m479[0m |         
+lampGroup.add(lrBase);
+ [2m480[0m | 
+ [2m481[0m |         
+// Pole (straight then 
+curved)
+ [2m482[0m |         
+const pole1 = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.04, 
+0.04, 3.8, 16), 
+matLampBrass);
+ [2m483[0m |         
+pole1.position.y = 1.9;
+ [2m484[0m |         
+pole1.castShadow = true;
+ [2m485[0m |         
+lampGroup.add(pole1);
+ [2m486[0m | 
+ [2m487[0m |         
+const curveGeo = new THR
+EE.TorusGeometry(0.5, 
+0.04, 16, 24, Math.PI / 
+2);
+ [2m488[0m |         
+const curve = new 
+THREE.Mesh(curveGeo, 
+matLampBrass);
+ [2m489[0m |         c
+urve.position.set(-0.5, 
+3.8, 0);
+ [2m490[0m |         
+lampGroup.add(curve);
+ [2m491[0m | 
+ [2m492[0m |         
+// Shade
+ [2m493[0m |         
+const shadeGroup = new 
+THREE.Group();
+ [2m494[0m |         
+const shadeGeo2 = new TH
+REE.CylinderGeometry(0.2
+5, 0.45, 0.6, 32, 1, 
+true);
+ [2m495[0m |         
+const shadeMain = new 
+THREE.Mesh(shadeGeo2, 
+matLampShade);
+ [2m496[0m |         
+// Soft interior glow
+ [2m497[0m |         
+const shadeInner = new 
+THREE.Mesh(shadeGeo2, 
+new THREE.MeshBasicMater
+ial({ color: 0xffffff, 
+side: THREE.BackSide, 
+transparent: true, 
+opacity: 0.8 }));
+ [2m498[0m |         
+shadeMain.position.y = 
+-0.3;
+ [2m499[0m |         
+shadeInner.position.y = 
+-0.3;
+ [2m500[0m |         s
+hadeGroup.add(shadeMain,
+ shadeInner);
+ [2m501[0m |         s
+hadeGroup.position.set(-
+1.0, 4.3, 0);
+ [2m502[0m | 
+ [2m503[0m |         l
+ampGroup.add(shadeGroup)
+;
+ [2m504[0m |         l
+ampGroup.position.set(3.
+2, 0.4, -3.2); // Place 
+in the back corner
+ [2m505[0m |         
+diorama.add(lampGroup);
+ [2m506[0m | 
+ [2m507[0m | 
+ [2m508[0m |         
+// 12. POTTED PLANT
+ [2m509[0m |         
+const bigPlant = new 
+THREE.Group();
+ [2m510[0m |         
+const bgPot = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.4, 0.3, 
+0.8, 32), 
+matWallBeige); // Light 
+grey pot
+ [2m511[0m |         
+bgPot.position.y = 0.4;
+ [2m512[0m |         
+bgPot.castShadow = true;
+ [2m513[0m |         
+bigPlant.add(bgPot);
+ [2m514[0m | 
+ [2m515[0m |         
+const ptDirt = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.38, 
+0.38, 0.05, 32), new THR
+EE.MeshStandardMaterial(
+{ color: 0x111111 }));
+ [2m516[0m |         
+ptDirt.position.y = 
+0.78;
+ [2m517[0m |         
+bigPlant.add(ptDirt);
+ [2m518[0m | 
+ [2m519[0m |         
+// Tall fiddle-leaf 
+looking branch
+ [2m520[0m |         
+const stem = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.02, 
+0.04, 1.5, 8), 
+matPlant);
+ [2m521[0m |         
+stem.position.y = 1.5;
+ [2m522[0m |         
+stem.castShadow = true;
+ [2m523[0m |         
+bigPlant.add(stem);
+ [2m524[0m | 
+ [2m525[0m |         
+// Large flat circular 
+leaves
+ [2m526[0m |         
+const lLeafGeo = new THR
+EE.CylinderGeometry(0.25
+, 0.25, 0.02, 16);
+ [2m527[0m |         
+lLeafGeo.scale(1, 1, 
+1.5); // Oval
+ [2m528[0m |         
+for (let i = 0; i < 12; 
+i++) {
+ [2m529[0m |          
+   const l = new 
+THREE.Mesh(lLeafGeo, 
+matPlant);
+ [2m530[0m |          
+   const h = 0.9 + (i * 
+0.1);
+ [2m531[0m |          
+   const a = i * 1.3;
+ [2m532[0m |          
+   l.position.set(Math.c
+os(a) * 0.15, h, 
+Math.sin(a) * 0.15);
+ [2m533[0m |          
+   l.rotation.z = 
+Math.cos(a) * 0.4;
+ [2m534[0m |          
+   l.rotation.x = 
+Math.sin(a) * 0.4;
+ [2m535[0m |          
+   l.rotation.y = -a;
+ [2m536[0m |          
+   l.castShadow = true;
+ [2m537[0m |          
+   bigPlant.add(l);
+ [2m538[0m |         }
+ [2m539[0m | 
+ [2m540[0m |         b
+igPlant.position.set(-2.
+5, 0.4, -2.0); // Keep 
+near window
+ [2m541[0m |         
+diorama.add(bigPlant);
+ [2m542[0m | 
+ [2m543[0m | 
+ [2m544[0m |         
+// 13. WHEELCHAIR 
+(Realistic detailed 
+model)
+ [2m545[0m |         
+const wheelchair = new 
+THREE.Group();
+ [2m546[0m |         
+const frameMat = new THR
+EE.MeshPhysicalMaterial(
+{ color: 0x888888, 
+metalness: 0.8, 
+roughness: 0.2 });
+ [2m547[0m |         
+const seatMat = new THRE
+E.MeshPhysicalMaterial({
+ color: 0x222222, 
+roughness: 0.9 });
+ [2m548[0m |         
+const tireMat = new THRE
+E.MeshPhysicalMaterial({
+ color: 0x111111, 
+roughness: 0.9 });
+ [2m549[0m |         
+const rimMat = new THREE
+.MeshPhysicalMaterial({ 
+color: 0xcccccc, 
+metalness: 0.9, 
+roughness: 0.1 });
+ [2m550[0m | 
+ [2m551[0m |         
+// Large Rear Wheels
+ [2m552[0m |         
+const rearWheelGeo = 
+new THREE.CylinderGeomet
+ry(0.35, 0.35, 0.04, 
+32);
+ [2m553[0m |         
+const rimGeo = new THREE
+.CylinderGeometry(0.3, 
+0.3, 0.03, 16);
+ [2m554[0m | 
+ [2m555[0m |         
+const rwL = new 
+THREE.Group();
+ [2m556[0m |         
+const tireL = new THREE.
+Mesh(rearWheelGeo, 
+tireMat); 
+tireL.rotation.z = 
+Math.PI / 2; 
+rwL.add(tireL);
+ [2m557[0m |         
+const rimL = new 
+THREE.Mesh(rimGeo, 
+rimMat); 
+rimL.rotation.z = 
+Math.PI / 2; 
+rwL.add(rimL);
+ [2m558[0m |         
+rwL.position.set(-0.28, 
+0.35, 0.1);
+ [2m559[0m |         
+wheelchair.add(rwL);
+ [2m560[0m | 
+ [2m561[0m |         
+const rwR = new 
+THREE.Group();
+ [2m562[0m |         
+const tireR = new THREE.
+Mesh(rearWheelGeo, 
+tireMat); 
+tireR.rotation.z = 
+Math.PI / 2; 
+rwR.add(tireR);
+ [2m563[0m |         
+const rimR = new 
+THREE.Mesh(rimGeo, 
+rimMat); 
+rimR.rotation.z = 
+Math.PI / 2; 
+rwR.add(rimR);
+ [2m564[0m |         
+rwR.position.set(0.28, 
+0.35, 0.1);
+ [2m565[0m |         
+wheelchair.add(rwR);
+ [2m566[0m | 
+ [2m567[0m |         
+// Small Front Wheels
+ [2m568[0m |         
+const frontWheelGeo = 
+new THREE.CylinderGeomet
+ry(0.08, 0.08, 0.03, 
+16);
+ [2m569[0m |         
+const fwL = new THREE.Me
+sh(frontWheelGeo, 
+tireMat); 
+fwL.rotation.z = 
+Math.PI / 2; 
+fwL.position.set(-0.25, 
+0.08, -0.25); 
+wheelchair.add(fwL);
+ [2m570[0m |         
+const fwR = new THREE.Me
+sh(frontWheelGeo, 
+tireMat); 
+fwR.rotation.z = 
+Math.PI / 2; 
+fwR.position.set(0.25, 
+0.08, -0.25); 
+wheelchair.add(fwR);
+ [2m571[0m | 
+ [2m572[0m |         
+// Seat
+ [2m573[0m |         
+const wcSeat = new 
+THREE.Mesh(new 
+THREE.BoxGeometry(0.45, 
+0.03, 0.45), seatMat);
+ [2m574[0m |         
+wcSeat.position.set(0, 
+0.45, -0.1);
+ [2m575[0m |         
+wheelchair.add(wcSeat);
+ [2m576[0m | 
+ [2m577[0m |         
+// Backrest
+ [2m578[0m |         
+const wcBack = new 
+THREE.Mesh(new 
+THREE.BoxGeometry(0.45, 
+0.45, 0.03), seatMat);
+ [2m579[0m |         
+wcBack.position.set(0, 
+0.68, 0.12);
+ [2m580[0m |         
+wheelchair.add(wcBack);
+ [2m581[0m | 
+ [2m582[0m |         
+// Armrests
+ [2m583[0m |         
+const armrestGeo = new 
+THREE.BoxGeometry(0.04, 
+0.04, 0.35);
+ [2m584[0m |         
+const armL = new 
+THREE.Mesh(armrestGeo, 
+seatMat); armL.position.
+set(-0.25, 0.65, -0.1); 
+wheelchair.add(armL);
+     : [33;1m          
+    ^^|^[0m
+     :                 
+[33;1m`-- 
+[33;1m`armL` redefined 
+here[0m[0m
+ [2m585[0m |         
+const armR = new 
+THREE.Mesh(armrestGeo, 
+seatMat); 
+armR.position.set(0.25, 
+0.65, -0.1); 
+wheelchair.add(armR);
+ [2m586[0m | 
+ [2m586[0m |         
+// Vertical back tubes 
+& Handles
+     `----
+
+  [31mx[0m the name 
+`armR` is defined 
+multiple times
+     ,-[[36;1;4mC:\User
+s\Admin\OneDrive\Documen
+ts\Homely Care\src\compo
+nents\SeniorLiving3D.tsx
+[0m:414:1]
+ [2m414[0m |         a
+rmL.position.set(-0.65, 
+1.2, 0.1);
+ [2m415[0m |         
+armL.castShadow = true;
+ [2m416[0m |         
+chairGroup.add(armL);
+ [2m417[0m |         
+const armR = 
+armL.clone();
+     : [31;1m          
+    ^^|^[0m
+     :                 
+[31;1m`-- 
+[31;1mprevious 
+definition of `armR` 
+here[0m[0m
+ [2m418[0m |         
+armR.position.x = 0.65;
+ [2m419[0m |         
+chairGroup.add(armR);
+ [2m420[0m | 
+ [2m421[0m |         
+// Wooden Legs
+ [2m422[0m |         
+const legG = new THREE.C
+ylinderGeometry(0.07, 
+0.04, 0.8, 16);
+ [2m423[0m |         
+const lg1 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg1.position.set(-0.6, 
+0.4, -0.6); 
+lg1.rotation.x = -0.1; 
+chairGroup.add(lg1); 
+lg1.castShadow = true;
+ [2m424[0m |         
+const lg2 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg2.position.set(0.6, 
+0.4, -0.6); 
+lg2.rotation.x = -0.1; 
+chairGroup.add(lg2); 
+lg2.castShadow = true;
+ [2m425[0m |         
+const lg3 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg3.position.set(-0.6, 
+0.4, 0.6); 
+lg3.rotation.x = 0.1; 
+chairGroup.add(lg3); 
+lg3.castShadow = true;
+ [2m426[0m |         
+const lg4 = new 
+THREE.Mesh(legG, 
+matTrimWood); 
+lg4.position.set(0.6, 
+0.4, 0.6); 
+lg4.rotation.x = 0.1; 
+chairGroup.add(lg4); 
+lg4.castShadow = true;
+ [2m427[0m | 
+ [2m428[0m |         
+// Blanket draped on 
+right armrest
+ [2m429[0m |         
+const blanket = new THRE
+E.Mesh(getRoundedBox(0.4
+, 0.8, 0.8, 0.05), 
+matBlanket);
+ [2m430[0m |         b
+lanket.position.set(0.65
+, 1.4, 0.1);
+ [2m431[0m |         
+blanket.rotation.z = 
+-0.2;
+ [2m432[0m |         
+blanket.castShadow = 
+true;
+ [2m433[0m |         
+chairGroup.add(blanket);
+ [2m434[0m | 
+ [2m435[0m |         c
+hairGroup.position.set(1
+.0, 0.4, -2.0);
+ [2m436[0m |         
+chairGroup.rotation.y = 
+-0.3; // Angled 
+slightly towards center
+ [2m437[0m |         
+diorama.add(chairGroup);
+ [2m438[0m | 
+ [2m439[0m | 
+ [2m440[0m |         
+// 10. WOODEN SIDE 
+TABLE + CUP
+ [2m441[0m |         
+const tableGroup = new 
+THREE.Group();
+ [2m442[0m |         
+const tableTop = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.7, 0.7, 
+0.1, 32), matTrimWood);
+ [2m443[0m |         t
+ableTop.position.set(0, 
+1.4, 0);
+ [2m444[0m |         
+tableTop.castShadow = 
+true;
+ [2m445[0m |         
+tableTop.receiveShadow 
+= true;
+ [2m446[0m |         t
+ableGroup.add(tableTop);
+ [2m447[0m | 
+ [2m448[0m |         
+const tableBase = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.3, 0.4, 
+0.1, 32), matTrimWood);
+ [2m449[0m |         t
+ableBase.position.set(0,
+ 0.05, 0);
+ [2m450[0m |         t
+ableGroup.add(tableBase)
+;
+ [2m451[0m | 
+ [2m452[0m |         
+const tableLeg = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.08, 
+0.08, 1.3, 16), 
+matTrimWood);
+ [2m453[0m |         t
+ableLeg.position.set(0, 
+0.75, 0);
+ [2m454[0m |         
+tableLeg.castShadow = 
+true;
+ [2m455[0m |         t
+ableGroup.add(tableLeg);
+ [2m456[0m | 
+ [2m457[0m |         
+// White Cup
+ [2m458[0m |         
+const cup = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.15, 
+0.12, 0.3, 24), 
+matRugCream);
+ [2m459[0m |         
+cup.position.set(0.2, 
+1.6, 0);
+ [2m460[0m |         
+cup.castShadow = true;
+ [2m461[0m |         
+tableGroup.add(cup);
+ [2m462[0m | 
+ [2m463[0m |         
+// Single Book
+ [2m464[0m |         
+const book = new 
+THREE.Mesh(new 
+THREE.BoxGeometry(0.4, 
+0.06, 0.6), 
+matBooks[0]);
+ [2m465[0m |         
+book.position.set(-0.2, 
+1.48, 0);
+ [2m466[0m |         
+book.rotation.y = 0.5;
+ [2m467[0m |         
+book.castShadow = true;
+ [2m468[0m |         
+tableGroup.add(book);
+ [2m469[0m | 
+ [2m470[0m |         t
+ableGroup.position.set(2
+.6, 0.4, -1.6);
+ [2m471[0m |         
+diorama.add(tableGroup);
+ [2m472[0m | 
+ [2m473[0m | 
+ [2m474[0m |         
+// 11. TALL FLOOR LAMP
+ [2m475[0m |         
+const lampGroup = new 
+THREE.Group();
+ [2m476[0m |         
+// Base
+ [2m477[0m |         
+const lrBase = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.5, 0.5, 
+0.06, 32), 
+matLampBrass);
+ [2m478[0m |         
+lrBase.position.y = 
+0.03;
+ [2m479[0m |         
+lampGroup.add(lrBase);
+ [2m480[0m | 
+ [2m481[0m |         
+// Pole (straight then 
+curved)
+ [2m482[0m |         
+const pole1 = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.04, 
+0.04, 3.8, 16), 
+matLampBrass);
+ [2m483[0m |         
+pole1.position.y = 1.9;
+ [2m484[0m |         
+pole1.castShadow = true;
+ [2m485[0m |         
+lampGroup.add(pole1);
+ [2m486[0m | 
+ [2m487[0m |         
+const curveGeo = new THR
+EE.TorusGeometry(0.5, 
+0.04, 16, 24, Math.PI / 
+2);
+ [2m488[0m |         
+const curve = new 
+THREE.Mesh(curveGeo, 
+matLampBrass);
+ [2m489[0m |         c
+urve.position.set(-0.5, 
+3.8, 0);
+ [2m490[0m |         
+lampGroup.add(curve);
+ [2m491[0m | 
+ [2m492[0m |         
+// Shade
+ [2m493[0m |         
+const shadeGroup = new 
+THREE.Group();
+ [2m494[0m |         
+const shadeGeo2 = new TH
+REE.CylinderGeometry(0.2
+5, 0.45, 0.6, 32, 1, 
+true);
+ [2m495[0m |         
+const shadeMain = new 
+THREE.Mesh(shadeGeo2, 
+matLampShade);
+ [2m496[0m |         
+// Soft interior glow
+ [2m497[0m |         
+const shadeInner = new 
+THREE.Mesh(shadeGeo2, 
+new THREE.MeshBasicMater
+ial({ color: 0xffffff, 
+side: THREE.BackSide, 
+transparent: true, 
+opacity: 0.8 }));
+ [2m498[0m |         
+shadeMain.position.y = 
+-0.3;
+ [2m499[0m |         
+shadeInner.position.y = 
+-0.3;
+ [2m500[0m |         s
+hadeGroup.add(shadeMain,
+ shadeInner);
+ [2m501[0m |         s
+hadeGroup.position.set(-
+1.0, 4.3, 0);
+ [2m502[0m | 
+ [2m503[0m |         l
+ampGroup.add(shadeGroup)
+;
+ [2m504[0m |         l
+ampGroup.position.set(3.
+2, 0.4, -3.2); // Place 
+in the back corner
+ [2m505[0m |         
+diorama.add(lampGroup);
+ [2m506[0m | 
+ [2m507[0m | 
+ [2m508[0m |         
+// 12. POTTED PLANT
+ [2m509[0m |         
+const bigPlant = new 
+THREE.Group();
+ [2m510[0m |         
+const bgPot = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.4, 0.3, 
+0.8, 32), 
+matWallBeige); // Light 
+grey pot
+ [2m511[0m |         
+bgPot.position.y = 0.4;
+ [2m512[0m |         
+bgPot.castShadow = true;
+ [2m513[0m |         
+bigPlant.add(bgPot);
+ [2m514[0m | 
+ [2m515[0m |         
+const ptDirt = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.38, 
+0.38, 0.05, 32), new THR
+EE.MeshStandardMaterial(
+{ color: 0x111111 }));
+ [2m516[0m |         
+ptDirt.position.y = 
+0.78;
+ [2m517[0m |         
+bigPlant.add(ptDirt);
+ [2m518[0m | 
+ [2m519[0m |         
+// Tall fiddle-leaf 
+looking branch
+ [2m520[0m |         
+const stem = new 
+THREE.Mesh(new THREE.Cyl
+inderGeometry(0.02, 
+0.04, 1.5, 8), 
+matPlant);
+ [2m521[0m |         
+stem.position.y = 1.5;
+ [2m522[0m |         
+stem.castShadow = true;
+ [2m523[0m |         
+bigPlant.add(stem);
+ [2m524[0m | 
+ [2m525[0m |         
+// Large flat circular 
+leaves
+ [2m526[0m |         
+const lLeafGeo = new THR
+EE.CylinderGeometry(0.25
+, 0.25, 0.02, 16);
+ [2m527[0m |         
+lLeafGeo.scale(1, 1, 
+1.5); // Oval
+ [2m528[0m |         
+for (let i = 0; i < 12; 
+i++) {
+ [2m529[0m |          
+   const l = new 
+THREE.Mesh(lLeafGeo, 
+matPlant);
+ [2m530[0m |          
+   const h = 0.9 + (i * 
+0.1);
+ [2m531[0m |          
+   const a = i * 1.3;
+ [2m532[0m |          
+   l.position.set(Math.c
+os(a) * 0.15, h, 
+Math.sin(a) * 0.15);
+ [2m533[0m |          
+   l.rotation.z = 
+Math.cos(a) * 0.4;
+ [2m534[0m |          
+   l.rotation.x = 
+Math.sin(a) * 0.4;
+ [2m535[0m |          
+   l.rotation.y = -a;
+ [2m536[0m |          
+   l.castShadow = true;
+ [2m537[0m |          
+   bigPlant.add(l);
+ [2m538[0m |         }
+ [2m539[0m | 
+ [2m540[0m |         b
+igPlant.position.set(-2.
+5, 0.4, -2.0); // Keep 
+near window
+ [2m541[0m |         
+diorama.add(bigPlant);
+ [2m542[0m | 
+ [2m543[0m | 
+ [2m544[0m |         
+// 13. WHEELCHAIR 
+(Realistic detailed 
+model)
+ [2m545[0m |         
+const wheelchair = new 
+THREE.Group();
+ [2m546[0m |         
+const frameMat = new THR
+EE.MeshPhysicalMaterial(
+{ color: 0x888888, 
+metalness: 0.8, 
+roughness: 0.2 });
+ [2m547[0m |         
+const seatMat = new THRE
+E.MeshPhysicalMaterial({
+ color: 0x222222, 
+roughness: 0.9 });
+ [2m548[0m |         
+const tireMat = new THRE
+E.MeshPhysicalMaterial({
+ color: 0x111111, 
+roughness: 0.9 });
+ [2m549[0m |         
+const rimMat = new THREE
+.MeshPhysicalMaterial({ 
+color: 0xcccccc, 
+metalness: 0.9, 
+roughness: 0.1 });
+ [2m550[0m | 
+ [2m551[0m |         
+// Large Rear Wheels
+ [2m552[0m |         
+const rearWheelGeo = 
+new THREE.CylinderGeomet
+ry(0.35, 0.35, 0.04, 
+32);
+ [2m553[0m |         
+const rimGeo = new THREE
+.CylinderGeometry(0.3, 
+0.3, 0.03, 16);
+ [2m554[0m | 
+ [2m555[0m |         
+const rwL = new 
+THREE.Group();
+ [2m556[0m |         
+const tireL = new THREE.
+Mesh(rearWheelGeo, 
+tireMat); 
+tireL.rotation.z = 
+Math.PI / 2; 
+rwL.add(tireL);
+ [2m557[0m |         
+const rimL = new 
+THREE.Mesh(rimGeo, 
+rimMat); 
+rimL.rotation.z = 
+Math.PI / 2; 
+rwL.add(rimL);
+ [2m558[0m |         
+rwL.position.set(-0.28, 
+0.35, 0.1);
+ [2m559[0m |         
+wheelchair.add(rwL);
+ [2m560[0m | 
+ [2m561[0m |         
+const rwR = new 
+THREE.Group();
+ [2m562[0m |         
+const tireR = new THREE.
+Mesh(rearWheelGeo, 
+tireMat); 
+tireR.rotation.z = 
+Math.PI / 2; 
+rwR.add(tireR);
+ [2m563[0m |         
+const rimR = new 
+THREE.Mesh(rimGeo, 
+rimMat); 
+rimR.rotation.z = 
+Math.PI / 2; 
+rwR.add(rimR);
+ [2m564[0m |         
+rwR.position.set(0.28, 
+0.35, 0.1);
+ [2m565[0m |         
+wheelchair.add(rwR);
+ [2m566[0m | 
+ [2m567[0m |         
+// Small Front Wheels
+ [2m568[0m |         
+const frontWheelGeo = 
+new THREE.CylinderGeomet
+ry(0.08, 0.08, 0.03, 
+16);
+ [2m569[0m |         
+const fwL = new THREE.Me
+sh(frontWheelGeo, 
+tireMat); 
+fwL.rotation.z = 
+Math.PI / 2; 
+fwL.position.set(-0.25, 
+0.08, -0.25); 
+wheelchair.add(fwL);
+ [2m570[0m |         
+const fwR = new THREE.Me
+sh(frontWheelGeo, 
+tireMat); 
+fwR.rotation.z = 
+Math.PI / 2; 
+fwR.position.set(0.25, 
+0.08, -0.25); 
+wheelchair.add(fwR);
+ [2m571[0m | 
+ [2m572[0m |         
+// Seat
+ [2m573[0m |         
+const wcSeat = new 
+THREE.Mesh(new 
+THREE.BoxGeometry(0.45, 
+0.03, 0.45), seatMat);
+ [2m574[0m |         
+wcSeat.position.set(0, 
+0.45, -0.1);
+ [2m575[0m |         
+wheelchair.add(wcSeat);
+ [2m576[0m | 
+ [2m577[0m |         
+// Backrest
+ [2m578[0m |         
+const wcBack = new 
+THREE.Mesh(new 
+THREE.BoxGeometry(0.45, 
+0.45, 0.03), seatMat);
+ [2m579[0m |         
+wcBack.position.set(0, 
+0.68, 0.12);
+ [2m580[0m |         
+wheelchair.add(wcBack);
+ [2m581[0m | 
+ [2m582[0m |         
+// Armrests
+ [2m583[0m |         
+const armrestGeo = new 
+THREE.BoxGeometry(0.04, 
+0.04, 0.35);
+ [2m584[0m |         
+const armL = new 
+THREE.Mesh(armrestGeo, 
+seatMat); armL.position.
+set(-0.25, 0.65, -0.1); 
+wheelchair.add(armL);
+ [2m585[0m |         
+const armR = new 
+THREE.Mesh(armrestGeo, 
+seatMat); 
+armR.position.set(0.25, 
+0.65, -0.1); 
+wheelchair.add(armR);
+     : [33;1m          
+    ^^|^[0m
+     :                 
+[33;1m`-- 
+[33;1m`armR` redefined 
+here[0m[0m
+ [2m586[0m | 
+ [2m587[0m |         
+// Vertical back tubes 
+& Handles
+ [2m587[0m |         
+const backTube = new THR
+EE.CylinderGeometry(0.01
+5, 0.015, 0.5, 8);
+     `----
+
+Import trace for 
+requested module:
+./src/components/SeniorL
+iving3D.tsx
+./src/app/page.tsx
+
+
+> Build failed because 
+of webpack errors

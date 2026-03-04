@@ -1,0 +1,35 @@
+﻿
+> temp-app@0.1.0 build
+> next build
+
+  Ôû▓ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/10) ...
+   Generating static pages (2/10) 
+   Generating static pages (4/10) 
+   Generating static pages (7/10) 
+ Ô£ô Generating static pages (10/10)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Ôöî Ôùï /                                    7.86 kB         151 kB
+Ôö£ Ôùï /_not-found                          873 B          88.3 kB
+Ôö£ Ôùï /about-us                            2.86 kB         137 kB
+Ôö£ Ôùï /careers                             4.45 kB         142 kB
+Ôö£ Ôùï /contact-us                          4.1 kB          133 kB
+Ôö£ Ôùï /meet-the-team                       2.88 kB         137 kB
+Ôöö Ôùï /services                            3.02 kB         132 kB
++ First Load JS shared by all            87.5 kB
+  Ôö£ chunks/117-4f5b424f20efdcae.js       31.7 kB
+  Ôö£ chunks/fd9d1056-b11b2651f33aae7f.js  53.6 kB
+  Ôöö other shared chunks (total)          2.09 kB
+
+
+Ôùï  (Static)  prerendered as static content
+

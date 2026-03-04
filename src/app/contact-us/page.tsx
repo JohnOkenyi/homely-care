@@ -16,7 +16,7 @@ export default function ContactUs() {
         <main className="min-h-screen bg-[#0F1115] text-[#F2F2F2] overflow-hidden">
 
             {/* HERO / 3D SECTION */}
-            <section className="relative min-h-[90vh] flex items-center justify-center pt-32 pb-16 overflow-hidden">
+            <section className="relative min-h-[90vh] flex items-center justify-center pt-20 pb-16 overflow-hidden">
                 {/* Background Glows */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none" style={{ background: '#5B2A86' }} />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 pointer-events-none" style={{ background: '#D6B36A' }} />
@@ -31,7 +31,7 @@ export default function ContactUs() {
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                             className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start"
                         >
-                            <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">World-Class Care Excellence</span>
+                            <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">Care Tailored to You</span>
                             <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
                                 <span className="italic font-light highlighted-text-gold">Book a Call</span>
                             </h1>

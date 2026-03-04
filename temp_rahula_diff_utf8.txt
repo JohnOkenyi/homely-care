@@ -1,0 +1,2516 @@
+﻿commit 01211b7819702c7411f109616aa1dbc3490e258f
+Author: John <okenyijohn@gmail.com>
+Date:   Tue Mar 3 23:37:02 2026 -0500
+
+    Trigger clean Vercel rebuild - v1.0.3
+
+diff --git a/Homely_Care_Backup_2026-03-03.zip b/Homely_Care_Backup_2026-03-03.zip
+new file mode 100644
+index 0000000..8f8da72
+Binary files /dev/null and b/Homely_Care_Backup_2026-03-03.zip differ
+diff --git a/package-lock.json b/package-lock.json
+index 1e0be70..6eae076 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -16,14 +16,14 @@
+         "next": "14.2.35",
+         "react": "^18",
+         "react-dom": "^18",
+-        "react-globe.gl": "^2.37.0",
+         "tailwind-merge": "^3.5.0",
+-        "three": "^0.183.1"
++        "three": "^0.183.2"
+       },
+       "devDependencies": {
+         "@types/node": "^20",
+         "@types/react": "^18",
+         "@types/react-dom": "^18",
++        "@types/three": "^0.183.1",
+         "eslint": "^8",
+         "eslint-config-next": "14.2.35",
+         "postcss": "^8",
+@@ -44,14 +44,12 @@
+         "url": "https://github.com/sponsors/sindresorhus"
+       }
+     },
+-    "node_modules/@babel/runtime": {
+-      "version": "7.28.6",
+-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.28.6.tgz",
+-      "integrity": "sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==",
+-      "license": "MIT",
+-      "engines": {
+-        "node": ">=6.9.0"
+-      }
++    "node_modules/@dimforge/rapier3d-compat": {
++      "version": "0.12.0",
++      "resolved": "https://registry.npmjs.org/@dimforge/rapier3d-compat/-/rapier3d-compat-0.12.0.tgz",
++      "integrity": "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow==",
++      "dev": true,
++      "license": "Apache-2.0"
+     },
+     "node_modules/@emnapi/core": {
+       "version": "1.8.1",
+@@ -536,55 +534,6 @@
+         "tslib": "^2.4.0"
+       }
+     },
+-    "node_modules/@turf/boolean-point-in-polygon": {
+-      "version": "7.3.4",
+-      "resolved": "https://registry.npmjs.org/@turf/boolean-point-in-polygon/-/boolean-point-in-polygon-7.3.4.tgz",
+-      "integrity": "sha512-v/4hfyY90Vz9cDgs2GwjQf+Lft8o7mNCLJOTz/iv8SHAIgMMX0czEoIaNVOJr7tBqPqwin1CGwsncrkf5C9n8Q==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@turf/helpers": "7.3.4",
+-        "@turf/invariant": "7.3.4",
+-        "@types/geojson": "^7946.0.10",
+-        "point-in-polygon-hao": "^1.1.0",
+-        "tslib": "^2.8.1"
+-      },
+-      "funding": {
+-        "url": "https://opencollective.com/turf"
+-      }
+-    },
+-    "node_modules/@turf/helpers": {
+-      "version": "7.3.4",
+-      "resolved": "https://registry.npmjs.org/@turf/helpers/-/helpers-7.3.4.tgz",
+-      "integrity": "sha512-U/S5qyqgx3WTvg4twaH0WxF3EixoTCfDsmk98g1E3/5e2YKp7JKYZdz0vivsS5/UZLJeZDEElOSFH4pUgp+l7g==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@types/geojson": "^7946.0.10",
+-        "tslib": "^2.8.1"
+-      },
+-      "funding": {
+-        "url": "https://opencollective.com/turf"
+-      }
+-    },
+-    "node_modules/@turf/invariant": {
+-      "version": "7.3.4",
+-      "resolved": "https://registry.npmjs.org/@turf/invariant/-/invariant-7.3.4.tgz",
+-      "integrity": "sha512-88Eo4va4rce9sNZs6XiMJowWkikM3cS2TBhaCKlU+GFHdNf8PFEpiU42VDU8q5tOF6/fu21Rvlke5odgOGW4AQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@turf/helpers": "7.3.4",
+-        "@types/geojson": "^7946.0.10",
+-        "tslib": "^2.8.1"
+-      },
+-      "funding": {
+-        "url": "https://opencollective.com/turf"
+-      }
+-    },
+-    "node_modules/@tweenjs/tween.js": {
+-      "version": "25.0.0",
+-      "resolved": "https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-25.0.0.tgz",
+-      "integrity": "sha512-XKLA6syeBUaPzx4j3qwMqzzq+V4uo72BnlbOjmuljLrRqdsd3qnzvZZoxvMHZ23ndsRS4aufU6JOZYpCbU6T1A==",
+-      "license": "MIT"
+-    },
+     "node_modules/@tybys/wasm-util": {
+       "version": "0.10.1",
+       "resolved": "https://registry.npmjs.org/@tybys/wasm-util/-/wasm-util-0.10.1.tgz",
+@@ -596,12 +545,6 @@
+         "tslib": "^2.4.0"
+       }
+     },
+-    "node_modules/@types/geojson": {
+-      "version": "7946.0.16",
+-      "resolved": "https://registry.npmjs.org/@types/geojson/-/geojson-7946.0.16.tgz",
+-      "integrity": "sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==",
+-      "license": "MIT"
+-    },
+     "node_modules/@types/json5": {
+       "version": "0.0.29",
+       "resolved": "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz",
+@@ -647,6 +590,43 @@
+         "@types/react": "^18.0.0"
+       }
+     },
++    "node_modules/@types/stats.js": {
++      "version": "0.17.4",
++      "resolved": "https://registry.npmjs.org/@types/stats.js/-/stats.js-0.17.4.tgz",
++      "integrity": "sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==",
++      "dev": true,
++      "license": "MIT"
++    },
++    "node_modules/@types/three": {
++      "version": "0.183.1",
++      "resolved": "https://registry.npmjs.org/@types/three/-/three-0.183.1.tgz",
++      "integrity": "sha512-f2Pu5Hrepfgavttdye3PsH5RWyY/AvdZQwIVhrc4uNtvF7nOWJacQKcoVJn0S4f0yYbmAE6AR+ve7xDcuYtMGw==",
++      "dev": true,
++      "license": "MIT",
++      "dependencies": {
++        "@dimforge/rapier3d-compat": "~0.12.0",
++        "@tweenjs/tween.js": "~23.1.3",
++        "@types/stats.js": "*",
++        "@types/webxr": ">=0.5.17",
++        "@webgpu/types": "*",
++        "fflate": "~0.8.2",
++        "meshoptimizer": "~1.0.1"
++      }
++    },
++    "node_modules/@types/three/node_modules/@tweenjs/tween.js": {
++      "version": "23.1.3",
++      "resolved": "https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-23.1.3.tgz",
++      "integrity": "sha512-vJmvvwFxYuGnF2axRtPYocag6Clbb5YS7kLL+SO/TeVFzHqDIWrNKYtcsPMibjDx9O+bu+psAy9NKfWklassUA==",
++      "dev": true,
++      "license": "MIT"
++    },
++    "node_modules/@types/webxr": {
++      "version": "0.5.24",
++      "resolved": "https://registry.npmjs.org/@types/webxr/-/webxr-0.5.24.tgz",
++      "integrity": "sha512-h8fgEd/DpoS9CBrjEQXR+dIDraopAEfu4wYVNY2tEPwk60stPWhvZMf4Foo5FakuQ7HFZoa8WceaWFervK2Ovg==",
++      "dev": true,
++      "license": "MIT"
++    },
+     "node_modules/@typescript-eslint/eslint-plugin": {
+       "version": "8.56.1",
+       "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.56.1.tgz",
+@@ -1205,14 +1185,12 @@
+         "win32"
+       ]
+     },
+-    "node_modules/accessor-fn": {
+-      "version": "1.5.3",
+-      "resolved": "https://registry.npmjs.org/accessor-fn/-/accessor-fn-1.5.3.tgz",
+-      "integrity": "sha512-rkAofCwe/FvYFUlMB0v0gWmhqtfAtV1IUkdPbfhTUyYniu5LrC0A0UJkTH0Jv3S8SvwkmfuAlY+mQIJATdocMA==",
+-      "license": "MIT",
+-      "engines": {
+-        "node": ">=12"
+-      }
++    "node_modules/@webgpu/types": {
++      "version": "0.1.69",
++      "resolved": "https://registry.npmjs.org/@webgpu/types/-/types-0.1.69.tgz",
++      "integrity": "sha512-RPmm6kgRbI8e98zSD3RVACvnuktIja5+yLgDAkTmxLr90BEwdTXRQWNLF3ETTTyH/8mKhznZuN5AveXYFEsMGQ==",
++      "dev": true,
++      "license": "BSD-3-Clause"
+     },
+     "node_modules/acorn": {
+       "version": "8.16.0",
+@@ -1825,168 +1803,6 @@
+       "dev": true,
+       "license": "MIT"
+     },
+-    "node_modules/d3-array": {
+-      "version": "3.2.4",
+-      "resolved": "https://registry.npmjs.org/d3-array/-/d3-array-3.2.4.tgz",
+-      "integrity": "sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "internmap": "1 - 2"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-color": {
+-      "version": "3.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-color/-/d3-color-3.1.0.tgz",
+-      "integrity": "sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==",
+-      "license": "ISC",
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-delaunay": {
+-      "version": "6.0.4",
+-      "resolved": "https://registry.npmjs.org/d3-delaunay/-/d3-delaunay-6.0.4.tgz",
+-      "integrity": "sha512-mdjtIZ1XLAM8bm/hx3WwjfHt6Sggek7qH043O8KEjDXN40xi3vx/6pYSVTwLjEgiXQTbvaouWKynLBiUZ6SK6A==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "delaunator": "5"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-format": {
+-      "version": "3.1.2",
+-      "resolved": "https://registry.npmjs.org/d3-format/-/d3-format-3.1.2.tgz",
+-      "integrity": "sha512-AJDdYOdnyRDV5b6ArilzCPPwc1ejkHcoyFarqlPqT7zRYjhavcT3uSrqcMvsgh2CgoPbK3RCwyHaVyxYcP2Arg==",
+-      "license": "ISC",
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-geo": {
+-      "version": "3.1.1",
+-      "resolved": "https://registry.npmjs.org/d3-geo/-/d3-geo-3.1.1.tgz",
+-      "integrity": "sha512-637ln3gXKXOwhalDzinUgY83KzNWZRKbYubaG+fGVuc/dxO64RRljtCTnf5ecMyE1RIdtqpkVcq0IbtU2S8j2Q==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-array": "2.5.0 - 3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-geo-voronoi": {
+-      "version": "2.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-geo-voronoi/-/d3-geo-voronoi-2.1.0.tgz",
+-      "integrity": "sha512-kqE4yYuOjPbKdBXG0xztCacPwkVSK2REF1opSNrnqqtXJmNcM++UbwQ8SxvwP6IQTj9RvIjjK4qeiVsEfj0Z2Q==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-array": "3",
+-        "d3-delaunay": "6",
+-        "d3-geo": "3",
+-        "d3-tricontour": "1"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-interpolate": {
+-      "version": "3.0.1",
+-      "resolved": "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-3.0.1.tgz",
+-      "integrity": "sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-color": "1 - 3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-octree": {
+-      "version": "1.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-octree/-/d3-octree-1.1.0.tgz",
+-      "integrity": "sha512-F8gPlqpP+HwRPMO/8uOu5wjH110+6q4cgJvgJT6vlpy3BEaDIKlTZrgHKZSp/i1InRpVfh4puY/kvL6MxK930A==",
+-      "license": "MIT"
+-    },
+-    "node_modules/d3-scale": {
+-      "version": "4.0.2",
+-      "resolved": "https://registry.npmjs.org/d3-scale/-/d3-scale-4.0.2.tgz",
+-      "integrity": "sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-array": "2.10.0 - 3",
+-        "d3-format": "1 - 3",
+-        "d3-interpolate": "1.2.0 - 3",
+-        "d3-time": "2.1.1 - 3",
+-        "d3-time-format": "2 - 4"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-scale-chromatic": {
+-      "version": "3.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-scale-chromatic/-/d3-scale-chromatic-3.1.0.tgz",
+-      "integrity": "sha512-A3s5PWiZ9YCXFye1o246KoscMWqf8BsD9eRiJ3He7C9OBaxKhAd5TFCdEx/7VbKtxxTsu//1mMJFrEt572cEyQ==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-color": "1 - 3",
+-        "d3-interpolate": "1 - 3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-selection": {
+-      "version": "3.0.0",
+-      "resolved": "https://registry.npmjs.org/d3-selection/-/d3-selection-3.0.0.tgz",
+-      "integrity": "sha512-fmTRWbNMmsmWq6xJV8D19U/gw/bwrHfNXxrIN+HfZgnzqTHp9jOmKMhsTUjXOJnZOdZY9Q28y4yebKzqDKlxlQ==",
+-      "license": "ISC",
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-time": {
+-      "version": "3.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-time/-/d3-time-3.1.0.tgz",
+-      "integrity": "sha512-VqKjzBLejbSMT4IgbmVgDjpkYrNWUYJnbCGo874u7MMKIWsILRX+OpX/gTk8MqjpT1A/c6HY2dCA77ZN0lkQ2Q==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-array": "2 - 3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-time-format": {
+-      "version": "4.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-time-format/-/d3-time-format-4.1.0.tgz",
+-      "integrity": "sha512-dJxPBlzC7NugB2PDLwo9Q8JiTR3M3e4/XANkreKSUxF8vvXKqm1Yfq4Q5dl8budlunRVlUUaDUgFt7eA8D6NLg==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-time": "1 - 3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+-    "node_modules/d3-tricontour": {
+-      "version": "1.1.0",
+-      "resolved": "https://registry.npmjs.org/d3-tricontour/-/d3-tricontour-1.1.0.tgz",
+-      "integrity": "sha512-G7gHKj89n2owmkGb6WX6ixcnQ0Kf/0wpa9VIh9DGdbHu8wdrlaHU4ir3/bFNERl8N8nn4G7e7qbtBG8N9caihQ==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "d3-delaunay": "6",
+-        "d3-scale": "4"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/damerau-levenshtein": {
+       "version": "1.0.8",
+       "resolved": "https://registry.npmjs.org/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz",
+@@ -1994,18 +1810,6 @@
+       "dev": true,
+       "license": "BSD-2-Clause"
+     },
+-    "node_modules/data-bind-mapper": {
+-      "version": "1.0.3",
+-      "resolved": "https://registry.npmjs.org/data-bind-mapper/-/data-bind-mapper-1.0.3.tgz",
+-      "integrity": "sha512-QmU3lyEnbENQPo0M1F9BMu4s6cqNNp8iJA+b/HP2sSb7pf3dxwF3+EP1eO69rwBfH9kFJ1apmzrtogAmVt2/Xw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "accessor-fn": "1"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/data-view-buffer": {
+       "version": "1.0.2",
+       "resolved": "https://registry.npmjs.org/data-view-buffer/-/data-view-buffer-1.0.2.tgz",
+@@ -2121,15 +1925,6 @@
+         "url": "https://github.com/sponsors/ljharb"
+       }
+     },
+-    "node_modules/delaunator": {
+-      "version": "5.0.1",
+-      "resolved": "https://registry.npmjs.org/delaunator/-/delaunator-5.0.1.tgz",
+-      "integrity": "sha512-8nvh+XBe96aCESrGOqMp/84b13H9cdKbG5P2ejQCh4d4sK9RL4371qou9drQjMhvnPmhWl5hnmqbEE0fXr9Xnw==",
+-      "license": "ISC",
+-      "dependencies": {
+-        "robust-predicates": "^3.0.2"
+-      }
+-    },
+     "node_modules/didyoumean": {
+       "version": "1.2.2",
+       "resolved": "https://registry.npmjs.org/didyoumean/-/didyoumean-1.2.2.tgz",
+@@ -2172,12 +1967,6 @@
+         "node": ">= 0.4"
+       }
+     },
+-    "node_modules/earcut": {
+-      "version": "3.0.2",
+-      "resolved": "https://registry.npmjs.org/earcut/-/earcut-3.0.2.tgz",
+-      "integrity": "sha512-X7hshQbLyMJ/3RPhyObLARM2sNxxmRALLKx1+NVFFnQ9gKzmCrxm9+uLIAdBcvc8FNLpctqlQ2V6AE92Ol9UDQ==",
+-      "license": "ISC"
+-    },
+     "node_modules/eastasianwidth": {
+       "version": "0.2.0",
+       "resolved": "https://registry.npmjs.org/eastasianwidth/-/eastasianwidth-0.2.0.tgz",
+@@ -2897,6 +2686,13 @@
+         "reusify": "^1.0.4"
+       }
+     },
++    "node_modules/fflate": {
++      "version": "0.8.2",
++      "resolved": "https://registry.npmjs.org/fflate/-/fflate-0.8.2.tgz",
++      "integrity": "sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==",
++      "dev": true,
++      "license": "MIT"
++    },
+     "node_modules/file-entry-cache": {
+       "version": "6.0.1",
+       "resolved": "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz",
+@@ -2962,20 +2758,6 @@
+       "dev": true,
+       "license": "ISC"
+     },
+-    "node_modules/float-tooltip": {
+-      "version": "1.7.5",
+-      "resolved": "https://registry.npmjs.org/float-tooltip/-/float-tooltip-1.7.5.tgz",
+-      "integrity": "sha512-/kXzuDnnBqyyWyhDMH7+PfP8J/oXiAavGzcRxASOMRHFuReDtofizLLJsf7nnDLAfEaMW4pVWaXrAjtnglpEkg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "d3-selection": "2 - 3",
+-        "kapsule": "^1.16",
+-        "preact": "10"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/for-each": {
+       "version": "0.3.5",
+       "resolved": "https://registry.npmjs.org/for-each/-/for-each-0.3.5.tgz",
+@@ -3009,15 +2791,6 @@
+         "url": "https://github.com/sponsors/isaacs"
+       }
+     },
+-    "node_modules/frame-ticker": {
+-      "version": "1.0.3",
+-      "resolved": "https://registry.npmjs.org/frame-ticker/-/frame-ticker-1.0.3.tgz",
+-      "integrity": "sha512-E0X2u2JIvbEMrqEg5+4BpTqaD22OwojJI63K7MdKHdncjtAhGRbCR8nJCr2vwEt9NWBPCPcu70X9smPviEBy8Q==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "simplesignal": "^2.1.6"
+-      }
+-    },
+     "node_modules/framer-motion": {
+       "version": "12.34.3",
+       "resolved": "https://registry.npmjs.org/framer-motion/-/framer-motion-12.34.3.tgz",
+@@ -3297,23 +3070,6 @@
+         "url": "https://github.com/sponsors/ljharb"
+       }
+     },
+-    "node_modules/globe.gl": {
+-      "version": "2.45.0",
+-      "resolved": "https://registry.npmjs.org/globe.gl/-/globe.gl-2.45.0.tgz",
+-      "integrity": "sha512-fjkLHVBrnbESkUgklTd4UbcGLciu4nIl49IIi1hclLjI6MU3ASu6JYmf/K5qwPf7I+tNOauQRr4i5Y28JTtHQg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tweenjs/tween.js": "18 - 25",
+-        "accessor-fn": "1",
+-        "kapsule": "^1.16",
+-        "three": ">=0.154 <1",
+-        "three-globe": "^2.45",
+-        "three-render-objects": "^1.40"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/gopd": {
+       "version": "1.2.0",
+       "resolved": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
+@@ -3346,17 +3102,6 @@
+       "integrity": "sha512-P8/mMxVLU7o4+55+1TCnQrPmgjPKnwkzkXOK1asnR9Jg2lna4tEY5qBJjMmAaOBDDZWtlRjBXjLa0w53G/uBLA==",
+       "license": "Standard 'no charge' license: https://gsap.com/standard-license."
+     },
+-    "node_modules/h3-js": {
+-      "version": "4.4.0",
+-      "resolved": "https://registry.npmjs.org/h3-js/-/h3-js-4.4.0.tgz",
+-      "integrity": "sha512-DvJh07MhGgY2KcC4OeZc8SSyA+ZXpdvoh6uCzGpoKvWtZxJB+g6VXXC1+eWYkaMIsLz7J/ErhOalHCpcs1KYog==",
+-      "license": "Apache-2.0",
+-      "engines": {
+-        "node": ">=4",
+-        "npm": ">=3",
+-        "yarn": ">=1.3.0"
+-      }
+-    },
+     "node_modules/has-bigints": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/has-bigints/-/has-bigints-1.1.0.tgz",
+@@ -3488,15 +3233,6 @@
+         "node": ">=0.8.19"
+       }
+     },
+-    "node_modules/index-array-by": {
+-      "version": "1.4.2",
+-      "resolved": "https://registry.npmjs.org/index-array-by/-/index-array-by-1.4.2.tgz",
+-      "integrity": "sha512-SP23P27OUKzXWEC/TOyWlwLviofQkCSCKONnc62eItjp69yCZZPqDQtr3Pw5gJDnPeUMqExmKydNZaJO0FU9pw==",
+-      "license": "MIT",
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/inflight": {
+       "version": "1.0.6",
+       "resolved": "https://registry.npmjs.org/inflight/-/inflight-1.0.6.tgz",
+@@ -3531,15 +3267,6 @@
+         "node": ">= 0.4"
+       }
+     },
+-    "node_modules/internmap": {
+-      "version": "2.0.3",
+-      "resolved": "https://registry.npmjs.org/internmap/-/internmap-2.0.3.tgz",
+-      "integrity": "sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==",
+-      "license": "ISC",
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/is-array-buffer": {
+       "version": "3.0.5",
+       "resolved": "https://registry.npmjs.org/is-array-buffer/-/is-array-buffer-3.0.5.tgz",
+@@ -4026,15 +3753,6 @@
+         "@pkgjs/parseargs": "^0.11.0"
+       }
+     },
+-    "node_modules/jerrypick": {
+-      "version": "1.1.2",
+-      "resolved": "https://registry.npmjs.org/jerrypick/-/jerrypick-1.1.2.tgz",
+-      "integrity": "sha512-YKnxXEekXKzhpf7CLYA0A+oDP8V0OhICNCr5lv96FvSsDEmrb0GKM776JgQvHTMjr7DTTPEVv/1Ciaw0uEWzBA==",
+-      "license": "MIT",
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/jiti": {
+       "version": "1.21.7",
+       "resolved": "https://registry.npmjs.org/jiti/-/jiti-1.21.7.tgz",
+@@ -4114,18 +3832,6 @@
+         "node": ">=4.0"
+       }
+     },
+-    "node_modules/kapsule": {
+-      "version": "1.16.3",
+-      "resolved": "https://registry.npmjs.org/kapsule/-/kapsule-1.16.3.tgz",
+-      "integrity": "sha512-4+5mNNf4vZDSwPhKprKwz3330iisPrb08JyMgbsdFrimBCKNHecua/WBwvVg3n7vwx0C1ARjfhwIpbrbd9n5wg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "lodash-es": "4"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      }
+-    },
+     "node_modules/keyv": {
+       "version": "4.5.4",
+       "resolved": "https://registry.npmjs.org/keyv/-/keyv-4.5.4.tgz",
+@@ -4232,12 +3938,6 @@
+         "url": "https://github.com/sponsors/sindresorhus"
+       }
+     },
+-    "node_modules/lodash-es": {
+-      "version": "4.17.23",
+-      "resolved": "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.23.tgz",
+-      "integrity": "sha512-kVI48u3PZr38HdYz98UmfPnXl2DXrpdctLrFLCd3kOx1xUkOmpFPx7gCWWM5MPkL/fD8zb+Ph0QzjGFs4+hHWg==",
+-      "license": "MIT"
+-    },
+     "node_modules/lodash.merge": {
+       "version": "4.6.2",
+       "resolved": "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz",
+@@ -4293,6 +3993,13 @@
+         "node": ">= 8"
+       }
+     },
++    "node_modules/meshoptimizer": {
++      "version": "1.0.1",
++      "resolved": "https://registry.npmjs.org/meshoptimizer/-/meshoptimizer-1.0.1.tgz",
++      "integrity": "sha512-Vix+QlA1YYT3FwmBBZ+49cE5y/b+pRrcXKqGpS5ouh33d3lSp2PoTpCw19E0cKDFWalembrHnIaZetf27a+W2g==",
++      "dev": true,
++      "license": "MIT"
++    },
+     "node_modules/micromatch": {
+       "version": "4.0.8",
+       "resolved": "https://registry.npmjs.org/micromatch/-/micromatch-4.0.8.tgz",
+@@ -4536,6 +4243,7 @@
+       "version": "4.1.1",
+       "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
+       "integrity": "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==",
++      "dev": true,
+       "license": "MIT",
+       "engines": {
+         "node": ">=0.10.0"
+@@ -4848,27 +4556,6 @@
+         "node": ">= 6"
+       }
+     },
+-    "node_modules/point-in-polygon-hao": {
+-      "version": "1.2.4",
+-      "resolved": "https://registry.npmjs.org/point-in-polygon-hao/-/point-in-polygon-hao-1.2.4.tgz",
+-      "integrity": "sha512-x2pcvXeqhRHlNRdhLs/tgFapAbSSe86wa/eqmj1G6pWftbEs5aVRJhRGM6FYSUERKu0PjekJzMq0gsI2XyiclQ==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "robust-predicates": "^3.0.2"
+-      }
+-    },
+-    "node_modules/polished": {
+-      "version": "4.3.1",
+-      "resolved": "https://registry.npmjs.org/polished/-/polished-4.3.1.tgz",
+-      "integrity": "sha512-OBatVyC/N7SCW/FaDHrSd+vn0o5cS855TOmYi4OkdWUMSJCET/xip//ch8xGUvtr3i44X9LVyWwQlRMTN3pwSA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@babel/runtime": "^7.17.8"
+-      },
+-      "engines": {
+-        "node": ">=10"
+-      }
+-    },
+     "node_modules/possible-typed-array-names": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/possible-typed-array-names/-/possible-typed-array-names-1.1.0.tgz",
+@@ -5042,16 +4729,6 @@
+       "dev": true,
+       "license": "MIT"
+     },
+-    "node_modules/preact": {
+-      "version": "10.28.4",
+-      "resolved": "https://registry.npmjs.org/preact/-/preact-10.28.4.tgz",
+-      "integrity": "sha512-uKFfOHWuSNpRFVTnljsCluEFq57OKT+0QdOiQo8XWnQ/pSvg7OpX5eNOejELXJMWy+BwM2nobz0FkvzmnpCNsQ==",
+-      "license": "MIT",
+-      "funding": {
+-        "type": "opencollective",
+-        "url": "https://opencollective.com/preact"
+-      }
+-    },
+     "node_modules/prelude-ls": {
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz",
+@@ -5066,6 +4743,7 @@
+       "version": "15.8.1",
+       "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+       "integrity": "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==",
++      "dev": true,
+       "license": "MIT",
+       "dependencies": {
+         "loose-envify": "^1.4.0",
+@@ -5129,44 +4807,13 @@
+         "react": "^18.3.1"
+       }
+     },
+-    "node_modules/react-globe.gl": {
+-      "version": "2.37.0",
+-      "resolved": "https://registry.npmjs.org/react-globe.gl/-/react-globe.gl-2.37.0.tgz",
+-      "integrity": "sha512-nN1FDOJBhFvWfKrOY0SnkDuA8wk9FSTBN0HFfAdTqqcFM5R+OXBIxK0BM6t8n3oNVYpEJVxEzjYFwLyk4BC7Cw==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "globe.gl": "^2.45",
+-        "prop-types": "15",
+-        "react-kapsule": "^2.5"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "react": "*"
+-      }
+-    },
+     "node_modules/react-is": {
+       "version": "16.13.1",
+       "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
+       "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==",
++      "dev": true,
+       "license": "MIT"
+     },
+-    "node_modules/react-kapsule": {
+-      "version": "2.5.7",
+-      "resolved": "https://registry.npmjs.org/react-kapsule/-/react-kapsule-2.5.7.tgz",
+-      "integrity": "sha512-kifAF4ZPD77qZKc4CKLmozq6GY1sBzPEJTIJb0wWFK6HsePJatK3jXplZn2eeAt3x67CDozgi7/rO8fNQ/AL7A==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "jerrypick": "^1.1.1"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "react": ">=16.13.1"
+-      }
+-    },
+     "node_modules/read-cache": {
+       "version": "1.0.0",
+       "resolved": "https://registry.npmjs.org/read-cache/-/read-cache-1.0.0.tgz",
+@@ -5325,12 +4972,6 @@
+         "url": "https://github.com/sponsors/isaacs"
+       }
+     },
+-    "node_modules/robust-predicates": {
+-      "version": "3.0.2",
+-      "resolved": "https://registry.npmjs.org/robust-predicates/-/robust-predicates-3.0.2.tgz",
+-      "integrity": "sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==",
+-      "license": "Unlicense"
+-    },
+     "node_modules/run-parallel": {
+       "version": "1.2.0",
+       "resolved": "https://registry.npmjs.org/run-parallel/-/run-parallel-1.2.0.tgz",
+@@ -5593,12 +5234,6 @@
+         "url": "https://github.com/sponsors/isaacs"
+       }
+     },
+-    "node_modules/simplesignal": {
+-      "version": "2.1.7",
+-      "resolved": "https://registry.npmjs.org/simplesignal/-/simplesignal-2.1.7.tgz",
+-      "integrity": "sha512-PEo2qWpUke7IMhlqiBxrulIFvhJRLkl1ih52Rwa+bPjzhJepcd4GIjn2RiQmFSx3dQvsEAgF0/lXMwMN7vODaA==",
+-      "license": "MIT"
+-    },
+     "node_modules/source-map-js": {
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
+@@ -6021,120 +5656,9 @@
+       }
+     },
+     "node_modules/three": {
+-      "version": "0.183.1",
+-      "resolved": "https://registry.npmjs.org/three/-/three-0.183.1.tgz",
+-      "integrity": "sha512-Psv6bbd3d/M/01MT2zZ+VmD0Vj2dbWTNhfe4CuSg7w5TuW96M3NOyCVuh9SZQ05CpGmD7NEcJhZw4GVjhCYxfQ==",
+-      "license": "MIT"
+-    },
+-    "node_modules/three-conic-polygon-geometry": {
+-      "version": "2.1.2",
+-      "resolved": "https://registry.npmjs.org/three-conic-polygon-geometry/-/three-conic-polygon-geometry-2.1.2.tgz",
+-      "integrity": "sha512-NaP3RWLJIyPGI+zyaZwd0Yj6rkoxm4FJHqAX1Enb4L64oNYLCn4bz1ESgOEYavgcUwCNYINu1AgEoUBJr1wZcA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@turf/boolean-point-in-polygon": "^7.2",
+-        "d3-array": "1 - 3",
+-        "d3-geo": "1 - 3",
+-        "d3-geo-voronoi": "2",
+-        "d3-scale": "1 - 4",
+-        "delaunator": "5",
+-        "earcut": "3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "three": ">=0.72.0"
+-      }
+-    },
+-    "node_modules/three-geojson-geometry": {
+-      "version": "2.1.1",
+-      "resolved": "https://registry.npmjs.org/three-geojson-geometry/-/three-geojson-geometry-2.1.1.tgz",
+-      "integrity": "sha512-dC7bF3ri1goDcihYhzACHOBQqu7YNNazYLa2bSydVIiJUb3jDFojKSy+gNj2pMkqZNSVjssSmdY9zlmnhEpr1w==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "d3-geo": "1 - 3",
+-        "d3-interpolate": "1 - 3",
+-        "earcut": "3"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "three": ">=0.72.0"
+-      }
+-    },
+-    "node_modules/three-globe": {
+-      "version": "2.45.0",
+-      "resolved": "https://registry.npmjs.org/three-globe/-/three-globe-2.45.0.tgz",
+-      "integrity": "sha512-Ur6BVkezvmHnvsEg8fbq6gIscSZtknSQMWwDRbiJ95o6OSDjDbGTc4oO6nP7mOM9aAA3YrF7YZyOwSkP4T56QA==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tweenjs/tween.js": "18 - 25",
+-        "accessor-fn": "1",
+-        "d3-array": "3",
+-        "d3-color": "3",
+-        "d3-geo": "3",
+-        "d3-interpolate": "3",
+-        "d3-scale": "4",
+-        "d3-scale-chromatic": "3",
+-        "data-bind-mapper": "1",
+-        "frame-ticker": "1",
+-        "h3-js": "4",
+-        "index-array-by": "1",
+-        "kapsule": "^1.16",
+-        "three-conic-polygon-geometry": "2",
+-        "three-geojson-geometry": "2",
+-        "three-slippy-map-globe": "1",
+-        "tinycolor2": "1"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "three": ">=0.154"
+-      }
+-    },
+-    "node_modules/three-render-objects": {
+-      "version": "1.40.4",
+-      "resolved": "https://registry.npmjs.org/three-render-objects/-/three-render-objects-1.40.4.tgz",
+-      "integrity": "sha512-Ukpu1pei3L5r809izvjsZxwuRcYLiyn6Uvy3lZ9bpMTdvj3i6PeX6w++/hs2ZS3KnEzGjb6YvTvh4UQuwHTDJg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "@tweenjs/tween.js": "18 - 25",
+-        "accessor-fn": "1",
+-        "float-tooltip": "^1.7",
+-        "kapsule": "^1.16",
+-        "polished": "4"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "three": ">=0.168"
+-      }
+-    },
+-    "node_modules/three-slippy-map-globe": {
+-      "version": "1.0.4",
+-      "resolved": "https://registry.npmjs.org/three-slippy-map-globe/-/three-slippy-map-globe-1.0.4.tgz",
+-      "integrity": "sha512-am8A4PP38AfTdrhXBDucwPRHLTbBl93yhpjIs56K1TLs9VuUWzg68oim4Dibs9QC1riXbj5SoBp/okA1VN9eYg==",
+-      "license": "MIT",
+-      "dependencies": {
+-        "d3-geo": "1 - 3",
+-        "d3-octree": "^1.1",
+-        "d3-scale": "1 - 4"
+-      },
+-      "engines": {
+-        "node": ">=12"
+-      },
+-      "peerDependencies": {
+-        "three": ">=0.154"
+-      }
+-    },
+-    "node_modules/tinycolor2": {
+-      "version": "1.6.0",
+-      "resolved": "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.6.0.tgz",
+-      "integrity": "sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==",
++      "version": "0.183.2",
++      "resolved": "https://registry.npmjs.org/three/-/three-0.183.2.tgz",
++      "integrity": "sha512-di3BsL2FEQ1PA7Hcvn4fyJOlxRRgFYBpMTcyOgkwJIaDOdJMebEFPA+t98EvjuljDx4hNulAGwF6KIjtwI5jgQ==",
+       "license": "MIT"
+     },
+     "node_modules/tinyglobby": {
+diff --git a/package.json b/package.json
+index 969c5c3..d2ecc24 100644
+--- a/package.json
++++ b/package.json
+@@ -17,9 +17,8 @@
+     "next": "14.2.35",
+     "react": "^18",
+     "react-dom": "^18",
+-    "react-globe.gl": "^2.37.0",
+     "tailwind-merge": "^3.5.0",
+-    "three": "^0.183.1"
++    "three": "^0.183.2"
+   },
+   "devDependencies": {
+     "@types/node": "^20",
+diff --git a/public/earth-blue-marble.jpg b/public/earth-blue-marble.jpg
+deleted file mode 100644
+index e673a7c..0000000
+Binary files a/public/earth-blue-marble.jpg and /dev/null differ
+diff --git a/public/earth-topology.png b/public/earth-topology.png
+deleted file mode 100644
+index 666be00..0000000
+Binary files a/public/earth-topology.png and /dev/null differ
+diff --git a/public/hands-front-cutout.png b/public/hands-front-cutout.png
+deleted file mode 100644
+index 2499aab..0000000
+Binary files a/public/hands-front-cutout.png and /dev/null differ
+diff --git a/public/hands-globe.png b/public/hands-globe.png
+deleted file mode 100644
+index 4b7e960..0000000
+Binary files a/public/hands-globe.png and /dev/null differ
+diff --git a/public/hands-occlusion-rim.png b/public/hands-occlusion-rim.png
+deleted file mode 100644
+index f67c89c..0000000
+Binary files a/public/hands-occlusion-rim.png and /dev/null differ
+diff --git a/public/hero-image.jpg b/public/hero-image.jpg
+deleted file mode 100644
+index b106e4b..0000000
+Binary files a/public/hero-image.jpg and /dev/null differ
+diff --git a/public/quality-care-scene.png b/public/quality-care-scene.png
+new file mode 100644
+index 0000000..0ade044
+Binary files /dev/null and b/public/quality-care-scene.png differ
+diff --git a/public/senior-living-3d.png b/public/senior-living-3d.png
+new file mode 100644
+index 0000000..80e7c2d
+Binary files /dev/null and b/public/senior-living-3d.png differ
+diff --git a/public/senior-living-diorama.png b/public/senior-living-diorama.png
+new file mode 100644
+index 0000000..07a199f
+Binary files /dev/null and b/public/senior-living-diorama.png differ
+diff --git a/src/app/about-us/page.tsx b/src/app/about-us/page.tsx
+index 08f1fe2..e17eac8 100644
+--- a/src/app/about-us/page.tsx
++++ b/src/app/about-us/page.tsx
+@@ -35,7 +35,7 @@ export default function AboutUs() {
+                     >
+                         <span className="text-[#D6B36A] text-[9px] tracking-[0.4em] uppercase block mb-3 font-bold">Established with Purpose</span>
+                         <h1 className="Heading-Display text-white mb-6 text-4xl md:text-5xl lg:text-6xl">
+-                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Heritage</span>
++                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Vision</span>
+                         </h1>
+                     </motion.div>
+                 </div>
+@@ -54,7 +54,7 @@ export default function AboutUs() {
+                         >
+                             <div className="aspect-[16/10] relative rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
+                                 <Image
+-                                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1600&auto=format&fit=crop"
++                                    src="/quality-care-scene.png"
+                                     alt="Caring interaction"
+                                     fill
+                                     className="object-cover"
+@@ -74,19 +74,19 @@ export default function AboutUs() {
+                         >
+                             <span className="text-[#D6B36A] text-[8px] tracking-[0.4em] uppercase block mb-4 font-bold">The Homely Manifesto</span>
+                             <h2 className="text-3xl md:text-4xl font-serif italic text-[#1A1A1A] mb-6 leading-tight">
+-                                Redefining the <span className="highlighted-text-gold font-light not-italic">Gold Standard</span> of Care.
++                                Excellent home care combining practical expertise with <span className="highlighted-text-gold font-light not-italic">genuine humanity.</span>
+                             </h2>
+                             <div className="space-y-4 text-sm md:text-base font-light text-[#1A1A1A]/70 leading-relaxed">
+                                 <p>
+-                                    Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between clinical excellence and emotional warmth.
++                                    Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between expertise and emotional warmth.
+                                 </p>
+                                 <p>
+-                                    We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like a clinical intervention and more like an extension of family.
++                                    We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like an intervention and more like an extension of family.
+                                 </p>
+                             </div>
+                             <div className="mt-8 pt-8 border-t border-[#1B1326]/5">
+                                 <p className="italic text-lg text-[#5B2A86] font-serif font-light leading-snug">
+-                                    &ldquo;Our mission is to create a world where home care is synonymous with sanctuary.&rdquo;
++                                    &ldquo;Our mission is to provide compassionate, high quality health care services through trusted professionals.&rdquo;
+                                 </p>
+                             </div>
+                         </motion.div>
+@@ -104,16 +104,15 @@ export default function AboutUs() {
+                         whileInView={{ opacity: 1, y: 0 }}
+                         viewport={{ once: true }}
+                     >
+-                        <span className="text-[#D6B36A] text-[8px] tracking-[0.4em] uppercase block mb-3 font-bold">Our Foundation</span>
+                         <h2 className="text-3xl md:text-4xl text-white mb-8">
+-                            The Pillars of our <span className="Heading-Serif italic font-light highlighted-text-gold">Promise</span>
++                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Foundations</span>
+                         </h2>
+                     </motion.div>
+ 
+                     <div className="grid md:grid-cols-3 gap-6 lg:gap-8 perspective-2000">
+                         {[
+-                            { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical well-being." },
+-                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest clinical standards." },
++                            { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical wellbeing." },
++                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest standards." },
+                             { icon: Users, title: "Dignity", desc: "Honouring the person behind the patient, respecting their history and autonomy." }
+                         ].map((pillar, idx) => (
+                             <motion.div
+diff --git a/src/app/contact-us/page.tsx b/src/app/contact-us/page.tsx
+index f5b8031..6b31a88 100644
+--- a/src/app/contact-us/page.tsx
++++ b/src/app/contact-us/page.tsx
+@@ -5,7 +5,8 @@ import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+ import dynamic from "next/dynamic";
+ 
+ // Dynamic Import for the heavy Globe component to improve page load
+-const CustomGlobe = dynamic(() => import("@/components/CustomGlobe"), {
++// Dynamic Import for the new 3D visual
++const SeniorLiving3D = dynamic(() => import("@/components/SeniorLiving3D"), {
+     ssr: false,
+     loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
+ });
+@@ -32,11 +33,10 @@ export default function ContactUs() {
+                         >
+                             <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">World-Class Care Excellence</span>
+                             <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
+-                                Connect with <br className="hidden xs:block" />
+-                                <span className="italic font-light highlighted-text-gold">Perfection</span>
++                                <span className="italic font-light highlighted-text-gold">Book a Call</span>
+                             </h1>
+                             <p className="text-white/80 text-base md:text-xl font-light leading-relaxed mb-10 max-w-lg">
+-                                Experience a new paradigm of healthcare. Our consultants are available globally to tailor a sanctuary for your recovery.
++                                Discuss how we can help. Experience a new paradigm of healthcare.
+                             </p>
+ 
+                             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+@@ -46,14 +46,8 @@ export default function ContactUs() {
+                                     whileTap={{ scale: 0.95 }}
+                                     className="px-8 py-4 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.3em] font-bold rounded-full shadow-2xl hover:bg-[#7A4FB3] transition-all"
+                                 >
+-                                    Start Enquiry
++                                    Book a Call
+                                 </motion.a>
+-                                <motion.div
+-                                    className="flex items-center gap-3 px-6 py-4 rounded-full border border-white/10 backdrop-blur-md"
+-                                >
+-                                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+-                                    <span className="text-[10px] uppercase tracking-widest font-bold text-white/60">Concierge Online</span>
+-                                </motion.div>
+                             </div>
+                         </motion.div>
+ 
+@@ -66,7 +60,7 @@ export default function ContactUs() {
+                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
+                             <div className="absolute inset-0 z-10 lg:hidden bg-black/5 backdrop-blur-[2px]" />
+                             <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
+-                                <CustomGlobe />
++                                <SeniorLiving3D />
+                             </div>
+                         </motion.div>
+                     </div>
+@@ -89,7 +83,7 @@ export default function ContactUs() {
+                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#5B2A86]/10 blur-3xl group-hover:bg-[#5B2A86]/20 transition-all duration-700" />
+ 
+                                 <div className="relative z-10">
+-                                    <h2 className="Heading-Serif text-4xl text-white mb-12">The <span className="italic font-light text-[#D6B36A]">Grand</span> Concierge</h2>
++                                    <h2 className="Heading-Serif text-4xl text-white mb-12">Head Office</h2>
+ 
+                                     <div className="space-y-12">
+                                         <div className="flex gap-4 md:gap-6 items-center">
+@@ -97,8 +91,8 @@ export default function ContactUs() {
+                                                 <Phone className="w-5 h-5 md:w-6 md:h-6" />
+                                             </div>
+                                             <div>
+-                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Private Line</p>
+-                                                <p className="text-xl md:text-2xl text-white font-light">0203 916 5797</p>
++                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Office Line</p>
++                                                <p className="text-xl md:text-2xl text-white font-light">01202 948898</p>
+                                             </div>
+                                         </div>
+ 
+@@ -107,8 +101,8 @@ export default function ContactUs() {
+                                                 <Mail className="w-5 h-5 md:w-6 md:h-6" />
+                                             </div>
+                                             <div>
+-                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Direct Liaison</p>
+-                                                <p className="text-lg md:text-xl text-white font-light break-all xs:break-normal">info@homelyhealthcare.org.uk</p>
++                                                <p className="text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Email</p>
++                                                <p className="text-lg md:text-xl text-white font-light break-all xs:break-normal">info@homelyhealth.uk</p>
+                                             </div>
+                                         </div>
+ 
+@@ -117,7 +111,7 @@ export default function ContactUs() {
+                                                 <MapPin className="w-5 h-5 md:w-6 md:h-6" />
+                                             </div>
+                                             <div>
+-                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Global HQ</p>
++                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Head Office</p>
+                                                 <p className="text-base md:text-lg text-white font-light leading-relaxed">
+                                                     Suite 6A, Wessex House<br />
+                                                     St. Leonards Road, Charminster<br />
+@@ -152,34 +146,31 @@ export default function ContactUs() {
+                                 className="bg-[#F7F5F2] p-8 xs:p-10 lg:p-16 rounded-3xl md:rounded-[40px] shadow-sm border border-black/[0.03] w-full"
+                             >
+                                 <div className="mb-8 md:mb-12 text-center md:text-left">
+-                                    <h3 className="Heading-Serif text-3xl sm:text-4xl md:text-5xl text-[#0F1115] mb-4">Request <span className="italic font-light text-[#5B2A86]">Consultation</span></h3>
+-                                    <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Complete the form below and an ambassador will reach out shortly.</p>
++                                    <h3 className="Heading-Serif text-3xl sm:text-4xl md:text-5xl text-[#0F1115] mb-4">Book a <span className="italic font-light text-[#5B2A86]">Call</span></h3>
++                                    <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Please complete the form below and we will contact you shortly.</p>
+                                 </div>
+ 
+                                 <form className="space-y-6 md:space-y-10">
+                                     <div className="grid md:grid-cols-2 gap-6 md:gap-10">
+                                         <div className="space-y-2 md:space-y-3">
+-                                            <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Identity</label>
+-                                            <input type="text" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Full Name" />
++                                            <input type="text" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Full Name" />
+                                         </div>
+                                         <div className="space-y-2 md:space-y-3">
+-                                            <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Liaison Line</label>
+-                                            <input type="tel" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Phone Number" />
++                                            <input type="tel" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Phone Number" />
+                                         </div>
+                                     </div>
+ 
+                                     <div className="space-y-2 md:space-y-3">
+-                                        <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Digital Address</label>
+-                                        <input type="email" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Email Address" />
++                                        <input type="email" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Email Address" />
+                                     </div>
+ 
+                                     <div className="space-y-2 md:space-y-3">
+                                         <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Service Requirement</label>
+                                         <select className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer">
+-                                            <option>Bespoke Home Care</option>
+-                                            <option>Elite Live-in Support</option>
+-                                            <option>Complex Medical Care</option>
+-                                            <option>Growth & Careers</option>
++                                            <option>Live In Care</option>
++                                            <option>Companionship</option>
++                                            <option>Complex Care</option>
++                                            <option>Staffing Support</option>
+                                         </select>
+                                     </div>
+ 
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 4c8843b..0dbf522 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -32,7 +32,7 @@ export default function RootLayout({
+   children: React.ReactNode;
+ }>) {
+   return (
+-    <html lang="en" className={`${playfair.variable} ${inter.variable}`} data-version="1.0.2-large-globe">
++    <html lang="en" className={`${playfair.variable} ${inter.variable}`} data-version="1.0.3-stable-rebuild">
+       <body className="antialiased bg-[#fdfcff] text-[#1c1c1c]">
+         <SmoothScroll>
+           <Navbar />
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index f67fdc8..e322ee4 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -8,7 +8,8 @@ import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
+ import dynamic from "next/dynamic";
+ 
+ // Dynamic Import for the heavy Globe component to improve LCP/TTI
+-const CustomGlobe = dynamic(() => import("@/components/CustomGlobe"), {
++// Dynamic Import for the new 3D visual
++const SeniorLiving3D = dynamic(() => import("@/components/SeniorLiving3D"), {
+   ssr: false,
+   loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
+ });
+@@ -53,7 +54,7 @@ export default function Home() {
+                 className="mb-8 lg:mb-10"
+               >
+                 <span className="text-[10px] font-bold tracking-[0.45em] uppercase" style={{ color: '#B9A3D3' }}>
+-                  The Gold Standard of Care
++                  Care Tailored to You
+                 </span>
+               </motion.div>
+ 
+@@ -115,7 +116,7 @@ export default function Home() {
+                     lineHeight: '1.65'
+                   }}
+                 >
+-                  Dedicated clinical and personal support tailored to your life, your needs, and your independence.
++                  Dedicated personal support tailored to your life, your needs, and your independence.
+                 </motion.p>
+               </motion.div>
+ 
+@@ -146,7 +147,7 @@ export default function Home() {
+                   }}
+                 >
+                   <div className="absolute inset-x-0 bottom-0 h-0 group-hover:h-full bg-[#D6B36A]/10 transition-all duration-700 ease-out" />
+-                  <span className="relative z-10">Request Consultation</span>
++                  <span className="relative z-10">Book a Call</span>
+                   <Heart className="w-4 h-4 text-[#D6B36A] group-hover:scale-110 transition-transform duration-500 relative z-10" />
+                 </Link>
+ 
+@@ -162,60 +163,10 @@ export default function Home() {
+             </motion.div>
+           </div>
+ 
+-          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK VER_3 */}
+-          <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
+-
+-            {/* SVG Filter for Pure Alpha (Black to Transparent) */}
+-            <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+-              <svg>
+-                <filter id="blackToAlpha">
+-                  <feColorMatrix
+-                    type="matrix"
+-                    values="1 0 0 0 0
+-                            0 1 0 0 0
+-                            0 0 1 0 0
+-                            1.5 1.5 1.5 0 -0.1"
+-                  />
+-                </filter>
+-              </svg>
+-            </div>
+-
+-            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[26%]">
+-
+-              {/* Layer 0: Depth Ambiance (Luxury Blur) */}
+-              <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
+-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[55%] h-[55%] bg-[#5B2A86]/40 rounded-full blur-[90px]" />
+-              </div>
+-
+-              {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
+-              <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
+-                {/* Mobile: big centered globe, no offset. Desktop: positioned behind hands */}
+-                <div className="relative w-[95%] h-[95%] mt-[-18%] lg:w-[48%] lg:h-[48%] lg:mt-[-16%] pointer-events-auto">
+-                  <CustomGlobe isHero={true} />
+-                </div>
+-              </div>
+-
+-              {/* Layer 2: Contact Occlusion ÔÇö desktop only */}
+-              <div
+-                className="hidden lg:block absolute inset-[-42%] lg:inset-[3%] z-20 pointer-events-none"
+-                style={{
+-                  background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
+-                  opacity: 0.8
+-                }}
+-              />
+-
+-              {/* Layer 3: Hands ÔÇö desktop only */}
+-              <div className="hidden lg:block absolute inset-[-42%] lg:inset-[3%] z-30 pointer-events-none">
+-                <Image
+-                  src="/hands-globe.png"
+-                  alt="Hands foreground"
+-                  fill
+-                  className="object-contain object-bottom select-none"
+-                  priority
+-                  style={{ filter: 'url(#blackToAlpha)' }}
+-                />
+-              </div>
+-
++          {/* Right: Premium 3D Diorama */}
++          <div className="w-full lg:w-[50%] flex items-center justify-center lg:justify-end mt-12 lg:mt-0 relative z-30">
++            <div className="relative w-full aspect-[4/3] max-w-[600px] lg:max-w-none lg:w-[120%] lg:translate-x-[15%]">
++              <SeniorLiving3D />
+             </div>
+           </div>
+         </div>
+@@ -241,6 +192,7 @@ export default function Home() {
+                   alt="Compassionate Home Care"
+                   fill
+                   className="object-cover"
++                  sizes="(max-width: 1024px) 100vw, 50vw"
+                   priority
+                 />
+                 {/* Subtle natural lighting enhancement */}
+@@ -263,7 +215,7 @@ export default function Home() {
+               {/* Small Gold Label */}
+               <div className="flex items-center gap-3 mb-6">
+                 <div className="w-8 h-[1.5px] bg-[#D6B36A]" />
+-                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Our Philosophy</span>
++                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Our Mission</span>
+               </div>
+ 
+               <h2 className="Heading-Serif text-[clamp(2.2rem,4.5vw,3.5rem)] text-[#1A1A1A] leading-[1.1] mb-6 font-light">
+@@ -273,19 +225,15 @@ export default function Home() {
+ 
+               <div className="space-y-6 mb-10">
+                 <p className="text-lg md:text-xl text-[#1A1A1A]/70 font-light leading-relaxed">
+-                  Exceptional person-centred support is more than a serviceÔÇöitÔÇÖs a deep commitment to treating every client like a cherished member of our family.
++                  To provide compassionate, high quality healthcare services through trusted professionals.
+                 </p>
+-                <div className="flex items-center gap-2 text-[#5B2A86] font-medium">
+-                  <Heart className="w-5 h-5 fill-[#5B2A86]" />
+-                  <span className="text-sm tracking-wide">A Legacy of Unwavering Trust</span>
+-                </div>
+               </div>
+ 
+               <Link
+                 href="/services"
+                 className="group relative inline-flex items-center px-10 py-5 bg-[#5B2A86] text-white rounded-full overflow-hidden transition-all duration-500 hover:bg-[#4a226d] hover:shadow-xl hover:shadow-purple-900/10"
+               >
+-                <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-semibold">Our Care Philosophy</span>
++                <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-semibold">Our Mission</span>
+                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+               </Link>
+             </motion.div>
+@@ -410,7 +358,7 @@ export default function Home() {
+           {/* Section Header */}
+           <div className="text-center mb-10 relative">
+             <h2 className="Heading-Serif text-[#1A1A1A] text-3xl md:text-[42px] mb-8 font-normal tracking-tight">
+-              Trusted by Families Across the UK
++              Trusted by Families Across the UK....
+             </h2>
+             {/* Glowing divider line */}
+             <div className="relative w-80 h-[1px] mx-auto bg-gradient-to-r from-transparent via-[#D6B36A]/40 to-transparent">
+@@ -464,26 +412,21 @@ export default function Home() {
+                 &ldquo;
+               </div>
+ 
+-              <p className="Heading-Serif text-[#1A1A1A] text-[24px] md:text-[28px] leading-[1.3] relative z-10 font-normal italic tracking-tight text-balance">
+-                The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
++              <p className="Heading-Serif text-[#1A1A1A] text-[20px] md:text-[24px] leading-[1.4] relative z-10 font-normal italic tracking-tight text-balance">
++                As a retired XYZ, I am acutely aware how people are very quick to criticise but not so quick to praise where praise is due. Last Thursday evening I was feeling very unwell and at one point had a temperature of 39 degrees. XYZ was my carer that night and I really couldn&apos;t have asked for anyone better to look after me in those circumstances. She took my temperature every hour and gave me paracetamol every four hours and generally her attentive presence was very reassuring.
+               </p>
+ 
+               <div className="flex items-center gap-6 mt-8 relative z-10">
+-                {/* Client Avatar with soft ring and shadow */}
+-                <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5">
+-                  <Image
+-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
+-                    alt="Sarah Jenkins"
+-                    fill
+-                    className="object-cover"
+-                  />
++                {/* Client Avatar - Subtle Initial Circle */}
++                <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5 bg-[#5B2A86] flex items-center justify-center text-white font-serif text-2xl">
++                  J
+                 </div>
+ 
+                 {/* Client Info Block */}
+                 <div className="flex flex-col gap-2 pt-1">
+                   <div className="w-12 h-[1px] bg-[#D6B36A] mb-1" />
+-                  <p className="font-bold text-[#4B3061] text-sm md:text-sm tracking-[0.1em] uppercase">Sarah Jenkins</p>
+-                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 font-bold">Private Client, Dorset</p>
++                  <p className="font-bold text-[#4B3061] text-sm md:text-sm tracking-[0.1em] uppercase">Jon</p>
++                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 font-bold">Private Client</p>
+                 </div>
+               </div>
+             </div>
+@@ -533,7 +476,7 @@ export default function Home() {
+                 title: "Complex Care",
+                 tag: "Clinical Excellence",
+                 img: "/images/complex-care.png",
+-                desc: "Specialized nurse-led care for complex health conditions and intensive support."
++                desc: "specialised nurse-led care for complex health conditions and intensive support."
+               }
+             ].map((srv, idx) => (
+               <motion.div
+@@ -569,6 +512,7 @@ export default function Home() {
+                     alt={srv.title}
+                     fill
+                     className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-60"
++                    sizes="(max-width: 768px) 100vw, 50vw"
+                   />
+ 
+                   {/* Gradient Overlay */}
+@@ -615,54 +559,6 @@ export default function Home() {
+         </div>
+       </section>
+ 
+-      {/* THE CHARITY TRUST - Luxury Purpose */}
+-      <section className="section-padding bg-[#F7F5F2] relative">
+-        <div className="grid-container relative z-10 mx-auto">
+-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+-            <motion.div
+-              initial={{ opacity: 0, x: -50 }}
+-              whileInView={{ opacity: 1, x: 0 }}
+-              viewport={{ once: true }}
+-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+-            >
+-              <div className="flex flex-col items-start mb-6">
+-                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-4">Social Responsibility</span>
+-                <h2 className="Heading-H2 text-[#1B1326]">
+-                  A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
+-                </h2>
+-              </div>
+-              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-8 max-w-xl">
+-                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
+-              </p>
+-              <a
+-                href="http://www.rahula-trust.org/"
+-                target="_blank"
+-                rel="noopener noreferrer"
+-                className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
+-              >
+-                Discover The Rahula Trust
+-              </a>
+-            </motion.div>
+-
+-            <motion.div
+-              initial={{ opacity: 0, scale: 0.95 }}
+-              whileInView={{ opacity: 1, scale: 1 }}
+-              viewport={{ once: true }}
+-              transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+-              className="relative h-[500px] overflow-hidden rounded-sm shadow-2xl"
+-            >
+-              <Image
+-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"
+-                alt="Children receiving education"
+-                fill
+-                className="object-cover transition-transform duration-[10s] hover:scale-110"
+-              />
+-              <div className="absolute inset-0 bg-[#5B2A86]/20 mix-blend-multiply transition-opacity duration-1000" />
+-              <div className="absolute inset-0 border-[20px] border-[#F7F5F2] pointer-events-none" />
+-            </motion.div>
+-          </div>
+-        </div>
+-      </section>
+     </main >
+   );
+ }
+diff --git a/src/app/services/page.tsx b/src/app/services/page.tsx
+index c4852c1..d6b87b7 100644
+--- a/src/app/services/page.tsx
++++ b/src/app/services/page.tsx
+@@ -7,12 +7,12 @@ const services = [
+     {
+         title: "Home Care",
+         subtitle: "Bespoke Domiciliary Support",
+-        description: "Maintain your independence with our premium home care services. We provide tailored support that respects your routines and preferences.",
++        description: "Specialist care and genuine human connection, supporting your independence where you feel safest ÔÇö at home.",
+         icon: Home,
+         features: ["Personalised care planning", "Assistance with daily living", "Medicine administration", "Domestic & nutritional support"]
+     },
+     {
+-        title: "Live-in Care",
++        title: "Live In Care",
+         subtitle: "24/7 Professional Presence",
+         description: "Experience round-the-clock peace of mind with a dedicated live-in carer who provides clinical support and heartfelt companionship.",
+         icon: Users2,
+@@ -28,7 +28,7 @@ const services = [
+     {
+         title: "Complex Care",
+         subtitle: "Expert Nurse-Led Clinical Care",
+-        description: "Highly skilled clinical support for complex health conditions, managed by qualified nurses and specialist care practitioners.",
++        description: "Highly skilled clinical support for complex health conditions, managed by qualified nurses and specialised care practitioners.",
+         icon: HeartPulse,
+         features: ["Nurse-led interventions", "Neurological support", "Post-injury rehabilitation", "Multidisciplinary coordination"]
+     }
+@@ -58,7 +58,7 @@ export default function Services() {
+                         transition={{ delay: 0.2 }}
+                         className="text-[#F2F2F2]/60 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed"
+                     >
+-                        We offer a range of specialized care solutions designed to provide safety, dignity, and a profound sense of well-being in the comfort of your own home.
++                        We offer a range of specialised care solutions designed to provide safety, dignity, and a profound sense of wellbeing in the comfort of your own home.
+                     </motion.p>
+                 </div>
+             </section>
+@@ -149,7 +149,7 @@ export default function Services() {
+                             whileTap={{ scale: 0.98 }}
+                             className="inline-flex items-center px-12 py-5 bg-[#5B2A86] text-white text-[9px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] relative overflow-hidden group"
+                         >
+-                            <span className="relative z-10">Request a Consultation</span>
++                            <span className="relative z-10">Book a Call</span>
+                         </motion.a>
+                     </motion.div>
+                 </div>
+diff --git a/src/components/ChatBox.tsx b/src/components/ChatBox.tsx
+index a1c917e..c7eec18 100644
+--- a/src/components/ChatBox.tsx
++++ b/src/components/ChatBox.tsx
+@@ -39,7 +39,7 @@ const knowledgeBase: QA[] = [
+     },
+     {
+         keywords: ["value", "mission", "vision", "pillar", "philosophy", "believe", "principle", "promise"],
+-        answer: "Our care is built on three pillars:\n\n­ƒÆ£ **Compassion** ÔÇô Every action is led by the heart, ensuring emotional security alongside physical well-being.\n­ƒøí´©Å **Integrity** ÔÇô Unwavering commitment to honesty, transparency, and the highest clinical standards.\n­ƒæÑ **Dignity** ÔÇô Honouring the person behind the patient, respecting their history, choices, and autonomy."
++        answer: "Our care is built on three pillars:\n\n­ƒÆ£ **Compassion** ÔÇô Every action is led by the heart, ensuring emotional security alongside physical wellbeing.\n­ƒøí´©Å **Integrity** ÔÇô Unwavering commitment to honesty, transparency, and the highest clinical standards.\n­ƒæÑ **Dignity** ÔÇô Honouring the person behind the patient, respecting their history, choices, and autonomy."
+     },
+     {
+         keywords: ["why choose", "why homely", "what makes you different", "special", "unique", "advantage"],
+@@ -423,6 +423,10 @@ export default function ChatBox() {
+     const [usedJokes, setUsedJokes] = useState<number[]>([]);
+     const [selectedCategory, setSelectedCategory] = useState("All");
+ 
++    // Interaction tracking for "Try Me" popups
++    const [hasVisitedHumor, setHasVisitedHumor] = useState(false);
++    const [hasVisitedCalm, setHasVisitedCalm] = useState(false);
++
+     const scrollToBottom = useCallback(() => {
+         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+     }, []);
+@@ -531,7 +535,10 @@ export default function ChatBox() {
+                         AI Assist
+                     </button>
+                     <button
+-                        onClick={() => setActiveTab("humor")}
++                        onClick={() => {
++                            setActiveTab("humor");
++                            setHasVisitedHumor(true);
++                        }}
+                         className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 relative group ${activeTab === "humor"
+                             ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white"
+                             : "text-[#1B1326]/80 hover:text-[#1B1326] hover:bg-black/[0.02]"
+@@ -539,7 +546,7 @@ export default function ChatBox() {
+                     >
+                         <div className="relative">
+                             <motion.div
+-                                animate={activeTab !== "humor" ? {
++                                animate={activeTab !== "humor" && !hasVisitedHumor ? {
+                                     x: [0, -2, 2, -2, 2, 0],
+                                     rotate: [0, -5, 5, -5, 5, 0],
+                                 } : {}}
+@@ -550,9 +557,9 @@ export default function ChatBox() {
+                                     ease: "easeInOut"
+                                 }}
+                             >
+-                                <Smile className={`w-3.5 h-3.5 ${activeTab !== "humor" ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
++                                <Smile className={`w-3.5 h-3.5 ${activeTab !== "humor" && !hasVisitedHumor ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
+                             </motion.div>
+-                            {activeTab !== "humor" && (
++                            {activeTab !== "humor" && !hasVisitedHumor && (
+                                 <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
+                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
+@@ -560,7 +567,7 @@ export default function ChatBox() {
+                             )}
+                         </div>
+                         Humour
+-                        {activeTab !== "humor" && activeTab !== "calm" && (
++                        {activeTab === "ai" && !hasVisitedHumor && (
+                             <motion.div
+                                 initial={{ opacity: 0, y: 5 }}
+                                 animate={{
+@@ -575,19 +582,63 @@ export default function ChatBox() {
+                                         ease: "easeInOut"
+                                     }
+                                 }}
+-                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10"
++                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10 shadow-[0_4px_12px_rgba(214,179,106,0.4)]"
+                             >
+                                 TRY ME!
+                             </motion.div>
+                         )}
+                     </button>
+                     <button
+-                        onClick={() => setActiveTab("calm")}
+-                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeTab === "calm" ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white" : "text-[#1B1326]/40 hover:text-[#1B1326]/60"
++                        onClick={() => {
++                            setActiveTab("calm");
++                            setHasVisitedCalm(true);
++                        }}
++                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 relative group ${activeTab === "calm" ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white" : "text-[#1B1326]/40 hover:text-[#1B1326]/60"
+                             }`}
+                     >
+-                        <Wind className="w-3.5 h-3.5" />
++                        <div className="relative">
++                            <motion.div
++                                animate={hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" ? {
++                                    scale: [1, 1.2, 1],
++                                    rotate: [0, -10, 10, -10, 10, 0]
++                                } : {}}
++                                transition={{
++                                    duration: 0.5,
++                                    repeat: Infinity,
++                                    repeatDelay: 1.5,
++                                    ease: "easeInOut"
++                                }}
++                            >
++                                <Wind className={`w-3.5 h-3.5 ${hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
++                            </motion.div>
++                            {hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" && (
++                                <span className="absolute -top-1 -right-1 flex h-2 w-2">
++                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
++                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
++                                </span>
++                            )}
++                        </div>
+                         Calm Corner
++                        {hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" && (
++                            <motion.div
++                                initial={{ opacity: 0, y: 5 }}
++                                animate={{
++                                    opacity: 1,
++                                    y: 0,
++                                    scale: [1, 1.05, 1],
++                                }}
++                                transition={{
++                                    scale: {
++                                        duration: 2,
++                                        repeat: Infinity,
++                                        ease: "easeInOut"
++                                    }
++                                }}
++                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10 shadow-[0_4px_12px_rgba(214,179,106,0.4)]"
++                            >
++                                TRY ME!
++                            </motion.div>
++                        )}
+                     </button>
+                 </div>
+ 
+diff --git a/src/components/CustomGlobe.tsx b/src/components/CustomGlobe.tsx
+deleted file mode 100644
+index 5325dd9..0000000
+--- a/src/components/CustomGlobe.tsx
++++ /dev/null
+@@ -1,326 +0,0 @@
+-"use client";
+-
+-import { useEffect, useRef, useState } from "react";
+-import * as THREE from "three";
+-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+-import { Home, UserCheck, ShieldCheck, Activity, Brain, HeartPulse, Clock, Stethoscope, Waves, HandHeart } from "lucide-react";
+-import { renderToStaticMarkup } from "react-dom/server";
+-
+-// ÔöÇÔöÇ Global texture cache: textures load ONCE, reused on every mount ÔöÇÔöÇ
+-const _textureCache: Record<string, THREE.Texture> = {};
+-function loadCachedTexture(
+-    url: string,
+-    renderer: THREE.WebGLRenderer,
+-    onReady?: () => void
+-): THREE.Texture {
+-    if (_textureCache[url]) {
+-        onReady?.(); // Already loaded ÔÇô call immediately
+-        return _textureCache[url];
+-    }
+-    const loader = new THREE.TextureLoader();
+-    const tex = loader.load(url, (loadedTex) => {
+-        loadedTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+-        _textureCache[url] = loadedTex;
+-        onReady?.();
+-    });
+-    return tex;
+-}
+-
+-const SERVICE_DATA = [
+-    { id: 1, text: "Home Care", lat: 25, lng: 10, icon: <Home size={18} /> },
+-    { id: 2, text: "Live-in Care", lat: 10, lng: 40, icon: <UserCheck size={18} /> },
+-    { id: 3, text: "Supported\nLiving", lat: 45, lng: -70, icon: <ShieldCheck size={18} /> },
+-    { id: 4, text: "Complex Care", lat: -10, lng: 20, icon: <Activity size={18} /> },
+-    { id: 5, text: "Dementia Care", lat: 35, lng: 140, icon: <Brain size={18} /> },
+-    { id: 6, text: "Palliative Care", lat: -30, lng: -40, icon: <HeartPulse size={18} /> },
+-    { id: 7, text: "Respite Care", lat: 15, lng: -140, icon: <Clock size={18} /> },
+-    { id: 8, text: "Nursing Care", lat: -45, lng: 100, icon: <Stethoscope size={18} /> },
+-    { id: 9, text: "End of Life", lat: 55, lng: 60, icon: <Waves size={18} /> },
+-    { id: 10, text: "Personal Care", lat: -20, lng: -110, icon: <HandHeart size={18} /> },
+-];
+-
+-export default function CustomGlobe({ isHero = false }: { isHero?: boolean }) {
+-    const containerRef = useRef<HTMLDivElement>(null);
+-    const [isMounted, setIsMounted] = useState(false);
+-    const [showHint, setShowHint] = useState(true);
+-
+-    useEffect(() => {
+-        setIsMounted(true);
+-    }, []);
+-
+-    useEffect(() => {
+-        if (!isMounted) return;
+-
+-        const container = containerRef.current;
+-        if (!container) return;
+-
+-        console.log("­ƒÜÇ GLOBE INITIALIZING - V3.2");
+-
+-        const scene = new THREE.Scene();
+-
+-        // Use container dimensions or fallback
+-        const width = container.clientWidth || (typeof window !== 'undefined' ? window.innerWidth : 800);
+-        const height = container.clientHeight || 500;
+-
+-        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+-        camera.position.z = width < 768 ? 325 : 250; // Mobile: pulled back for breathing room; Desktop: 250
+-
+-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+-        renderer.setSize(width, height);
+-        // Cap at 2 ÔÇô no visual gain above 2x, prevents 4x overdraw on HiDPI screens
+-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+-        // Make canvas invisible until textures are decoded (prevents black flash)
+-        renderer.domElement.style.opacity = '0';
+-        renderer.domElement.style.transition = 'opacity 0.6s ease';
+-
+-        // ACES Tone Mapping for realistic light blending - Luxury Exposure
+-        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+-        renderer.toneMappingExposure = 0.95; // Slightly deeper for more cinematic weight
+-
+-        container.appendChild(renderer.domElement);
+-
+-        let frameId: number;
+-
+-        // --- THE GLOBE ---
+-        const geometry = new THREE.SphereGeometry(108, 64, 64); // Scaled for snug fit
+-
+-        // High-quality textures ÔÇô served from cache after first load, fade-in on ready
+-        let texturesReady = 0;
+-        const revealWhenReady = () => {
+-            texturesReady++;
+-            if (texturesReady >= 1) renderer.domElement.style.opacity = '1';
+-        };
+-        const texture = loadCachedTexture("/earth-blue-marble.jpg", renderer, revealWhenReady);
+-        const normalMap = loadCachedTexture("/earth-topology.png", renderer);
+-
+-        const material = new THREE.MeshPhysicalMaterial({
+-            map: texture,
+-            normalMap: normalMap,
+-            normalScale: new THREE.Vector2(0.3, 0.3), // Very soft topology
+-            transparent: false,
+-            opacity: 1.0,
+-            metalness: 0.0,
+-            roughness: 0.85, // Balanced matte/sheen
+-            clearcoat: 0.1, // Subtle glass sheen
+-            reflectivity: 0.2,
+-        });
+-
+-        const globe = new THREE.Mesh(geometry, material);
+-        // Africa/Europe initial view
+-        globe.rotation.y = Math.PI * 0.9;
+-        // PERSPECTIVE SQUASH: Only on desktop to match camera angle of hands photo
+-        if (isHero && width >= 768) {
+-            globe.scale.set(1.0, 0.97, 1.0); // Slight squash only on desktop
+-        } else {
+-            globe.scale.set(1.0, 1.0, 1.0); // Perfectly round on mobile
+-        }
+-        scene.add(globe);
+-
+-        // --- Interaction Restriction Logic ---
+-        const raycaster = new THREE.Raycaster();
+-        const mouse = new THREE.Vector2();
+-
+-        const onPointerDown = (event: PointerEvent) => {
+-            if (!container) return;
+-            const rect = container.getBoundingClientRect();
+-            mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+-            mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+-
+-            raycaster.setFromCamera(mouse, camera);
+-            const intersects = raycaster.intersectObject(globe);
+-
+-            if (intersects.length > 0) {
+-                controls.enabled = true;
+-                controls.autoRotate = false; // Stop rotation during touch
+-                setShowHint(false); // Hide hint on interaction
+-            } else {
+-                controls.enabled = false;
+-            }
+-        };
+-
+-        const onPointerUp = () => {
+-            controls.enabled = false; // Disable controls so page can scroll
+-            controls.autoRotate = true; // Resume auto-rotation
+-        };
+-
+-        const onPointerLeave = () => {
+-            controls.enabled = false;
+-            controls.autoRotate = true;
+-        };
+-
+-        // Attach to domElement for precise targeting
+-        renderer.domElement.addEventListener('pointerdown', onPointerDown);
+-        window.addEventListener('pointerup', onPointerUp);
+-        renderer.domElement.addEventListener('pointerleave', onPointerLeave);
+-
+-        // --- Lighting: Matching Hands Image (Warm, Top-Center Soft Light) ---
+-        const sunLight = new THREE.DirectionalLight(0xfff4e6, 1.2); // Warm Sunlight Tint
+-        sunLight.position.set(0, 500, 150); // From top-forward for natural shadowing
+-        scene.add(sunLight);
+-
+-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+-        scene.add(ambientLight);
+-        // --- CONTROLS ---
+-        const controls = new OrbitControls(camera, renderer.domElement);
+-        controls.enabled = false;
+-        controls.enableZoom = false;
+-        controls.enablePan = false;
+-        controls.enableDamping = true;
+-        controls.dampingFactor = 0.08; // More premium weight
+-        controls.rotateSpeed = 0.8; // Controlled smoothness
+-        controls.autoRotate = true;
+-        controls.autoRotateSpeed = 1.5;
+-        controls.minPolarAngle = Math.PI / 2.2;
+-        controls.maxPolarAngle = Math.PI / 1.8;
+-
+-        // FORCE LOCK DISTANCE TO PREVENT ZOOMING
+-        const dist = camera.position.z;
+-        controls.minDistance = dist;
+-        controls.maxDistance = dist;
+-
+-        renderer.domElement.style.touchAction = 'pan-y';
+-        container.style.touchAction = 'pan-y'; // Force on container too
+-
+-        // --- LABELS ---
+-        const labelContainer = document.createElement("div");
+-        labelContainer.className = "absolute top-0 left-0 w-full h-full pointer-events-none";
+-        container.appendChild(labelContainer);
+-
+-        const htmlLabels = SERVICE_DATA.map(data => {
+-            const el = document.createElement("div");
+-            const iconMarkup = renderToStaticMarkup(data.icon);
+-            el.innerHTML = `
+-                <div class="globe-label group flex flex-col items-center cursor-pointer pointer-events-none lg:pointer-events-auto transition-all duration-300">
+-                    <div class="bg-purple-900/40 border border-[#B9A3D3]/60 rounded-xl p-2 mb-1.5 backdrop-blur-md shadow-lg group-hover:scale-110 transition-transform">
+-                        <div class="text-[#B9A3D3]">${iconMarkup}</div>
+-                    </div>
+-                    <span class="text-white text-[11px] font-bold text-center leading-tight drop-shadow-lg tracking-wider">${data.text}</span>
+-                </div>
+-            `;
+-            el.style.position = "absolute";
+-            el.style.transform = "translate(-50%, -50%)";
+-            labelContainer.appendChild(el);
+-            return { el, data };
+-        });
+-
+-        const updateLabels = () => {
+-            const currentWidth = container.clientWidth || 800;
+-            const currentHeight = container.clientHeight || 800;
+-            const radius = 100;
+-
+-            htmlLabels.forEach(({ el, data }) => {
+-                const phi = (90 - data.lat) * (Math.PI / 180);
+-                const theta = (data.lng + 180) * (Math.PI / 180);
+-
+-                const pos = new THREE.Vector3().setFromSphericalCoords(radius, phi, theta);
+-                pos.applyQuaternion(globe.quaternion);
+-
+-                const normal = pos.clone().normalize();
+-                const camDir = camera.position.clone().sub(pos).normalize();
+-                const dot = normal.dot(camDir);
+-
+-                if (dot > 0.15) {
+-                    el.style.display = "block";
+-                    const projected = pos.clone().project(camera);
+-                    const x = (projected.x * 0.5 + 0.5) * currentWidth;
+-                    const y = (projected.y * -0.5 + 0.5) * currentHeight;
+-                    el.style.left = `${x}px`;
+-                    el.style.top = `${y}px`;
+-                    el.style.opacity = `${Math.min(1, dot * 4)}`;
+-                    el.style.scale = `${0.75 + (dot * 0.5)}`;
+-                } else {
+-                    el.style.display = "none";
+-                }
+-            });
+-        };
+-
+-        const handleResize = () => {
+-            if (!container) return;
+-            const newW = container.clientWidth;
+-            const newH = container.clientHeight;
+-            if (newW === 0 || newH === 0) return;
+-
+-            renderer.setSize(newW, newH);
+-            camera.aspect = newW / newH;
+-            camera.position.z = newW < 768 ? 330 : 250;
+-            camera.updateProjectionMatrix();
+-        };
+-
+-        window.addEventListener('resize', handleResize);
+-
+-        // Initial resize check after mount
+-        const resizeTimeout = setTimeout(handleResize, 100);
+-
+-        const animate = () => {
+-            frameId = requestAnimationFrame(animate);
+-            globe.rotation.y += 0.005;
+-            controls.update();
+-            updateLabels();
+-            renderer.render(scene, camera);
+-        };
+-        animate();
+-
+-        return () => {
+-            clearTimeout(resizeTimeout);
+-            window.removeEventListener('resize', handleResize);
+-            renderer.domElement.removeEventListener('pointerdown', onPointerDown);
+-            window.removeEventListener('pointerup', onPointerUp);
+-            renderer.domElement.removeEventListener('pointerleave', onPointerLeave);
+-            if (frameId) cancelAnimationFrame(frameId);
+-            if (labelContainer && container.contains(labelContainer)) container.removeChild(labelContainer);
+-            if (renderer.domElement && container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
+-            renderer.dispose();
+-            scene.clear();
+-        };
+-    }, [isMounted, setShowHint]);
+-
+-    return (
+-        <div className="relative w-full h-full flex flex-col items-center justify-center overflow-visible">
+-            <div
+-                ref={containerRef}
+-                className="w-full h-full relative overflow-visible"
+-                style={{ minHeight: '300px', cursor: 'grab' }} // Minimal safety height
+-            />
+-
+-            {/* CREATIVE INTERACTION HINT */}
+-            {showHint && (
+-                <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center z-30">
+-                    <div className="flex flex-col items-center gap-4 animate-pulse-slow">
+-                        <div className="flex items-center gap-3 bg-white/5 border border-white/10 backdrop-blur-md px-5 py-2.5 rounded-full shadow-2xl">
+-                            <div className="w-5 h-5 flex items-center justify-center text-[#D6B36A]">
+-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce-horizontal">
+-                                    <path d="M18 8L22 12L18 16" />
+-                                    <path d="M2 12H22" />
+-                                </svg>
+-                            </div>
+-                            <span className="text-white/60 text-[10px] md:text-xs uppercase tracking-[0.3em] font-medium pt-0.5">Drag to Explore</span>
+-                            <div className="w-5 h-5 flex items-center justify-center text-[#D6B36A] rotate-180">
+-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="animate-bounce-horizontal">
+-                                    <path d="M18 8L22 12L18 16" />
+-                                    <path d="M2 12H22" />
+-                                </svg>
+-                            </div>
+-                        </div>
+-                    </div>
+-                </div>
+-            )}
+-
+-            <style jsx>{`
+-                @keyframes bounceHorizontal {
+-                    0%, 100% { transform: translateX(0); }
+-                    50% { transform: translateX(4px); }
+-                }
+-                .animate-bounce-horizontal {
+-                    animation: bounceHorizontal 2s infinite ease-in-out;
+-                }
+-                @keyframes pulseSlow {
+-                    0%, 100% { opacity: 0.6; scale: 1; }
+-                    50% { opacity: 1; scale: 1.05; }
+-                }
+-                .animate-pulse-slow {
+-                    animation: pulseSlow 3s infinite ease-in-out;
+-                }
+-            `}</style>
+-        </div>
+-    );
+-}
+diff --git a/src/components/SeniorLiving3D.tsx b/src/components/SeniorLiving3D.tsx
+new file mode 100644
+index 0000000..0a3d6b4
+--- /dev/null
++++ b/src/components/SeniorLiving3D.tsx
+@@ -0,0 +1,624 @@
++"use client";
++
++import { useEffect, useRef } from "react";
++import * as THREE from "three";
++import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
++import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
++
++export default function SeniorLiving3D() {
++    const containerRef = useRef<HTMLDivElement>(null);
++
++    useEffect(() => {
++        if (!containerRef.current) return;
++
++        const container = containerRef.current;
++        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
++
++        // Match aspect ratio exactly
++        const initialWidth = container.clientWidth || 800;
++        const initialHeight = container.clientHeight || 500;
++
++        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
++        renderer.setSize(initialWidth, initialHeight, false);
++
++        // High quality shadow configuration
++        renderer.shadowMap.enabled = true;
++        renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Very soft shadows like the image
++        renderer.toneMapping = THREE.ACESFilmicToneMapping;
++        renderer.toneMappingExposure = 1.0; // Reset to standard exposure for visibility
++
++        container.appendChild(renderer.domElement);
++
++        const scene = new THREE.Scene();
++
++        // Very tight isometric perspective
++        const camera = new THREE.PerspectiveCamera(30, initialWidth / initialHeight, 0.1, 200);
++        // Positioned top-right-front, looking perfectly at center
++        camera.position.set(20, 18, 20);
++
++        const controls = new OrbitControls(camera, renderer.domElement);
++        controls.target.set(0, 3.0, 0); // Reset target to match 1.5 baseline
++        controls.enableDamping = true;
++        controls.dampingFactor = 0.05;
++        controls.minDistance = 15;
++        controls.maxDistance = 60;
++        controls.maxPolarAngle = Math.PI / 2 - 0.1;
++
++        // --- IBL & Lighting ---
++        // Removed PMREM RoomEnvironment for night mode stability
++
++        // Balanced global lighting for full visibility
++        const ambientLight = new THREE.AmbientLight(0xfff7e6, 0.4);
++        scene.add(ambientLight); // Restored ambient
++
++        // Clear daylight fill
++        const sunLight = new THREE.DirectionalLight(0xfffaea, 0.8); // Restored sunlight
++        sunLight.position.set(-15, 25, 10);
++        sunLight.castShadow = true;
++        sunLight.shadow.mapSize.set(4096, 4096);
++        sunLight.shadow.camera.left = -10;
++        sunLight.shadow.camera.right = 10;
++        sunLight.shadow.camera.top = 10;
++        sunLight.shadow.camera.bottom = -10;
++        sunLight.shadow.bias = -0.0005;
++        scene.add(sunLight);
++
++        // Soft fill light from the front-right
++        const fillLight = new THREE.DirectionalLight(0xd9e5ff, 0.4); // Restored fill light
++        fillLight.position.set(15, 10, 15);
++        scene.add(fillLight);
++
++        // Warm lamp light - parented to diorama for local coordination
++        const lampLight = new THREE.PointLight(0xfff0c2, 18, 15, 1.8);
++        lampLight.position.set(1.8, 4.7, -2.5); // Local coords relative to diorama center
++        lampLight.castShadow = true;
++        lampLight.shadow.mapSize.set(2048, 2048);
++
++        // Secondary dim light coming from the lamp pointing downwards
++        const lampDownLight = new THREE.SpotLight(0xfff0c2, 8, 12, Math.PI / 3, 0.5, 1);
++        lampDownLight.position.set(1.8, 4.0, -2.5); // Slightly below the PointLight
++        lampDownLight.target.position.set(1.8, 0, -2.5); // Pointing at the rug/floor
++
++        // These will be added to diorama later after diorama is defined
++
++        // --- MATERIALS ---
++        const matBaseDark = new THREE.MeshPhysicalMaterial({ color: 0x1f2122, roughness: 0.9, clearcoat: 0.1 });
++        const matFloorWood = new THREE.MeshPhysicalMaterial({ color: 0xd4bc98, roughness: 0.4, clearcoat: 0.3 });
++        const matTrimWood = new THREE.MeshPhysicalMaterial({ color: 0xdabf95, roughness: 0.5, clearcoat: 0.2 });
++        const matWallBeige = new THREE.MeshPhysicalMaterial({ color: 0xf5f1e6, roughness: 1.0 });
++        const matRugCream = new THREE.MeshPhysicalMaterial({ color: 0xf7f5f2, roughness: 1.0, sheen: 0.2 });
++        const matWindowFrame = new THREE.MeshPhysicalMaterial({ color: 0x222222, roughness: 0.8 });
++        const matGlass = new THREE.MeshPhysicalMaterial({ color: 0xcfe6ff, transparent: true, opacity: 0.3, roughness: 0.1, metalness: 0.1 });
++        const matCurtain = new THREE.MeshPhysicalMaterial({ color: 0xe0d6cb, roughness: 0.9, sheen: 0.3 });
++        const matBooks = [
++            new THREE.MeshPhysicalMaterial({ color: 0x4a5d6e, roughness: 0.8 }),
++            new THREE.MeshPhysicalMaterial({ color: 0x8a7065, roughness: 0.8 }),
++            new THREE.MeshPhysicalMaterial({ color: 0xd1c1b2, roughness: 0.8 }),
++            new THREE.MeshPhysicalMaterial({ color: 0x2c2c2c, roughness: 0.8 }),
++        ];
++        const matChair = new THREE.MeshPhysicalMaterial({ color: 0x56234b, roughness: 0.9, sheen: 1.0, sheenColor: new THREE.Color(0xb97ab5) });
++        const matBlanket = new THREE.MeshPhysicalMaterial({ color: 0xe6e4e1, roughness: 1.0, sheen: 1.0 });
++        const matLampBrass = new THREE.MeshPhysicalMaterial({ color: 0xd4af37, roughness: 0.3, metalness: 0.8, clearcoat: 1.0 });
++        const matLampShade = new THREE.MeshPhysicalMaterial({
++            color: 0xfff4cc,
++            roughness: 0.4,
++            transmission: 0.2,
++            opacity: 1,
++            transparent: true,
++            emissive: 0xfff4cc,
++            emissiveIntensity: 0.5
++        });
++        const matPlant = new THREE.MeshPhysicalMaterial({ color: 0x2b4f2c, roughness: 0.6, clearcoat: 0.1 });
++        const matRollatorMetal = new THREE.MeshPhysicalMaterial({ color: 0xa4a4a4, metalness: 0.8, roughness: 0.3 });
++        const matRollatorBlack = new THREE.MeshPhysicalMaterial({ color: 0x111111, roughness: 0.9 });
++        const matArtCanvas = new THREE.MeshPhysicalMaterial({ color: 0xd3e0db, roughness: 1.0 });
++
++        const diorama = new THREE.Group();
++
++        // 1. CYLINDRICAL BASE
++        const baseCyGeo = new THREE.CylinderGeometry(7, 7, 0.5, 64);
++        const baseObj = new THREE.Mesh(baseCyGeo, matBaseDark);
++        baseObj.position.y = -0.25;
++        baseObj.receiveShadow = true;
++        diorama.add(baseObj);
++
++        // 2. SQUARE WOODEN FLOOR PLATFORM (rounded edges)
++        const getRoundedBox = (w: number, h: number, d: number, r: number = 0.05) => {
++            return new RoundedBoxGeometry(w, h, d, 4, r);
++        };
++        const floorGeo = getRoundedBox(8.4, 0.4, 8.4, 0.1);
++        const floor = new THREE.Mesh(floorGeo, matFloorWood);
++        floor.position.set(0, 0.2, 0);
++        floor.receiveShadow = true;
++        diorama.add(floor);
++
++        // Beige edge trim around the floor
++        const floorTrimGeo = getRoundedBox(8.6, 0.3, 8.6, 0.1);
++        const floorTrim = new THREE.Mesh(floorTrimGeo, matWallBeige);
++        floorTrim.position.set(0, 0.15, 0);
++        diorama.add(floorTrim);
++
++        // 3. L-SHAPED WALLS (Back Wall: Z=-4, Right Wall: X=4)
++        const roomGroup = new THREE.Group();
++
++        // Back Wall Main Sections
++        // We need a hole for the window (X: -3.5 to -0.5, Y: 1.5 to 5)
++        const bwBot = new THREE.Mesh(new THREE.BoxGeometry(8, 1.5, 0.4), matWallBeige);
++        bwBot.position.set(0, 1.15, -4);
++        bwBot.receiveShadow = true;
++        bwBot.castShadow = true;
++
++        const bwTop = new THREE.Mesh(new THREE.BoxGeometry(8, 1.0, 0.4), matWallBeige);
++        bwTop.position.set(0, 5.5, -4);
++        bwTop.receiveShadow = true;
++        bwTop.castShadow = true;
++
++        const bwLeft = new THREE.Mesh(new THREE.BoxGeometry(0.5, 3.5, 0.4), matWallBeige);
++        bwLeft.position.set(-3.75, 3.65, -4);
++        bwLeft.receiveShadow = true;
++        bwLeft.castShadow = true;
++
++        const bwMid = new THREE.Mesh(new THREE.BoxGeometry(3.5, 3.5, 0.4), matWallBeige);
++        bwMid.position.set(2.25, 3.65, -4); // Wall section behind the bookcase
++        bwMid.receiveShadow = true;
++        bwMid.castShadow = true;
++
++        roomGroup.add(bwBot, bwTop, bwLeft, bwMid);
++
++        // Right Wall (Solid)
++        const rwMain = new THREE.Mesh(new THREE.BoxGeometry(0.4, 5.6, 7.6), matWallBeige); // 7.6 to avoid overlap at corner
++        rwMain.position.set(4, 3.2, 0.2); // shifted slightly to connect corner
++        rwMain.receiveShadow = true;
++        rwMain.castShadow = true;
++        roomGroup.add(rwMain);
++
++
++
++        // 4. WOOD TRIMS AROUND WALLS
++        // Top trim back
++        const tbBack = new THREE.Mesh(new THREE.BoxGeometry(8.4, 0.15, 0.5), matTrimWood);
++        tbBack.position.set(0, 6.075, -4);
++        tbBack.castShadow = true;
++        roomGroup.add(tbBack);
++
++        // Top trim right
++        const tbRight = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 8.4), matTrimWood);
++        tbRight.position.set(4, 6.075, 0);
++        tbRight.castShadow = true;
++        roomGroup.add(tbRight);
++
++        // Vertical trims (Left edge of back wall, Front edge of right wall)
++        const tvLeft = new THREE.Mesh(new THREE.BoxGeometry(0.15, 5.6, 0.5), matTrimWood);
++        tvLeft.position.set(-4.075, 3.2, -4);
++        tvLeft.castShadow = true;
++        roomGroup.add(tvLeft);
++
++        const tvFront = new THREE.Mesh(new THREE.BoxGeometry(0.5, 5.6, 0.15), matTrimWood);
++        tvFront.position.set(4, 3.2, 4.075);
++        tvFront.castShadow = true;
++        roomGroup.add(tvFront);
++
++        // Corner joint trim (just to seal the top nicely)
++        const tbCorner = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.15, 0.5), matTrimWood);
++        tbCorner.position.set(4, 6.075, -4);
++        roomGroup.add(tbCorner);
++
++
++        // 5. WINDOW DETAILS (Black frame, grid, glass, curtains)
++        const windowGroup = new THREE.Group();
++        const wx = -2.125, wy = 3.65, wz = -3.95; // slightly forward to protrude from wall
++
++        // Frame outer
++        const frameW = 3.0, frameH = 3.5, frameD = 0.5;
++        const wtGeo = new THREE.BoxGeometry(frameW, 0.1, frameD);
++        const wlGeo = new THREE.BoxGeometry(0.1, frameH, frameD);
++
++        const wfTop = new THREE.Mesh(wtGeo, matWindowFrame); wfTop.position.set(wx, wy + frameH / 2, wz); wfTop.castShadow = true;
++        const wfBot = new THREE.Mesh(wtGeo, matWindowFrame); wfBot.position.set(wx, wy - frameH / 2, wz); wfBot.castShadow = true;
++        const wfLeft = new THREE.Mesh(wlGeo, matWindowFrame); wfLeft.position.set(wx - frameW / 2, wy, wz); wfLeft.castShadow = true;
++        const wfRight = new THREE.Mesh(wlGeo, matWindowFrame); wfRight.position.set(wx + frameW / 2, wy, wz); wfRight.castShadow = true;
++
++        // Grid lines (Mullions)
++        const wmH = new THREE.Mesh(wtGeo, matWindowFrame); wmH.scale.set(1, 0.5, 0.3); wmH.position.set(wx, wy, wz); wmH.castShadow = true;
++        const wmV = new THREE.Mesh(wlGeo, matWindowFrame); wmV.scale.set(0.5, 1, 0.3); wmV.position.set(wx, wy, wz); wmV.castShadow = true;
++        // extra vertical lines
++        const wmV2 = wmV.clone(); wmV2.position.x = wx - 0.75;
++        const wmV3 = wmV.clone(); wmV3.position.x = wx + 0.75;
++
++        // Glass
++        const glassMesh = new THREE.Mesh(new THREE.BoxGeometry(frameW - 0.1, frameH - 0.1, 0.05), matGlass);
++        glassMesh.position.set(wx, wy, wz);
++
++        windowGroup.add(wfTop, wfBot, wfLeft, wfRight, wmH, wmV, wmV2, wmV3, glassMesh);
++
++        // Curtains
++        const curtainGeo = new THREE.CylinderGeometry(0.2, 0.25, frameH + 0.5, 12, 1, false, 0, Math.PI);
++        // Squash into wavy fabric look
++        curtainGeo.scale(1, 1, 0.4);
++        const curtainL = new THREE.Mesh(curtainGeo, matCurtain);
++        curtainL.position.set(wx - frameW / 2 - 0.15, wy - 0.25, wz + 0.25);
++        curtainL.castShadow = true;
++        curtainL.receiveShadow = true;
++
++        const curtainR = curtainL.clone();
++        curtainR.position.x = wx + frameW / 2 + 0.15;
++
++        // Curtain rod
++        const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, frameW + 1.0, 8), matWindowFrame);
++        rod.rotation.z = Math.PI / 2;
++        rod.position.set(wx, wy + frameH / 2 + 0.15, wz + 0.2);
++        rod.castShadow = true;
++
++        windowGroup.add(curtainL, curtainR, rod);
++        roomGroup.add(windowGroup);
++
++
++        // 6. BUILT-IN BOOKCASE (Right side of back wall)
++        const bcGroup = new THREE.Group();
++        const bcW = 3.5, bcD = 0.8;
++        const bx = 1.75, by = 0.4, bz = -3.6; // Sitting on the floor
++
++        // Lower Cabinet
++        const bcCab = new THREE.Mesh(new THREE.BoxGeometry(bcW, 1.5, bcD), matTrimWood);
++        bcCab.position.set(bx, by + 0.75, bz);
++        bcCab.castShadow = true;
++        bcCab.receiveShadow = true;
++        bcGroup.add(bcCab);
++
++        // Upper Shelves panels
++        const panelGeo = new THREE.BoxGeometry(0.1, 3.0, bcD - 0.1);
++        const shelfGeo = new THREE.BoxGeometry(bcW, 0.1, bcD - 0.1);
++
++        // Left, Center, Right vertical supports
++        const spL = new THREE.Mesh(panelGeo, matTrimWood); spL.position.set(bx - bcW / 2 + 0.05, by + 1.5 + 1.5, bz); spL.castShadow = true;
++        const spC = new THREE.Mesh(panelGeo, matTrimWood); spC.position.set(bx, by + 1.5 + 1.5, bz); spC.castShadow = true;
++        const spR = new THREE.Mesh(panelGeo, matTrimWood); spR.position.set(bx + bcW / 2 - 0.05, by + 1.5 + 1.5, bz); spR.castShadow = true;
++
++        // Horizontal shelves
++        const sh1 = new THREE.Mesh(shelfGeo, matTrimWood); sh1.position.set(bx, by + 2.5, bz); sh1.castShadow = true;
++        const sh2 = new THREE.Mesh(shelfGeo, matTrimWood); sh2.position.set(bx, by + 3.5, bz); sh2.castShadow = true;
++        const sh3 = new THREE.Mesh(shelfGeo, matTrimWood); sh3.position.set(bx, by + 4.5, bz); sh3.castShadow = true; // Top
++
++        bcGroup.add(spL, spC, spR, sh1, sh2, sh3);
++
++        // Books and Decor on Shelves
++        const createBook = (w: number, h: number, d: number, matIdx: number) => {
++            const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), matBooks[matIdx % matBooks.length]);
++            b.castShadow = true;
++            return b;
++        };
++        // Shelf 1 left
++        for (let i = 0; i < 6; i++) {
++            const b = createBook(0.15, 0.6 + Math.random() * 0.2, 0.5, i);
++            b.position.set(bx - 1.5 + i * 0.16, by + 1.5 + Math.random() * 0.05 + 0.35, bz);
++            if (i === 5) b.rotation.z = -0.2; // leaning book
++            bcGroup.add(b);
++        }
++        // Small plant decor on Shelf 1 right
++        const dPot = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.2, 16), matWallBeige);
++        dPot.position.set(bx + 1.0, by + 1.5 + 0.1, bz);
++        dPot.castShadow = true;
++        const dPlant = new THREE.Mesh(new THREE.SphereGeometry(0.2, 8, 8), matPlant);
++        dPlant.position.set(bx + 1.0, by + 1.5 + 0.3, bz);
++        bcGroup.add(dPot, dPlant);
++
++        roomGroup.add(bcGroup);
++
++
++        // 7. RIGHT WALL DETAILS (Art & Grab bar)
++        // Grab Bar (wood with metal mounts)
++        const gbGroup = new THREE.Group();
++        const gbRod = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 3.5, 16), matTrimWood);
++        gbRod.rotation.x = Math.PI / 2;
++        gbRod.position.set(3.8, 2.5, 0);
++        gbRod.castShadow = true;
++
++        const gbMountGeo = new THREE.CylinderGeometry(0.04, 0.06, 0.1, 16);
++        const gbM1 = new THREE.Mesh(gbMountGeo, matLampBrass); gbM1.rotation.z = Math.PI / 2; gbM1.position.set(3.9, 2.5, -1.5);
++        const gbM2 = new THREE.Mesh(gbMountGeo, matLampBrass); gbM2.rotation.z = Math.PI / 2; gbM2.position.set(3.9, 2.5, 1.5);
++        gbGroup.add(gbRod, gbM1, gbM2);
++        roomGroup.add(gbGroup);
++
++        // Abstract Canvas Art on Side Wall
++        const artCanvasGroup = new THREE.Group();
++        const af = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.8, 1.4), matWindowFrame);
++        af.castShadow = true;
++
++        const acPlane = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 1.6), new THREE.MeshPhysicalMaterial({
++            color: 0xe8e4df,
++            roughness: 0.9,
++            sheen: 0.2
++        }));
++        acPlane.position.x = -0.045;
++        acPlane.rotation.y = -Math.PI / 2;
++
++        const acBacking = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.6, 1.2), matArtCanvas);
++        artCanvasGroup.add(af, acBacking, acPlane);
++        artCanvasGroup.position.set(3.9, 4.0, 1.0);
++        roomGroup.add(artCanvasGroup);
++
++
++        // 8. RUG
++        const rug = new THREE.Mesh(getRoundedBox(6.5, 0.06, 5.0, 0.1), matRugCream);
++        rug.position.set(0.5, 0.43, 0.5);
++        rug.receiveShadow = true;
++        diorama.add(rug);
++
++
++        // 9. THE PURPLE ARMCHAIR
++        const chairGroup = new THREE.Group();
++
++        // Seat cushion (plush)
++        const seat = new THREE.Mesh(getRoundedBox(1.5, 0.4, 1.5, 0.1), matChair);
++        seat.position.set(0, 1.0, 0);
++        seat.castShadow = true;
++        seat.receiveShadow = true;
++        chairGroup.add(seat);
++
++        // Backrest (high back with ear wings)
++        const chairBack = new THREE.Mesh(getRoundedBox(1.5, 1.8, 0.4, 0.1), matChair);
++        chairBack.position.set(0, 1.9, -0.6);
++        chairBack.rotation.x = -0.15;
++        chairBack.castShadow = true;
++        chairGroup.add(chairBack);
++
++        // Wings
++        const wingL = new THREE.Mesh(getRoundedBox(0.2, 0.8, 0.5, 0.05), matChair);
++        wingL.position.set(-0.65, 2.3, -0.4);
++        wingL.castShadow = true;
++        chairGroup.add(wingL);
++        const wingR = wingL.clone();
++        wingR.position.x = 0.65;
++        chairGroup.add(wingR);
++
++        // Armrests
++        const armL = new THREE.Mesh(getRoundedBox(0.35, 0.7, 1.4, 0.08), matChair);
++        armL.position.set(-0.65, 1.2, 0.1);
++        armL.castShadow = true;
++        chairGroup.add(armL);
++        const armR = armL.clone();
++        armR.position.x = 0.65;
++        chairGroup.add(armR);
++
++        // Wooden Legs
++        const legG = new THREE.CylinderGeometry(0.07, 0.04, 0.8, 16);
++        const lg1 = new THREE.Mesh(legG, matTrimWood); lg1.position.set(-0.6, 0.4, -0.6); lg1.rotation.x = -0.1; chairGroup.add(lg1); lg1.castShadow = true;
++        const lg2 = new THREE.Mesh(legG, matTrimWood); lg2.position.set(0.6, 0.4, -0.6); lg2.rotation.x = -0.1; chairGroup.add(lg2); lg2.castShadow = true;
++        const lg3 = new THREE.Mesh(legG, matTrimWood); lg3.position.set(-0.6, 0.4, 0.6); lg3.rotation.x = 0.1; chairGroup.add(lg3); lg3.castShadow = true;
++        const lg4 = new THREE.Mesh(legG, matTrimWood); lg4.position.set(0.6, 0.4, 0.6); lg4.rotation.x = 0.1; chairGroup.add(lg4); lg4.castShadow = true;
++
++        // Blanket draped on right armrest
++        const blanket = new THREE.Mesh(getRoundedBox(0.4, 0.8, 0.8, 0.05), matBlanket);
++        blanket.position.set(0.65, 1.4, 0.1);
++        blanket.rotation.z = -0.2;
++        blanket.castShadow = true;
++        chairGroup.add(blanket);
++
++        chairGroup.position.set(1.5, 0.4, -0.5);
++        chairGroup.rotation.y = -Math.PI / 4; // Angled towards corner
++        diorama.add(chairGroup);
++
++
++        // 10. WOODEN SIDE TABLE + CUP
++        const tableGroup = new THREE.Group();
++        const tableTop = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.1, 32), matTrimWood);
++        tableTop.position.set(0, 1.4, 0);
++        tableTop.castShadow = true;
++        tableTop.receiveShadow = true;
++        tableGroup.add(tableTop);
++
++        const tableBase = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 0.1, 32), matTrimWood);
++        tableBase.position.set(0, 0.05, 0);
++        tableGroup.add(tableBase);
++
++        const tableLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.3, 16), matTrimWood);
++        tableLeg.position.set(0, 0.75, 0);
++        tableLeg.castShadow = true;
++        tableGroup.add(tableLeg);
++
++        // White Cup
++        const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.12, 0.3, 24), matRugCream);
++        cup.position.set(0.2, 1.6, 0);
++        cup.castShadow = true;
++        tableGroup.add(cup);
++
++        // Single Book
++        const book = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.06, 0.6), matBooks[0]);
++        book.position.set(-0.2, 1.48, 0);
++        book.rotation.y = 0.5;
++        book.castShadow = true;
++        tableGroup.add(book);
++
++        tableGroup.position.set(3.2, 0.4, 1.0);
++        diorama.add(tableGroup);
++
++
++        // 11. TALL FLOOR LAMP
++        const lampGroup = new THREE.Group();
++        // Base
++        const lrBase = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.06, 32), matLampBrass);
++        lrBase.position.y = 0.03;
++        lampGroup.add(lrBase);
++
++        // Pole (straight then curved)
++        const pole1 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.8, 16), matLampBrass);
++        pole1.position.y = 1.9;
++        pole1.castShadow = true;
++        lampGroup.add(pole1);
++
++        const curveGeo = new THREE.TorusGeometry(0.5, 0.04, 16, 24, Math.PI / 2);
++        const curve = new THREE.Mesh(curveGeo, matLampBrass);
++        curve.position.set(-0.5, 3.8, 0);
++        lampGroup.add(curve);
++
++        // Shade
++        const shadeGroup = new THREE.Group();
++        const shadeGeo2 = new THREE.CylinderGeometry(0.25, 0.45, 0.6, 32, 1, true);
++        const shadeMain = new THREE.Mesh(shadeGeo2, matLampShade);
++        // Soft interior glow
++        const shadeInner = new THREE.Mesh(shadeGeo2, new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.BackSide, transparent: true, opacity: 0.8 }));
++        shadeMain.position.y = -0.3;
++        shadeInner.position.y = -0.3;
++        shadeGroup.add(shadeMain, shadeInner);
++        shadeGroup.position.set(-1.0, 4.3, 0);
++
++        lampGroup.add(shadeGroup);
++        lampGroup.position.set(2.8, 0.4, -2.5); // Place in the back corner
++        diorama.add(lampGroup);
++
++
++        // 12. POTTED PLANT
++        const bigPlant = new THREE.Group();
++        const bgPot = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.3, 0.8, 32), matWallBeige); // Light grey pot
++        bgPot.position.y = 0.4;
++        bgPot.castShadow = true;
++        bigPlant.add(bgPot);
++
++        const ptDirt = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.38, 0.05, 32), new THREE.MeshStandardMaterial({ color: 0x111111 }));
++        ptDirt.position.y = 0.78;
++        bigPlant.add(ptDirt);
++
++        // Tall fiddle-leaf looking branch
++        const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.04, 1.5, 8), matPlant);
++        stem.position.y = 1.5;
++        stem.castShadow = true;
++        bigPlant.add(stem);
++
++        // Large flat circular leaves
++        const lLeafGeo = new THREE.CylinderGeometry(0.25, 0.25, 0.02, 16);
++        lLeafGeo.scale(1, 1, 1.5); // Oval
++        for (let i = 0; i < 12; i++) {
++            const l = new THREE.Mesh(lLeafGeo, matPlant);
++            const h = 0.9 + (i * 0.1);
++            const a = i * 1.3;
++            l.position.set(Math.cos(a) * 0.15, h, Math.sin(a) * 0.15);
++            l.rotation.z = Math.cos(a) * 0.4;
++            l.rotation.x = Math.sin(a) * 0.4;
++            l.rotation.y = -a;
++            l.castShadow = true;
++            bigPlant.add(l);
++        }
++
++        bigPlant.position.set(-2.5, 0.4, 0); // Near window
++        diorama.add(bigPlant);
++
++
++        // 13. ROLLATOR WALKER (Simplified model for performance and aesthetics)
++        const vWalker = new THREE.Group();
++        const tubeMat = matRollatorMetal;
++        const rubberMat = matRollatorBlack;
++
++        // Legs/Frame
++        const leg1 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg1.position.set(-0.35, 0.45, -0.3); vWalker.add(leg1);
++        const leg2 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg2.position.set(0.35, 0.45, -0.3); vWalker.add(leg2);
++        const leg3 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg3.position.set(-0.35, 0.45, 0.3); vWalker.add(leg3);
++        const leg4 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg4.position.set(0.35, 0.45, 0.3); vWalker.add(leg4);
++
++        // Handles
++        const hBar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.7, 8), tubeMat);
++        hBar.rotation.z = Math.PI / 2;
++        hBar.position.set(0, 1.0, 0);
++        vWalker.add(hBar);
++
++        // Wheels
++        const whGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.06, 16);
++        const w1 = new THREE.Mesh(whGeo, rubberMat); w1.rotation.z = Math.PI / 2; w1.position.set(-0.35, 0.06, -0.3); vWalker.add(w1);
++        const w2 = new THREE.Mesh(whGeo, rubberMat); w2.rotation.z = Math.PI / 2; w2.position.set(0.35, 0.06, -0.3); vWalker.add(w2);
++        const w3 = new THREE.Mesh(whGeo, rubberMat); w3.rotation.z = Math.PI / 2; w3.position.set(-0.35, 0.06, 0.3); vWalker.add(w3);
++        const w4 = new THREE.Mesh(whGeo, rubberMat); w4.rotation.z = Math.PI / 2; w4.position.set(0.35, 0.06, 0.3); vWalker.add(w4);
++
++        vWalker.position.set(-0.5, 0.4, 1.5);
++        vWalker.rotation.y = 0.8;
++        diorama.add(vWalker);
++
++        diorama.add(roomGroup);
++
++        // Finalize Lamp Lighting within diorama local space
++        diorama.add(lampLight);
++        diorama.add(lampDownLight);
++        diorama.add(lampDownLight.target);
++
++        scene.add(diorama);
++
++        // Rotate entire diorama to exactly match the 45-degree corner-facing isometric view
++        diorama.rotation.y = Math.PI / 4;
++
++
++        const updateSize = () => {
++            if (!container) return;
++            const w = container.clientWidth;
++            const h = container.clientHeight;
++            if (w === 0 || h === 0) return;
++            renderer.setSize(w, h, false);
++            camera.aspect = w / h;
++            camera.updateProjectionMatrix();
++        };
++        window.addEventListener("resize", updateSize);
++
++        // Animate
++        const clock = new THREE.Clock();
++        let frameId: number;
++        function tick() {
++            const t = clock.getElapsedTime();
++            // Elegant micro-float with stable baseline
++            diorama.position.y = 1.5 + Math.sin(t * 1.5) * 0.05;
++
++            controls.update();
++            renderer.render(scene, camera);
++            frameId = requestAnimationFrame(tick);
++        }
++        tick();
++
++        return () => {
++            cancelAnimationFrame(frameId);
++            window.removeEventListener("resize", updateSize);
++            if (scene.environment) scene.environment.dispose();
++            if (container && renderer.domElement && container.contains(renderer.domElement)) {
++                container.removeChild(renderer.domElement);
++            }
++            renderer.dispose();
++            scene.traverse((object) => {
++                if (object instanceof THREE.Mesh) {
++                    object.geometry.dispose();
++                    if (object.material.isMaterial) {
++                        object.material.dispose();
++                    } else if (Array.isArray(object.material)) {
++                        object.material.forEach((mat: THREE.Material) => mat.dispose());
++                    }
++                }
++            });
++        };
++
++    }, []);
++
++    return (
++        <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center p-4 group">
++            {/* Ambient Background Glow match the hero section */}
++            <div className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 group-hover:opacity-75">
++                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-[#5B2A86]/25 rounded-full blur-[100px]" />
++                <div className="absolute top-1/2 left-1/2 -translate-x-[40%] -translate-y-[40%] w-[40%] h-[40%] bg-[#D6B36A]/15 rounded-full blur-[80px]" />
++            </div>
++
++            {/* 3D Canvas Container */}
++            <div
++                ref={containerRef}
++                className="relative z-10 w-full h-full max-w-[900px] aspect-[4/3] lg:aspect-[4/3] rounded-[24px] overflow-hidden bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/5"
++                style={{ cursor: 'grab' }}
++                onPointerDown={(e) => (e.currentTarget.style.cursor = 'grabbing')}
++                onPointerUp={(e) => (e.currentTarget.style.cursor = 'grab')}
++                onPointerOut={(e) => (e.currentTarget.style.cursor = 'grab')}
++            />
++
++            {/* Hint Widget */}
++            <div className="absolute left-6 bottom-6 lg:left-8 lg:bottom-10 pointer-events-none z-20 transition-all duration-700 opacity-80 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
++                <div className="bg-black/40 backdrop-blur-xl px-4 py-3 rounded-[16px] text-white/90 text-[11px] md:text-[13px] shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-white/10 font-medium leading-[1.4] flex items-center gap-3">
++                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#D6B36A] animate-pulse">
++                        <path d="M5 15l7-7 7 7" />
++                        <path d="M12 2v10" />
++                    </svg>
++                    <span>Drag to rotate ÔÇó Scroll to zoom ÔÇó Right-drag to pan</span>
++                </div>
++            </div>
++        </div>
++    );
++}

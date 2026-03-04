@@ -33,7 +33,7 @@ export default function Home() {
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-32 pb-8 gap-12 lg:gap-8">
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-20 pb-8 gap-12 lg:gap-8">
 
           {/* Left: Typography */}
           <div className="relative w-full lg:w-[48%] flex flex-col z-40 lg:-ml-12">
@@ -230,7 +230,7 @@ export default function Home() {
               </div>
 
               <Link
-                href="/services"
+                href="/about-us"
                 className="group relative inline-flex items-center px-10 py-5 bg-[#5B2A86] text-white rounded-full overflow-hidden transition-all duration-500 hover:bg-[#4a226d] hover:shadow-xl hover:shadow-purple-900/10"
               >
                 <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-semibold">Our Mission</span>
@@ -559,6 +559,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* THE CHARITY TRUST - Luxury Purpose */}
+      <section className="section-padding bg-[#F7F5F2] relative">
+        <div className="grid-container relative z-10 mx-auto">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex flex-col items-start mb-6">
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-4">Social Responsibility</span>
+                <h2 className="Heading-H2 text-[#1B1326]">
+                  A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
+                </h2>
+              </div>
+              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-8 max-w-xl">
+                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
+              </p>
+              <a
+                href="http://www.rahula-trust.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
+              >
+                Discover The Rahula Trust
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[500px] overflow-hidden rounded-sm shadow-2xl"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"
+                alt="Children receiving education"
+                fill
+                className="object-cover transition-transform duration-[10s] hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-[#5B2A86]/20 mix-blend-multiply transition-opacity duration-1000" />
+              <div className="absolute inset-0 border-[20px] border-[#F7F5F2] pointer-events-none" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </main >
   );
 }

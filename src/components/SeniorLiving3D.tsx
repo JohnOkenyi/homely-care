@@ -34,10 +34,10 @@ export default function SeniorLiving3D() {
         // Very tight isometric perspective
         const camera = new THREE.PerspectiveCamera(30, initialWidth / initialHeight, 0.1, 200);
         // Positioned top-right-front, looking perfectly at center
-        camera.position.set(20, 18, 20);
+        camera.position.set(16, 12, 16);
 
         const controls = new OrbitControls(camera, renderer.domElement);
-        controls.target.set(0, 3.0, 0); // Reset target to match 1.5 baseline
+        controls.target.set(1.0, 2.0, -1.0); // Focus on chair/table area
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
         controls.minDistance = 15;
@@ -48,12 +48,12 @@ export default function SeniorLiving3D() {
         // Removed PMREM RoomEnvironment for night mode stability
 
         // Balanced global lighting for full visibility
-        const ambientLight = new THREE.AmbientLight(0xfff7e6, 0.4);
+        const ambientLight = new THREE.AmbientLight(0xfcfade, 0.6); // Cool pale yellow
         scene.add(ambientLight); // Restored ambient
 
         // Clear daylight fill
-        const sunLight = new THREE.DirectionalLight(0xfffaea, 0.8); // Restored sunlight
-        sunLight.position.set(-15, 25, 10);
+        const sunLight = new THREE.DirectionalLight(0xfdfaa0, 0.45); // Reduced brightness
+        sunLight.position.set(-25, 20, -5); // Shifted angle to avoid direct glare on back wall
         sunLight.castShadow = true;
         sunLight.shadow.mapSize.set(4096, 4096);
         sunLight.shadow.camera.left = -10;
@@ -64,20 +64,20 @@ export default function SeniorLiving3D() {
         scene.add(sunLight);
 
         // Soft fill light from the front-right
-        const fillLight = new THREE.DirectionalLight(0xd9e5ff, 0.4); // Restored fill light
+        const fillLight = new THREE.DirectionalLight(0xe8f0cc, 0.25); // Reduced brightness
         fillLight.position.set(15, 10, 15);
         scene.add(fillLight);
 
         // Warm lamp light - parented to diorama for local coordination
-        const lampLight = new THREE.PointLight(0xfff0c2, 18, 15, 1.8);
-        lampLight.position.set(1.8, 4.7, -2.5); // Local coords relative to diorama center
+        const lampLight = new THREE.PointLight(0xfffacc, 18, 15, 1.8);
+        lampLight.position.set(3.2, 4.7, -3.2); // Local coords relative to diorama center
         lampLight.castShadow = true;
         lampLight.shadow.mapSize.set(2048, 2048);
 
         // Secondary dim light coming from the lamp pointing downwards
-        const lampDownLight = new THREE.SpotLight(0xfff0c2, 8, 12, Math.PI / 3, 0.5, 1);
-        lampDownLight.position.set(1.8, 4.0, -2.5); // Slightly below the PointLight
-        lampDownLight.target.position.set(1.8, 0, -2.5); // Pointing at the rug/floor
+        const lampDownLight = new THREE.SpotLight(0xfffacc, 8, 12, Math.PI / 3, 0.5, 1);
+        lampDownLight.position.set(3.2, 4.0, -3.2); // Slightly below the PointLight
+        lampDownLight.target.position.set(1.0, 0.4, -2.0); // Pointing at the armchair
 
         // These will be added to diorama later after diorama is defined
 
@@ -100,17 +100,16 @@ export default function SeniorLiving3D() {
         const matBlanket = new THREE.MeshPhysicalMaterial({ color: 0xe6e4e1, roughness: 1.0, sheen: 1.0 });
         const matLampBrass = new THREE.MeshPhysicalMaterial({ color: 0xd4af37, roughness: 0.3, metalness: 0.8, clearcoat: 1.0 });
         const matLampShade = new THREE.MeshPhysicalMaterial({
-            color: 0xfff4cc,
+            color: 0xfffccc,
             roughness: 0.4,
             transmission: 0.2,
             opacity: 1,
             transparent: true,
-            emissive: 0xfff4cc,
+            emissive: 0xfffccc,
             emissiveIntensity: 0.5
         });
         const matPlant = new THREE.MeshPhysicalMaterial({ color: 0x2b4f2c, roughness: 0.6, clearcoat: 0.1 });
-        const matRollatorMetal = new THREE.MeshPhysicalMaterial({ color: 0xa4a4a4, metalness: 0.8, roughness: 0.3 });
-        const matRollatorBlack = new THREE.MeshPhysicalMaterial({ color: 0x111111, roughness: 0.9 });
+
         const matArtCanvas = new THREE.MeshPhysicalMaterial({ color: 0xd3e0db, roughness: 1.0 });
 
         const diorama = new THREE.Group();
@@ -158,8 +157,8 @@ export default function SeniorLiving3D() {
         bwLeft.receiveShadow = true;
         bwLeft.castShadow = true;
 
-        const bwMid = new THREE.Mesh(new THREE.BoxGeometry(3.5, 3.5, 0.4), matWallBeige);
-        bwMid.position.set(2.25, 3.65, -4); // Wall section behind the bookcase
+        const bwMid = new THREE.Mesh(new THREE.BoxGeometry(4.5, 3.5, 0.4), matWallBeige);
+        bwMid.position.set(1.75, 3.65, -4); // Wall section behind the chair
         bwMid.receiveShadow = true;
         bwMid.castShadow = true;
 
@@ -252,11 +251,98 @@ export default function SeniorLiving3D() {
         windowGroup.add(curtainL, curtainR, rod);
         roomGroup.add(windowGroup);
 
+        // "Homely Health Care" Sign on Back Wall (raised higher)
+        const canvas = document.createElement("canvas");
+        canvas.width = 1024;
+        canvas.height = 256;
+        const context = canvas.getContext("2d");
+        if (context) {
+            context.clearRect(0, 0, 1024, 256);
+            context.font = "bold 90px 'Inter', sans-serif";
+            context.fillStyle = "#56234b"; // Matches the chair
+            context.textAlign = "center";
+            context.textBaseline = "middle";
+            context.fillText("Homely Health Care", 512, 128);
+        }
+        const textTex = new THREE.CanvasTexture(canvas);
+        textTex.colorSpace = THREE.SRGBColorSpace;
 
-        // 6. BUILT-IN BOOKCASE (Right side of back wall)
+        const signBacking = new THREE.Mesh(
+            new THREE.BoxGeometry(4.5, 1.2, 0.05),
+            new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.9, opacity: 1, transparent: true, roughness: 0.9, clearcoat: 0 })
+        );
+        signBacking.position.set(1.75, 5.2, -3.77);
+        signBacking.castShadow = true;
+        roomGroup.add(signBacking);
+
+        const textMat = new THREE.MeshPhysicalMaterial({
+            map: textTex,
+            transparent: true,
+            roughness: 0.9,   // Matte finish to prevent glare
+            metalness: 0.1,
+            clearcoat: 0.0,
+            alphaTest: 0.05
+        });
+        const textMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.5, 1.125), textMat);
+        textMesh.position.set(1.75, 5.2, -3.74);
+        roomGroup.add(textMesh);
+
+
+        // --- "OUR SERVICES" Sign (Exterior Wall - Behind the room/shelf) ---
+        const servicesCanvas = document.createElement("canvas");
+        servicesCanvas.width = 1024;
+        servicesCanvas.height = 1024;
+        const sCtx = servicesCanvas.getContext("2d");
+        if (sCtx) {
+            sCtx.clearRect(0, 0, 1024, 1024);
+            sCtx.font = "bold 72px 'Inter', sans-serif";
+            sCtx.fillStyle = "#1B1326"; // Darker for exterior
+            sCtx.textAlign = "center";
+
+            const services = [
+                "• Home Care",
+                "• Supported Living",
+                "• Dementia Care",
+                "• Live-in Care",
+                "• Complex Care",
+                "• Personal Care"
+            ];
+
+            sCtx.fillText("OUR SERVICES", 512, 100);
+            sCtx.font = "bold 56px 'Inter', sans-serif";
+            services.forEach((service, i) => {
+                sCtx.fillText(service, 512, 250 + (i * 120));
+            });
+        }
+        const servicesTex = new THREE.CanvasTexture(servicesCanvas);
+        servicesTex.colorSpace = THREE.SRGBColorSpace;
+
+        const servicesBacking = new THREE.Mesh(
+            new THREE.BoxGeometry(0.05, 5.0, 5.0),
+            new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.5, opacity: 0.95, transparent: true, roughness: 0.9 })
+        );
+        // Positioned on the OUTSIDE of the right wall (x = 4.2)
+        servicesBacking.position.set(4.22, 3.2, 0);
+        roomGroup.add(servicesBacking);
+
+        const servicesMat = new THREE.MeshPhysicalMaterial({
+            map: servicesTex,
+            transparent: true,
+            roughness: 0.9,
+            metalness: 0.1,
+            alphaTest: 0.05
+        });
+        const servicesMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 4.8), servicesMat);
+        // Facing outwards (+X)
+        servicesMesh.position.set(4.25, 3.2, 0);
+        servicesMesh.rotation.y = Math.PI / 2;
+        roomGroup.add(servicesMesh);
+
+
+        // 6. BUILT-IN BOOKCASE (Right Wall)
         const bcGroup = new THREE.Group();
         const bcW = 3.5, bcD = 0.8;
-        const bx = 1.75, by = 0.4, bz = -3.6; // Sitting on the floor
+        const bx = 0, by = 0.4, bz = 0; // Local coords
 
         // Lower Cabinet
         const bcCab = new THREE.Mesh(new THREE.BoxGeometry(bcW, 1.5, bcD), matTrimWood);
@@ -302,20 +388,22 @@ export default function SeniorLiving3D() {
         dPlant.position.set(bx + 1.0, by + 1.5 + 0.3, bz);
         bcGroup.add(dPot, dPlant);
 
+        bcGroup.position.set(3.6, 0, 1.5);
+        bcGroup.rotation.y = -Math.PI / 2;
         roomGroup.add(bcGroup);
 
 
         // 7. RIGHT WALL DETAILS (Art & Grab bar)
         // Grab Bar (wood with metal mounts)
         const gbGroup = new THREE.Group();
-        const gbRod = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 3.5, 16), matTrimWood);
+        const gbRod = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 2.5, 16), matTrimWood);
         gbRod.rotation.x = Math.PI / 2;
-        gbRod.position.set(3.8, 2.5, 0);
+        gbRod.position.set(3.8, 2.5, -2.0);
         gbRod.castShadow = true;
 
         const gbMountGeo = new THREE.CylinderGeometry(0.04, 0.06, 0.1, 16);
-        const gbM1 = new THREE.Mesh(gbMountGeo, matLampBrass); gbM1.rotation.z = Math.PI / 2; gbM1.position.set(3.9, 2.5, -1.5);
-        const gbM2 = new THREE.Mesh(gbMountGeo, matLampBrass); gbM2.rotation.z = Math.PI / 2; gbM2.position.set(3.9, 2.5, 1.5);
+        const gbM1 = new THREE.Mesh(gbMountGeo, matLampBrass); gbM1.rotation.z = Math.PI / 2; gbM1.position.set(3.9, 2.5, -3.1);
+        const gbM2 = new THREE.Mesh(gbMountGeo, matLampBrass); gbM2.rotation.z = Math.PI / 2; gbM2.position.set(3.9, 2.5, -0.9);
         gbGroup.add(gbRod, gbM1, gbM2);
         roomGroup.add(gbGroup);
 
@@ -334,13 +422,13 @@ export default function SeniorLiving3D() {
 
         const acBacking = new THREE.Mesh(new THREE.BoxGeometry(0.08, 1.6, 1.2), matArtCanvas);
         artCanvasGroup.add(af, acBacking, acPlane);
-        artCanvasGroup.position.set(3.9, 4.0, 1.0);
+        artCanvasGroup.position.set(3.9, 4.0, -2.0);
         roomGroup.add(artCanvasGroup);
 
 
         // 8. RUG
         const rug = new THREE.Mesh(getRoundedBox(6.5, 0.06, 5.0, 0.1), matRugCream);
-        rug.position.set(0.5, 0.43, 0.5);
+        rug.position.set(1.5, 0.43, -1.2);
         rug.receiveShadow = true;
         diorama.add(rug);
 
@@ -394,8 +482,8 @@ export default function SeniorLiving3D() {
         blanket.castShadow = true;
         chairGroup.add(blanket);
 
-        chairGroup.position.set(1.5, 0.4, -0.5);
-        chairGroup.rotation.y = -Math.PI / 4; // Angled towards corner
+        chairGroup.position.set(1.0, 0.4, -2.0);
+        chairGroup.rotation.y = -0.3; // Angled slightly towards center
         diorama.add(chairGroup);
 
 
@@ -429,15 +517,15 @@ export default function SeniorLiving3D() {
         book.castShadow = true;
         tableGroup.add(book);
 
-        tableGroup.position.set(3.2, 0.4, 1.0);
+        tableGroup.position.set(2.6, 0.4, -1.6);
         diorama.add(tableGroup);
 
 
         // 11. TALL FLOOR LAMP
         const lampGroup = new THREE.Group();
         // Base
-        const lrBase = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.06, 32), matLampBrass);
-        lrBase.position.y = 0.03;
+        const lrBase = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.06, 32), matBaseDark);
+        lrBase.position.y = 0.05;
         lampGroup.add(lrBase);
 
         // Pole (straight then curved)
@@ -463,7 +551,8 @@ export default function SeniorLiving3D() {
         shadeGroup.position.set(-1.0, 4.3, 0);
 
         lampGroup.add(shadeGroup);
-        lampGroup.position.set(2.8, 0.4, -2.5); // Place in the back corner
+        lampGroup.position.set(3.2, 0.4, -3.2); // Place in the back corner
+        lampGroup.rotation.y = Math.PI / 4; // Face towards the chair
         diorama.add(lampGroup);
 
 
@@ -499,37 +588,11 @@ export default function SeniorLiving3D() {
             bigPlant.add(l);
         }
 
-        bigPlant.position.set(-2.5, 0.4, 0); // Near window
+        bigPlant.position.set(-2.8, 0.4, -3.0); // Moved deeper into window corner
         diorama.add(bigPlant);
 
 
-        // 13. ROLLATOR WALKER (Simplified model for performance and aesthetics)
-        const vWalker = new THREE.Group();
-        const tubeMat = matRollatorMetal;
-        const rubberMat = matRollatorBlack;
 
-        // Legs/Frame
-        const leg1 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg1.position.set(-0.35, 0.45, -0.3); vWalker.add(leg1);
-        const leg2 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg2.position.set(0.35, 0.45, -0.3); vWalker.add(leg2);
-        const leg3 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg3.position.set(-0.35, 0.45, 0.3); vWalker.add(leg3);
-        const leg4 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.9, 8), tubeMat); leg4.position.set(0.35, 0.45, 0.3); vWalker.add(leg4);
-
-        // Handles
-        const hBar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.7, 8), tubeMat);
-        hBar.rotation.z = Math.PI / 2;
-        hBar.position.set(0, 1.0, 0);
-        vWalker.add(hBar);
-
-        // Wheels
-        const whGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.06, 16);
-        const w1 = new THREE.Mesh(whGeo, rubberMat); w1.rotation.z = Math.PI / 2; w1.position.set(-0.35, 0.06, -0.3); vWalker.add(w1);
-        const w2 = new THREE.Mesh(whGeo, rubberMat); w2.rotation.z = Math.PI / 2; w2.position.set(0.35, 0.06, -0.3); vWalker.add(w2);
-        const w3 = new THREE.Mesh(whGeo, rubberMat); w3.rotation.z = Math.PI / 2; w3.position.set(-0.35, 0.06, 0.3); vWalker.add(w3);
-        const w4 = new THREE.Mesh(whGeo, rubberMat); w4.rotation.z = Math.PI / 2; w4.position.set(0.35, 0.06, 0.3); vWalker.add(w4);
-
-        vWalker.position.set(-0.5, 0.4, 1.5);
-        vWalker.rotation.y = 0.8;
-        diorama.add(vWalker);
 
         diorama.add(roomGroup);
 
@@ -610,7 +673,7 @@ export default function SeniorLiving3D() {
             />
 
             {/* Hint Widget */}
-            <div className="absolute left-6 bottom-6 lg:left-8 lg:bottom-10 pointer-events-none z-20 transition-all duration-700 opacity-80 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+            <div className="absolute bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 pointer-events-none z-20 transition-all duration-700 opacity-80 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
                 <div className="bg-black/40 backdrop-blur-xl px-4 py-3 rounded-[16px] text-white/90 text-[11px] md:text-[13px] shadow-[0_8px_30px_rgba(0,0,0,0.3)] border border-white/10 font-medium leading-[1.4] flex items-center gap-3">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#D6B36A] animate-pulse">
                         <path d="M5 15l7-7 7 7" />
