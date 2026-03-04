@@ -205,7 +205,10 @@ export default function SeniorLiving3D() {
 
         // 5. WINDOW DETAILS (Black frame, grid, glass, curtains)
         const windowGroup = new THREE.Group();
-        const wx = -2.125, wy = 3.65, wz = -3.95; // slightly forward to protrude from wall
+        // The back wall is centered at Z=-4 with depth 0.4 (front=-3.8, back=-4.2). 
+        // The window frame has depth 0.5. At Z=-3.95, its back face is -4.2, exactly matching the wall's back face, causing Z-fighting.
+        // Changing to Z=-3.94 shifts the frame slightly forward so its back face is at -4.19, safely inside the wall and avoiding exterior clipping.
+        const wx = -2.125, wy = 3.65, wz = -3.94;
 
         // Frame outer
         const frameW = 3.0, frameH = 3.5, frameD = 0.5;
