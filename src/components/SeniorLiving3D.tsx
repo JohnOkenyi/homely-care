@@ -165,8 +165,8 @@ export default function SeniorLiving3D() {
         roomGroup.add(bwBot, bwTop, bwLeft, bwMid);
 
         // Right Wall (Solid)
-        const rwMain = new THREE.Mesh(new THREE.BoxGeometry(0.4, 5.6, 7.6), matWallBeige); // 7.6 to avoid overlap at corner
-        rwMain.position.set(4, 3.2, 0.2); // shifted slightly to connect corner
+        const rwMain = new THREE.Mesh(new THREE.BoxGeometry(0.4, 5.6, 7.6), matWallBeige); // 7.6 connects corner
+        rwMain.position.set(3.8, 3.2, -0.2); // Shifted backward and inward exactly 0.2 units to close the corner gap
         rwMain.receiveShadow = true;
         rwMain.castShadow = true;
         roomGroup.add(rwMain);
@@ -538,8 +538,8 @@ export default function SeniorLiving3D() {
 
 
         // 8. RUG
-        const rug = new THREE.Mesh(getRoundedBox(6.5, 0.06, 5.0, 0.1), matRugCream);
-        rug.position.set(1.5, 0.43, -1.2);
+        const rug = new THREE.Mesh(getRoundedBox(6.0, 0.06, 5.0, 0.1), matRugCream); // Reduced width from 6.5 to 6.0
+        rug.position.set(1.1, 0.43, -1.2); // Shifted center X from 1.5 to 1.1 to move it away from the right bookshelf wall
         rug.receiveShadow = true;
         diorama.add(rug);
 
