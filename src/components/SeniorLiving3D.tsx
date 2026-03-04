@@ -321,8 +321,9 @@ export default function SeniorLiving3D() {
             new THREE.BoxGeometry(0.05, 5.0, 5.0),
             new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.5, opacity: 0.95, transparent: true, roughness: 0.9 })
         );
-        // Positioned on the OUTSIDE of the right wall (x = 4.2)
-        servicesBacking.position.set(4.22, 3.2, 0);
+        // Positioned on the OUTSIDE of the right wall (x = 4.22)
+        // Add a slight offset to prevent Z-fighting glitching with the wall itself
+        servicesBacking.position.set(4.25, 3.2, 0);
         roomGroup.add(servicesBacking);
 
         const servicesMat = new THREE.MeshPhysicalMaterial({
@@ -333,8 +334,8 @@ export default function SeniorLiving3D() {
             alphaTest: 0.05
         });
         const servicesMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 4.8), servicesMat);
-        // Facing outwards (+X)
-        servicesMesh.position.set(4.25, 3.2, 0);
+        // Facing outwards (+X), shift slightly further out to prevent Z-fighting with the backing
+        servicesMesh.position.set(4.28, 3.2, 0);
         servicesMesh.rotation.y = Math.PI / 2;
         roomGroup.add(servicesMesh);
 
@@ -494,9 +495,10 @@ export default function SeniorLiving3D() {
         picGroup.add(picMesh, picMatte, picPhoto, picGlass, picStand);
 
         // Position on top shelf, angled slightly
-        picGroup.position.set(bx, surfaceSh3 + picH / 2, bz);
+        // Shift Z forward slightly so it doesn't lean into the back wall
+        picGroup.position.set(bx, surfaceSh3 + picH / 2 + 0.05, bz + 0.15);
         picGroup.rotation.y = -0.2;
-        picGroup.rotation.x = -0.1; // Leaning back slightly
+        picGroup.rotation.x = -0.15; // Leaning back
         bcGroup.add(picGroup);
 
         bcGroup.position.set(3.6, 0, 1.5);
