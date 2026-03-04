@@ -507,7 +507,8 @@ export default function SeniorLiving3D() {
         picGroup.rotation.x = -0.15; // Leaning back
         bcGroup.add(picGroup);
 
-        bcGroup.position.set(3.6, 0, 1.5);
+        // Shifted from X=3.6 to X=3.59 to prevent the base cabinet from extending exactly to X=4.0 and z-fighting with the exterior wall
+        bcGroup.position.set(3.59, 0, 1.5);
         bcGroup.rotation.y = -Math.PI / 2;
         roomGroup.add(bcGroup);
 
