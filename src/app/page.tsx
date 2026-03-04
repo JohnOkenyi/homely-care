@@ -9,9 +9,16 @@ import dynamic from "next/dynamic";
 
 // Dynamic Import for the heavy Globe component to improve LCP/TTI
 // Dynamic Import for the new 3D visual
+// Dynamic Import for the heavy 3D visual
 const SeniorLiving3D = dynamic(() => import("@/components/SeniorLiving3D"), {
   ssr: false,
   loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
+});
+
+// Dynamic Import for the new Testimonial Slider
+const TestimonialSlider = dynamic(() => import("@/components/TestimonialSlider"), {
+  ssr: false,
+  loading: () => <div className="w-full h-48 bg-black/5 animate-pulse rounded-2xl" />
 });
 
 export default function Home() {
@@ -405,30 +412,9 @@ export default function Home() {
             {/* Horizontal Divider for Mobile */}
             <div className="lg:hidden h-[1px] w-full bg-gradient-to-r from-transparent via-[#1A1A1A]/[0.06] to-transparent" />
 
-            {/* Right Column: Testimonial */}
+            {/* Right Column: Testimonial Slider */}
             <div className="relative flex-1">
-              {/* Elegant Quotation Mark */}
-              <div className="absolute -top-16 -left-10 text-[#E4DDF0] text-[160px] font-serif leading-none select-none pointer-events-none transform -rotate-12">
-                &ldquo;
-              </div>
-
-              <p className="Heading-Serif text-[#1A1A1A] text-[20px] md:text-[24px] leading-[1.4] relative z-10 font-normal italic tracking-tight text-balance">
-                As a retired XYZ, I am acutely aware how people are very quick to criticise but not so quick to praise where praise is due. Last Thursday evening I was feeling very unwell and at one point had a temperature of 39 degrees. XYZ was my carer that night and I really couldn&apos;t have asked for anyone better to look after me in those circumstances. She took my temperature every hour and gave me paracetamol every four hours and generally her attentive presence was very reassuring.
-              </p>
-
-              <div className="flex items-center gap-6 mt-8 relative z-10">
-                {/* Client Avatar - Subtle Initial Circle */}
-                <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5 bg-[#5B2A86] flex items-center justify-center text-white font-serif text-2xl">
-                  J
-                </div>
-
-                {/* Client Info Block */}
-                <div className="flex flex-col gap-2 pt-1">
-                  <div className="w-12 h-[1px] bg-[#D6B36A] mb-1" />
-                  <p className="font-bold text-[#4B3061] text-sm md:text-sm tracking-[0.1em] uppercase">Jon</p>
-                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 font-bold">Private Client</p>
-                </div>
-              </div>
+              <TestimonialSlider />
             </div>
 
           </motion.div>
