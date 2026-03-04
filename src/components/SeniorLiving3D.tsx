@@ -443,6 +443,62 @@ export default function SeniorLiving3D() {
         dPlant.position.set(bx + 1.0, by + 1.5 + 0.3, bz);
         bcGroup.add(dPot, dPlant);
 
+        // Top Shelf (Shelf 3) - Picture Frame with Logo
+        const surfaceSh3 = by + 4.55;
+
+        // Load logo texture
+        const textureLoader = new THREE.TextureLoader();
+        const logoTexture = textureLoader.load('/logo.png');
+        logoTexture.colorSpace = THREE.SRGBColorSpace;
+
+        // Frame dimensions
+        const picW = 0.8;
+        const picH = 0.8;
+        const picD = 0.05;
+        const picBorder = 0.05;
+
+        const picGroup = new THREE.Group();
+
+        // Wooden Frame
+        const picMesh = new THREE.Mesh(new THREE.BoxGeometry(picW, picH, picD), matTrimWood);
+        picMesh.castShadow = true;
+
+        // White Backing/Matte
+        const picMatte = new THREE.Mesh(new THREE.BoxGeometry(picW - picBorder * 2, picH - picBorder * 2, picD + 0.01), new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 1 }));
+
+        // Photo (Logo)
+        const picPhoto = new THREE.Mesh(
+            new THREE.PlaneGeometry(picW - picBorder * 4, picH - picBorder * 4),
+            new THREE.MeshPhysicalMaterial({
+                map: logoTexture,
+                roughness: 0.5,
+                clearcoat: 0.5,
+                transparent: true
+            })
+        );
+        picPhoto.position.z = picD / 2 + 0.006;
+
+        // Glass
+        const picGlass = new THREE.Mesh(
+            new THREE.PlaneGeometry(picW - picBorder * 2, picH - picBorder * 2),
+            matGlass
+        );
+        picGlass.position.z = picD / 2 + 0.01;
+
+        // Frame stand (back)
+        const picStand = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.02, 0.4), matTrimWood);
+        picStand.position.set(0, -0.2, -0.15);
+        picStand.rotation.x = -Math.PI / 4;
+        picStand.castShadow = true;
+
+        picGroup.add(picMesh, picMatte, picPhoto, picGlass, picStand);
+
+        // Position on top shelf, angled slightly
+        picGroup.position.set(bx, surfaceSh3 + picH / 2, bz);
+        picGroup.rotation.y = -0.2;
+        picGroup.rotation.x = -0.1; // Leaning back slightly
+        bcGroup.add(picGroup);
+
         bcGroup.position.set(3.6, 0, 1.5);
         bcGroup.rotation.y = -Math.PI / 2;
         roomGroup.add(bcGroup);
