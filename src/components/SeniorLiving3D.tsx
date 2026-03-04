@@ -289,13 +289,14 @@ export default function SeniorLiving3D() {
 
 
         // --- "OUR SERVICES" Sign (Exterior Wall - Behind the room/shelf) ---
+        // High resolution canvas for crisp text
         const servicesCanvas = document.createElement("canvas");
-        servicesCanvas.width = 1024;
-        servicesCanvas.height = 1024;
+        servicesCanvas.width = 2048;
+        servicesCanvas.height = 2048;
         const sCtx = servicesCanvas.getContext("2d");
         if (sCtx) {
-            sCtx.clearRect(0, 0, 1024, 1024);
-            sCtx.font = "bold 72px 'Inter', sans-serif";
+            sCtx.clearRect(0, 0, 2048, 2048);
+            sCtx.font = "bold 144px 'Inter', sans-serif";
             sCtx.fillStyle = "#1B1326"; // Darker for exterior
             sCtx.textAlign = "center";
 
@@ -308,22 +309,26 @@ export default function SeniorLiving3D() {
                 "• Personal Care"
             ];
 
-            sCtx.fillText("OUR SERVICES", 512, 100);
-            sCtx.font = "bold 56px 'Inter', sans-serif";
+            sCtx.fillText("OUR SERVICES", 1024, 200);
+            sCtx.font = "bold 112px 'Inter', sans-serif";
             services.forEach((service, i) => {
-                sCtx.fillText(service, 512, 250 + (i * 120));
+                sCtx.fillText(service, 1024, 500 + (i * 240));
             });
         }
         const servicesTex = new THREE.CanvasTexture(servicesCanvas);
+        // Anisotropy helps keep text sharp at oblique viewing angles
+        servicesTex.anisotropy = 16;
         servicesTex.colorSpace = THREE.SRGBColorSpace;
 
         const servicesBacking = new THREE.Mesh(
             new THREE.BoxGeometry(0.05, 5.0, 5.0),
             new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.5, opacity: 0.95, transparent: true, roughness: 0.9 })
         );
-        // Positioned on the OUTSIDE of the right wall
-        // Shifted further out to X=4.3 to completely avoid the bookcase backing (which is at X~3.5 to 3.9)
-        servicesBacking.position.set(4.35, 3.2, 0);
+
+        // Right face of rwMain is exactly X=4.0
+        // We want the backing perfectly flush with the wall. 
+        // Half of 0.05 is 0.025. So X = 4.025
+        servicesBacking.position.set(4.025, 3.2, 0);
         roomGroup.add(servicesBacking);
 
         const servicesMat = new THREE.MeshPhysicalMaterial({
@@ -334,8 +339,9 @@ export default function SeniorLiving3D() {
             alphaTest: 0.05
         });
         const servicesMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 4.8), servicesMat);
-        // Facing outwards (+X), shift out to match backing
-        servicesMesh.position.set(4.38, 3.2, 0);
+
+        // Facing outwards (+X), sits literally right on the backing surface (4.025 + 0.025 + 0.001)
+        servicesMesh.position.set(4.051, 3.2, 0);
         servicesMesh.rotation.y = Math.PI / 2;
         roomGroup.add(servicesMesh);
 
