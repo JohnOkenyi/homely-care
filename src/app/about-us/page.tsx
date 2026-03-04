@@ -35,7 +35,7 @@ export default function AboutUs() {
                     >
                         <span className="text-[#D6B36A] text-[9px] tracking-[0.4em] uppercase block mb-3 font-bold">Established with Purpose</span>
                         <h1 className="Heading-Display text-white mb-6 text-4xl md:text-5xl lg:text-6xl">
-                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Heritage</span>
+                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Vision</span>
                         </h1>
                     </motion.div>
                 </div>
@@ -54,7 +54,7 @@ export default function AboutUs() {
                         >
                             <div className="aspect-[16/10] relative rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
                                 <Image
-                                    src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1600&auto=format&fit=crop"
+                                    src="/quality-care-scene.png"
                                     alt="Caring interaction"
                                     fill
                                     className="object-cover"
@@ -74,19 +74,19 @@ export default function AboutUs() {
                         >
                             <span className="text-[#D6B36A] text-[8px] tracking-[0.4em] uppercase block mb-4 font-bold">The Homely Manifesto</span>
                             <h2 className="text-3xl md:text-4xl font-serif italic text-[#1A1A1A] mb-6 leading-tight">
-                                Redefining the <span className="highlighted-text-gold font-light not-italic">Gold Standard</span> of Care.
+                                Excellent home care combining practical expertise with <span className="highlighted-text-gold font-light not-italic">genuine humanity.</span>
                             </h2>
                             <div className="space-y-4 text-sm md:text-base font-light text-[#1A1A1A]/70 leading-relaxed">
                                 <p>
-                                    Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between clinical excellence and emotional warmth.
+                                    Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between expertise and emotional warmth.
                                 </p>
                                 <p>
-                                    We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like a clinical intervention and more like an extension of family.
+                                    We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like an intervention and more like an extension of family.
                                 </p>
                             </div>
                             <div className="mt-8 pt-8 border-t border-[#1B1326]/5">
                                 <p className="italic text-lg text-[#5B2A86] font-serif font-light leading-snug">
-                                    &ldquo;Our mission is to create a world where home care is synonymous with sanctuary.&rdquo;
+                                    &ldquo;Our mission is to provide compassionate, high quality health care services through trusted professionals.&rdquo;
                                 </p>
                             </div>
                         </motion.div>
@@ -104,16 +104,15 @@ export default function AboutUs() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="text-[#D6B36A] text-[8px] tracking-[0.4em] uppercase block mb-3 font-bold">Our Foundation</span>
                         <h2 className="text-3xl md:text-4xl text-white mb-8">
-                            The Pillars of our <span className="Heading-Serif italic font-light highlighted-text-gold">Promise</span>
+                            Our <span className="Heading-Serif italic font-light highlighted-text-gold">Foundations</span>
                         </h2>
                     </motion.div>
 
                     <div className="grid md:grid-cols-3 gap-6 lg:gap-8 perspective-2000">
                         {[
-                            { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical well-being." },
-                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest clinical standards." },
+                            { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical wellbeing." },
+                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest standards." },
                             { icon: Users, title: "Dignity", desc: "Honouring the person behind the patient, respecting their history and autonomy." }
                         ].map((pillar, idx) => (
                             <motion.div

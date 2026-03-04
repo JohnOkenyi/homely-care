@@ -39,7 +39,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["value", "mission", "vision", "pillar", "philosophy", "believe", "principle", "promise"],
-        answer: "Our care is built on three pillars:\n\n💜 **Compassion** – Every action is led by the heart, ensuring emotional security alongside physical well-being.\n🛡️ **Integrity** – Unwavering commitment to honesty, transparency, and the highest clinical standards.\n👥 **Dignity** – Honouring the person behind the patient, respecting their history, choices, and autonomy."
+        answer: "Our care is built on three pillars:\n\n💜 **Compassion** – Every action is led by the heart, ensuring emotional security alongside physical wellbeing.\n🛡️ **Integrity** – Unwavering commitment to honesty, transparency, and the highest clinical standards.\n👥 **Dignity** – Honouring the person behind the patient, respecting their history, choices, and autonomy."
     },
     {
         keywords: ["why choose", "why homely", "what makes you different", "special", "unique", "advantage"],
@@ -423,6 +423,10 @@ export default function ChatBox() {
     const [usedJokes, setUsedJokes] = useState<number[]>([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
 
+    // Interaction tracking for "Try Me" popups
+    const [hasVisitedHumor, setHasVisitedHumor] = useState(false);
+    const [hasVisitedCalm, setHasVisitedCalm] = useState(false);
+
     const scrollToBottom = useCallback(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, []);
@@ -531,7 +535,10 @@ export default function ChatBox() {
                         AI Assist
                     </button>
                     <button
-                        onClick={() => setActiveTab("humor")}
+                        onClick={() => {
+                            setActiveTab("humor");
+                            setHasVisitedHumor(true);
+                        }}
                         className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 relative group ${activeTab === "humor"
                             ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white"
                             : "text-[#1B1326]/80 hover:text-[#1B1326] hover:bg-black/[0.02]"
@@ -539,7 +546,7 @@ export default function ChatBox() {
                     >
                         <div className="relative">
                             <motion.div
-                                animate={activeTab !== "humor" ? {
+                                animate={activeTab !== "humor" && !hasVisitedHumor ? {
                                     x: [0, -2, 2, -2, 2, 0],
                                     rotate: [0, -5, 5, -5, 5, 0],
                                 } : {}}
@@ -550,9 +557,9 @@ export default function ChatBox() {
                                     ease: "easeInOut"
                                 }}
                             >
-                                <Smile className={`w-3.5 h-3.5 ${activeTab !== "humor" ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
+                                <Smile className={`w-3.5 h-3.5 ${activeTab !== "humor" && !hasVisitedHumor ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
                             </motion.div>
-                            {activeTab !== "humor" && (
+                            {activeTab !== "humor" && !hasVisitedHumor && (
                                 <span className="absolute -top-1 -right-1 flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
@@ -560,7 +567,7 @@ export default function ChatBox() {
                             )}
                         </div>
                         Humour
-                        {activeTab !== "humor" && activeTab !== "calm" && (
+                        {activeTab === "ai" && !hasVisitedHumor && (
                             <motion.div
                                 initial={{ opacity: 0, y: 5 }}
                                 animate={{
@@ -575,19 +582,63 @@ export default function ChatBox() {
                                         ease: "easeInOut"
                                     }
                                 }}
-                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10"
+                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10 shadow-[0_4px_12px_rgba(214,179,106,0.4)]"
                             >
                                 TRY ME!
                             </motion.div>
                         )}
                     </button>
                     <button
-                        onClick={() => setActiveTab("calm")}
-                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${activeTab === "calm" ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white" : "text-[#1B1326]/40 hover:text-[#1B1326]/60"
+                        onClick={() => {
+                            setActiveTab("calm");
+                            setHasVisitedCalm(true);
+                        }}
+                        className={`flex-1 flex items-center justify-center gap-2 py-3 text-xs font-bold tracking-wider uppercase transition-all duration-300 relative group ${activeTab === "calm" ? "text-[#5B2A86] border-b-2 border-[#5B2A86] bg-white" : "text-[#1B1326]/40 hover:text-[#1B1326]/60"
                             }`}
                     >
-                        <Wind className="w-3.5 h-3.5" />
+                        <div className="relative">
+                            <motion.div
+                                animate={hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" ? {
+                                    scale: [1, 1.2, 1],
+                                    rotate: [0, -10, 10, -10, 10, 0]
+                                } : {}}
+                                transition={{
+                                    duration: 0.5,
+                                    repeat: Infinity,
+                                    repeatDelay: 1.5,
+                                    ease: "easeInOut"
+                                }}
+                            >
+                                <Wind className={`w-3.5 h-3.5 ${hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" ? "text-[#D6B36A] filter drop-shadow-[0_0_8px_rgba(214,179,106,0.5)]" : ""}`} />
+                            </motion.div>
+                            {hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" && (
+                                <span className="absolute -top-1 -right-1 flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
+                                </span>
+                            )}
+                        </div>
                         Calm Corner
+                        {hasVisitedHumor && !hasVisitedCalm && activeTab !== "calm" && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 5 }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                    scale: [1, 1.05, 1],
+                                }}
+                                transition={{
+                                    scale: {
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }
+                                }}
+                                className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D6B36A] text-[#1B1326] text-[8px] px-2 py-0.5 rounded-full font-black tracking-tighter shadow-md border border-[#1B1326]/10 shadow-[0_4px_12px_rgba(214,179,106,0.4)]"
+                            >
+                                TRY ME!
+                            </motion.div>
+                        )}
                     </button>
                 </div>
 

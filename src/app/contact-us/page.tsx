@@ -5,7 +5,8 @@ import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
 import dynamic from "next/dynamic";
 
 // Dynamic Import for the heavy Globe component to improve page load
-const CustomGlobe = dynamic(() => import("@/components/CustomGlobe"), {
+// Dynamic Import for the new 3D visual
+const SeniorLiving3D = dynamic(() => import("@/components/SeniorLiving3D"), {
     ssr: false,
     loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
 });
@@ -32,11 +33,10 @@ export default function ContactUs() {
                         >
                             <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">World-Class Care Excellence</span>
                             <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
-                                Connect with <br className="hidden xs:block" />
-                                <span className="italic font-light highlighted-text-gold">Perfection</span>
+                                <span className="italic font-light highlighted-text-gold">Book a Call</span>
                             </h1>
                             <p className="text-white/80 text-base md:text-xl font-light leading-relaxed mb-10 max-w-lg">
-                                Experience a new paradigm of healthcare. Our consultants are available globally to tailor a sanctuary for your recovery.
+                                Discuss how we can help. Experience a new paradigm of healthcare.
                             </p>
 
                             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -46,14 +46,8 @@ export default function ContactUs() {
                                     whileTap={{ scale: 0.95 }}
                                     className="px-8 py-4 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.3em] font-bold rounded-full shadow-2xl hover:bg-[#7A4FB3] transition-all"
                                 >
-                                    Start Enquiry
+                                    Book a Call
                                 </motion.a>
-                                <motion.div
-                                    className="flex items-center gap-3 px-6 py-4 rounded-full border border-white/10 backdrop-blur-md"
-                                >
-                                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                                    <span className="text-[10px] uppercase tracking-widest font-bold text-white/60">Concierge Online</span>
-                                </motion.div>
                             </div>
                         </motion.div>
 
@@ -66,7 +60,7 @@ export default function ContactUs() {
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
                             <div className="absolute inset-0 z-10 lg:hidden bg-black/5 backdrop-blur-[2px]" />
                             <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
-                                <CustomGlobe />
+                                <SeniorLiving3D />
                             </div>
                         </motion.div>
                     </div>
@@ -89,7 +83,7 @@ export default function ContactUs() {
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#5B2A86]/10 blur-3xl group-hover:bg-[#5B2A86]/20 transition-all duration-700" />
 
                                 <div className="relative z-10">
-                                    <h2 className="Heading-Serif text-4xl text-white mb-12">The <span className="italic font-light text-[#D6B36A]">Grand</span> Concierge</h2>
+                                    <h2 className="Heading-Serif text-4xl text-white mb-12">Head Office</h2>
 
                                     <div className="space-y-12">
                                         <div className="flex gap-4 md:gap-6 items-center">
@@ -97,8 +91,8 @@ export default function ContactUs() {
                                                 <Phone className="w-5 h-5 md:w-6 md:h-6" />
                                             </div>
                                             <div>
-                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Private Line</p>
-                                                <p className="text-xl md:text-2xl text-white font-light">0203 916 5797</p>
+                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Office Line</p>
+                                                <p className="text-xl md:text-2xl text-white font-light">01202 948898</p>
                                             </div>
                                         </div>
 
@@ -107,8 +101,8 @@ export default function ContactUs() {
                                                 <Mail className="w-5 h-5 md:w-6 md:h-6" />
                                             </div>
                                             <div>
-                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Direct Liaison</p>
-                                                <p className="text-lg md:text-xl text-white font-light break-all xs:break-normal">info@homelyhealthcare.org.uk</p>
+                                                <p className="text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Email</p>
+                                                <p className="text-lg md:text-xl text-white font-light break-all xs:break-normal">info@homelyhealth.uk</p>
                                             </div>
                                         </div>
 
@@ -117,7 +111,7 @@ export default function ContactUs() {
                                                 <MapPin className="w-5 h-5 md:w-6 md:h-6" />
                                             </div>
                                             <div>
-                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Global HQ</p>
+                                                <p className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[#D6B36A] mb-1">Head Office</p>
                                                 <p className="text-base md:text-lg text-white font-light leading-relaxed">
                                                     Suite 6A, Wessex House<br />
                                                     St. Leonards Road, Charminster<br />
@@ -152,34 +146,31 @@ export default function ContactUs() {
                                 className="bg-[#F7F5F2] p-8 xs:p-10 lg:p-16 rounded-3xl md:rounded-[40px] shadow-sm border border-black/[0.03] w-full"
                             >
                                 <div className="mb-8 md:mb-12 text-center md:text-left">
-                                    <h3 className="Heading-Serif text-3xl sm:text-4xl md:text-5xl text-[#0F1115] mb-4">Request <span className="italic font-light text-[#5B2A86]">Consultation</span></h3>
-                                    <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Complete the form below and an ambassador will reach out shortly.</p>
+                                    <h3 className="Heading-Serif text-3xl sm:text-4xl md:text-5xl text-[#0F1115] mb-4">Book a <span className="italic font-light text-[#5B2A86]">Call</span></h3>
+                                    <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Please complete the form below and we will contact you shortly.</p>
                                 </div>
 
                                 <form className="space-y-6 md:space-y-10">
                                     <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                                         <div className="space-y-2 md:space-y-3">
-                                            <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Identity</label>
-                                            <input type="text" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Full Name" />
+                                            <input type="text" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Full Name" />
                                         </div>
                                         <div className="space-y-2 md:space-y-3">
-                                            <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Liaison Line</label>
-                                            <input type="tel" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Phone Number" />
+                                            <input type="tel" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Phone Number" />
                                         </div>
                                     </div>
 
                                     <div className="space-y-2 md:space-y-3">
-                                        <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Digital Address</label>
-                                        <input type="email" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Email Address" />
+                                        <input type="email" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Email Address" />
                                     </div>
 
                                     <div className="space-y-2 md:space-y-3">
                                         <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Service Requirement</label>
                                         <select className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer">
-                                            <option>Bespoke Home Care</option>
-                                            <option>Elite Live-in Support</option>
-                                            <option>Complex Medical Care</option>
-                                            <option>Growth & Careers</option>
+                                            <option>Live In Care</option>
+                                            <option>Companionship</option>
+                                            <option>Complex Care</option>
+                                            <option>Staffing Support</option>
                                         </select>
                                     </div>
 

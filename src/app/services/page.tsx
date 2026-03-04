@@ -7,12 +7,12 @@ const services = [
     {
         title: "Home Care",
         subtitle: "Bespoke Domiciliary Support",
-        description: "Maintain your independence with our premium home care services. We provide tailored support that respects your routines and preferences.",
+        description: "Specialist care and genuine human connection, supporting your independence where you feel safest — at home.",
         icon: Home,
         features: ["Personalised care planning", "Assistance with daily living", "Medicine administration", "Domestic & nutritional support"]
     },
     {
-        title: "Live-in Care",
+        title: "Live In Care",
         subtitle: "24/7 Professional Presence",
         description: "Experience round-the-clock peace of mind with a dedicated live-in carer who provides clinical support and heartfelt companionship.",
         icon: Users2,
@@ -28,7 +28,7 @@ const services = [
     {
         title: "Complex Care",
         subtitle: "Expert Nurse-Led Clinical Care",
-        description: "Highly skilled clinical support for complex health conditions, managed by qualified nurses and specialist care practitioners.",
+        description: "Highly skilled clinical support for complex health conditions, managed by qualified nurses and specialised care practitioners.",
         icon: HeartPulse,
         features: ["Nurse-led interventions", "Neurological support", "Post-injury rehabilitation", "Multidisciplinary coordination"]
     }
@@ -58,7 +58,7 @@ export default function Services() {
                         transition={{ delay: 0.2 }}
                         className="text-[#F2F2F2]/60 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed"
                     >
-                        We offer a range of specialized care solutions designed to provide safety, dignity, and a profound sense of well-being in the comfort of your own home.
+                        We offer a range of specialised care solutions designed to provide safety, dignity, and a profound sense of wellbeing in the comfort of your own home.
                     </motion.p>
                 </div>
             </section>
@@ -149,7 +149,7 @@ export default function Services() {
                             whileTap={{ scale: 0.98 }}
                             className="inline-flex items-center px-12 py-5 bg-[#5B2A86] text-white text-[9px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] relative overflow-hidden group"
                         >
-                            <span className="relative z-10">Request a Consultation</span>
+                            <span className="relative z-10">Book a Call</span>
                         </motion.a>
                     </motion.div>
                 </div>

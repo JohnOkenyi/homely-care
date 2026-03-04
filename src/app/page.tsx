@@ -8,7 +8,8 @@ import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
 import dynamic from "next/dynamic";
 
 // Dynamic Import for the heavy Globe component to improve LCP/TTI
-const CustomGlobe = dynamic(() => import("@/components/CustomGlobe"), {
+// Dynamic Import for the new 3D visual
+const SeniorLiving3D = dynamic(() => import("@/components/SeniorLiving3D"), {
   ssr: false,
   loading: () => <div className="w-full h-full rounded-full bg-white/5 animate-pulse" />
 });
@@ -53,7 +54,7 @@ export default function Home() {
                 className="mb-8 lg:mb-10"
               >
                 <span className="text-[10px] font-bold tracking-[0.45em] uppercase" style={{ color: '#B9A3D3' }}>
-                  The Gold Standard of Care
+                  Care Tailored to You
                 </span>
               </motion.div>
 
@@ -115,7 +116,7 @@ export default function Home() {
                     lineHeight: '1.65'
                   }}
                 >
-                  Dedicated clinical and personal support tailored to your life, your needs, and your independence.
+                  Dedicated personal support tailored to your life, your needs, and your independence.
                 </motion.p>
               </motion.div>
 
@@ -146,7 +147,7 @@ export default function Home() {
                   }}
                 >
                   <div className="absolute inset-x-0 bottom-0 h-0 group-hover:h-full bg-[#D6B36A]/10 transition-all duration-700 ease-out" />
-                  <span className="relative z-10">Request Consultation</span>
+                  <span className="relative z-10">Book a Call</span>
                   <Heart className="w-4 h-4 text-[#D6B36A] group-hover:scale-110 transition-transform duration-500 relative z-10" />
                 </Link>
 
@@ -162,60 +163,10 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right: Interactive Globe + Hands - FINAL REALISM STACK VER_3 */}
-          <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex flex-col items-center justify-end pointer-events-none mt-8 lg:mt-0 z-30 overflow-visible">
-
-            {/* SVG Filter for Pure Alpha (Black to Transparent) */}
-            <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
-              <svg>
-                <filter id="blackToAlpha">
-                  <feColorMatrix
-                    type="matrix"
-                    values="1 0 0 0 0
-                            0 1 0 0 0
-                            0 0 1 0 0
-                            1.5 1.5 1.5 0 -0.1"
-                  />
-                </filter>
-              </svg>
-            </div>
-
-            <div className="relative w-full lg:w-[124%] sm:lg:w-[114%] md:lg:w-full max-w-[700px] xl:max-w-[850px] aspect-square flex items-end justify-center translate-y-[8%] lg:translate-y-[26%]">
-
-              {/* Layer 0: Depth Ambiance (Luxury Blur) */}
-              <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[58%] w-[55%] h-[55%] bg-[#5B2A86]/40 rounded-full blur-[90px]" />
-              </div>
-
-              {/* Layer 1: The Globe (PHYSICALLY BEHIND) */}
-              <div className="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
-                {/* Mobile: big centered globe, no offset. Desktop: positioned behind hands */}
-                <div className="relative w-[95%] h-[95%] mt-[-18%] lg:w-[48%] lg:h-[48%] lg:mt-[-16%] pointer-events-auto">
-                  <CustomGlobe isHero={true} />
-                </div>
-              </div>
-
-              {/* Layer 2: Contact Occlusion — desktop only */}
-              <div
-                className="hidden lg:block absolute inset-[-42%] lg:inset-[3%] z-20 pointer-events-none"
-                style={{
-                  background: 'radial-gradient(circle at center 42%, rgba(0,0,0,0.3) 0%, transparent 24%)',
-                  opacity: 0.8
-                }}
-              />
-
-              {/* Layer 3: Hands — desktop only */}
-              <div className="hidden lg:block absolute inset-[-42%] lg:inset-[3%] z-30 pointer-events-none">
-                <Image
-                  src="/hands-globe.png"
-                  alt="Hands foreground"
-                  fill
-                  className="object-contain object-bottom select-none"
-                  priority
-                  style={{ filter: 'url(#blackToAlpha)' }}
-                />
-              </div>
-
+          {/* Right: Premium 3D Diorama */}
+          <div className="w-full lg:w-[50%] flex items-center justify-center lg:justify-end mt-12 lg:mt-0 relative z-30">
+            <div className="relative w-full aspect-[4/3] max-w-[600px] lg:max-w-none lg:w-[120%] lg:translate-x-[15%]">
+              <SeniorLiving3D />
             </div>
           </div>
         </div>
@@ -241,6 +192,7 @@ export default function Home() {
                   alt="Compassionate Home Care"
                   fill
                   className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
                 />
                 {/* Subtle natural lighting enhancement */}
@@ -263,7 +215,7 @@ export default function Home() {
               {/* Small Gold Label */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-8 h-[1.5px] bg-[#D6B36A]" />
-                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Our Philosophy</span>
+                <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-[#D6B36A]">Our Mission</span>
               </div>
 
               <h2 className="Heading-Serif text-[clamp(2.2rem,4.5vw,3.5rem)] text-[#1A1A1A] leading-[1.1] mb-6 font-light">
@@ -273,19 +225,15 @@ export default function Home() {
 
               <div className="space-y-6 mb-10">
                 <p className="text-lg md:text-xl text-[#1A1A1A]/70 font-light leading-relaxed">
-                  Exceptional person-centred support is more than a service—it’s a deep commitment to treating every client like a cherished member of our family.
+                  To provide compassionate, high quality healthcare services through trusted professionals.
                 </p>
-                <div className="flex items-center gap-2 text-[#5B2A86] font-medium">
-                  <Heart className="w-5 h-5 fill-[#5B2A86]" />
-                  <span className="text-sm tracking-wide">A Legacy of Unwavering Trust</span>
-                </div>
               </div>
 
               <Link
                 href="/services"
                 className="group relative inline-flex items-center px-10 py-5 bg-[#5B2A86] text-white rounded-full overflow-hidden transition-all duration-500 hover:bg-[#4a226d] hover:shadow-xl hover:shadow-purple-900/10"
               >
-                <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-semibold">Our Care Philosophy</span>
+                <span className="relative z-10 text-xs uppercase tracking-[0.2em] font-semibold">Our Mission</span>
                 <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               </Link>
             </motion.div>
@@ -410,7 +358,7 @@ export default function Home() {
           {/* Section Header */}
           <div className="text-center mb-10 relative">
             <h2 className="Heading-Serif text-[#1A1A1A] text-3xl md:text-[42px] mb-8 font-normal tracking-tight">
-              Trusted by Families Across the UK
+              Trusted by Families Across the UK....
             </h2>
             {/* Glowing divider line */}
             <div className="relative w-80 h-[1px] mx-auto bg-gradient-to-r from-transparent via-[#D6B36A]/40 to-transparent">
@@ -464,26 +412,21 @@ export default function Home() {
                 &ldquo;
               </div>
 
-              <p className="Heading-Serif text-[#1A1A1A] text-[24px] md:text-[28px] leading-[1.3] relative z-10 font-normal italic tracking-tight text-balance">
-                The level of dignity and true compassion provided is unparalleled. We feel a profound sense of security knowing our loved ones are in such expert hands.
+              <p className="Heading-Serif text-[#1A1A1A] text-[20px] md:text-[24px] leading-[1.4] relative z-10 font-normal italic tracking-tight text-balance">
+                As a retired XYZ, I am acutely aware how people are very quick to criticise but not so quick to praise where praise is due. Last Thursday evening I was feeling very unwell and at one point had a temperature of 39 degrees. XYZ was my carer that night and I really couldn&apos;t have asked for anyone better to look after me in those circumstances. She took my temperature every hour and gave me paracetamol every four hours and generally her attentive presence was very reassuring.
               </p>
 
               <div className="flex items-center gap-6 mt-8 relative z-10">
-                {/* Client Avatar with soft ring and shadow */}
-                <div className="relative w-20 h-20 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5">
-                  <Image
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop"
-                    alt="Sarah Jenkins"
-                    fill
-                    className="object-cover"
-                  />
+                {/* Client Avatar - Subtle Initial Circle */}
+                <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 shadow-[0_10px_25px_rgba(0,0,0,0.15)] ring-4 ring-white border border-[#1A1A1A]/5 bg-[#5B2A86] flex items-center justify-center text-white font-serif text-2xl">
+                  J
                 </div>
 
                 {/* Client Info Block */}
                 <div className="flex flex-col gap-2 pt-1">
                   <div className="w-12 h-[1px] bg-[#D6B36A] mb-1" />
-                  <p className="font-bold text-[#4B3061] text-sm md:text-sm tracking-[0.1em] uppercase">Sarah Jenkins</p>
-                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 font-bold">Private Client, Dorset</p>
+                  <p className="font-bold text-[#4B3061] text-sm md:text-sm tracking-[0.1em] uppercase">Jon</p>
+                  <p className="text-[9px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 font-bold">Private Client</p>
                 </div>
               </div>
             </div>
@@ -533,7 +476,7 @@ export default function Home() {
                 title: "Complex Care",
                 tag: "Clinical Excellence",
                 img: "/images/complex-care.png",
-                desc: "Specialized nurse-led care for complex health conditions and intensive support."
+                desc: "specialised nurse-led care for complex health conditions and intensive support."
               }
             ].map((srv, idx) => (
               <motion.div
@@ -569,6 +512,7 @@ export default function Home() {
                     alt={srv.title}
                     fill
                     className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                   />
 
                   {/* Gradient Overlay */}
@@ -615,54 +559,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* THE CHARITY TRUST - Luxury Purpose */}
-      <section className="section-padding bg-[#F7F5F2] relative">
-        <div className="grid-container relative z-10 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="flex flex-col items-start mb-6">
-                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-4">Social Responsibility</span>
-                <h2 className="Heading-H2 text-[#1B1326]">
-                  A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
-                </h2>
-              </div>
-              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-8 max-w-xl">
-                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
-              </p>
-              <a
-                href="http://www.rahula-trust.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
-              >
-                Discover The Rahula Trust
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[500px] overflow-hidden rounded-sm shadow-2xl"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"
-                alt="Children receiving education"
-                fill
-                className="object-cover transition-transform duration-[10s] hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-[#5B2A86]/20 mix-blend-multiply transition-opacity duration-1000" />
-              <div className="absolute inset-0 border-[20px] border-[#F7F5F2] pointer-events-none" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
     </main >
   );
 }
