@@ -111,70 +111,117 @@ export default function AboutUs() {
 
                 <div className="grid-container max-w-6xl mx-auto px-4">
                     <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="bg-[#F7F5F2] p-8 md:p-10 rounded-3xl shadow-sm border border-[#1B1326]/5 hover:shadow-lg hover:border-[#D6B36A]/30 transition-all duration-500 group"
-                        >
-                            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500">
-                                <Heart className="w-6 h-6 stroke-[1.5]" />
-                            </div>
-                            <h3 className="text-2xl font-serif italic text-[#1A1A1A] mb-4">Person-Centred Care</h3>
-                            <p className="text-[#1A1A1A]/70 leading-relaxed font-light text-base md:text-lg">
-                                Homely Health Care is committed to connecting you with exceptional care services tailored to your unique needs. We provide solutions to meet your needs as we believe that every individual is different and as a result your care and support must be person-centred.
-                            </p>
-                        </motion.div>
+                        {[
+                            {
+                                icon: Heart,
+                                title: "Person-Centred Care",
+                                desc: "Homely Health Care is committed to connecting you with exceptional care services tailored to your unique needs. We provide solutions to meet your needs as we believe that every individual is different and as a result your care and support must be person-centred.",
+                                dark: false,
+                            },
+                            {
+                                icon: Shield,
+                                title: "Robust Recruitment",
+                                desc: "We operate a robust recruitment and selection process which ensures that all staff are thoroughly referenced, DBS checked and appropriately trained to a high standard.",
+                                dark: false,
+                            },
+                            {
+                                icon: Users,
+                                title: "Approachable Management",
+                                desc: "Our friendly and approachable management team are on hand to help with any questions or issues you may have. In addition our Field Care Managers will visit you regularly in your home to ensure that the care you are receiving continues to be aligned with your wants and needs.",
+                                dark: false,
+                            },
+                            {
+                                icon: Heart,
+                                title: "Giving Back",
+                                desc: "Homely Health Care donates a percentage of its profits to a small children's education charity, The Rahula Trust, who do amazing work to support children in their education in various parts of the world.",
+                                dark: true,
+                            },
+                        ].map((card) => (
+                            <div
+                                key={card.title}
+                                className="group relative"
+                                style={{ perspective: '900px' }}
+                                onMouseMove={(e) => {
+                                    const wrapper = e.currentTarget;
+                                    const inner = wrapper.querySelector('.whyus-3d-inner') as HTMLElement;
+                                    const extB = wrapper.querySelector('.ext-b') as HTMLElement;
+                                    const extR = wrapper.querySelector('.ext-r') as HTMLElement;
+                                    if (!inner) return;
+                                    const rect = wrapper.getBoundingClientRect();
+                                    const x = e.clientX - rect.left;
+                                    const y = e.clientY - rect.top;
+                                    const rX = ((y - rect.height / 2) / (rect.height / 2)) * -18;
+                                    const rY = ((x - rect.width / 2) / (rect.width / 2)) * 18;
+                                    inner.style.transform = `rotateX(${rX}deg) rotateY(${rY}deg) translateZ(55px)`;
+                                    inner.style.boxShadow = `${-rY * 3}px ${rX * 3}px 70px rgba(0,0,0,0.28), 0 30px 70px rgba(91,42,134,0.15)`;
+                                    if (extB) extB.style.opacity = '1';
+                                    if (extR) extR.style.opacity = '1';
+                                }}
+                                onMouseLeave={(e) => {
+                                    const wrapper = e.currentTarget;
+                                    const inner = wrapper.querySelector('.whyus-3d-inner') as HTMLElement;
+                                    const extB = wrapper.querySelector('.ext-b') as HTMLElement;
+                                    const extR = wrapper.querySelector('.ext-r') as HTMLElement;
+                                    if (!inner) return;
+                                    inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                                    inner.style.boxShadow = card.dark
+                                        ? '0 20px 50px rgba(91,42,134,0.4)'
+                                        : '0 4px 20px rgba(0,0,0,0.06)';
+                                    if (extB) extB.style.opacity = '0';
+                                    if (extR) extR.style.opacity = '0';
+                                }}
+                            >
+                                {/* Physical extrusion side faces */}
+                                <div
+                                    className="ext-b absolute inset-x-4 -bottom-[18px] h-[20px] rounded-b-[24px] z-0"
+                                    style={{
+                                        opacity: 0,
+                                        transition: 'opacity 0.18s ease-out',
+                                        background: card.dark
+                                            ? 'linear-gradient(to bottom, #3a1558, #25093a)'
+                                            : 'linear-gradient(to bottom, #ddd8d2, #b5afa9)',
+                                    }}
+                                />
+                                <div
+                                    className="ext-r absolute inset-y-4 -right-[18px] w-[20px] rounded-r-[24px] z-0"
+                                    style={{
+                                        opacity: 0,
+                                        transition: 'opacity 0.18s ease-out',
+                                        background: card.dark
+                                            ? 'linear-gradient(to right, #3a1558, #25093a)'
+                                            : 'linear-gradient(to right, #ddd8d2, #b5afa9)',
+                                    }}
+                                />
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.05 }}
-                            className="bg-[#F7F5F2] p-8 md:p-10 rounded-3xl shadow-sm border border-[#1B1326]/5 hover:shadow-lg hover:border-[#D6B36A]/30 transition-all duration-500 group"
-                        >
-                            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500">
-                                <Shield className="w-6 h-6 stroke-[1.5]" />
+                                <div
+                                    className={`whyus-3d-inner relative z-10 p-8 md:p-10 rounded-3xl border cursor-default h-full ${card.dark
+                                            ? 'bg-[#5B2A86] border-[#5B2A86]/10 overflow-hidden'
+                                            : 'bg-[#F7F5F2] border-[#1B1326]/5'
+                                        }`}
+                                    style={{
+                                        transformStyle: 'preserve-3d',
+                                        transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
+                                        boxShadow: card.dark
+                                            ? '0 20px 50px rgba(91,42,134,0.4)'
+                                            : '0 4px 20px rgba(0,0,0,0.06)',
+                                        willChange: 'transform',
+                                    }}
+                                >
+                                    {card.dark && (
+                                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#D6B36A]/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                                    )}
+                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500 relative z-10 ${card.dark ? 'bg-white/10 backdrop-blur-sm' : 'bg-white'}`}>
+                                        <card.icon className="w-6 h-6 stroke-[1.5]" />
+                                    </div>
+                                    <h3 className={`text-2xl font-serif italic mb-4 relative z-10 ${card.dark ? 'text-white' : 'text-[#1A1A1A]'}`}>
+                                        {card.title}
+                                    </h3>
+                                    <p className={`leading-relaxed font-light text-base md:text-lg relative z-10 ${card.dark ? 'text-white/80' : 'text-[#1A1A1A]/70'}`}>
+                                        {card.desc}
+                                    </p>
+                                </div>
                             </div>
-                            <h3 className="text-2xl font-serif italic text-[#1A1A1A] mb-4">Robust Recruitment</h3>
-                            <p className="text-[#1A1A1A]/70 leading-relaxed font-light text-base md:text-lg">
-                                We operate a robust recruitment and selection process which ensures that all staff are thoroughly referenced, DBS checked and appropriately trained to a high standard.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.05 }}
-                            className="bg-[#F7F5F2] p-8 md:p-10 rounded-3xl shadow-sm border border-[#1B1326]/5 hover:shadow-lg hover:border-[#D6B36A]/30 transition-all duration-500 group"
-                        >
-                            <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500">
-                                <Users className="w-6 h-6 stroke-[1.5]" />
-                            </div>
-                            <h3 className="text-2xl font-serif italic text-[#1A1A1A] mb-4">Approachable Management</h3>
-                            <p className="text-[#1A1A1A]/70 leading-relaxed font-light text-base md:text-lg">
-                                Our friendly and approachable management team are on hand to help with any questions or issues you may have. In addition our Field Care Managers will visit you regularly in your home to ensure that the care you are receiving continues to be aligned with your wants and needs.
-                            </p>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.05 }}
-                            className="bg-[#5B2A86] p-8 md:p-10 rounded-3xl shadow-xl border border-[#5B2A86]/10 hover:shadow-2xl transition-all duration-500 relative overflow-hidden group"
-                        >
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-[#D6B36A]/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500 relative z-10 backdrop-blur-sm">
-                                <Heart className="w-6 h-6 stroke-[1.5]" />
-                            </div>
-                            <h3 className="text-2xl font-serif italic text-white mb-4 relative z-10">Giving Back</h3>
-                            <p className="text-white/80 leading-relaxed font-light text-base md:text-lg relative z-10">
-                                Homely Health Care donates a percentage of its profits to a small children’s education charity, The Rahula Trust, who do amazing work to support children in their education in various parts of the world.
-                            </p>
-                        </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
