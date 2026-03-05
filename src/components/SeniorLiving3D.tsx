@@ -321,17 +321,17 @@ export default function SeniorLiving3D() {
                 "• Personal Care"
             ];
             if (sCtx) {
-                // Dark background for contrast
-                sCtx.fillStyle = "rgba(15,10,25,0.95)";
+                // Warm beige background matching the room's wall color
+                sCtx.fillStyle = "#f5f1e6";
                 sCtx.fillRect(0, 0, 2048, 2048);
 
-                // Bright gold header
+                // Purple header matching the armchair/brand color
                 sCtx.font = "bold 160px 'Inter', sans-serif";
-                sCtx.fillStyle = "#D4AF37";
+                sCtx.fillStyle = "#56234b";
                 sCtx.textAlign = "center";
                 sCtx.fillText("OUR SERVICES", 1024, 230);
 
-                // Horizontal gold divider
+                // Gold divider line
                 sCtx.strokeStyle = "#D4AF37";
                 sCtx.lineWidth = 6;
                 sCtx.beginPath();
@@ -339,9 +339,9 @@ export default function SeniorLiving3D() {
                 sCtx.lineTo(1948, 310);
                 sCtx.stroke();
 
-                // Bright white service list
+                // Dark text matching room interior for readability on beige
                 sCtx.font = "bold 118px 'Inter', sans-serif";
-                sCtx.fillStyle = "#FFFFFF";
+                sCtx.fillStyle = "#2c1a29";
                 services.forEach((service, i) => {
                     sCtx.fillText(service, 1024, 510 + (i * 230));
                 });
@@ -354,10 +354,8 @@ export default function SeniorLiving3D() {
             const servicesBacking = new THREE.Mesh(
                 new THREE.BoxGeometry(0.05, 5.0, 5.0),
                 new THREE.MeshPhysicalMaterial({
-                    color: 0x0f0a19,
-                    emissive: 0x0f0a19,
-                    emissiveIntensity: 0.4,
-                    roughness: 1.0
+                    color: 0xf5f1e6, // Warm beige matching the room's wall color
+                    roughness: 0.9
                 })
             );
 
@@ -370,11 +368,11 @@ export default function SeniorLiving3D() {
             const servicesMat = new THREE.MeshPhysicalMaterial({
                 map: servicesTex,
                 transparent: false,
-                roughness: 0.5,
+                roughness: 0.6,
                 metalness: 0.0,
-                emissive: new THREE.Color(0xffffff),
+                emissive: new THREE.Color(0xf5e8d0),
                 emissiveMap: servicesTex,
-                emissiveIntensity: 1.2, // Self-illuminates so it's always clearly visible
+                emissiveIntensity: 0.6, // Gentle glow so it's readable without being neon
             });
             const servicesMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 4.8), servicesMat);
 
