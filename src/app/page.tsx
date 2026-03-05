@@ -266,7 +266,7 @@ export default function Home() {
                 { icon: UserCheck, title: "Person-Centred Care", desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity." },
                 { icon: ShieldCheck, title: "Rigorous Vetting", desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and trained to an exceptionally high standard." },
                 { icon: HeartHandshake, title: "Expert Management", desc: "Our friendly management team and Field Care Managers visit you regularly to ensure the care you receive always meets your expectations." }
-              ].map((feature, idx) => (
+              ].map((feature) => (
                 <div
                   key={feature.title}
                   className="group relative"
