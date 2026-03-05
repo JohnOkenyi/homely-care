@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* HERO SECTION - Luxury Purple Dark Theme */}
-      <section ref={container} className="relative flex flex-col lg:flex-row items-center justify-center min-h-0 pt-32 pb-16 lg:py-0 lg:min-h-[100svh] overflow-hidden bg-[#0F1115] lg:bg-transparent" style={{ background: 'linear-gradient(135deg, #0F1115 0%, #1B1326 50%, #000000 100%)' }}>
+      <section ref={container} className="relative flex flex-col lg:flex-row items-center lg:justify-center min-h-0 pt-28 pb-8 lg:py-0 lg:min-h-[100svh] overflow-hidden bg-[linear-gradient(135deg,#0F1115_0%,#1B1326_100%)] lg:bg-[linear-gradient(135deg,#0F1115_0%,#1B1326_50%,#000000_100%)]">
 
         {/* Depth layers */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -40,7 +40,7 @@ export default function Home() {
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-0 sm:px-12 lg:px-16 pt-16 lg:pt-20 pb-0 lg:pb-8 gap-0 lg:gap-8">
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-0 sm:px-12 lg:px-16 pt-0 lg:pt-20 pb-0 lg:pb-8 gap-0 lg:gap-8">
 
           {/* Left: Typography */}
           <div className="relative w-full lg:w-[48%] flex flex-col z-40 lg:-ml-12">
