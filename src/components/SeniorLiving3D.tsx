@@ -68,7 +68,7 @@ export default function SeniorLiving3D() {
             const sunLight = new THREE.DirectionalLight(0xfdfaa0, 0.45); // Reduced brightness
             sunLight.position.set(-25, 20, -5); // Shifted angle to avoid direct glare on back wall
             sunLight.castShadow = true;
-            sunLight.shadow.mapSize.set(4096, 4096);
+            sunLight.shadow.mapSize.set(1024, 1024);
             sunLight.shadow.camera.left = -10;
             sunLight.shadow.camera.right = 10;
             sunLight.shadow.camera.top = 10;
@@ -85,7 +85,7 @@ export default function SeniorLiving3D() {
             const lampLight = new THREE.PointLight(0xfffacc, 18, 15, 1.8);
             lampLight.position.set(3.2, 4.7, -3.2); // Local coords relative to diorama center
             lampLight.castShadow = true;
-            lampLight.shadow.mapSize.set(2048, 2048);
+            lampLight.shadow.mapSize.set(512, 512);
 
             // Secondary dim light coming from the lamp pointing downwards
             const lampDownLight = new THREE.SpotLight(0xfffacc, 8, 12, Math.PI / 3, 0.5, 1);
