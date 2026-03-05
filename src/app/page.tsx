@@ -31,10 +31,10 @@ export default function Home() {
 
         {/* Depth layers */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          {/* Ambient star field */}
-          <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,163,211,0.9) 1px, transparent 1px)', backgroundSize: '70px 70px' }} />
-          {/* Purple glow — left ambient */}
-          <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-25" style={{ background: '#5B2A86' }} />
+          {/* Ambient star field - Hidden on mobile to prevent glitches */}
+          <div className="absolute inset-0 opacity-[0.15] hidden lg:block" style={{ backgroundImage: 'radial-gradient(circle, rgba(185,163,211,0.9) 1px, transparent 1px)', backgroundSize: '70px 70px' }} />
+          {/* Purple glow — left ambient - Hidden on mobile to prevent glitches */}
+          <div className="absolute -left-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] opacity-25 hidden lg:block" style={{ background: '#5B2A86' }} />
           {/* Text-readability gradient overlay — Unified dark backdrop */}
           <div className="absolute inset-0 bg-transparent lg:bg-[linear-gradient(to_right,rgba(15,17,21,0.99)_0%,rgba(27,19,38,0.98)_45%,rgba(27,19,38,0.95)_60%,rgba(0,0,0,1)_85%)]" />
         </div>
@@ -44,8 +44,8 @@ export default function Home() {
 
           {/* Left: Typography */}
           <div className="relative w-full lg:w-[48%] flex flex-col z-40 lg:-ml-12">
-            {/* Subtle Spotlight Glow behind text */}
-            <div className="absolute -inset-10 bg-[radial-gradient(circle_at_center,rgba(185,163,211,0.1),transparent_70%)] blur-3xl pointer-events-none" />
+            {/* Subtle Spotlight Glow behind text - Hidden on mobile to prevent glitches */}
+            <div className="absolute -inset-10 bg-[radial-gradient(circle_at_center,rgba(185,163,211,0.1),transparent_70%)] blur-3xl pointer-events-none hidden lg:block" />
 
             <motion.div
               variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.05 } } }}
