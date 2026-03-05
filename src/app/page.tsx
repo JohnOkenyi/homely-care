@@ -263,71 +263,87 @@ export default function Home() {
           >
             <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
               {[
-                {
-                  icon: UserCheck,
-                  title: "Person-Centred Care",
-                  desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity."
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Rigorous Vetting",
-                  desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and trained to an exceptionally high standard."
-                },
-                {
-                  icon: HeartHandshake,
-                  title: "Expert Management",
-                  desc: "Our friendly management team and Field Care Managers visit you regularly to ensure the care you receive always meets your expectations."
-                }
+                { icon: UserCheck, title: "Person-Centred Care", desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity." },
+                { icon: ShieldCheck, title: "Rigorous Vetting", desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and trained to an exceptionally high standard." },
+                { icon: HeartHandshake, title: "Expert Management", desc: "Our friendly management team and Field Care Managers visit you regularly to ensure the care you receive always meets your expectations." }
               ].map((feature, idx) => (
-                <motion.div
+                <div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.9, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="group relative"
+                  style={{ perspective: '900px' }}
+                  onMouseMove={(e) => {
+                    const wrapper = e.currentTarget;
+                    const inner = wrapper.querySelector('.card-3d-inner') as HTMLElement;
+                    const extBottom = wrapper.querySelector('.ext-bottom') as HTMLElement;
+                    const extRight = wrapper.querySelector('.ext-right') as HTMLElement;
+                    if (!inner) return;
+                    const rect = wrapper.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const cx = rect.width / 2;
+                    const cy = rect.height / 2;
+                    const rX = ((y - cy) / cy) * -16;
+                    const rY = ((x - cx) / cx) * 16;
+                    inner.style.transform = `rotateX(${rX}deg) rotateY(${rY}deg) translateZ(50px)`;
+                    inner.style.boxShadow = `${-rY * 2}px ${rX * 2}px 60px rgba(0,0,0,0.22), 0 30px 60px rgba(91,42,134,0.12)`;
+                    if (extBottom) extBottom.style.opacity = '1';
+                    if (extRight) extRight.style.opacity = '1';
+                  }}
+                  onMouseLeave={(e) => {
+                    const wrapper = e.currentTarget;
+                    const inner = wrapper.querySelector('.card-3d-inner') as HTMLElement;
+                    const extBottom = wrapper.querySelector('.ext-bottom') as HTMLElement;
+                    const extRight = wrapper.querySelector('.ext-right') as HTMLElement;
+                    if (!inner) return;
+                    inner.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                    inner.style.boxShadow = '0 10px 30px rgba(0,0,0,0.06)';
+                    if (extBottom) extBottom.style.opacity = '0';
+                    if (extRight) extRight.style.opacity = '0';
+                  }}
                 >
-                  <motion.div
-                    whileHover={{
-                      scale: 1.15,
-                      z: 150,
-                      rotateX: -5,
-                      rotateY: 5,
-                      transition: { duration: 0.4, ease: "easeOut" }
+                  {/* Physical side extrusion faces */}
+                  <div
+                    className="ext-bottom absolute inset-x-3 -bottom-[14px] h-[16px] rounded-b-[18px] z-0"
+                    style={{
+                      opacity: 0,
+                      transition: 'opacity 0.18s ease-out',
+                      background: 'linear-gradient(to bottom, #c8c3bc, #a09890)',
                     }}
-                    whileTap={{
-                      scale: 1.15,
-                      z: 150,
-                      rotateX: -5,
-                      rotateY: 5,
-                      transition: { duration: 0.1, ease: "easeOut" }
+                  />
+                  <div
+                    className="ext-right absolute inset-y-3 -right-[14px] w-[16px] rounded-r-[18px] z-0"
+                    style={{
+                      opacity: 0,
+                      transition: 'opacity 0.18s ease-out',
+                      background: 'linear-gradient(to right, #c8c3bc, #a09890)',
                     }}
-                    style={{ transformStyle: 'preserve-3d' }}
-                    className="flex flex-col items-center text-center p-8 lg:p-10 bg-white rounded-[20px] border border-black/[0.04] shadow-[0_10px_30px_rgba(0,0,0,0.05)] active:shadow-[0_100px_200px_rgba(0,0,0,0.5),0_0_40px_rgba(214,179,106,0.2)] transition-all duration-500 group-hover:shadow-[0_50px_100px_rgba(0,0,0,0.2)] cursor-default h-full will-change-transform"
+                  />
+
+                  <div
+                    className="card-3d-inner relative z-10 flex flex-col items-center text-center p-8 lg:p-10 bg-white rounded-[20px] border border-black/[0.04] cursor-default h-full"
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.15s ease-out, box-shadow 0.15s ease-out',
+                      boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
+                      willChange: 'transform',
+                    }}
                   >
-                    {/* Purple icon badge with dynamic gold glow on hover */}
                     <div className="relative mb-6">
-                      <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-700 blur-[15px]" style={{ background: '#D6B36A', transform: 'scale(1.3)' }} />
-                      <div className="relative w-16 h-16 rounded-full bg-[#5B2A86] flex items-center justify-center z-10 transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110">
+                      <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-[15px]" style={{ background: '#D6B36A', transform: 'scale(1.3)' }} />
+                      <div className="relative w-16 h-16 rounded-full bg-[#5B2A86] flex items-center justify-center z-10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
                         <feature.icon className="w-7 h-7 text-white stroke-[1.5]" />
                       </div>
                     </div>
-
-                    {/* Small gold divider under icon */}
-                    <div className="w-10 h-[1.5px] bg-[#D6B36A] mb-5 transform transition-transform duration-700 group-hover:scale-x-150" />
-
-                    <h3 className="Heading-Serif text-[#1A1A1A] text-xl md:text-2xl mb-4 font-normal leading-snug group-hover:text-[#5B2A86] transition-colors duration-500">
+                    <div className="w-10 h-[1.5px] bg-[#D6B36A] mb-5 transform transition-transform duration-500 group-hover:scale-x-150" />
+                    <h3 className="Heading-Serif text-[#1A1A1A] text-xl md:text-2xl mb-4 font-normal leading-snug group-hover:text-[#5B2A86] transition-colors duration-300">
                       {feature.title}
                     </h3>
-
-                    <p className="text-[15px] leading-relaxed font-light group-hover:text-black transition-colors duration-500" style={{ color: 'rgba(0,0,0,0.6)' }}>
+                    <p className="text-[15px] leading-relaxed font-light group-hover:text-black transition-colors duration-300" style={{ color: 'rgba(0,0,0,0.6)' }}>
                       {feature.desc}
                     </p>
-
-                    {/* Subtle Corner Accent */}
-                    <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-[#D6B36A]/0 group-hover:border-[#D6B36A]/40 transition-all duration-700" />
-                  </motion.div>
-                </motion.div>
+                    <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-[#D6B36A]/0 group-hover:border-[#D6B36A]/60 transition-all duration-500" />
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
