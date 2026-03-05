@@ -47,38 +47,23 @@ export default function Home() {
             {/* Subtle Spotlight Glow behind text - Hidden on mobile to prevent glitches */}
             <div className="absolute -inset-10 bg-[radial-gradient(circle_at_center,rgba(185,163,211,0.1),transparent_70%)] blur-3xl pointer-events-none hidden lg:block" />
 
-            <motion.div
-              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.05 } } }}
-              initial="hidden"
-              animate="visible"
-            >
+            <div>
               {/* Label */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 16, filter: 'blur(10px)' },
-                  visible: { opacity: 0.8, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
-                }}
+              <div
                 className="mb-8 lg:mb-10 px-4 md:px-8 lg:px-0 mt-8 lg:mt-0"
               >
                 <span className="text-[10px] font-bold tracking-[0.45em] uppercase" style={{ color: '#B9A3D3' }}>
                   Care Tailored to You
                 </span>
-              </motion.div>
+              </div>
 
               {/* Headline & Subheadline - Unified Anchored Block */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 32, filter: 'blur(12px)' },
-                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
-                }}
+              <div
                 className="relative mb-12 sm:mb-8 lg:mb-4 pl-8 border-l border-[#D4AF37]/30 mx-4 md:mx-8 lg:mx-0"
               >
                 {/* Vertical Gold Spine Accent */}
-                <motion.div
-                  initial={{ height: 0 }}
-                  animate={{ height: '100%' }}
-                  transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute left-0 top-0 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37] to-transparent shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+                <div
+                  className="absolute left-0 top-0 w-[2px] h-full bg-gradient-to-b from-[#D4AF37] via-[#D4AF37] to-transparent shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                 />
 
                 {/* Main Headline Unit */}
@@ -111,12 +96,8 @@ export default function Home() {
                   </p>
                 </div>
 
-                {/* Supporting Text - Now Anchored under the gold line */}
-                <motion.p
-                  variants={{
-                    hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
-                    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
-                  }}
+                {/* Supporting Text */}
+                <p
                   className="Text-18 font-light max-w-lg mb-0"
                   style={{
                     color: 'rgba(242,242,242,0.92)',
@@ -124,15 +105,11 @@ export default function Home() {
                   }}
                 >
                   Dedicated personal support tailored to your life, your needs, and your independence.
-                </motion.p>
-              </motion.div>
+                </p>
+              </div>
 
               {/* CTAs */}
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 16, filter: 'blur(5px)' },
-                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
-                }}
+              <div
                 className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-4 w-full mb-0 pb-0 px-4 md:px-8 lg:px-0"
               >
                 <Link
@@ -166,8 +143,8 @@ export default function Home() {
                   <span className="opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500">Explore Services</span>
                   <div className="w-8 h-[1px] bg-[#D6B36A] transition-all duration-500 group-hover:w-12" />
                 </Link>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
 
           {/* Right: Premium 3D Diorama */}
