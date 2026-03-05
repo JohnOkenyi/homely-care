@@ -40,7 +40,7 @@ export default function Home() {
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-0 sm:px-12 lg:px-16 pt-0 lg:pt-20 pb-0 lg:pb-8 gap-0 lg:gap-8">
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-0 lg:px-16 pt-0 lg:pt-20 pb-0 lg:pb-8 gap-0 lg:gap-8">
 
           {/* Left: Typography */}
           <div className="relative w-full lg:w-[48%] flex flex-col z-40 lg:-ml-12">
@@ -58,7 +58,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 16, filter: 'blur(10px)' },
                   visible: { opacity: 0.8, y: 0, filter: 'blur(0px)', transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="mb-8 lg:mb-10 px-4 sm:px-0"
+                className="mb-8 lg:mb-10 px-4 md:px-8 lg:px-0 mt-8 lg:mt-0"
               >
                 <span className="text-[10px] font-bold tracking-[0.45em] uppercase" style={{ color: '#B9A3D3' }}>
                   Care Tailored to You
@@ -71,7 +71,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 32, filter: 'blur(12px)' },
                   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="relative mb-12 sm:mb-4 pl-8 border-l border-[#D4AF37]/30 px-4 sm:px-0"
+                className="relative mb-12 sm:mb-8 lg:mb-4 pl-8 border-l border-[#D4AF37]/30 mx-4 md:mx-8 lg:mx-0"
               >
                 {/* Vertical Gold Spine Accent */}
                 <motion.div
@@ -133,11 +133,11 @@ export default function Home() {
                   hidden: { opacity: 0, y: 16, filter: 'blur(5px)' },
                   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-4 w-full mb-0 pb-0 px-4 sm:px-0"
+                className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-4 w-full mb-0 pb-0 px-4 md:px-8 lg:px-0"
               >
                 <Link
                   href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-4 sm:py-3.5 w-full sm:w-[90%] md:w-auto rounded-full text-[11px] sm:text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-4 sm:py-3.5 w-full md:w-auto rounded-full text-[11px] sm:text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
                   style={{
                     backgroundColor: '#5B2A86',
                     color: '#FFFFFF',
@@ -171,7 +171,7 @@ export default function Home() {
           </div>
 
           {/* Right: Premium 3D Diorama */}
-          <div className="hidden md:flex w-full lg:w-[50%] items-center justify-center lg:justify-end mt-12 lg:mt-0 relative z-30 mb-8 lg:mb-0">
+          <div className="hidden lg:flex w-full lg:w-[50%] items-center justify-center lg:justify-end mt-12 lg:mt-0 relative z-30 mb-8 lg:mb-0">
             <div className="relative w-full aspect-[4/3] max-w-[600px] lg:max-w-none lg:w-[120%] lg:translate-x-[15%]">
               <SeniorLiving3D />
             </div>
