@@ -71,7 +71,7 @@ export default function Home() {
                   hidden: { opacity: 0, y: 32, filter: 'blur(12px)' },
                   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="relative mb-4 pl-8 border-l border-[#D4AF37]/30"
+                className="relative mb-12 sm:mb-4 pl-8 border-l border-[#D4AF37]/30"
               >
                 {/* Vertical Gold Spine Accent */}
                 <motion.div
@@ -133,11 +133,11 @@ export default function Home() {
                   hidden: { opacity: 0, y: 16, filter: 'blur(5px)' },
                   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="flex flex-col sm:flex-row items-center gap-4"
+                className="flex flex-col sm:flex-row items-center sm:items-center gap-7 sm:gap-4 w-full"
               >
                 <Link
                   href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-3.5 w-full sm:w-auto rounded-full text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-4 sm:py-3.5 w-[90%] sm:w-auto rounded-full text-[11px] sm:text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
                   style={{
                     backgroundColor: '#5B2A86',
                     color: '#FFFFFF',
@@ -160,7 +160,7 @@ export default function Home() {
 
                 <Link
                   href="/services"
-                  className="group relative text-[10px] uppercase tracking-[0.3em] font-bold inline-flex items-center gap-3 transition-all duration-500 py-2 pl-4"
+                  className="group relative text-[10px] uppercase tracking-[0.3em] font-bold inline-flex items-center justify-center sm:justify-start gap-4 sm:gap-3 transition-all duration-500 py-3 sm:py-2 sm:pl-4 w-full sm:w-auto"
                   style={{ color: '#F7F5F2' }}
                 >
                   <span className="opacity-70 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500">Explore Services</span>
