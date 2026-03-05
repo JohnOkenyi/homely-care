@@ -312,25 +312,38 @@ export default function SeniorLiving3D() {
             servicesCanvas.width = 2048;
             servicesCanvas.height = 2048;
             const sCtx = servicesCanvas.getContext("2d");
+            const services = [
+                "• Home Care",
+                "• Supported Living",
+                "• Dementia Care",
+                "• Live-in Care",
+                "• Complex Care",
+                "• Personal Care"
+            ];
             if (sCtx) {
-                sCtx.clearRect(0, 0, 2048, 2048);
-                sCtx.font = "bold 144px 'Inter', sans-serif";
-                sCtx.fillStyle = "#1B1326"; // Darker for exterior
+                // Dark background for contrast
+                sCtx.fillStyle = "rgba(15,10,25,0.95)";
+                sCtx.fillRect(0, 0, 2048, 2048);
+
+                // Bright gold header
+                sCtx.font = "bold 160px 'Inter', sans-serif";
+                sCtx.fillStyle = "#D4AF37";
                 sCtx.textAlign = "center";
+                sCtx.fillText("OUR SERVICES", 1024, 230);
 
-                const services = [
-                    "• Home Care",
-                    "• Supported Living",
-                    "• Dementia Care",
-                    "• Live-in Care",
-                    "• Complex Care",
-                    "• Personal Care"
-                ];
+                // Horizontal gold divider
+                sCtx.strokeStyle = "#D4AF37";
+                sCtx.lineWidth = 6;
+                sCtx.beginPath();
+                sCtx.moveTo(100, 310);
+                sCtx.lineTo(1948, 310);
+                sCtx.stroke();
 
-                sCtx.fillText("OUR SERVICES", 1024, 200);
-                sCtx.font = "bold 112px 'Inter', sans-serif";
+                // Bright white service list
+                sCtx.font = "bold 118px 'Inter', sans-serif";
+                sCtx.fillStyle = "#FFFFFF";
                 services.forEach((service, i) => {
-                    sCtx.fillText(service, 1024, 500 + (i * 240));
+                    sCtx.fillText(service, 1024, 510 + (i * 230));
                 });
             }
             const servicesTex = new THREE.CanvasTexture(servicesCanvas);
@@ -340,7 +353,12 @@ export default function SeniorLiving3D() {
 
             const servicesBacking = new THREE.Mesh(
                 new THREE.BoxGeometry(0.05, 5.0, 5.0),
-                new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: 0.5, opacity: 0.95, transparent: true, roughness: 0.9 })
+                new THREE.MeshPhysicalMaterial({
+                    color: 0x0f0a19,
+                    emissive: 0x0f0a19,
+                    emissiveIntensity: 0.4,
+                    roughness: 1.0
+                })
             );
 
             // Right face of rwMain is exactly X=4.0
@@ -351,10 +369,12 @@ export default function SeniorLiving3D() {
 
             const servicesMat = new THREE.MeshPhysicalMaterial({
                 map: servicesTex,
-                transparent: true,
-                roughness: 0.9,
-                metalness: 0.1,
-                alphaTest: 0.05
+                transparent: false,
+                roughness: 0.5,
+                metalness: 0.0,
+                emissive: new THREE.Color(0xffffff),
+                emissiveMap: servicesTex,
+                emissiveIntensity: 1.2, // Self-illuminates so it's always clearly visible
             });
             const servicesMesh = new THREE.Mesh(new THREE.PlaneGeometry(4.8, 4.8), servicesMat);
 
