@@ -55,7 +55,7 @@ export default function ContactUs() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1.5, delay: 0.2 }}
-                            className="relative w-full max-w-[500px] lg:max-w-none h-[400px] sm:h-[450px] lg:h-[580px] flex items-center justify-center lg:justify-end overflow-hidden mt-12 lg:mt-0 rounded-3xl lg:rounded-none"
+                            className="hidden md:flex relative w-full max-w-[500px] lg:max-w-none h-[400px] sm:h-[450px] lg:h-[580px] items-center justify-center lg:justify-end overflow-hidden mt-12 lg:mt-0 rounded-3xl lg:rounded-none"
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
                             <div className="absolute inset-0 z-10 lg:hidden bg-black/5 backdrop-blur-[2px]" />

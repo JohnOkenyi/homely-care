@@ -171,7 +171,7 @@ export default function Home() {
           </div>
 
           {/* Right: Premium 3D Diorama */}
-          <div className="w-full lg:w-[50%] flex items-center justify-center lg:justify-end mt-12 lg:mt-0 relative z-30">
+          <div className="hidden md:flex w-full lg:w-[50%] items-center justify-center lg:justify-end mt-12 lg:mt-0 relative z-30">
             <div className="relative w-full aspect-[4/3] max-w-[600px] lg:max-w-none lg:w-[120%] lg:translate-x-[15%]">
               <SeniorLiving3D />
             </div>
