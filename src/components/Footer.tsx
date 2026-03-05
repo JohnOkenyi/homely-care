@@ -18,12 +18,12 @@ export default function Footer() {
                     {/* Brand Column */}
                     <div className="max-w-md">
                         <Link href="/" className="flex flex-row items-center gap-4 group mb-8 w-fit mt-[-10px]">
-                            <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform duration-500 group-hover:scale-105 bg-white rounded-full p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0">
+                            <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform duration-500 group-hover:scale-105 shrink-0">
                                 <Image
                                     src="/logo-final.png"
                                     alt="Homely Healthcare Logo"
                                     fill
-                                    className="object-contain p-1"
+                                    className="object-contain"
                                     style={{ filter: 'saturate(1.2) brightness(1.1)' }}
                                 />
                             </div>

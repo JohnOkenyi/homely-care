@@ -182,12 +182,12 @@ export default function CareGuideFlow({ onReset }: CareGuideFlowProps) {
                                     href="/contact-us"
                                     className="w-full py-3.5 bg-[#5B2A86] text-white rounded-xl flex items-center justify-center gap-2 text-[10px] sm:text-xs font-bold shadow-lg shadow-[#5B2A86]/20 hover:scale-[1.02] transition-all"
                                 >
-                                    Request Care Consultation
+                                    Contact Us
                                     <ArrowRight className="w-3.5 h-3.5" />
                                 </a>
                                 <a
                                     href={getRecommendation().link}
-                                    className="w-full py-3.5 bg-transparent border border-[#D6B36A]/40 text-[#1B1326] rounded-xl text-center text-[9px] sm:text-[10px] font-bold tracking-[0.15em] uppercase hover:bg-[#D6B36A]/5 hover:border-[#D6B36A] hover:text-[#B8924A] transition-all duration-300"
+                                    className="w-full py-3.5 bg-transparent border border-[#D6B36A]/40 text-[#1B1326] rounded-xl text-center text-[9px] sm:text-[10px] font-bold tracking-[0.15em] uppercase hover:bg-[#D6B36A]/5 hover:border-[#D6B36A] hover:text-[#B8924A] transition-all duration-300 mt-4 block"
                                 >
                                     Learn More
                                 </a>
