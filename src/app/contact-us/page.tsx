@@ -54,7 +54,7 @@ export default function ContactUs() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1.5, delay: 0.2 }}
+                            transition={{ duration: 0.5, delay: 0.05 }}
                             className="hidden lg:flex relative w-full lg:max-w-none lg:h-[580px] items-center justify-end overflow-hidden mt-0"
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />

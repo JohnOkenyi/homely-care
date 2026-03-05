@@ -55,7 +55,7 @@ export default function Services() {
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
+                        transition={{ delay: 0.05 }}
                         className="text-[#F2F2F2]/60 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed"
                     >
                         We offer a range of specialised care solutions designed to provide safety, dignity, and a profound sense of wellbeing in the comfort of your own home.
@@ -73,7 +73,7 @@ export default function Services() {
                                 initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                                 className={`group relative perspective-1000 mb-4 ${'image' in srv ? 'h-auto' : 'h-auto md:h-[320px] lg:h-[300px]'}`}
                             >
                                 <motion.div
@@ -135,7 +135,7 @@ export default function Services() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <h2 className="text-3xl md:text-4xl text-white mb-6 font-display">
                             A <span className="Heading-Serif italic font-light text-[#D6B36A]">Personalised</span> Path to Care.

@@ -63,7 +63,7 @@ export default function MeetTheTeam() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <span className="text-[#D6B36A] text-[10px] tracking-[0.4em] uppercase block mb-4 font-bold">Visionary Leadership</span>
                         <h1 className="Heading-Display text-white mb-6">
@@ -89,7 +89,7 @@ export default function MeetTheTeam() {
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 1.2, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                                transition={{ duration: 0.5, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
                                 className="group relative"
                             >
                                 <div className="relative aspect-[3/4] overflow-hidden rounded-sm mb-10 shadow-2xl glass-card overflow-hidden">
@@ -126,7 +126,7 @@ export default function MeetTheTeam() {
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1.5 }}
+                        transition={{ duration: 0.5 }}
                         className="mt-24 p-16 lg:p-24 glass-card-light text-center border-[#5B2A86]/10 select-none"
                     >
                         <div className="flex flex-col items-center mb-10">

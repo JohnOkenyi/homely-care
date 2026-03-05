@@ -31,7 +31,7 @@ export default function AboutUs() {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <span className="text-[#D6B36A] text-[9px] tracking-[0.4em] uppercase block mb-3 font-bold">Established with Purpose</span>
                         <h1 className="Heading-Display text-white mb-6 text-4xl md:text-5xl lg:text-6xl">
@@ -49,7 +49,7 @@ export default function AboutUs() {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                             className="relative"
                         >
                             <div className="aspect-[16/10] relative rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)]">
@@ -69,7 +69,7 @@ export default function AboutUs() {
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                             className="flex flex-col"
                         >
                             <span className="text-[#D6B36A] text-[8px] tracking-[0.4em] uppercase block mb-4 font-bold">The Homely Manifesto</span>
@@ -131,7 +131,7 @@ export default function AboutUs() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
+                            transition={{ delay: 0.05 }}
                             className="bg-[#F7F5F2] p-8 md:p-10 rounded-3xl shadow-sm border border-[#1B1326]/5 hover:shadow-lg hover:border-[#D6B36A]/30 transition-all duration-500 group"
                         >
                             <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500">
@@ -147,7 +147,7 @@ export default function AboutUs() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
+                            transition={{ delay: 0.05 }}
                             className="bg-[#F7F5F2] p-8 md:p-10 rounded-3xl shadow-sm border border-[#1B1326]/5 hover:shadow-lg hover:border-[#D6B36A]/30 transition-all duration-500 group"
                         >
                             <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500">
@@ -163,7 +163,7 @@ export default function AboutUs() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
+                            transition={{ delay: 0.05 }}
                             className="bg-[#5B2A86] p-8 md:p-10 rounded-3xl shadow-xl border border-[#5B2A86]/10 hover:shadow-2xl transition-all duration-500 relative overflow-hidden group"
                         >
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#D6B36A]/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
