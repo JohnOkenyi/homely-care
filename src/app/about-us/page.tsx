@@ -110,7 +110,7 @@ export default function AboutUs() {
                 </div>
 
                 <div className="grid-container max-w-6xl mx-auto px-4">
-                    <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
                         {[
                             {
                                 icon: Heart,
@@ -194,9 +194,9 @@ export default function AboutUs() {
                                 />
 
                                 <div
-                                    className={`whyus-3d-inner relative z-10 p-8 md:p-10 rounded-3xl border cursor-default h-full ${card.dark
-                                            ? 'bg-[#5B2A86] border-[#5B2A86]/10 overflow-hidden'
-                                            : 'bg-[#F7F5F2] border-[#1B1326]/5'
+                                    className={`whyus-3d-inner relative z-10 p-5 md:p-6 rounded-3xl border cursor-default h-full ${card.dark
+                                        ? 'bg-[#5B2A86] border-[#5B2A86]/10 overflow-hidden'
+                                        : 'bg-[#F7F5F2] border-[#1B1326]/5'
                                         }`}
                                     style={{
                                         transformStyle: 'preserve-3d',
@@ -210,13 +210,13 @@ export default function AboutUs() {
                                     {card.dark && (
                                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#D6B36A]/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                                     )}
-                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-[#D6B36A] mb-8 shadow-sm group-hover:scale-110 transition-transform duration-500 relative z-10 ${card.dark ? 'bg-white/10 backdrop-blur-sm' : 'bg-white'}`}>
-                                        <card.icon className="w-6 h-6 stroke-[1.5]" />
+                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-[#D6B36A] mb-4 shadow-sm group-hover:scale-110 transition-transform duration-500 relative z-10 ${card.dark ? 'bg-white/10 backdrop-blur-sm' : 'bg-white'}`}>
+                                        <card.icon className="w-5 h-5 stroke-[1.5]" />
                                     </div>
-                                    <h3 className={`text-2xl font-serif italic mb-4 relative z-10 ${card.dark ? 'text-white' : 'text-[#1A1A1A]'}`}>
+                                    <h3 className={`text-lg font-serif italic mb-2 relative z-10 ${card.dark ? 'text-white' : 'text-[#1A1A1A]'}`}>
                                         {card.title}
                                     </h3>
-                                    <p className={`leading-relaxed font-light text-base md:text-lg relative z-10 ${card.dark ? 'text-white/80' : 'text-[#1A1A1A]/70'}`}>
+                                    <p className={`leading-relaxed font-light text-sm relative z-10 ${card.dark ? 'text-white/80' : 'text-[#1A1A1A]/70'}`}>
                                         {card.desc}
                                     </p>
                                 </div>
