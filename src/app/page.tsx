@@ -48,7 +48,7 @@ export default function Home() {
             <div className="absolute -inset-10 bg-[radial-gradient(circle_at_center,rgba(185,163,211,0.1),transparent_70%)] blur-3xl pointer-events-none" />
 
             <motion.div
-              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.3 } } }}
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.05 } } }}
               initial="hidden"
               animate="visible"
             >
@@ -56,7 +56,7 @@ export default function Home() {
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 16, filter: 'blur(10px)' },
-                  visible: { opacity: 0.8, y: 0, filter: 'blur(0px)', transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }
+                  visible: { opacity: 0.8, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
                 }}
                 className="mb-8 lg:mb-10 px-4 md:px-8 lg:px-0 mt-8 lg:mt-0"
               >
@@ -69,7 +69,7 @@ export default function Home() {
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 32, filter: 'blur(12px)' },
-                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.5, ease: [0.22, 1, 0.36, 1] } }
+                  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] } }
                 }}
                 className="relative mb-12 sm:mb-8 lg:mb-4 pl-8 border-l border-[#D4AF37]/30 mx-4 md:mx-8 lg:mx-0"
               >
@@ -77,7 +77,7 @@ export default function Home() {
                 <motion.div
                   initial={{ height: 0 }}
                   animate={{ height: '100%' }}
-                  transition={{ duration: 1.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 1.0, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute left-0 top-0 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37] to-transparent shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                 />
 
@@ -115,7 +115,7 @@ export default function Home() {
                 <motion.p
                   variants={{
                     hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
-                    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] } }
+                    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
                   }}
                   className="Text-18 font-light max-w-lg mb-0"
                   style={{
