@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 
 export default function Footer() {
@@ -16,13 +17,24 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="max-w-md">
-                        <Link href="/" className="inline-block group mb-8">
-                            <span className="Heading-Serif text-4xl lg:text-5xl tracking-tighter text-white block mb-2 transition-all duration-700 group-hover:tracking-normal group-hover:text-[#D6B36A]">
-                                HOMELY
-                            </span>
-                            <span className="text-[11px] uppercase tracking-[0.5em] text-[#D6B36A] block font-extrabold opacity-90">
-                                Health Care
-                            </span>
+                        <Link href="/" className="flex flex-row items-center gap-4 group mb-8 w-fit mt-[-10px]">
+                            <div className="relative w-16 h-16 md:w-20 md:h-20 transition-transform duration-500 group-hover:scale-105 bg-white rounded-full p-1 shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0">
+                                <Image
+                                    src="/logo-final.png"
+                                    alt="Homely Healthcare Logo"
+                                    fill
+                                    className="object-contain p-1"
+                                    style={{ filter: 'saturate(1.2) brightness(1.1)' }}
+                                />
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="Heading-Serif text-4xl lg:text-5xl tracking-tighter text-white block mb-0 transition-all duration-700 group-hover:tracking-normal group-hover:text-[#D6B36A] leading-none mt-2">
+                                    HOMELY
+                                </span>
+                                <span className="text-[11px] ml-1 uppercase tracking-[0.4em] text-[#D6B36A] block font-extrabold opacity-90 mt-2">
+                                    Health Care
+                                </span>
+                            </div>
                         </Link>
                         <p className="Text-16 text-white/50 font-light leading-relaxed max-w-sm">
                             Excellence in private home care, delivering dignity and compassion tailored to your unique lifestyle.
