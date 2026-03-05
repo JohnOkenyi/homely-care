@@ -31,8 +31,11 @@ export default function SeniorLiving3D() {
 
         const scene = new THREE.Scene();
 
-        // Very tight isometric perspective
-        const camera = new THREE.PerspectiveCamera(30, initialWidth / initialHeight, 0.1, 200);
+        // --- CAMERA ---
+        const isMobile = window.innerWidth < 768;
+        const fov = isMobile ? 55 : 30; // 30 is the original desktop FOV
+        const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
+
         // Positioned top-right-front, looking perfectly at center
         camera.position.set(16, 12, 16);
 
@@ -43,6 +46,12 @@ export default function SeniorLiving3D() {
         controls.minDistance = 15;
         controls.maxDistance = 60;
         controls.maxPolarAngle = Math.PI / 2 - 0.1;
+
+        if (isMobile) {
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = -1.5; // Negative to rotate the room left and reveal the right wall services sign
+            controls.enableZoom = false; // Prevent accidental pinch zooming on mobile
+        }
 
         // --- IBL & Lighting ---
         // Removed PMREM RoomEnvironment for night mode stability
@@ -778,7 +787,7 @@ export default function SeniorLiving3D() {
     }, []);
 
     return (
-        <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px] flex items-center justify-center p-4 group">
+        <div className="relative w-full h-full min-h-[450px] md:min-h-[500px] flex items-center justify-center p-0 md:p-4 group">
             {/* Ambient Background Glow match the hero section */}
             <div className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 group-hover:opacity-75">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-[#5B2A86]/25 rounded-full blur-[100px]" />
@@ -788,7 +797,7 @@ export default function SeniorLiving3D() {
             {/* 3D Canvas Container */}
             <div
                 ref={containerRef}
-                className="relative z-10 w-full h-full max-w-[900px] aspect-[4/3] lg:aspect-[4/3] rounded-[24px] overflow-hidden bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/5"
+                className="relative z-10 w-full h-[65vh] md:h-full max-w-[900px] md:aspect-[4/3] rounded-3xl md:rounded-[24px] overflow-hidden bg-transparent shadow-[0_20px_60px_rgba(0,0,0,0.5)] border border-white/5"
                 style={{ cursor: 'grab' }}
                 onPointerDown={(e) => (e.currentTarget.style.cursor = 'grabbing')}
                 onPointerUp={(e) => (e.currentTarget.style.cursor = 'grab')}
