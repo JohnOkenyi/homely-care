@@ -16,20 +16,21 @@ export default function SeniorLiving3D() {
 
         const timeoutId = setTimeout(() => {
             if (!containerRef.current) return;
-            const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
 
             // Match aspect ratio exactly
             const initialWidth = container.clientWidth || 800;
             const initialHeight = container.clientHeight || 500;
 
+            // Use full device pixel ratio for maximum sharpness
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.setSize(initialWidth, initialHeight, false);
 
-            // High quality shadow configuration
+            // Start with fast low-quality shadows for instant render, upgrade later
             renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Very soft shadows like the image
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.0; // Reset to standard exposure for visibility
+            renderer.toneMappingExposure = 1.0;
 
             container.appendChild(renderer.domElement);
 
@@ -68,7 +69,8 @@ export default function SeniorLiving3D() {
             const sunLight = new THREE.DirectionalLight(0xfdfaa0, 0.45); // Reduced brightness
             sunLight.position.set(-25, 20, -5); // Shifted angle to avoid direct glare on back wall
             sunLight.castShadow = true;
-            sunLight.shadow.mapSize.set(1024, 1024);
+            // Start with low-res shadows for fast first frame, then upgrade after 2 seconds for crisp quality
+            sunLight.shadow.mapSize.set(512, 512);
             sunLight.shadow.camera.left = -10;
             sunLight.shadow.camera.right = 10;
             sunLight.shadow.camera.top = 10;
@@ -85,7 +87,7 @@ export default function SeniorLiving3D() {
             const lampLight = new THREE.PointLight(0xfffacc, 18, 15, 1.8);
             lampLight.position.set(3.2, 4.7, -3.2); // Local coords relative to diorama center
             lampLight.castShadow = true;
-            lampLight.shadow.mapSize.set(512, 512);
+            lampLight.shadow.mapSize.set(256, 256);
 
             // Secondary dim light coming from the lamp pointing downwards
             const lampDownLight = new THREE.SpotLight(0xfffacc, 8, 12, Math.PI / 3, 0.5, 1);
@@ -768,8 +770,20 @@ export default function SeniorLiving3D() {
             }
             tick();
 
+            // Progressive shadow quality upgrade: fast first render, then high quality after 2s
+            const qualityUpgradeTimeout = setTimeout(() => {
+                sunLight.shadow.mapSize.set(2048, 2048);
+                sunLight.shadow.map?.dispose();
+                (sunLight.shadow as THREE.LightShadow & { map: THREE.WebGLRenderTarget | null }).map = null;
+                lampLight.shadow.mapSize.set(1024, 1024);
+                lampLight.shadow.map?.dispose();
+                (lampLight.shadow as THREE.LightShadow & { map: THREE.WebGLRenderTarget | null }).map = null;
+                renderer.shadowMap.needsUpdate = true;
+            }, 2000);
+
             cleanup = () => {
                 cancelAnimationFrame(frameId);
+                clearTimeout(qualityUpgradeTimeout);
                 window.removeEventListener("resize", updateSize);
                 if (scene.environment) scene.environment.dispose();
                 if (container && renderer.domElement && container.contains(renderer.domElement)) {
