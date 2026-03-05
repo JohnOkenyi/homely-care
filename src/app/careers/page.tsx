@@ -79,7 +79,7 @@ export default function CareersPage() {
                             Careers at Homely Health Care
                         </span>
                         <h1 className="Heading-Serif text-5xl md:text-7xl lg:text-8xl leading-none mb-8">
-                            Join the <span className="italic font-light">Gold Standard</span> of Care
+                            Join the <span className="italic font-light">Highest Standard</span> of Care
                         </h1>
                         <p className="Text-20 text-white/90 max-w-2xl font-light leading-relaxed">
                             We are always on the lookout for talented and dedicated staff to join our lovely and enthusiastic team. We value our staff and believe that they are our greatest asset.
