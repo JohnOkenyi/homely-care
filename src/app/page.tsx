@@ -40,7 +40,7 @@ export default function Home() {
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 pt-20 pb-8 gap-12 lg:gap-8">
+        <div className="relative z-30 flex flex-col lg:flex-row items-center w-full max-w-7xl mx-auto px-4 sm:px-12 lg:px-16 pt-16 lg:pt-20 pb-0 lg:pb-8 gap-12 lg:gap-8">
 
           {/* Left: Typography */}
           <div className="relative w-full lg:w-[48%] flex flex-col z-40 lg:-ml-12">
@@ -133,11 +133,11 @@ export default function Home() {
                   hidden: { opacity: 0, y: 16, filter: 'blur(5px)' },
                   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
                 }}
-                className="flex flex-col sm:flex-row items-center sm:items-center gap-7 sm:gap-4 w-full"
+                className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-4 w-full"
               >
                 <Link
                   href="/contact-us"
-                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-4 sm:py-3.5 w-[90%] sm:w-auto rounded-full text-[11px] sm:text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
+                  className="group relative inline-flex items-center justify-center gap-4 px-7 py-4 sm:py-3.5 w-full sm:w-[90%] md:w-auto rounded-full text-[11px] sm:text-xs uppercase tracking-[0.3em] font-bold transition-all duration-700 overflow-hidden"
                   style={{
                     backgroundColor: '#5B2A86',
                     color: '#FFFFFF',
