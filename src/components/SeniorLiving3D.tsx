@@ -5,11 +5,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
-interface SeniorLiving3DProps {
-    scale?: number;
-}
-
-export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
+export default function SeniorLiving3D() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -80,7 +76,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             const matBaseTrim = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange base trim
 
             const diorama = new THREE.Group();
-            diorama.scale.set(scale, scale, scale);
 
             // 3. HOUSE BODY & TRIM
             const houseGroup = new THREE.Group();

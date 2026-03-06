@@ -59,7 +59,7 @@ export default function ContactUs() {
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
                             <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
-                                <SeniorLiving3D scale={0.7} />
+                                <SeniorLiving3D />
                             </div>
                         </motion.div>
                     </div>
