@@ -37,10 +37,12 @@ export default function SeniorLiving3D() {
             const fov = isMobile ? 55 : 30;
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
 
-            camera.position.set(18, 14, 18);
+            // Moved camera closer to make the house appear larger
+            camera.position.set(14, 10, 14);
 
             const controls = new OrbitControls(camera, renderer.domElement);
-            controls.target.set(0, 2, 0);
+            // Lowered the target to effectively raise the house higher in the viewport
+            controls.target.set(0, 0.5, 0);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
@@ -67,7 +69,7 @@ export default function SeniorLiving3D() {
             scene.add(fillLight);
 
             const matHouseBody = new THREE.MeshPhysicalMaterial({ color: 0xfaf8f5, roughness: 0.9 });
-            const matRoof = new THREE.MeshPhysicalMaterial({ color: 0x9c4a4a, roughness: 0.8 }); // Reddish warm roof
+            const matRoof = new THREE.MeshPhysicalMaterial({ color: 0x5B2A86, roughness: 0.8 }); // Brand purple roof to match site
             const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x5B2A86, roughness: 0.6 }); // Homely purple
             const matWindowGlass = new THREE.MeshPhysicalMaterial({ color: 0x90ccf2, transparent: true, opacity: 0.6, roughness: 0.1, metalness: 0.5 });
             const matWindowFrame = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.8 });
@@ -150,9 +152,9 @@ export default function SeniorLiving3D() {
             frontCanvas.height = 256;
             const fCtx = frontCanvas.getContext("2d");
             if (fCtx) {
-                fCtx.fillStyle = "#faf8f5"; // Match house
+                fCtx.fillStyle = "#ffffff"; // Pure white for better contrast
                 fCtx.fillRect(0, 0, 1024, 256);
-                fCtx.font = "bold 80px 'Inter', sans-serif";
+                fCtx.font = "bold 85px 'Inter', sans-serif";
                 fCtx.fillStyle = "#5B2A86"; // Brand purple
                 fCtx.textAlign = "center";
                 fCtx.textBaseline = "middle";
@@ -161,7 +163,8 @@ export default function SeniorLiving3D() {
             const frontTex = new THREE.CanvasTexture(frontCanvas);
             frontTex.anisotropy = 16;
             frontTex.colorSpace = THREE.SRGBColorSpace;
-            const frontMat = new THREE.MeshPhysicalMaterial({ map: frontTex, roughness: 0.9, clearcoat: 0.1 });
+            // Using MeshBasicMaterial so the text is fully bright and unshaded by the sun
+            const frontMat = new THREE.MeshBasicMaterial({ map: frontTex });
             const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
             // Position above door
             frontTextPlane.position.set(0, houseH - 0.7, houseD / 2 + 0.05);
@@ -173,32 +176,33 @@ export default function SeniorLiving3D() {
             sideCanvas.height = 1024;
             const sCtx = sideCanvas.getContext("2d");
             if (sCtx) {
-                sCtx.fillStyle = "#faf8f5";
+                sCtx.fillStyle = "#ffffff"; // Pure white for maximum readability
                 sCtx.fillRect(0, 0, 1024, 1024);
 
-                sCtx.font = "bold 90px 'Inter', sans-serif";
+                sCtx.font = "bold 95px 'Inter', sans-serif";
                 sCtx.fillStyle = "#5B2A86";
                 sCtx.textAlign = "center";
                 sCtx.fillText("OUR SERVICES", 512, 180);
 
                 sCtx.strokeStyle = "#D6B36A";
-                sCtx.lineWidth = 6;
+                sCtx.lineWidth = 8;
                 sCtx.beginPath();
-                sCtx.moveTo(200, 240);
-                sCtx.lineTo(824, 240);
+                sCtx.moveTo(180, 240);
+                sCtx.lineTo(844, 240);
                 sCtx.stroke();
 
-                sCtx.font = "bold 65px 'Inter', sans-serif";
-                sCtx.fillStyle = "#1B1326";
+                sCtx.font = "bold 70px 'Inter', sans-serif";
+                sCtx.fillStyle = "#0A0C10"; // Very high contrast dark black/purple
                 const svcs = ["Home Care", "Live-in Care", "Supported Living", "Complex Care"];
                 svcs.forEach((svc, i) => {
-                    sCtx.fillText(svc, 512, 400 + (i * 120));
+                    sCtx.fillText(svc, 512, 400 + (i * 125));
                 });
             }
             const sideTex = new THREE.CanvasTexture(sideCanvas);
             sideTex.anisotropy = 16;
             sideTex.colorSpace = THREE.SRGBColorSpace;
-            const sideMat = new THREE.MeshPhysicalMaterial({ map: sideTex, roughness: 0.9, clearcoat: 0.1 });
+            // MeshBasicMaterial ensures it is always brightly lit
+            const sideMat = new THREE.MeshBasicMaterial({ map: sideTex });
 
             // Left Wall
             const leftTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), sideMat);
@@ -218,14 +222,14 @@ export default function SeniorLiving3D() {
             backCanvas.height = 1024;
             const bCtx = backCanvas.getContext("2d");
             if (bCtx) {
-                bCtx.fillStyle = "#faf8f5";
+                bCtx.fillStyle = "#ffffff";
                 bCtx.fillRect(0, 0, 1024, 1024);
-                bCtx.font = "bold 80px 'Inter', sans-serif";
+                bCtx.font = "bold 85px 'Inter', sans-serif";
                 bCtx.fillStyle = "#5B2A86";
                 bCtx.textAlign = "center";
                 bCtx.fillText("HOMELY HEALTH CARE", 512, 300);
 
-                bCtx.font = "bold 46px 'Inter', sans-serif";
+                bCtx.font = "bold 50px 'Inter', sans-serif";
                 bCtx.fillStyle = "#D6B36A";
                 bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 512, 450);
                 bCtx.fillText("SINCE 2016", 512, 530);
@@ -233,7 +237,8 @@ export default function SeniorLiving3D() {
             const backTex = new THREE.CanvasTexture(backCanvas);
             backTex.anisotropy = 16;
             backTex.colorSpace = THREE.SRGBColorSpace;
-            const backMat = new THREE.MeshPhysicalMaterial({ map: backTex, roughness: 0.9, clearcoat: 0.1 });
+            // MeshBasicMaterial ensures it is always brightly lit
+            const backMat = new THREE.MeshBasicMaterial({ map: backTex });
             const backTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), backMat);
             backTextPlane.position.set(0, houseH / 2, -houseD / 2 - 0.05);
             backTextPlane.rotation.y = Math.PI;
