@@ -152,7 +152,7 @@ export default function SeniorLiving3D() {
                 uniforms: {
                     tDiffuse: { value: null },
                     colorToReplace: { value: new THREE.Color(0xffffff) },
-                    threshold: { value: 0.1 }
+                    threshold: { value: 0.25 }
                 },
                 vertexShader: `
                     varying vec2 vUv;
