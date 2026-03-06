@@ -133,7 +133,7 @@ export default function AboutUs() {
                             {
                                 icon: Heart,
                                 title: "Giving Back",
-                                desc: "Homely Health Care donates a percentage of its profits to a small children's education charity, The Rahula Trust, who do amazing work to support children in their education in various parts of the world.",
+                                desc: "Homely Health Care donates a percentage of its profits to a small children's education charity, The Rahula Trust, who do amazing work to support children in their education in various parts of the world, as well as The Regiment Support Service.",
                                 dark: true,
                             },
                         ].map((card) => (
@@ -244,7 +244,7 @@ export default function AboutUs() {
                     <div className="grid md:grid-cols-3 gap-6 lg:gap-8 perspective-2000">
                         {[
                             { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical wellbeing." },
-                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency, and the highest standards." },
+                            { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency and the highest standards." },
                             { icon: Users, title: "Dignity", desc: "Honouring the person behind the patient, respecting their history and autonomy." }
                         ].map((pillar, idx) => (
                             <motion.div

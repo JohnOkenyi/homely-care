@@ -378,24 +378,12 @@ export default function Home() {
             {/* Left Column: Inner 3D Stat Cards */}
             <div className="flex flex-col sm:flex-row gap-6 lg:gap-8 shrink-0">
               {/* Card 1 */}
-              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.04] transform transition-transform hover:-translate-y-1 duration-500">
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-[64px] md:text-[76px] leading-none font-medium text-[#4B3061] tracking-tighter Heading-Serif">9.8</span>
-                  <span className="text-2xl md:text-3xl text-[#1A1A1A]/20 font-light">/10</span>
+              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[250px] md:min-w-[300px] border border-black/[0.04] transform transition-transform hover:-translate-y-1 duration-500">
+                <div className="flex flex-col items-center gap-2 mb-2">
+                  <span className="text-3xl md:text-4xl text-[#4B3061] font-medium tracking-tighter Heading-Serif text-center">Providing Exceptional Care</span>
                 </div>
-                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/40 text-center leading-[1.8] mt-2">
-                  Family Trust<br />Rating
-                </span>
-              </div>
-
-              {/* Card 2 */}
-              <div className="bg-white rounded-[24px] shadow-[0_15px_40px_rgba(0,0,0,0.06)] p-10 flex flex-col items-center justify-center min-w-[180px] md:min-w-[210px] border border-black/[0.04] transform transition-transform hover:-translate-y-1 duration-500">
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-[64px] md:text-[76px] leading-none font-medium text-[#4B3061] tracking-tighter Heading-Serif">7</span>
-                  <span className="text-[40px] md:text-[50px] text-[#1A1A1A]/20 font-light">+</span>
-                </div>
-                <span className="text-[9px] font-bold tracking-[0.25em] uppercase text-[#1A1A1A]/40 text-center leading-[1.8] mt-2">
-                  Years Clinical<br />Experience
+                <span className="text-[12px] font-bold tracking-[0.2em] uppercase text-[#D6B36A] text-center mt-2">
+                  Since 2016
                 </span>
               </div>
             </div>
@@ -434,28 +422,32 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
             {[
               {
+                id: "home-care",
                 title: "Home Care",
-                tag: "Bespoke Support",
-                img: "/images/home-care.png",
-                desc: "Clinical precision and heartfelt companionship in the comfort of your own home."
+                tag: "Bespoke Support", // Keeping original tag, as new objects don't explicitly define it
+                desc: "Compassionate, personalised support enabling you to live independently and safely in your own home.",
+                img: "/images/services/home-care-diverse.png",
               },
               {
+                id: "live-in-care",
                 title: "Live-in Care",
-                tag: "24/7 Presence",
-                img: "/images/live-in-care.png",
-                desc: "Round-the-clock peace of mind delivered by a hand-picked team of professionals."
+                tag: "24/7 Presence", // Keeping original tag
+                desc: "Round-the-clock reassurance and dedicated 1-to-1 care from a perfectly matched companion.",
+                img: "/images/services/live-in-care-diverse.png",
               },
               {
+                id: "supported-living",
                 title: "Supported Living",
-                tag: "Independence First",
-                img: "/images/supported-living.png",
-                desc: "Empowering individuals to lead fulfilling lives within their local community."
+                tag: "Independence First", // Keeping original tag
+                desc: "Empowering individuals with learning disabilities or mental health needs to lead fulfilling lives within the community.",
+                img: "/images/services/supported-living-diverse.png",
               },
               {
+                id: "complex-care",
                 title: "Complex Care",
-                tag: "Clinical Excellence",
-                img: "/images/complex-care.png",
-                desc: "specialised nurse-led care for complex health conditions and intensive support."
+                tag: "Clinical Excellence", // Keeping original tag
+                desc: "Specialist, nurse-led clinical interventions delivered safely in your own environment.",
+                img: "/images/services/complex-care-diverse.png",
               }
             ].map((srv, idx) => (
               <motion.div
@@ -541,47 +533,38 @@ export default function Home() {
       {/* THE CHARITY TRUST - Luxury Purpose */}
       <section className="section-padding bg-[#F7F5F2] relative">
         <div className="grid-container relative z-10 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="text-center"
             >
-              <div className="flex flex-col items-start mb-6">
+              <div className="flex flex-col items-center mb-6">
                 <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-4">Social Responsibility</span>
-                <h2 className="Heading-H2 text-[#1B1326]">
-                  A Vision of <span className="italic font-light text-[#5B2A86]">Hope.</span>
-                </h2>
               </div>
-              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-8 max-w-xl">
-                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to The Rahula Trust, supporting the education of underprivileged children worldwide.
+              <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-10 max-w-2xl mx-auto">
+                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to two charities; The Rahula Trust and The Regiment Support Service.
               </p>
-              <a
-                href="http://www.rahula-trust.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
-              >
-                Discover The Rahula Trust
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[500px] overflow-hidden rounded-sm shadow-2xl"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1600&auto=format&fit=crop"
-                alt="Children receiving education"
-                fill
-                className="object-cover transition-transform duration-[10s] hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-[#5B2A86]/20 mix-blend-multiply transition-opacity duration-1000" />
-              <div className="absolute inset-0 border-[20px] border-[#F7F5F2] pointer-events-none" />
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a
+                  href="http://www.rahula-trust.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
+                >
+                  The Rahula Trust
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"
+                >
+                  The Regiment Support Service
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>

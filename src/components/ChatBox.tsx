@@ -21,11 +21,11 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["thank", "thanks", "cheers", "appreciate", "ta"],
-        answer: "You're welcome! 😊 If you have any other questions, feel free to ask. You can also call us on **0203 916 5797** for a personal consultation."
+        answer: "You're welcome! 😊 If you have any other questions, feel free to ask. You can also call us on **01202 948898** for a personal consultation."
     },
     {
         keywords: ["bye", "goodbye", "see you", "later", "take care"],
-        answer: "Thank you for chatting with us! 💜 Take care, and don't hesitate to reach out anytime. Call **0203 916 5797** or email **info@homelyhealthcare.org.uk**."
+        answer: "Thank you for chatting with us! 💜 Take care, and don't hesitate to reach out anytime. Call **01202 948898** or email **info@homelyhealth.uk**."
     },
 
     // ── ABOUT THE COMPANY ──
@@ -39,11 +39,11 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["value", "mission", "vision", "pillar", "philosophy", "believe", "principle", "promise"],
-        answer: "Our care is built on three pillars:\n\n💜 **Compassion** – Every action is led by the heart, ensuring emotional security alongside physical wellbeing.\n🛡️ **Integrity** – Unwavering commitment to honesty, transparency, and the highest clinical standards.\n👥 **Dignity** – Honouring the person behind the patient, respecting their history, choices, and autonomy."
+        answer: "Our care is built on three pillars:\n\n💜 **Compassion** – Every action is led by the heart, ensuring emotional security alongside physical wellbeing.\n🛡️ **Integrity** – Unwavering commitment to honesty, transparency and the highest clinical standards.\n👥 **Dignity** – Honouring the person behind the patient, respecting their history, choices, and autonomy."
     },
     {
         keywords: ["why choose", "why homely", "what makes you different", "special", "unique", "advantage"],
-        answer: "People choose Homely Health Care because:\n\n✅ **Person-centred care** – Every plan is tailored to your unique needs\n✅ **Rigorous vetting** – All staff are thoroughly referenced, DBS checked, and highly trained\n✅ **Expert management** – Field Care Managers visit regularly to ensure your care is always aligned with your needs\n✅ **CQC rated 'Good'** – Independently inspected and approved\n✅ **Social responsibility** – We donate to The Rahula Trust children's charity"
+        answer: "People choose Homely Health Care because:\n\n✅ **Person-centred care** – Every plan is tailored to your unique needs\n✅ **Rigorous vetting** – All staff are thoroughly referenced, DBS checked, and highly trained\n✅ **Expert management** – Field Care Managers visit regularly to ensure your care is always aligned with your needs\n✅ **CQC rated 'Good'** – Independently inspected and approved\n✅ **Social responsibility** – We donate to The Rahula Trust and The Regiment Support Service"
     },
 
     // ── SERVICES OVERVIEW ──
@@ -59,11 +59,11 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["visit", "how often", "frequency", "schedule", "how many times"],
-        answer: "Our home care visits are completely **flexible**. They can be as little as a few hours a day, and we can arrange one or more visits throughout the day, **7 days a week**. We also offer **sleep-in or waking night** services for overnight security. Call **0203 916 5797** to discuss your specific needs."
+        answer: "Our home care visits are completely **flexible**. They can be as little as a few hours a day, and we can arrange one or more visits throughout the day, **7 days a week**. We also offer **sleep-in or waking night** services for overnight security. Call **01202 948898** to discuss your specific needs."
     },
     {
         keywords: ["night", "sleep", "overnight", "waking night", "sleep in"],
-        answer: "Yes! We offer both **sleep-in** and **waking night** services. If you'd like the security of having someone staying with you overnight, we can arrange this as part of your home care package. Call **0203 916 5797** to discuss."
+        answer: "Yes! We offer both **sleep-in** and **waking night** services. If you'd like the security of having someone staying with you overnight, we can arrange this as part of your home care package. Call **01202 948898** to discuss."
     },
 
     // ── LIVE-IN CARE ──
@@ -83,7 +83,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["disability", "disabilit", "brain injury", "sensory", "impairment"],
-        answer: "We provide expert tailored support for people aged **18 or over** with mild, moderate, or severe disabilities, including **autism**, **sensory impairment**, **physical disabilities**, **acquired brain injury**, associated mental health needs, and behavioural challenges. Call **0203 916 5797** for a consultation."
+        answer: "We provide expert tailored support for people aged **18 or over** with mild, moderate, or severe disabilities, including **autism**, **sensory impairment**, **physical disabilities**, **acquired brain injury**, associated mental health needs, and behavioural challenges. Call **01202 948898** for a consultation."
     },
 
     // ── COMPLEX CARE / TDDI ──
@@ -93,7 +93,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["feeding tube", "peg", "clinical intervention"],
-        answer: "Yes, our TDDI / Complex Care team is trained to manage **feeding tubes** and other clinical interventions. Our nurse-led team works closely with healthcare professionals and families to deliver safe, consistent care. Contact us on **0203 916 5797** for more details."
+        answer: "Yes, our TDDI / Complex Care team is trained to manage **feeding tubes** and other clinical interventions. Our nurse-led team works closely with healthcare professionals and families to deliver safe, consistent care. Contact us on **01202 948898** for more details."
     },
 
     // ── RESIDENTIAL & NURSING HOME SUPPORT ──
@@ -103,17 +103,17 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["last minute", "urgent", "emergency cover", "agency", "sickness cover"],
-        answer: "Unlike some agencies, we **do not charge an additional fee for last-minute cover**. We understand staffing needs can be urgent due to sickness or other absences, and we pride ourselves on providing the staff you need, **when you need them**. Call **0203 916 5797**."
+        answer: "Unlike some agencies, we **do not charge an additional fee for last-minute cover**. We understand staffing needs can be urgent due to sickness or other absences, and we pride ourselves on providing the staff you need, **when you need them**. Call **01202 948898**."
     },
 
     // ── CONTACT INFO ──
     {
         keywords: ["phone", "call", "telephone", "number", "ring"],
-        answer: "You can call us on **0203 916 5797**. We're available 24/7 to discuss your care needs."
+        answer: "You can call us on **01202 948898**. We're available 24/7 to discuss your care needs."
     },
     {
         keywords: ["email", "mail", "write to"],
-        answer: "You can email us at **info@homelyhealthcare.org.uk**. We aim to respond to all enquiries promptly."
+        answer: "You can email us at **info@homelyhealth.uk**. We aim to respond to all enquiries promptly."
     },
     {
         keywords: ["address", "location", "where", "visit", "office", "find you", "based"],
@@ -121,7 +121,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["contact", "get in touch", "reach", "enquir", "speak to"],
-        answer: "You can reach us by:\n\n📞 **Phone:** 0203 916 5797\n📧 **Email:** info@homelyhealthcare.org.uk\n📍 **Address:** Suite 6A, Wessex House, St. Leonards Road, Charminster, Bournemouth, Dorset, BH8 8QS, UK\n\nOr visit our Contact Us page to submit an enquiry form."
+        answer: "You can reach us by:\n\n📞 **Phone:** 01202 948898\n📧 **Email:** info@homelyhealth.uk\n📍 **Address:** Suite 6A, Wessex House, St. Leonards Road, Charminster, Bournemouth, Dorset, BH8 8QS, UK\n\nOr visit our Contact Us page to submit an enquiry form."
     },
     {
         keywords: ["hours", "available", "when", "open", "time", "24/7"],
@@ -131,15 +131,15 @@ const knowledgeBase: QA[] = [
     // ── TEAM ──
     {
         keywords: ["team", "staff", "who works", "employees", "people", "management"],
-        answer: "Our leadership team includes:\n\n👤 **Douglas Matungamire** – Director & Registered Manager (Founder, est. 2016)\n👤 **Maria Wilson** – Office Manager (NHS background)\n👤 **Cedric Dube** – Compliance Officer (15 years legal & compliance)\n👤 **Sara Randall** – Registered Manager (35+ years in social care)\n👤 **Pauline Makazhu** – Registered Manager & Registered Nurse (leads TDDI/Complex Care)"
+        answer: "Our leadership team includes:\n\n👤 **Douglas Matungamire** – Director & Registered Manager (Founder, est. 2016)\n👤 **Maria Wilson** – Operations Manager (NHS background)\n👤 **Cedric Dube** – Compliance Officer (15 years legal & compliance)\n👤 **Sara Randall** – Registered Manager (35+ years in social care)\n👤 **Pauline Makazhu** – Registered Manager & Registered Nurse (leads TDDI/Complex Care)"
     },
     {
         keywords: ["douglas", "matungamire", "director", "founder", "who founded"],
-        answer: "**Douglas Matungamire** is our Director, Registered Manager, and Founder. He started Homely Health Care in 2016 with experience across Healthcare, Education, and Insurance. He has also worked hands-on as a Support Worker/Carer with adults and children with various social care needs."
+        answer: "**Douglas Matungamire** is our Director, Registered Manager, and Founder. He started Homely Health Care in 2016 with experience across Healthcare, Education and Insurance. He has also worked hands-on as a Support Worker/Carer with adults and children with various social care needs."
     },
     {
         keywords: ["maria", "wilson", "office manager"],
-        answer: "**Maria Wilson** is our Office Manager. She previously worked in general management within the NHS in London and Southampton before joining Homely Health Care in 2022. Her role includes recruitment & selection, HR, client liaison, staff management, and accounts."
+        answer: "**Maria Wilson** is our Operations Manager. She previously worked in general management within the NHS in London and Southampton before joining Homely Health Care in 2022. Her role includes recruitment & selection, HR, client liaison, staff management, and accounts."
     },
     {
         keywords: ["cedric", "dube", "compliance"],
@@ -147,7 +147,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["sara", "randall"],
-        answer: "**Sara Randall** is one of our Registered Managers with over **35 years' experience** in the social care industry. She's worked for Social Services, the NHS, and care home settings with both adults and children. She is passionate about ensuring clients receive the best care and staff are trained to the highest standards."
+        answer: "**Sara Randall** is one of our Registered Managers with over **35 years' experience** in the social care industry. She's worked for Social Services, the NHS and in care home settings. She is passionate about ensuring clients receive the best care and all staff are trained to the highest standards to ensure this."
     },
     {
         keywords: ["pauline", "makazhu"],
@@ -179,13 +179,13 @@ const knowledgeBase: QA[] = [
     // ── CHARITY ──
     {
         keywords: ["charity", "rahula", "trust", "donate", "giving back", "social responsibility", "children", "education"],
-        answer: "Homely Health Care proudly supports **The Rahula Trust**, dedicating a percentage of our profits to the education of underprivileged children worldwide. This reflects our belief that premium care should extend beyond our immediate community.\n\n🌍 Learn more at **www.rahula-trust.org**"
+        answer: "Homely Health Care proudly supports **The Rahula Trust** and **The Regiment Support Service**, dedicating a percentage of our profits to these causes. This reflects our belief that premium care should extend beyond our immediate community."
     },
 
     // ── CAREERS ──
     {
         keywords: ["career", "job", "work for", "hiring", "vacanc", "employ", "join", "recruit", "apply"],
-        answer: "We're always looking for compassionate, dedicated care professionals! We offer roles for:\n\n• Carers & Support Workers\n• Registered Nurses\n• Office & Administrative Staff\n\nWe invest heavily in **training and development**, and all staff undergo comprehensive induction. Visit our **Careers** page or email **info@homelyhealthcare.org.uk** to express your interest."
+        answer: "We're always looking for compassionate, dedicated care professionals! We offer roles for:\n\n• Carers & Support Workers\n• Registered Nurses\n• Office & Administrative Staff\n\nWe invest heavily in **training and development**, and all staff undergo comprehensive induction. Visit our **Careers** page or email **info@homelyhealth.uk** to express your interest."
     },
     {
         keywords: ["training", "development", "learn", "induction", "qualification"],
@@ -195,17 +195,17 @@ const knowledgeBase: QA[] = [
     // ── COST & PRICING ──
     {
         keywords: ["cost", "price", "how much", "fee", "afford", "expensive", "pay", "fund", "budget"],
-        answer: "Our care packages are **bespoke and tailored** to individual needs, so costs vary depending on the type and level of care required. We're happy to discuss pricing in a confidential, no-obligation consultation.\n\n📞 Call **0203 916 5797** to get a personalised quote."
+        answer: "Our care packages are **bespoke and tailored** to individual needs, so costs vary depending on the type and level of care required. We're happy to discuss pricing in a confidential, no-obligation consultation.\n\n📞 Call **01202 948898** to get a personalised quote."
     },
     {
         keywords: ["fund", "council", "local authority", "social services", "nhs fund", "pay for care"],
-        answer: "Care can be funded through various routes including **local authority funding**, **NHS Continuing Healthcare**, **personal budgets**, or **private payment**. To discuss your funding options, please call us on **0203 916 5797** — our team can guide you through the process."
+        answer: "Care can be funded through various routes including **local authority funding**, **NHS Continuing Healthcare**, **personal budgets**, or **private payment**. To discuss your funding options, please call us on **01202 948898** — our team can guide you through the process."
     },
 
     // ── LOCATION & COVERAGE ──
     {
         keywords: ["bournemouth", "dorset", "croydon", "london", "area", "cover", "region", "south"],
-        answer: "Our main office is in **Bournemouth, Dorset** (Suite 6A, Wessex House, St. Leonards Road, Charminster, BH8 8QS). We provide care across multiple regions. For information about our full coverage areas near you, please call **0203 916 5797**."
+        answer: "Our main office is in **Bournemouth, Dorset** (Suite 6A, Wessex House, St. Leonards Road, Charminster, BH8 8QS). We provide care across multiple regions. For information about our full coverage areas near you, please call **01202 948898**."
     },
 
     // ── PERSON-CENTRED CARE ──
@@ -217,7 +217,7 @@ const knowledgeBase: QA[] = [
     // ── HOSPITAL DISCHARGE ──
     {
         keywords: ["hospital", "discharge", "recovery", "after hospital", "post hospital"],
-        answer: "We provide care following **hospital discharge** to support your recovery and help you regain independence. This can be short-term or long-term depending on your needs. Our home care service ensures you have the support you need to recover comfortably at home. Call **0203 916 5797** to arrange."
+        answer: "We provide care following **hospital discharge** to support your recovery and help you regain independence. This can be short-term or long-term depending on your needs. Our home care service ensures you have the support you need to recover comfortably at home. Call **01202 948898** to arrange."
     },
 
     // ── WEBSITE & ONLINE ──
@@ -229,7 +229,7 @@ const knowledgeBase: QA[] = [
     // ── CATCH-ALL CONVERSATIONAL ──
     {
         keywords: ["help", "assist", "support me", "i need", "looking for"],
-        answer: "I'd love to help! You can ask me about:\n\n• Our **services** (Home Care, Live-in Care, Supported Living, Complex Care)\n• Our **team** and their experience\n• **Contact details** and office location\n• **CQC rating** and quality standards\n• **Careers** and job opportunities\n• **The Rahula Trust** charity\n\nOr simply call us on **0203 916 5797** for a personal chat!"
+        answer: "I'd love to help! You can ask me about:\n\n• Our **services** (Home Care, Live-in Care, Supported Living, Complex Care)\n• Our **team** and their experience\n• **Contact details** and office location\n• **CQC rating** and quality standards\n• **Careers** and job opportunities\n• **The Rahula Trust** charity\n\nOr simply call us on **01202 948898** for a personal chat!"
     },
     {
         keywords: ["what can you do", "what can i ask", "how do you work", "what do you know"],
@@ -237,7 +237,7 @@ const knowledgeBase: QA[] = [
     }
 ];
 
-const FALLBACK = "I'm not sure about that one! 🤔 For specific questions, please call us on **0203 916 5797** or email **info@homelyhealthcare.org.uk** — our friendly team will be happy to help!";
+const FALLBACK = "I'm not sure about that one! 🤔 For specific questions, please call us on **01202 948898** or email **info@homelyhealth.uk** — our friendly team will be happy to help!";
 
 /* ═══════════════════════════════════════════════
    JOKES — categorised by theme, warm & lighthearted

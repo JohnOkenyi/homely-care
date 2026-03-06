@@ -36,7 +36,7 @@ export default function ContactUs() {
                                 <span className="italic font-light highlighted-text-gold">Book a Call</span>
                             </h1>
                             <p className="text-white/80 text-base md:text-xl font-light leading-relaxed mb-10 max-w-lg">
-                                Discuss how we can help. Experience a new paradigm of healthcare.
+                                Discuss how we can help.
                             </p>
 
                             <div className="flex flex-wrap justify-center lg:justify-start gap-4">

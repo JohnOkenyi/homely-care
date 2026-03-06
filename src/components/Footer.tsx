@@ -36,9 +36,14 @@ export default function Footer() {
                                 </span>
                             </div>
                         </Link>
-                        <p className="Text-16 text-white/50 font-light leading-relaxed max-w-sm">
+                        <p className="Text-16 text-white/50 font-light leading-relaxed max-w-sm mb-6">
                             Excellence in private home care, delivering dignity and compassion tailored to your unique lifestyle.
                         </p>
+                        <div className="p-4 rounded-xl border border-white/10 bg-white/5">
+                            <p className="text-sm font-light text-white/80 leading-relaxed italic">
+                                We were rated Good by CQC in our very first inspection and are striving to improve this to Excellent when we are next inspected.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Links Grid */}
@@ -67,14 +72,14 @@ export default function Footer() {
                             </nav>
                         </div>
 
-                        {/* Column 3: Inquiries */}
+                        {/* Column 3: Enquiries */}
                         <div className="flex flex-col gap-8">
-                            <h4 className="text-[11px] uppercase tracking-[0.4em] font-black text-[#D6B36A]/90">Inquiries</h4>
+                            <h4 className="text-[11px] uppercase tracking-[0.4em] font-black text-[#D6B36A]/90">Enquiries</h4>
                             <div className="flex flex-col gap-4">
-                                <p className="text-[18px] text-white font-serif italic tracking-tight">0203 916 5797</p>
+                                <p className="text-[18px] text-white font-serif italic tracking-tight">01202 948898</p>
                                 <div className="space-y-1 group cursor-pointer">
                                     <p className="text-[14px] text-white/60 group-hover:text-[#D6B36A] transition-colors break-all font-light">
-                                        info@homelyhealthcare.org.uk
+                                        info@homelyhealth.uk
                                     </p>
                                     <div className="h-px w-12 bg-[#D6B36A] scale-x-100 group-hover:w-full transition-all duration-700 origin-left" />
                                 </div>

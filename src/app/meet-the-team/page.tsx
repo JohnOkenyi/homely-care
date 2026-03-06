@@ -8,13 +8,13 @@ const team = [
     {
         name: "Douglas Matungamire",
         role: "Director / Registered Manager",
-        bio: "Douglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education, and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
+        bio: "Douglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
         img: "/images/team/douglas.jpg",
         accolade: "Founder & Director"
     },
     {
         name: "Maria Wilson",
-        role: "Office Manager",
+        role: "Operations Manager",
         bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
         img: "/images/team/maria.png",
         accolade: "NHS Experience"
@@ -29,14 +29,14 @@ const team = [
     {
         name: "Sara Randall",
         role: "Registered Manager",
-        bio: "Sara has over 35 years' experience in the social care industry, working for Social Services, the NHS, and care home settings. She is passionate about ensuring clients receive the best care and staff are trained to the highest standards.",
+        bio: "Sara has over 35 years' experience in the social care industry, working for Social Services, the NHS and in care home settings. She is passionate about ensuring clients receive the best care and all staff are trained to the highest standards to ensure this.",
         img: "/images/team/sara.png",
         accolade: "35+ Years Experience"
     },
     {
         name: "Pauline Makazhu",
         role: "Registered Manager",
-        bio: "A compassionate Registered Nurse and CQC Registered Manager, Pauline leads the TDDI / Complex Care Team, ensuring individuals with higher clinical needs receive safe, skilled, and responsive support.",
+        bio: "A compassionate Registered Nurse and CQC Registered Manager, Pauline leads the TDDI / Complex Care Team, ensuring individuals with higher clinical needs receive safe, skilled and responsive support.",
         img: "/images/team/pauline.jpg",
         accolade: "Clinical Excellence"
     }
@@ -140,11 +140,11 @@ export default function MeetTheTeam() {
                             </div>
                             <div>
                                 <h3 className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#D6B36A] mb-4">Continuous Growth</h3>
-                                <p className="text-sm text-[#1B1326]/60 font-light">Our team undergoes constant clinical training to remain at the absolute peak of their field.</p>
+                                <p className="text-sm text-[#1B1326]/60 font-light">Our team undergoes ongoing clinical training to remain at the absolute peak of their field.</p>
                             </div>
                             <div>
                                 <h3 className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#D6B36A] mb-4">Shared Purpose</h3>
-                                <p className="text-sm text-[#1B1326]/60 font-light">Every staff member is united by our &apos;Dignity First&apos; charter, ensuring consistency across every touchpoint.</p>
+                                <p className="text-sm text-[#1B1326]/60 font-light">Every staff member is fully committed and subscribes to our mission to provide compassionate, high quality healthcare enabling people to live independently and with dignity.</p>
                             </div>
                         </div>
                     </motion.div>
