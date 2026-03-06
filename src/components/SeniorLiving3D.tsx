@@ -160,7 +160,8 @@ export default function SeniorLiving3D() {
                 uniforms: {
                     tDiffuse: { value: null },
                     colorToReplace: { value: new THREE.Color(0xffffff) },
-                    threshold: { value: 0.4 }
+                    threshold: { value: 0.5 }, // Increased for better removal
+                    fuzziness: { value: 0.1 }  // Soft edge range
                 },
                 vertexShader: `
                     varying vec2 vUv;
@@ -173,14 +174,14 @@ export default function SeniorLiving3D() {
                     uniform sampler2D tDiffuse;
                     uniform vec3 colorToReplace;
                     uniform float threshold;
+                    uniform float fuzziness;
                     varying vec2 vUv;
                     void main() {
                         vec4 color = texture2D(tDiffuse, vUv);
-                        float diff = distance(color.rgb, colorToReplace);
-                        if (diff < threshold) {
-                            discard;
-                        }
-                        gl_FragColor = color;
+                        float dist = distance(color.rgb, colorToReplace);
+                        float alpha = smoothstep(threshold - fuzziness, threshold, dist);
+                        gl_FragColor = vec4(color.rgb, color.a * alpha);
+                        if (alpha < 0.01) discard;
                     }
                 `
             };
