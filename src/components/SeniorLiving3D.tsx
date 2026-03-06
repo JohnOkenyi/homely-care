@@ -119,9 +119,9 @@ export default function SeniorLiving3D() {
             wallRight.receiveShadow = true;
             houseGroup.add(wallRight);
 
-            // Left Wall (Expanded opening per user request)
-            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.4, houseD), matHouseBody);
-            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - 0.2, 0);
+            // Left Wall (Expanded opening per user request - Thinner top lintel)
+            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.1, houseD), matHouseBody);
+            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - 0.05, 0);
             houseGroup.add(wallL_Top);
 
             const wallL_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.3, houseD), matHouseBody);
@@ -152,7 +152,7 @@ export default function SeniorLiving3D() {
                 uniforms: {
                     tDiffuse: { value: null },
                     colorToReplace: { value: new THREE.Color(0xffffff) },
-                    threshold: { value: 0.25 }
+                    threshold: { value: 0.4 }
                 },
                 vertexShader: `
                     varying vec2 vUv;
@@ -280,10 +280,15 @@ export default function SeniorLiving3D() {
             frontTex.anisotropy = 16;
             frontTex.colorSpace = THREE.SRGBColorSpace;
             const frontMat = new THREE.MeshPhysicalMaterial({ map: frontTex, roughness: 0.9, clearcoat: 0.1 });
+
+            // Physical Sign Board Board above door
+            const signBoard = new THREE.Mesh(new THREE.BoxGeometry(4.2, 1.2, 0.15), matBaseTrim); // Using orange trim material
+            signBoard.position.set(0, 0.4 + 3.2, houseD / 2 + 0.06);
+            houseGroup.add(signBoard);
+
             const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
-            // Position above door, centered
-            frontTextPlane.position.set(0, 0.4 + 3.2, houseD / 2 + 0.01);
-            houseGroup.add(frontTextPlane);
+            frontTextPlane.position.set(0, 0, 0.08); // Relative to signBoard
+            signBoard.add(frontTextPlane);
 
             // Side Wall Text (Services) - Right side only (+X), because left is window
             const sideCanvas = document.createElement("canvas");
