@@ -98,16 +98,24 @@ export default function SeniorLiving3D() {
             // --- 3. HOLLOW HOUSE BODY (Individual Walls for Interior View) ---
             const wallThick = 0.15;
 
-            // Front Wall
-            const wallFront = new THREE.Mesh(new THREE.BoxGeometry(houseW, houseH, wallThick), matHouseBody);
-            wallFront.position.set(0, 0.4 + houseH / 2, houseD / 2);
+            // Front Wall (with Gable)
+            const wallFrontShape = new THREE.Shape();
+            wallFrontShape.moveTo(-houseW / 2, 0);
+            wallFrontShape.lineTo(houseW / 2, 0);
+            wallFrontShape.lineTo(houseW / 2, houseH);
+            wallFrontShape.lineTo(0, houseH + 2.0); // Gable peak
+            wallFrontShape.lineTo(-houseW / 2, houseH);
+            wallFrontShape.lineTo(-houseW / 2, 0);
+
+            const wallFront = new THREE.Mesh(new THREE.ExtrudeGeometry(wallFrontShape, { depth: wallThick, bevelEnabled: false }), matHouseBody);
+            wallFront.position.set(0, 0.4, houseD / 2 - wallThick);
             wallFront.castShadow = true;
             wallFront.receiveShadow = true;
             houseGroup.add(wallFront);
 
-            // Back Wall
-            const wallBack = new THREE.Mesh(new THREE.BoxGeometry(houseW, houseH, wallThick), matHouseBody);
-            wallBack.position.set(0, 0.4 + houseH / 2, -houseD / 2);
+            // Back Wall (with Gable)
+            const wallBack = new THREE.Mesh(new THREE.ExtrudeGeometry(wallFrontShape, { depth: wallThick, bevelEnabled: false }), matHouseBody);
+            wallBack.position.set(0, 0.4, -houseD / 2);
             wallBack.castShadow = true;
             wallBack.receiveShadow = true;
             houseGroup.add(wallBack);
@@ -201,23 +209,23 @@ export default function SeniorLiving3D() {
 
             houseGroup.add(interior);
 
-            // 4. PITCHED ROOF
-            const roofW = houseW + 1.2;
-            const roofH = 2.8;
-            const roofShape = new THREE.Shape();
-            roofShape.moveTo(-roofW / 2, 0);
-            roofShape.lineTo(roofW / 2, 0);
-            roofShape.lineTo(0, roofH);
-            roofShape.lineTo(-roofW / 2, 0);
+            // 4. TWO-PART SLOPED ROOF
+            const roofLength = houseD + 1.4;
+            const roofSlopeH = 2.4; // Slightly higher than gable for overhang
 
-            const exSettings = { depth: houseD + 1.4, bevelEnabled: false };
-            const roofGeo = new THREE.ExtrudeGeometry(roofShape, exSettings);
-            roofGeo.center();
-            const roof = new THREE.Mesh(roofGeo, matRoof);
-            roof.position.set(0, 0.4 + houseH + roofH / 2, 0);
-            roof.castShadow = true;
-            roof.receiveShadow = true;
-            houseGroup.add(roof);
+            // Right slope
+            const roofRight = new THREE.Mesh(new THREE.BoxGeometry(0.1, roofSlopeH * 1.5, roofLength), matRoof);
+            roofRight.position.set(houseW / 4 + 0.5, 0.4 + houseH + 0.8, 0);
+            roofRight.rotation.z = -Math.PI / 4.5;
+            roofRight.castShadow = true;
+            houseGroup.add(roofRight);
+
+            // Left slope
+            const roofLeft = new THREE.Mesh(new THREE.BoxGeometry(0.1, roofSlopeH * 1.5, roofLength), matRoof);
+            roofLeft.position.set(-houseW / 4 - 0.5, 0.4 + houseH + 0.8, 0);
+            roofLeft.rotation.z = Math.PI / 4.5;
+            roofLeft.castShadow = true;
+            houseGroup.add(roofLeft);
 
             // Chimney (on +X right slope)
             const chimney = new THREE.Mesh(new THREE.BoxGeometry(1.0, 3.0, 1.2), matRoof);
@@ -228,7 +236,7 @@ export default function SeniorLiving3D() {
             // 5. DOOR (Front +Z)
             const doorGroup = new THREE.Group();
             const doorW = 1.4;
-            const doorH = 2.4;
+            const doorH = 3.2; // Taller door per user request
 
             // Door Frame
             const frameMat = new THREE.MeshPhysicalMaterial({ color: 0x555555, roughness: 0.8 });
