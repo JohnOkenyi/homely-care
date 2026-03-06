@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 
 export default function Footer() {
@@ -39,11 +40,41 @@ export default function Footer() {
                         <p className="Text-16 text-white/50 font-light leading-relaxed max-w-sm mb-6">
                             Excellence in private home care, delivering dignity and compassion tailored to your unique lifestyle.
                         </p>
-                        <div className="p-4 rounded-xl border border-white/10 bg-white/5">
-                            <p className="text-sm font-light text-white/80 leading-relaxed italic">
-                                We were rated Good by CQC in our very first inspection and are striving to improve this to Excellent when we are next inspected.
-                            </p>
-                        </div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="relative group mt-2"
+                        >
+                            {/* Animated Glow Behind */}
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#D6B36A]/50 to-[#5B2A86]/50 rounded-xl opacity-40 group-hover:opacity-80 group-hover:blur-md transition-all duration-1000 animate-pulse"></div>
+
+                            {/* Card Content */}
+                            <div className="relative p-5 rounded-xl border border-[#D6B36A]/20 bg-[#0A0C10] flex flex-col gap-2 overflow-hidden">
+                                {/* Subtle internal shine */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+
+                                <div className="flex items-center gap-2">
+                                    <div className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
+                                    </div>
+                                    <span className="text-[10px] uppercase font-black tracking-[0.3em] text-[#D6B36A]">
+                                        CQC Rating
+                                    </span>
+                                </div>
+
+                                <p className="text-sm font-light text-white/90 leading-relaxed relative z-10 mt-1">
+                                    <span className="italic">We were rated </span>
+                                    <strong className="font-bold text-[#D6B36A]">Good</strong>
+                                    <span className="italic"> by CQC in our very first inspection and are striving to improve this to </span>
+                                    <strong className="font-bold text-white">Excellent</strong>
+                                    <span className="italic"> when we are next inspected.</span>
+                                </p>
+                            </div>
+                        </motion.div>
                     </div>
 
                     {/* Links Grid */}
