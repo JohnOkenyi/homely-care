@@ -37,12 +37,12 @@ export default function SeniorLiving3D() {
             const fov = isMobile ? 55 : 30;
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
 
-            // Moved camera further to reduce the house size
-            camera.position.set(17, 12, 17);
+            // Moved camera further back and slightly higher
+            camera.position.set(16, 14, 16);
 
             const controls = new OrbitControls(camera, renderer.domElement);
-            // Lowered the target to raise house, shifted X negative to move house left
-            controls.target.set(-1.0, 0.5, 0);
+            // Increased target Y to bring house down, shifted target X positive to move house left
+            controls.target.set(2.0, 2.0, 0);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
@@ -75,13 +75,14 @@ export default function SeniorLiving3D() {
             const matWindowGlass = new THREE.MeshPhysicalMaterial({
                 color: 0x87CEFA,
                 transparent: true,
-                opacity: 0.4,
+                opacity: 0.25, // Very transparent
                 roughness: 0.1,
-                metalness: 0.8,
-                transmission: 0.9,
-                ior: 1.5
-            }); // Realistic see-through glass
-            const matDarkInterior = new THREE.MeshBasicMaterial({ color: 0x111111 });
+                metalness: 0.9,
+                envMapIntensity: 1.0,
+                clearcoat: 1.0,
+                clearcoatRoughness: 0.1
+            }); // Highly reflective and see-through glass
+            const matDarkInterior = new THREE.MeshBasicMaterial({ color: 0x050a14 });
 
             const diorama = new THREE.Group();
 
@@ -168,22 +169,22 @@ export default function SeniorLiving3D() {
             // Window Frame
             const winFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.8 });
             const winFrame = new THREE.Mesh(new THREE.BoxGeometry(2.2, 2.6, 0.2), winFrameMat);
-            winFrame.position.set(-houseW / 2 + 0.05, 0.4 + 1.6, 0);
+            winFrame.position.set(-houseW / 2 - 0.02, 0.4 + 1.6, 0);
             winFrame.rotation.y = -Math.PI / 2;
             winGroup.add(winFrame);
 
-            // The Glass
-            const glassGeo = new THREE.BoxGeometry(2.0, 2.4, 0.05);
-            const glass = new THREE.Mesh(glassGeo, matWindowGlass);
-            glass.position.set(-houseW / 2 - 0.06, 0.4 + 1.6, 0);
-            glass.rotation.y = -Math.PI / 2;
-            winGroup.add(glass);
-
-            // Dark interior behind the glass to give illusion of depth
-            const interiorRoom = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 2.4), matDarkInterior);
-            interiorRoom.position.set(-houseW / 2 + 0.2, 0.4 + 1.6, 0);
+            // Dark interior behind the glass (placed slightly off the wall so it isn't hidden inside the solid block)
+            const interiorRoom = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 2.3), matDarkInterior);
+            interiorRoom.position.set(-houseW / 2 - 0.04, 0.4 + 1.6, 0);
             interiorRoom.rotation.y = -Math.PI / 2;
             winGroup.add(interiorRoom);
+
+            // The Glass
+            const glassGeo = new THREE.BoxGeometry(2.0, 2.4, 0.02);
+            const glass = new THREE.Mesh(glassGeo, matWindowGlass);
+            glass.position.set(-houseW / 2 - 0.1, 0.4 + 1.6, 0);
+            glass.rotation.y = -Math.PI / 2;
+            winGroup.add(glass);
 
             houseGroup.add(winGroup);
 
