@@ -68,79 +68,77 @@ export default function SeniorLiving3D() {
             fillLight.position.set(-15, 10, -15);
             scene.add(fillLight);
 
-            const matHouseBody = new THREE.MeshPhysicalMaterial({ color: 0xfaf8f5, roughness: 0.9 });
-            const matRoof = new THREE.MeshPhysicalMaterial({ color: 0x5B2A86, roughness: 0.8 }); // Brand purple roof to match site
-            const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x5B2A86, roughness: 0.6 }); // Homely purple
-            const matWindowGlass = new THREE.MeshPhysicalMaterial({ color: 0x90ccf2, transparent: true, opacity: 0.6, roughness: 0.1, metalness: 0.5 });
-            const matWindowFrame = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.8 });
+            const matHouseBody = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.9 });
+            const matRoof = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange roof to match sample
+            const matBaseTrim = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange base trim
+            const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x8F8F8F, roughness: 0.6 }); // Grey door
+            const matWindowGlass = new THREE.MeshPhysicalMaterial({ color: 0x87CEFA, roughness: 0.2, metalness: 0.1 }); // Light blue glass
 
             const diorama = new THREE.Group();
 
-            // 1. MINIMAL BASE (Removed grass/garden)
-            // 2. PATHWAY (Removed)
-
-            // 3. HOUSE BODY
+            // 3. HOUSE BODY & TRIM
             const houseGroup = new THREE.Group();
-            const houseW = 6;
-            const houseH = 3.5;
-            const houseD = 5;
+            const houseW = 6.0;
+            const houseH = 3.8;
+            const houseD = 5.0;
 
             const getRoundedBox = (w: number, h: number, d: number, r: number = 0.05) => {
                 return new RoundedBoxGeometry(w, h, d, 4, r);
             };
 
-            const body = new THREE.Mesh(getRoundedBox(houseW, houseH, houseD, 0.2), matHouseBody);
-            body.position.set(0, houseH / 2, 0);
+            // Base Trim
+            const baseTrim = new THREE.Mesh(getRoundedBox(houseW + 0.6, 0.4, houseD + 0.6, 0.05), matBaseTrim);
+            baseTrim.position.set(0, 0.2, 0);
+            baseTrim.receiveShadow = true;
+            baseTrim.castShadow = true;
+            houseGroup.add(baseTrim);
+
+            // Body
+            const body = new THREE.Mesh(getRoundedBox(houseW, houseH, houseD, 0.05), matHouseBody);
+            body.position.set(0, 0.4 + houseH / 2, 0);
             body.receiveShadow = true;
             body.castShadow = true;
             houseGroup.add(body);
 
-            // 4. ROOF (Oversized pyramid/cone style)
-            const roofShape = new THREE.ConeGeometry(5.2, 3.5, 4, 1, false, Math.PI / 4);
-            const roof = new THREE.Mesh(roofShape, matRoof);
-            roof.position.set(0, houseH + 1.75, 0);
+            // 4. PITCHED ROOF
+            const roofW = houseW + 1.2;
+            const roofH = 2.8;
+            const roofShape = new THREE.Shape();
+            roofShape.moveTo(-roofW / 2, 0);
+            roofShape.lineTo(roofW / 2, 0);
+            roofShape.lineTo(0, roofH);
+            roofShape.lineTo(-roofW / 2, 0);
+
+            const exSettings = { depth: houseD + 1.4, bevelEnabled: false };
+            const roofGeo = new THREE.ExtrudeGeometry(roofShape, exSettings);
+            roofGeo.center();
+            const roof = new THREE.Mesh(roofGeo, matRoof);
+            roof.position.set(0, 0.4 + houseH + roofH / 2, 0);
             roof.castShadow = true;
             roof.receiveShadow = true;
             houseGroup.add(roof);
 
-            // Chimney
-            const chimney = new THREE.Mesh(new THREE.BoxGeometry(0.8, 2, 0.8), new THREE.MeshStandardMaterial({ color: 0x8a3c3c }));
-            chimney.position.set(1.5, houseH + 1.5, -1);
+            // Chimney (on +X right slope)
+            const chimney = new THREE.Mesh(new THREE.BoxGeometry(1.0, 3.0, 1.2), matRoof);
+            chimney.position.set(1.4, 0.4 + houseH + 1.2, -0.6);
             chimney.castShadow = true;
             houseGroup.add(chimney);
 
-            // 5. DOOR (Front)
-            const doorW = 1.2;
-            const doorH = 2.2;
-            const door = new THREE.Mesh(new THREE.BoxGeometry(doorW, doorH, 0.1), matDoor);
-            door.position.set(0, doorH / 2, houseD / 2 + 0.02);
+            // 5. DOOR (Front +Z)
+            const doorW = 1.4;
+            const doorH = 2.4;
+            const door = new THREE.Mesh(new THREE.BoxGeometry(doorW, doorH, 0.2), matDoor);
+            // Placed on right side of the front face to match sample
+            door.position.set(1.0, 0.4 + doorH / 2, houseD / 2);
             door.castShadow = true;
-
-            // Door Handle
-            const handle = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 16), new THREE.MeshStandardMaterial({ color: 0xD6B36A, metalness: 0.8, roughness: 0.2 }));
-            handle.position.set(0.4, 0, 0.08);
-            door.add(handle);
-
             houseGroup.add(door);
 
-            // 6. WINDOWS
-            const createWindow = (wx: number, wy: number, wz: number, rotationY: number) => {
-                const winGroup = new THREE.Group();
-                const frame = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.2, 0.15), matWindowFrame);
-                const glass = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 0.16), matWindowGlass);
-                const crossH = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.1, 0.18), matWindowFrame);
-                const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.1, 1.0, 0.18), matWindowFrame);
-
-                winGroup.add(frame, glass, crossH, crossV);
-                winGroup.position.set(wx, wy, wz);
-                winGroup.rotation.y = rotationY;
-                return winGroup;
-            };
-
-            // Front windows
-            houseGroup.add(createWindow(-1.8, 1.4, houseD / 2 + 0.02, 0));
-            houseGroup.add(createWindow(1.8, 1.4, houseD / 2 + 0.02, 0));
-            // Removed side and back windows to make room for text rendering directly on the walls
+            // 6. WINDOW (Left side -X)
+            const glassGeo = new THREE.BoxGeometry(2.0, 2.4, 0.1);
+            const glass = new THREE.Mesh(glassGeo, matWindowGlass);
+            glass.position.set(-houseW / 2, 0.4 + 1.6, 0);
+            glass.rotation.y = -Math.PI / 2;
+            houseGroup.add(glass);
 
             diorama.add(houseGroup);
 
@@ -152,10 +150,10 @@ export default function SeniorLiving3D() {
             frontCanvas.height = 256;
             const fCtx = frontCanvas.getContext("2d");
             if (fCtx) {
-                fCtx.fillStyle = "#ffffff"; // Pure white for better contrast
+                fCtx.fillStyle = "#ffffff";
                 fCtx.fillRect(0, 0, 1024, 256);
                 fCtx.font = "bold 85px 'Inter', sans-serif";
-                fCtx.fillStyle = "#5B2A86"; // Brand purple
+                fCtx.fillStyle = "#F99D31"; // Orange text to match roof
                 fCtx.textAlign = "center";
                 fCtx.textBaseline = "middle";
                 fCtx.fillText("HOMELY HEALTH CARE", 512, 128);
@@ -163,24 +161,23 @@ export default function SeniorLiving3D() {
             const frontTex = new THREE.CanvasTexture(frontCanvas);
             frontTex.anisotropy = 16;
             frontTex.colorSpace = THREE.SRGBColorSpace;
-            // Using MeshBasicMaterial so the text is fully bright and unshaded by the sun
             const frontMat = new THREE.MeshBasicMaterial({ map: frontTex });
             const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
-            // Position above door
-            frontTextPlane.position.set(0, houseH - 0.7, houseD / 2 + 0.05);
+            // Position above door, centered
+            frontTextPlane.position.set(0, 0.4 + 3.2, houseD / 2 + 0.01);
             houseGroup.add(frontTextPlane);
 
-            // Side Wall Text (Services)
+            // Side Wall Text (Services) - Right side only (+X), because left is window
             const sideCanvas = document.createElement("canvas");
             sideCanvas.width = 1024;
             sideCanvas.height = 1024;
             const sCtx = sideCanvas.getContext("2d");
             if (sCtx) {
-                sCtx.fillStyle = "#ffffff"; // Pure white for maximum readability
+                sCtx.fillStyle = "#ffffff";
                 sCtx.fillRect(0, 0, 1024, 1024);
 
                 sCtx.font = "bold 95px 'Inter', sans-serif";
-                sCtx.fillStyle = "#5B2A86";
+                sCtx.fillStyle = "#F99D31";
                 sCtx.textAlign = "center";
                 sCtx.fillText("OUR SERVICES", 512, 180);
 
@@ -192,7 +189,7 @@ export default function SeniorLiving3D() {
                 sCtx.stroke();
 
                 sCtx.font = "bold 70px 'Inter', sans-serif";
-                sCtx.fillStyle = "#0A0C10"; // Very high contrast dark black/purple
+                sCtx.fillStyle = "#0A0C10";
                 const svcs = ["Home Care", "Live-in Care", "Supported Living", "Complex Care"];
                 svcs.forEach((svc, i) => {
                     sCtx.fillText(svc, 512, 400 + (i * 125));
@@ -201,18 +198,10 @@ export default function SeniorLiving3D() {
             const sideTex = new THREE.CanvasTexture(sideCanvas);
             sideTex.anisotropy = 16;
             sideTex.colorSpace = THREE.SRGBColorSpace;
-            // MeshBasicMaterial ensures it is always brightly lit
             const sideMat = new THREE.MeshBasicMaterial({ map: sideTex });
 
-            // Left Wall
-            const leftTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), sideMat);
-            leftTextPlane.position.set(-houseW / 2 - 0.05, houseH / 2, 0);
-            leftTextPlane.rotation.y = -Math.PI / 2;
-            houseGroup.add(leftTextPlane);
-
-            // Right Wall
             const rightTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), sideMat);
-            rightTextPlane.position.set(houseW / 2 + 0.05, houseH / 2, 0);
+            rightTextPlane.position.set(houseW / 2 + 0.01, 0.4 + houseH / 2, 0);
             rightTextPlane.rotation.y = Math.PI / 2;
             houseGroup.add(rightTextPlane);
 
@@ -225,22 +214,21 @@ export default function SeniorLiving3D() {
                 bCtx.fillStyle = "#ffffff";
                 bCtx.fillRect(0, 0, 1024, 1024);
                 bCtx.font = "bold 85px 'Inter', sans-serif";
-                bCtx.fillStyle = "#5B2A86";
+                bCtx.fillStyle = "#F99D31";
                 bCtx.textAlign = "center";
                 bCtx.fillText("HOMELY HEALTH CARE", 512, 300);
 
                 bCtx.font = "bold 50px 'Inter', sans-serif";
-                bCtx.fillStyle = "#D6B36A";
+                bCtx.fillStyle = "#0A0C10";
                 bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 512, 450);
                 bCtx.fillText("SINCE 2016", 512, 530);
             }
             const backTex = new THREE.CanvasTexture(backCanvas);
             backTex.anisotropy = 16;
             backTex.colorSpace = THREE.SRGBColorSpace;
-            // MeshBasicMaterial ensures it is always brightly lit
             const backMat = new THREE.MeshBasicMaterial({ map: backTex });
             const backTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), backMat);
-            backTextPlane.position.set(0, houseH / 2, -houseD / 2 - 0.05);
+            backTextPlane.position.set(0, 0.4 + houseH / 2, -houseD / 2 - 0.01);
             backTextPlane.rotation.y = Math.PI;
             houseGroup.add(backTextPlane);
 
