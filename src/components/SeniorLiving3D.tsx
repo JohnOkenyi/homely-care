@@ -306,17 +306,17 @@ export default function SeniorLiving3D() {
 
             // Front Wall Text (Above Door)
             const frontCanvas = document.createElement("canvas");
-            frontCanvas.width = 1024;
+            frontCanvas.width = 1536; // Wider for no clipping
             frontCanvas.height = 256;
             const fCtx = frontCanvas.getContext("2d");
             if (fCtx) {
                 fCtx.fillStyle = "#fdfcfb"; // Match house body
-                fCtx.fillRect(0, 0, 1024, 256);
+                fCtx.fillRect(0, 0, 1536, 256);
                 fCtx.font = "bold 75px 'Inter', sans-serif";
                 fCtx.fillStyle = "#e58a22"; // Slightly darker orange text to look painted
                 fCtx.textAlign = "center";
                 fCtx.textBaseline = "middle";
-                fCtx.fillText("HOMELY HEALTH CARE", 512, 128);
+                fCtx.fillText("HOMELY HEALTH CARE", 768, 128); // Centered at 768
             }
             const frontTex = new THREE.CanvasTexture(frontCanvas);
             frontTex.anisotropy = 16;
@@ -329,7 +329,7 @@ export default function SeniorLiving3D() {
             signBoard.position.set(0, 5.2, houseD / 2 + 0.06);
             houseGroup.add(signBoard);
 
-            const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
+            const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 1), frontMat);
             frontTextPlane.position.set(0, 0, 0.08); // Relative to signBoard
             signBoard.add(frontTextPlane);
 
@@ -373,30 +373,30 @@ export default function SeniorLiving3D() {
 
             // Back Wall
             const backCanvas = document.createElement("canvas");
-            backCanvas.width = 1024;
+            backCanvas.width = 2048; // Significantly wider to prevent clipping
             backCanvas.height = 1024;
             const bCtx = backCanvas.getContext("2d");
             if (bCtx) {
                 bCtx.fillStyle = "#fdfcfb";
-                bCtx.fillRect(0, 0, 1024, 1024);
+                bCtx.fillRect(0, 0, 2048, 1024);
 
                 // Title - Larger and more contrast
                 bCtx.font = "bold 120px 'Inter', sans-serif";
                 bCtx.fillStyle = "#d26d11"; // Punchier orange
                 bCtx.textAlign = "center";
-                bCtx.fillText("HOMELY HEALTH CARE", 512, 280);
+                bCtx.fillText("HOMELY HEALTH CARE", 1024, 280);
 
                 // Subtitles - Larger
                 bCtx.font = "bold 70px 'Inter', sans-serif";
                 bCtx.fillStyle = "#222221";
-                bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 512, 480);
-                bCtx.fillText("SINCE 2016", 512, 580);
+                bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 1024, 480);
+                bCtx.fillText("SINCE 2016", 1024, 580);
             }
             const backTex = new THREE.CanvasTexture(backCanvas);
             backTex.anisotropy = 16;
             backTex.colorSpace = THREE.SRGBColorSpace;
             const backMat = new THREE.MeshPhysicalMaterial({ map: backTex, roughness: 0.9, clearcoat: 0.1 });
-            const backTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), backMat);
+            const backTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 3.6), backMat); // Much wider plane
             backTextPlane.position.set(0, 0.4 + houseH / 2, -houseD / 2 - 0.01);
             backTextPlane.rotation.y = Math.PI;
             houseGroup.add(backTextPlane);
