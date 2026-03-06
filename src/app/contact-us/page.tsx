@@ -16,7 +16,7 @@ export default function ContactUs() {
         <main className="min-h-screen bg-[#0F1115] text-[#F2F2F2] overflow-hidden">
 
             {/* HERO / 3D SECTION */}
-            <section className="relative min-h-[40vh] lg:min-h-[90vh] flex items-center justify-center pt-28 pb-4 lg:pt-20 lg:pb-0 overflow-hidden">
+            <section className="relative min-h-[40vh] lg:min-h-[90vh] flex items-center justify-center pt-28 pb-4 lg:pt-20 lg:pb-16 overflow-hidden">
                 {/* Background Glows */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[140px] opacity-20 pointer-events-none" style={{ background: '#5B2A86' }} />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 pointer-events-none" style={{ background: '#D6B36A' }} />
@@ -57,7 +57,7 @@ export default function ContactUs() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.05 }}
-                            className="hidden lg:flex relative w-full lg:max-w-[700px] lg:h-[600px] items-center justify-center p-8 bg-white/[0.03] border border-white/5 rounded-[40px] shadow-2xl overflow-visible mt-0 lg:-translate-x-12 lg:-translate-y-32"
+                            className="hidden lg:flex relative w-full lg:max-w-[700px] lg:h-[600px] items-center justify-center p-8 bg-white/[0.03] border border-white/5 rounded-[40px] shadow-2xl overflow-visible mt-0 lg:-translate-x-12 lg:-translate-y-16"
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/5 to-transparent blur-3xl rounded-full scale-75" />
                             <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
@@ -69,7 +69,7 @@ export default function ContactUs() {
             </section>
 
             {/* CONTACT CARDS & FORM */}
-            <section id="enquiry-form" className="pt-12 pb-24 relative z-20 bg-white selection:bg-[#5B2A86] selection:text-white">
+            <section id="enquiry-form" className="py-24 relative z-20 bg-white selection:bg-[#5B2A86] selection:text-white">
                 <div className="grid-container">
                     <div className="grid lg:grid-cols-12 gap-16 items-start">
 
