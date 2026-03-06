@@ -29,14 +29,14 @@ export default function ContactUs() {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start gap-y-12"
+                            className="w-full lg:w-3/5 text-center lg:text-left flex flex-col items-center lg:items-start gap-y-12"
                         >
-                            <div>
-                                <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">Care Tailored to You</span>
-                                <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
+                            <div className="w-full">
+                                <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold whitespace-nowrap">Care Tailored to You</span>
+                                <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8 whitespace-nowrap">
                                     <span className="italic font-light highlighted-text-gold">Book a Call</span>
                                 </h1>
-                                <p className="text-white/80 text-base md:text-xl font-light leading-relaxed max-w-lg">
+                                <p className="text-white/80 text-base md:text-xl font-light leading-relaxed whitespace-nowrap">
                                     Discuss how we can help.
                                 </p>
                             </div>
