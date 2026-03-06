@@ -557,7 +557,7 @@ export default function Home() {
                   The Rahula Trust
                 </a>
                 <a
-                  href="#"
+                  href="https://www.regimentsupportservice.org/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-10 py-5 border border-[#1B1326] text-[#1B1326] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#1B1326] hover:text-white transition-all duration-500 hover:-translate-y-1"

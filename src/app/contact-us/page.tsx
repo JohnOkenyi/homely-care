@@ -29,15 +29,17 @@ export default function ContactUs() {
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start"
+                            className="max-w-2xl text-center lg:text-left flex flex-col items-center lg:items-start gap-y-12"
                         >
-                            <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">Care Tailored to You</span>
-                            <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
-                                <span className="italic font-light highlighted-text-gold">Book a Call</span>
-                            </h1>
-                            <p className="text-white/80 text-base md:text-xl font-light leading-relaxed mb-10 max-w-lg">
-                                Discuss how we can help.
-                            </p>
+                            <div>
+                                <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold">Care Tailored to You</span>
+                                <h1 className="Heading-Serif text-3xl xs:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[0.9] mb-8">
+                                    <span className="italic font-light highlighted-text-gold">Book a Call</span>
+                                </h1>
+                                <p className="text-white/80 text-base md:text-xl font-light leading-relaxed max-w-lg">
+                                    Discuss how we can help.
+                                </p>
+                            </div>
 
                             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
                                 <motion.a
@@ -55,11 +57,11 @@ export default function ContactUs() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.05 }}
-                            className="hidden lg:flex relative w-full lg:max-w-none lg:h-[580px] items-center justify-end overflow-hidden mt-0"
+                            className="hidden lg:flex relative w-full lg:max-w-none lg:h-[580px] items-center justify-end overflow-hidden mt-0 lg:-translate-x-12"
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
-                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
-                                <SeniorLiving3D />
+                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible lg:mr-auto">
+                                <SeniorLiving3D scale={0.88} />
                             </div>
                         </motion.div>
                     </div>
