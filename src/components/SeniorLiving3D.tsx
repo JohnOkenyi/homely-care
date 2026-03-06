@@ -37,8 +37,8 @@ export default function SeniorLiving3D() {
             const fov = isMobile ? 55 : 30;
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
 
-            // Moved camera further back, down to ground level (Y reduced), and adjusted offset
-            camera.position.set(16, 4, 16);
+            // Moved camera further back and up to reduce house size and improve window visibility
+            camera.position.set(21, 8, 21);
 
             const controls = new OrbitControls(camera, renderer.domElement);
             // Lowered target Y slightly from 3.0 to 1.5 to raise the house up in the viewport
@@ -85,7 +85,6 @@ export default function SeniorLiving3D() {
                 clearcoat: 1.0,
                 clearcoatRoughness: 0.1
             }); // Highly reflective and see-through glass
-            const matDarkInterior = new THREE.MeshBasicMaterial({ color: 0x050a14 });
 
             const diorama = new THREE.Group();
 
@@ -106,12 +105,88 @@ export default function SeniorLiving3D() {
             baseTrim.castShadow = true;
             houseGroup.add(baseTrim);
 
-            // Body
-            const body = new THREE.Mesh(getRoundedBox(houseW, houseH, houseD, 0.05), matHouseBody);
-            body.position.set(0, 0.4 + houseH / 2, 0);
-            body.receiveShadow = true;
-            body.castShadow = true;
-            houseGroup.add(body);
+            // --- 3. HOLLOW HOUSE BODY (Individual Walls for Interior View) ---
+            const wallThick = 0.15;
+
+            // Front Wall
+            const wallFront = new THREE.Mesh(new THREE.BoxGeometry(houseW, houseH, wallThick), matHouseBody);
+            wallFront.position.set(0, 0.4 + houseH / 2, houseD / 2);
+            wallFront.castShadow = true;
+            wallFront.receiveShadow = true;
+            houseGroup.add(wallFront);
+
+            // Back Wall
+            const wallBack = new THREE.Mesh(new THREE.BoxGeometry(houseW, houseH, wallThick), matHouseBody);
+            wallBack.position.set(0, 0.4 + houseH / 2, -houseD / 2);
+            wallBack.castShadow = true;
+            wallBack.receiveShadow = true;
+            houseGroup.add(wallBack);
+
+            // Right Wall
+            const wallRight = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH, houseD), matHouseBody);
+            wallRight.position.set(houseW / 2, 0.4 + houseH / 2, 0);
+            wallRight.castShadow = true;
+            wallRight.receiveShadow = true;
+            houseGroup.add(wallRight);
+
+            // Left Wall (Split into 4 pieces to create a real window opening)
+            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.8, houseD), matHouseBody);
+            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - 0.4, 0);
+            houseGroup.add(wallL_Top);
+
+            const wallL_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.6, houseD), matHouseBody);
+            wallL_Bottom.position.set(-houseW / 2, 0.4 + 0.3, 0);
+            houseGroup.add(wallL_Bottom);
+
+            const wallL_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 2.4, 1.5), matHouseBody);
+            wallL_Side1.position.set(-houseW / 2, 0.4 + 1.9, 1.75);
+            houseGroup.add(wallL_Side1);
+
+            const wallL_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 2.4, 1.5), matHouseBody);
+            wallL_Side2.position.set(-houseW / 2, 0.4 + 1.9, -1.75);
+            houseGroup.add(wallL_Side2);
+
+            // --- 8. INTERIOR CHARACTERS ---
+            const interior = new THREE.Group();
+            interior.position.set(-2.0, 0.41, 0);
+
+            // Simple Chair
+            const chair = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.8, 1.2), new THREE.MeshStandardMaterial({ color: 0x5c4033 }));
+            chair.position.set(0, 0.4, 0.3);
+            interior.add(chair);
+
+            const skinMat = new THREE.MeshStandardMaterial({ color: 0xffdbac });
+
+            // Old Man (seated)
+            const oldMan = new THREE.Group();
+            oldMan.position.set(0, 0.9, 0.3);
+            const manBody = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.9, 0.5), new THREE.MeshStandardMaterial({ color: 0x334455 }));
+            oldMan.add(manBody);
+            const manHead = new THREE.Mesh(new THREE.SphereGeometry(0.35, 12, 12), skinMat);
+            manHead.position.y = 0.8;
+            oldMan.add(manHead);
+            const hair = new THREE.Mesh(new THREE.SphereGeometry(0.36, 12, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0xeeeeee }));
+            hair.position.y = 0.85;
+            oldMan.add(hair);
+            interior.add(oldMan);
+
+            // Carer (standing next to him)
+            const carer = new THREE.Group();
+            carer.position.set(0.0, 0, -1.0);
+            const carerBody = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 2.2), new THREE.MeshStandardMaterial({ color: 0x88ccff }));
+            carerBody.position.y = 1.1;
+            carer.add(carerBody);
+            const carerHead = new THREE.Mesh(new THREE.SphereGeometry(0.35, 12, 12), skinMat);
+            carerHead.position.y = 2.4;
+            carer.add(carerHead);
+            interior.add(carer);
+
+            // Add interior light so characters are visible through the window
+            const intLight = new THREE.PointLight(0xffffff, 0.8, 10);
+            intLight.position.set(0, 2.5, 0);
+            interior.add(intLight);
+
+            houseGroup.add(interior);
 
             // 4. PITCHED ROOF
             const roofW = houseW + 1.2;
@@ -175,12 +250,6 @@ export default function SeniorLiving3D() {
             winFrame.position.set(-houseW / 2 - 0.02, 0.4 + 1.6, 0);
             winFrame.rotation.y = -Math.PI / 2;
             winGroup.add(winFrame);
-
-            // Dark interior behind the glass (placed slightly off the wall so it isn't hidden inside the solid block)
-            const interiorRoom = new THREE.Mesh(new THREE.PlaneGeometry(1.9, 2.3), matDarkInterior);
-            interiorRoom.position.set(-houseW / 2 - 0.04, 0.4 + 1.6, 0);
-            interiorRoom.rotation.y = -Math.PI / 2;
-            winGroup.add(interiorRoom);
 
             // The Glass
             const glassGeo = new THREE.BoxGeometry(2.0, 2.4, 0.02);
