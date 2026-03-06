@@ -119,21 +119,21 @@ export default function SeniorLiving3D() {
             wallRight.receiveShadow = true;
             houseGroup.add(wallRight);
 
-            // Left Wall (Split into 4 pieces to create a real window opening)
-            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.8, houseD), matHouseBody);
-            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - 0.4, 0);
+            // Left Wall (Expanded opening per user request)
+            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.4, houseD), matHouseBody);
+            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - 0.2, 0);
             houseGroup.add(wallL_Top);
 
-            const wallL_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.6, houseD), matHouseBody);
-            wallL_Bottom.position.set(-houseW / 2, 0.4 + 0.3, 0);
+            const wallL_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.3, houseD), matHouseBody);
+            wallL_Bottom.position.set(-houseW / 2, 0.4 + 0.15, 0);
             houseGroup.add(wallL_Bottom);
 
-            const wallL_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 2.4, 1.5), matHouseBody);
-            wallL_Side1.position.set(-houseW / 2, 0.4 + 1.9, 1.75);
+            const wallL_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH - 0.7, 0.4), matHouseBody);
+            wallL_Side1.position.set(-houseW / 2, 0.4 + houseH / 2, houseD / 2 - 0.2);
             houseGroup.add(wallL_Side1);
 
-            const wallL_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 2.4, 1.5), matHouseBody);
-            wallL_Side2.position.set(-houseW / 2, 0.4 + 1.9, -1.75);
+            const wallL_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH - 0.7, 0.4), matHouseBody);
+            wallL_Side2.position.set(-houseW / 2, 0.4 + houseH / 2, -houseD / 2 + 0.2);
             houseGroup.add(wallL_Side2);
 
             // --- 8. REALISTIC INTERIOR CHARACTERS (Billboards) ---
