@@ -37,8 +37,8 @@ export default function SeniorLiving3D() {
             const fov = isMobile ? 55 : 30;
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
 
-            // Moved camera even further back to reduce house size further
-            camera.position.set(23, 10, 23);
+            // Lowered camera Y for ground-level view and further back (26, 26) to keep house small
+            camera.position.set(26, 4, 26);
 
             const controls = new OrbitControls(camera, renderer.domElement);
             // Lowered target Y slightly from 3.0 to 1.5 to raise the house up in the viewport
@@ -75,6 +75,7 @@ export default function SeniorLiving3D() {
             const matRoof = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange roof to match sample
             const matBaseTrim = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange base trim
             const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x8F8F8F, roughness: 0.6 }); // Grey door
+            /*
             const matWindowGlass = new THREE.MeshPhysicalMaterial({
                 color: 0x87CEFA,
                 transparent: true,
@@ -84,6 +85,7 @@ export default function SeniorLiving3D() {
                 transmission: 0.95,
                 ior: 1.2
             }); // Extremely transparent glass to see inside easily
+            */
 
             const diorama = new THREE.Group();
 
@@ -129,20 +131,25 @@ export default function SeniorLiving3D() {
             houseGroup.add(wallRight);
 
             // Left Wall (Split into 4 pieces to create a real window opening)
-            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.8, houseD), matHouseBody);
-            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - 0.4, 0);
+            // Gap should be centered at Y=2.2 (relative to ground) or Y=1.8 (relative to floor)
+            // Hole height: 2.0. Hole width: 2.0 (in Z axis)
+            const holeH = 2.0;
+            const holeW_Z = 2.0;
+
+            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, (houseH - holeH) / 2, houseD), matHouseBody);
+            wallL_Top.position.set(-houseW / 2, 0.4 + houseH - (houseH - holeH) / 4, 0);
             houseGroup.add(wallL_Top);
 
-            const wallL_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.6, houseD), matHouseBody);
-            wallL_Bottom.position.set(-houseW / 2, 0.4 + 0.3, 0);
+            const wallL_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, (houseH - holeH) / 2, houseD), matHouseBody);
+            wallL_Bottom.position.set(-houseW / 2, 0.4 + (houseH - holeH) / 4, 0);
             houseGroup.add(wallL_Bottom);
 
-            const wallL_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 2.4, 1.5), matHouseBody);
-            wallL_Side1.position.set(-houseW / 2, 0.4 + 1.9, 1.75);
+            const wallL_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, holeH, (houseD - holeW_Z) / 2), matHouseBody);
+            wallL_Side1.position.set(-houseW / 2, 0.4 + houseH / 2, (houseD + holeW_Z) / 4);
             houseGroup.add(wallL_Side1);
 
-            const wallL_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 2.4, 1.5), matHouseBody);
-            wallL_Side2.position.set(-houseW / 2, 0.4 + 1.9, -1.75);
+            const wallL_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, holeH, (houseD - holeW_Z) / 2), matHouseBody);
+            wallL_Side2.position.set(-houseW / 2, 0.4 + houseH / 2, -(houseD + holeW_Z) / 4);
             houseGroup.add(wallL_Side2);
 
             // --- 8. INTERIOR CHARACTERS ---
@@ -245,17 +252,16 @@ export default function SeniorLiving3D() {
 
             // Window Frame
             const winFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.8 });
-            const winFrame = new THREE.Mesh(new THREE.BoxGeometry(2.2, 2.6, 0.2), winFrameMat);
-            winFrame.position.set(-houseW / 2 - 0.02, 0.4 + 1.6, 0);
-            winFrame.rotation.y = -Math.PI / 2;
+            const winFrame = new THREE.Mesh(new THREE.BoxGeometry(wallThick + 0.1, holeH + 0.1, holeW_Z + 0.1), winFrameMat);
+            winFrame.position.set(-houseW / 2, 0.4 + houseH / 2, 0);
             winGroup.add(winFrame);
 
-            // The Glass
-            const glassGeo = new THREE.BoxGeometry(2.0, 2.4, 0.02);
+            /*
+            const glassGeo = new THREE.BoxGeometry(houseW / 100, holeH - 0.1, holeW_Z - 0.1);
             const glass = new THREE.Mesh(glassGeo, matWindowGlass);
-            glass.position.set(-houseW / 2 - 0.1, 0.4 + 1.6, 0);
-            glass.rotation.y = -Math.PI / 2;
+            glass.position.set(-houseW / 2, 0.4 + houseH / 2, 0);
             winGroup.add(glass);
+            */
 
             houseGroup.add(winGroup);
 
@@ -282,8 +288,8 @@ export default function SeniorLiving3D() {
             frontTex.colorSpace = THREE.SRGBColorSpace;
             const frontMat = new THREE.MeshBasicMaterial({ map: frontTex });
             const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
-            // Position above door, centered
-            frontTextPlane.position.set(0, 0.4 + 3.2, houseD / 2 + 0.05);
+            // Position above door, centered, cleared wall thickness (2.5 + 0.075 + 0.05)
+            frontTextPlane.position.set(0, 0.4 + 3.2, 2.625);
             houseGroup.add(frontTextPlane);
 
             // Side Wall Text (Services) - Right side only (+X), because left is window
@@ -320,7 +326,8 @@ export default function SeniorLiving3D() {
             const sideMat = new THREE.MeshBasicMaterial({ map: sideTex });
 
             const rightTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), sideMat);
-            rightTextPlane.position.set(houseW / 2 + 0.05, 0.4 + houseH / 2, 0);
+            // Cleared wall thickness (3.0 + 0.075 + 0.05)
+            rightTextPlane.position.set(3.125, 0.4 + houseH / 2, 0);
             rightTextPlane.rotation.y = Math.PI / 2;
             houseGroup.add(rightTextPlane);
 
@@ -347,7 +354,8 @@ export default function SeniorLiving3D() {
             backTex.colorSpace = THREE.SRGBColorSpace;
             const backMat = new THREE.MeshBasicMaterial({ map: backTex });
             const backTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), backMat);
-            backTextPlane.position.set(0, 0.4 + houseH / 2, -houseD / 2 - 0.05);
+            // Cleared wall thickness (-(2.5 + 0.075 + 0.05))
+            backTextPlane.position.set(0, 0.4 + houseH / 2, -2.625);
             backTextPlane.rotation.y = Math.PI;
             houseGroup.add(backTextPlane);
 
