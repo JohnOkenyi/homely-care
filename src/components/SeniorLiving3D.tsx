@@ -75,16 +75,6 @@ export default function SeniorLiving3D() {
             const matRoof = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange roof to match sample
             const matBaseTrim = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange base trim
             const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x8F8F8F, roughness: 0.6 }); // Grey door
-            const matWindowGlass = new THREE.MeshPhysicalMaterial({
-                color: 0x87CEFA,
-                transparent: true,
-                opacity: 0.25, // Very transparent
-                roughness: 0.1,
-                metalness: 0.9,
-                envMapIntensity: 1.0,
-                clearcoat: 1.0,
-                clearcoatRoughness: 0.1
-            }); // Highly reflective and see-through glass
 
             const diorama = new THREE.Group();
 
@@ -241,24 +231,9 @@ export default function SeniorLiving3D() {
             doorGroup.add(door);
             houseGroup.add(doorGroup);
 
-            // 6. WINDOW (Left side -X) - Realistic see-through Glass
-            const winGroup = new THREE.Group();
+            // 6. WINDOW (Left side -X) - Removed to show interior
+            // Window frame and glass removed per user request to see inside the house.
 
-            // Window Frame
-            const winFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.8 });
-            const winFrame = new THREE.Mesh(new THREE.BoxGeometry(2.2, 2.6, 0.2), winFrameMat);
-            winFrame.position.set(-houseW / 2 - 0.02, 0.4 + 1.6, 0);
-            winFrame.rotation.y = -Math.PI / 2;
-            winGroup.add(winFrame);
-
-            // The Glass
-            const glassGeo = new THREE.BoxGeometry(2.0, 2.4, 0.02);
-            const glass = new THREE.Mesh(glassGeo, matWindowGlass);
-            glass.position.set(-houseW / 2 - 0.1, 0.4 + 1.6, 0);
-            glass.rotation.y = -Math.PI / 2;
-            winGroup.add(glass);
-
-            houseGroup.add(winGroup);
 
             diorama.add(houseGroup);
 
