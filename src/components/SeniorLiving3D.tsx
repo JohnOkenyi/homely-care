@@ -379,15 +379,18 @@ export default function SeniorLiving3D() {
             if (bCtx) {
                 bCtx.fillStyle = "#fdfcfb";
                 bCtx.fillRect(0, 0, 1024, 1024);
-                bCtx.font = "bold 80px 'Inter', sans-serif";
-                bCtx.fillStyle = "#e58a22";
-                bCtx.textAlign = "center";
-                bCtx.fillText("HOMELY HEALTH CARE", 512, 300);
 
-                bCtx.font = "bold 45px 'Inter', sans-serif";
-                bCtx.fillStyle = "#222222";
-                bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 512, 450);
-                bCtx.fillText("SINCE 2016", 512, 530);
+                // Title - Larger and more contrast
+                bCtx.font = "bold 120px 'Inter', sans-serif";
+                bCtx.fillStyle = "#d26d11"; // Punchier orange
+                bCtx.textAlign = "center";
+                bCtx.fillText("HOMELY HEALTH CARE", 512, 280);
+
+                // Subtitles - Larger
+                bCtx.font = "bold 70px 'Inter', sans-serif";
+                bCtx.fillStyle = "#222221";
+                bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 512, 480);
+                bCtx.fillText("SINCE 2016", 512, 580);
             }
             const backTex = new THREE.CanvasTexture(backCanvas);
             backTex.anisotropy = 16;
