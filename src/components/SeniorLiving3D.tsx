@@ -74,7 +74,6 @@ export default function SeniorLiving3D() {
             const matHouseBody = new THREE.MeshPhysicalMaterial({ color: 0xfdfcfb, roughness: 0.9 });
             const matRoof = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange roof to match sample
             const matBaseTrim = new THREE.MeshPhysicalMaterial({ color: 0xF99D31, roughness: 0.8 }); // Orange base trim
-            const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x8F8F8F, roughness: 0.6 }); // Grey door
 
             const diorama = new THREE.Group();
 
@@ -218,7 +217,7 @@ export default function SeniorLiving3D() {
 
             // Right Slope Group (Anchored at Peak)
             const roofRightGroup = new THREE.Group();
-            roofRightGroup.position.set(0, absolutePeakY, 0);
+            roofRightGroup.position.set(0, absolutePeakY + 0.02, 0); // Tiny offset to fix Z-fighting
             houseGroup.add(roofRightGroup);
 
             const roofRightPanel = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
@@ -229,7 +228,7 @@ export default function SeniorLiving3D() {
 
             // Left Slope Group (Anchored at Peak)
             const roofLeftGroup = new THREE.Group();
-            roofLeftGroup.position.set(0, absolutePeakY, 0);
+            roofLeftGroup.position.set(0, absolutePeakY + 0.02, 0); // Tiny offset to fix Z-fighting
             houseGroup.add(roofLeftGroup);
 
             const roofLeftPanel = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
@@ -256,19 +255,43 @@ export default function SeniorLiving3D() {
             doorGroup.add(doorFrame);
 
             // Door panel
-            const door = new THREE.Mesh(new THREE.BoxGeometry(doorW, doorH, 0.2), matDoor);
+            const matDoorRealistic = new THREE.MeshPhysicalMaterial({
+                color: 0x4a3728, // Dark walnut wood
+                roughness: 0.3,
+                metalness: 0.1,
+                clearcoat: 0.5,
+                clearcoatRoughness: 0.1
+            });
+            const door = new THREE.Mesh(new THREE.BoxGeometry(doorW, doorH, 0.2), matDoorRealistic);
             door.position.set(1.0, 0.4 + doorH / 2, houseD / 2 + 0.05);
             door.castShadow = true;
 
-            // Door Handle
-            const handle = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 16), new THREE.MeshStandardMaterial({ color: 0xD6B36A, roughness: 0.2, metalness: 0.8 }));
-            handle.position.set(0.5, 0, 0.12);
-            door.add(handle);
+            // Add Glass Panels to Door
+            const glassMat = new THREE.MeshPhysicalMaterial({
+                color: 0x88ccff,
+                transparent: true,
+                opacity: 0.4,
+                roughness: 0,
+                metalness: 1,
+                transmission: 0.5
+            });
+            const glassL = new THREE.Mesh(new THREE.BoxGeometry(0.3, 2.5, 0.05), glassMat);
+            glassL.position.set(-0.3, 0.2, 0.11);
+            door.add(glassL);
 
-            // Door groove/panel detail
-            const doorPanel = new THREE.Mesh(new THREE.BoxGeometry(0.9, 1.8, 0.21), new THREE.MeshPhysicalMaterial({ color: 0x7A7A7A, roughness: 0.7 }));
-            doorPanel.position.set(0, 0.1, 0);
-            door.add(doorPanel);
+            const glassR = new THREE.Mesh(new THREE.BoxGeometry(0.3, 2.5, 0.05), glassMat);
+            glassR.position.set(0.3, 0.2, 0.11);
+            door.add(glassR);
+
+            // Detailed Door Handle
+            const knobBase = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.1, 16), new THREE.MeshStandardMaterial({ color: 0xD6B36A, metalness: 0.9 }));
+            knobBase.rotation.x = Math.PI / 2;
+            knobBase.position.set(0.5, 0, 0.12);
+            door.add(knobBase);
+
+            const knobHandle = new THREE.Mesh(new THREE.SphereGeometry(0.08, 16, 16), new THREE.MeshStandardMaterial({ color: 0xD6B36A, roughness: 0.2, metalness: 0.9 }));
+            knobHandle.position.set(0.5, 0, 0.2);
+            door.add(knobHandle);
 
             doorGroup.add(door);
             houseGroup.add(doorGroup);
@@ -302,8 +325,8 @@ export default function SeniorLiving3D() {
 
             // Physical Sign Board Board above door
             const signBoard = new THREE.Mesh(new THREE.BoxGeometry(4.2, 1.2, 0.15), matBaseTrim); // Using orange trim material
-            // Center between door top (4.2) and roof shoulder (5.2) -> Y = 4.7
-            signBoard.position.set(0, 4.7, houseD / 2 + 0.06);
+            // Raised higher per user request (Y = 5.2)
+            signBoard.position.set(0, 5.2, houseD / 2 + 0.06);
             houseGroup.add(signBoard);
 
             const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
