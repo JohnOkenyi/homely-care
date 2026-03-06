@@ -177,39 +177,22 @@ export default function SeniorLiving3D() {
                 `
             };
 
-            // Seated Old Man
-            const manTex = textureLoader.load('/images/char-man.png');
-            manTex.colorSpace = THREE.SRGBColorSpace;
-            const manMat = new THREE.ShaderMaterial({
+            // Carer helping Seated Old Man (Unified Billboard)
+            const helpingTex = textureLoader.load('/images/char-helping.png');
+            helpingTex.colorSpace = THREE.SRGBColorSpace;
+            const helpingMat = new THREE.ShaderMaterial({
                 uniforms: THREE.UniformsUtils.clone(chromaKeyShader.uniforms),
                 vertexShader: chromaKeyShader.vertexShader,
                 fragmentShader: chromaKeyShader.fragmentShader,
                 transparent: true,
                 side: THREE.DoubleSide
             });
-            manMat.uniforms.tDiffuse.value = manTex;
+            helpingMat.uniforms.tDiffuse.value = helpingTex;
 
-            const manPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 3.0), manMat);
-            manPlane.position.set(0.2, 1.5, 0.3);
-            manPlane.rotation.y = Math.PI / 2;
-            interior.add(manPlane);
-
-            // Standing Carer
-            const carerTex = textureLoader.load('/images/char-carer.png');
-            carerTex.colorSpace = THREE.SRGBColorSpace;
-            const carerMat = new THREE.ShaderMaterial({
-                uniforms: THREE.UniformsUtils.clone(chromaKeyShader.uniforms),
-                vertexShader: chromaKeyShader.vertexShader,
-                fragmentShader: chromaKeyShader.fragmentShader,
-                transparent: true,
-                side: THREE.DoubleSide
-            });
-            carerMat.uniforms.tDiffuse.value = carerTex;
-
-            const carerPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 3.2), carerMat);
-            carerPlane.position.set(0.1, 1.6, -1.2);
-            carerPlane.rotation.y = Math.PI / 2;
-            interior.add(carerPlane);
+            const helpingPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.8, 3.8), helpingMat);
+            helpingPlane.position.set(0.1, 1.8, -0.4);
+            helpingPlane.rotation.y = Math.PI / 2;
+            interior.add(helpingPlane);
 
             // Add interior light so characters are visible through the window
             const intLight = new THREE.PointLight(0xffffff, 0.8, 10);
