@@ -57,11 +57,11 @@ export default function ContactUs() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.05 }}
-                            className="hidden lg:flex relative w-full lg:max-w-[800px] lg:h-[580px] items-center justify-center overflow-visible mt-0 lg:-translate-x-16 lg:-translate-y-40"
+                            className="hidden lg:flex relative w-full lg:max-w-[700px] lg:h-[600px] items-center justify-center p-8 bg-white/[0.03] border border-white/5 rounded-[40px] shadow-2xl overflow-visible mt-0 lg:-translate-y-8"
                         >
-                            <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
+                            <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/5 to-transparent blur-3xl rounded-full scale-75" />
                             <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
-                                <SeniorLiving3D scale={0.88} />
+                                <SeniorLiving3D scale={1.0} />
                             </div>
                         </motion.div>
                     </div>
