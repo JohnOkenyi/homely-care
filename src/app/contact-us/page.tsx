@@ -22,14 +22,14 @@ export default function ContactUs() {
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 pointer-events-none" style={{ background: '#D6B36A' }} />
 
                 <div className="grid-container relative z-10 w-full">
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
 
                         {/* LEFT: TEXT CONTENT */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                            className="w-full lg:w-3/5 text-center lg:text-left flex flex-col items-center lg:items-start gap-y-12"
+                            className="w-full lg:w-auto text-center lg:text-left flex flex-col items-center lg:items-start gap-y-12"
                         >
                             <div className="w-full">
                                 <span className="text-[#D6B36A] text-[10px] md:text-xs tracking-[0.4em] uppercase block mb-6 font-bold whitespace-nowrap">Care Tailored to You</span>
@@ -57,10 +57,10 @@ export default function ContactUs() {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5, delay: 0.05 }}
-                            className="hidden lg:flex relative w-full lg:max-w-none lg:h-[580px] items-center justify-end overflow-hidden mt-0 lg:-translate-x-32 lg:-translate-y-16"
+                            className="hidden lg:flex relative w-full lg:max-w-[600px] lg:h-[580px] items-center justify-center overflow-hidden mt-0 lg:-translate-y-28"
                         >
                             <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/10 to-transparent blur-3xl rounded-full scale-75" />
-                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible lg:mr-auto">
+                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
                                 <SeniorLiving3D scale={0.88} />
                             </div>
                         </motion.div>
