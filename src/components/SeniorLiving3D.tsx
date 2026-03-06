@@ -66,38 +66,16 @@ export default function SeniorLiving3D() {
             fillLight.position.set(-15, 10, -15);
             scene.add(fillLight);
 
-            // --- MATERIALS ---
-            const matGrass = new THREE.MeshPhysicalMaterial({ color: 0x86a873, roughness: 0.9, clearcoat: 0.1 });
             const matHouseBody = new THREE.MeshPhysicalMaterial({ color: 0xfaf8f5, roughness: 0.9 });
             const matRoof = new THREE.MeshPhysicalMaterial({ color: 0x9c4a4a, roughness: 0.8 }); // Reddish warm roof
             const matDoor = new THREE.MeshPhysicalMaterial({ color: 0x5B2A86, roughness: 0.6 }); // Homely purple
             const matWindowGlass = new THREE.MeshPhysicalMaterial({ color: 0x90ccf2, transparent: true, opacity: 0.6, roughness: 0.1, metalness: 0.5 });
             const matWindowFrame = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.8 });
-            const matPath = new THREE.MeshPhysicalMaterial({ color: 0xd9cbb8, roughness: 0.9 });
-            const matTreeTrunk = new THREE.MeshPhysicalMaterial({ color: 0x5c4033, roughness: 0.9 });
-            const matTreeLeaves = new THREE.MeshPhysicalMaterial({ color: 0x4a7c59, roughness: 0.8 });
 
             const diorama = new THREE.Group();
 
-            // 1. CYLINDRICAL GRASS BASE
-            const baseGeo = new THREE.CylinderGeometry(8, 8, 0.8, 64);
-            const baseObj = new THREE.Mesh(baseGeo, matGrass);
-            baseObj.position.y = -0.4;
-            baseObj.receiveShadow = true;
-            diorama.add(baseObj);
-
-            // Soil under base
-            const soilGeo = new THREE.CylinderGeometry(7.8, 7.5, 0.6, 64);
-            const soilObj = new THREE.Mesh(soilGeo, new THREE.MeshStandardMaterial({ color: 0x3d2817 }));
-            soilObj.position.y = -1.0;
-            diorama.add(soilObj);
-
-            // 2. PATHWAY
-            const pathGeo = new THREE.BoxGeometry(2, 0.05, 5);
-            const pathInfo = new THREE.Mesh(pathGeo, matPath);
-            pathInfo.position.set(0, 0.02, 4.5);
-            pathInfo.receiveShadow = true;
-            diorama.add(pathInfo);
+            // 1. MINIMAL BASE (Removed grass/garden)
+            // 2. PATHWAY (Removed)
 
             // 3. HOUSE BODY
             const houseGroup = new THREE.Group();
@@ -160,61 +138,106 @@ export default function SeniorLiving3D() {
             // Front windows
             houseGroup.add(createWindow(-1.8, 1.4, houseD / 2 + 0.02, 0));
             houseGroup.add(createWindow(1.8, 1.4, houseD / 2 + 0.02, 0));
-            // Back windows
-            houseGroup.add(createWindow(-1.5, 1.4, -houseD / 2 - 0.02, Math.PI));
-            houseGroup.add(createWindow(1.5, 1.4, -houseD / 2 - 0.02, Math.PI));
-            // Side windows
-            houseGroup.add(createWindow(-houseW / 2 - 0.02, 1.4, 0, -Math.PI / 2));
-            houseGroup.add(createWindow(houseW / 2 + 0.02, 1.4, 0, Math.PI / 2));
+            // Removed side and back windows to make room for text rendering directly on the walls
 
             diorama.add(houseGroup);
 
-            // 7. EXTERIOR DETAILS (Trees, Bushes)
-            const createTree = (tx: number, tz: number, scale: number) => {
-                const treeGroup = new THREE.Group();
-                // Trunk
-                const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.3, 1.5), matTreeTrunk);
-                trunk.position.y = 0.75;
-                trunk.castShadow = true;
-                trunk.receiveShadow = true;
+            // 7. WALL TEXT (Homely Health Care & Services)
 
-                // Leaves
-                const leaves1 = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 16), matTreeLeaves);
-                leaves1.position.y = 2.0;
-                leaves1.castShadow = true;
-                leaves1.receiveShadow = true;
+            // Front Wall Text (Above Door)
+            const frontCanvas = document.createElement("canvas");
+            frontCanvas.width = 1024;
+            frontCanvas.height = 256;
+            const fCtx = frontCanvas.getContext("2d");
+            if (fCtx) {
+                fCtx.fillStyle = "#faf8f5"; // Match house
+                fCtx.fillRect(0, 0, 1024, 256);
+                fCtx.font = "bold 80px 'Inter', sans-serif";
+                fCtx.fillStyle = "#5B2A86"; // Brand purple
+                fCtx.textAlign = "center";
+                fCtx.textBaseline = "middle";
+                fCtx.fillText("HOMELY HEALTH CARE", 512, 128);
+            }
+            const frontTex = new THREE.CanvasTexture(frontCanvas);
+            frontTex.anisotropy = 16;
+            frontTex.colorSpace = THREE.SRGBColorSpace;
+            const frontMat = new THREE.MeshPhysicalMaterial({ map: frontTex, roughness: 0.9, clearcoat: 0.1 });
+            const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
+            // Position above door
+            frontTextPlane.position.set(0, houseH - 0.7, houseD / 2 + 0.05);
+            houseGroup.add(frontTextPlane);
 
-                const leaves2 = new THREE.Mesh(new THREE.SphereGeometry(0.9, 16, 16), matTreeLeaves);
-                leaves2.position.set(0.5, 2.5, -0.2);
-                leaves2.castShadow = true;
+            // Side Wall Text (Services)
+            const sideCanvas = document.createElement("canvas");
+            sideCanvas.width = 1024;
+            sideCanvas.height = 1024;
+            const sCtx = sideCanvas.getContext("2d");
+            if (sCtx) {
+                sCtx.fillStyle = "#faf8f5";
+                sCtx.fillRect(0, 0, 1024, 1024);
 
-                const leaves3 = new THREE.Mesh(new THREE.SphereGeometry(0.8, 16, 16), matTreeLeaves);
-                leaves3.position.set(-0.4, 2.3, 0.5);
-                leaves3.castShadow = true;
+                sCtx.font = "bold 90px 'Inter', sans-serif";
+                sCtx.fillStyle = "#5B2A86";
+                sCtx.textAlign = "center";
+                sCtx.fillText("OUR SERVICES", 512, 180);
 
-                treeGroup.add(trunk, leaves1, leaves2, leaves3);
-                treeGroup.position.set(tx, 0, tz);
-                treeGroup.scale.set(scale, scale, scale);
-                return treeGroup;
-            };
+                sCtx.strokeStyle = "#D6B36A";
+                sCtx.lineWidth = 6;
+                sCtx.beginPath();
+                sCtx.moveTo(200, 240);
+                sCtx.lineTo(824, 240);
+                sCtx.stroke();
 
-            const createBush = (bx: number, bz: number, scale: number) => {
-                const bush = new THREE.Mesh(new THREE.SphereGeometry(0.6, 16, 16), matTreeLeaves);
-                bush.position.set(bx, 0.3, bz);
-                bush.scale.set(scale, scale, scale);
-                bush.castShadow = true;
-                bush.receiveShadow = true;
-                return bush;
-            };
+                sCtx.font = "bold 65px 'Inter', sans-serif";
+                sCtx.fillStyle = "#1B1326";
+                const svcs = ["Home Care", "Live-in Care", "Supported Living", "Complex Care"];
+                svcs.forEach((svc, i) => {
+                    sCtx.fillText(svc, 512, 400 + (i * 120));
+                });
+            }
+            const sideTex = new THREE.CanvasTexture(sideCanvas);
+            sideTex.anisotropy = 16;
+            sideTex.colorSpace = THREE.SRGBColorSpace;
+            const sideMat = new THREE.MeshPhysicalMaterial({ map: sideTex, roughness: 0.9, clearcoat: 0.1 });
 
-            diorama.add(createTree(-5, -3, 1.2));
-            diorama.add(createTree(4.5, -4, 0.9));
-            diorama.add(createTree(5, 3, 1.0));
+            // Left Wall
+            const leftTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), sideMat);
+            leftTextPlane.position.set(-houseW / 2 - 0.05, houseH / 2, 0);
+            leftTextPlane.rotation.y = -Math.PI / 2;
+            houseGroup.add(leftTextPlane);
 
-            diorama.add(createBush(-3.5, 3, 1.0));
-            diorama.add(createBush(-2.8, 3.5, 0.7));
-            diorama.add(createBush(4, 2, 0.9));
-            diorama.add(createBush(3, 3, 1.2));
+            // Right Wall
+            const rightTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), sideMat);
+            rightTextPlane.position.set(houseW / 2 + 0.05, houseH / 2, 0);
+            rightTextPlane.rotation.y = Math.PI / 2;
+            houseGroup.add(rightTextPlane);
+
+            // Back Wall
+            const backCanvas = document.createElement("canvas");
+            backCanvas.width = 1024;
+            backCanvas.height = 1024;
+            const bCtx = backCanvas.getContext("2d");
+            if (bCtx) {
+                bCtx.fillStyle = "#faf8f5";
+                bCtx.fillRect(0, 0, 1024, 1024);
+                bCtx.font = "bold 80px 'Inter', sans-serif";
+                bCtx.fillStyle = "#5B2A86";
+                bCtx.textAlign = "center";
+                bCtx.fillText("HOMELY HEALTH CARE", 512, 300);
+
+                bCtx.font = "bold 46px 'Inter', sans-serif";
+                bCtx.fillStyle = "#D6B36A";
+                bCtx.fillText("PROVIDING EXCEPTIONAL CARE", 512, 450);
+                bCtx.fillText("SINCE 2016", 512, 530);
+            }
+            const backTex = new THREE.CanvasTexture(backCanvas);
+            backTex.anisotropy = 16;
+            backTex.colorSpace = THREE.SRGBColorSpace;
+            const backMat = new THREE.MeshPhysicalMaterial({ map: backTex, roughness: 0.9, clearcoat: 0.1 });
+            const backTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), backMat);
+            backTextPlane.position.set(0, houseH / 2, -houseD / 2 - 0.05);
+            backTextPlane.rotation.y = Math.PI;
+            houseGroup.add(backTextPlane);
 
             scene.add(diorama);
 
