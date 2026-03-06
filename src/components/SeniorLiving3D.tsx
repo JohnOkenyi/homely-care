@@ -136,7 +136,7 @@ export default function SeniorLiving3D() {
             wallL_Side2.position.set(-houseW / 2, 0.4 + 1.9, -1.75);
             houseGroup.add(wallL_Side2);
 
-            // --- 8. INTERIOR CHARACTERS ---
+            // --- 8. REALISTIC INTERIOR CHARACTERS (Billboards) ---
             const interior = new THREE.Group();
             interior.position.set(-2.0, 0.41, 0);
 
@@ -145,31 +145,71 @@ export default function SeniorLiving3D() {
             chair.position.set(0, 0.4, 0.3);
             interior.add(chair);
 
-            const skinMat = new THREE.MeshStandardMaterial({ color: 0xffdbac });
+            const textureLoader = new THREE.TextureLoader();
 
-            // Old Man (seated)
-            const oldMan = new THREE.Group();
-            oldMan.position.set(0, 0.9, 0.3);
-            const manBody = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.9, 0.5), new THREE.MeshStandardMaterial({ color: 0x334455 }));
-            oldMan.add(manBody);
-            const manHead = new THREE.Mesh(new THREE.SphereGeometry(0.35, 12, 12), skinMat);
-            manHead.position.y = 0.8;
-            oldMan.add(manHead);
-            const hair = new THREE.Mesh(new THREE.SphereGeometry(0.36, 12, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0xeeeeee }));
-            hair.position.y = 0.85;
-            oldMan.add(hair);
-            interior.add(oldMan);
+            // Helpful Shader to remove white background from generated images
+            const chromaKeyShader = {
+                uniforms: {
+                    tDiffuse: { value: null },
+                    colorToReplace: { value: new THREE.Color(0xffffff) },
+                    threshold: { value: 0.1 }
+                },
+                vertexShader: `
+                    varying vec2 vUv;
+                    void main() {
+                        vUv = uv;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform sampler2D tDiffuse;
+                    uniform vec3 colorToReplace;
+                    uniform float threshold;
+                    varying vec2 vUv;
+                    void main() {
+                        vec4 color = texture2D(tDiffuse, vUv);
+                        float diff = distance(color.rgb, colorToReplace);
+                        if (diff < threshold) {
+                            discard;
+                        }
+                        gl_FragColor = color;
+                    }
+                `
+            };
 
-            // Carer (standing next to him)
-            const carer = new THREE.Group();
-            carer.position.set(0.0, 0, -1.0);
-            const carerBody = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.4, 2.2), new THREE.MeshStandardMaterial({ color: 0x88ccff }));
-            carerBody.position.y = 1.1;
-            carer.add(carerBody);
-            const carerHead = new THREE.Mesh(new THREE.SphereGeometry(0.35, 12, 12), skinMat);
-            carerHead.position.y = 2.4;
-            carer.add(carerHead);
-            interior.add(carer);
+            // Seated Old Man
+            const manTex = textureLoader.load('/images/char-man.png');
+            manTex.colorSpace = THREE.SRGBColorSpace;
+            const manMat = new THREE.ShaderMaterial({
+                uniforms: THREE.UniformsUtils.clone(chromaKeyShader.uniforms),
+                vertexShader: chromaKeyShader.vertexShader,
+                fragmentShader: chromaKeyShader.fragmentShader,
+                transparent: true,
+                side: THREE.DoubleSide
+            });
+            manMat.uniforms.tDiffuse.value = manTex;
+
+            const manPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.0, 3.0), manMat);
+            manPlane.position.set(0.2, 1.5, 0.3);
+            manPlane.rotation.y = Math.PI / 2;
+            interior.add(manPlane);
+
+            // Standing Carer
+            const carerTex = textureLoader.load('/images/char-carer.png');
+            carerTex.colorSpace = THREE.SRGBColorSpace;
+            const carerMat = new THREE.ShaderMaterial({
+                uniforms: THREE.UniformsUtils.clone(chromaKeyShader.uniforms),
+                vertexShader: chromaKeyShader.vertexShader,
+                fragmentShader: chromaKeyShader.fragmentShader,
+                transparent: true,
+                side: THREE.DoubleSide
+            });
+            carerMat.uniforms.tDiffuse.value = carerTex;
+
+            const carerPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 3.2), carerMat);
+            carerPlane.position.set(0.1, 1.6, -1.2);
+            carerPlane.rotation.y = Math.PI / 2;
+            interior.add(carerPlane);
 
             // Add interior light so characters are visible through the window
             const intLight = new THREE.PointLight(0xffffff, 0.8, 10);
