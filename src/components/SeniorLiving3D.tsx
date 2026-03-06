@@ -80,9 +80,10 @@ export default function SeniorLiving3D() {
 
             // 3. HOUSE BODY & TRIM
             const houseGroup = new THREE.Group();
-            const houseW = 6.0;
-            const houseH = 3.8;
-            const houseD = 5.0;
+            const houseW = 8.0;
+            const houseH = 4.8;
+            const houseD = 7.0;
+            const wallThick = 0.15;
 
             const getRoundedBox = (w: number, h: number, d: number, r: number = 0.05) => {
                 return new RoundedBoxGeometry(w, h, d, 4, r);
@@ -96,18 +97,18 @@ export default function SeniorLiving3D() {
             houseGroup.add(baseTrim);
 
             // --- 3. HOLLOW HOUSE BODY (Individual Walls for Interior View) ---
-            const wallThick = 0.15;
 
             // Front Wall (with Gable)
             const wallFrontShape = new THREE.Shape();
             wallFrontShape.moveTo(-houseW / 2, 0);
             wallFrontShape.lineTo(houseW / 2, 0);
             wallFrontShape.lineTo(houseW / 2, houseH);
-            wallFrontShape.lineTo(0, houseH + 2.0); // Gable peak
+            wallFrontShape.lineTo(0, houseH + 2.5); // 2.5m Gable peak
             wallFrontShape.lineTo(-houseW / 2, houseH);
             wallFrontShape.lineTo(-houseW / 2, 0);
 
             const wallFront = new THREE.Mesh(new THREE.ExtrudeGeometry(wallFrontShape, { depth: wallThick, bevelEnabled: false }), matHouseBody);
+            // Position so the wall plate is flush inside the floor trim
             wallFront.position.set(0, 0.4, houseD / 2 - wallThick);
             wallFront.castShadow = true;
             wallFront.receiveShadow = true;
@@ -209,23 +210,33 @@ export default function SeniorLiving3D() {
 
             houseGroup.add(interior);
 
-            // 4. TWO-PART SLOPED ROOF
-            const roofLength = houseD + 1.4;
-            const roofSlopeH = 2.4; // Slightly higher than gable for overhang
+            // 4. TWO-PART SLOPED ROOF (Pivot-Anchored for Perfect Alignment)
+            const absolutePeakY = 0.4 + houseH + 2.5;
+            const slopeAngle = Math.atan(2.5 / 4);
+            const slopeLen = Math.sqrt(4 * 4 + 2.5 * 2.5) + 0.8;
+            const roofWidth = houseD + 1.4;
 
-            // Right slope
-            const roofRight = new THREE.Mesh(new THREE.BoxGeometry(0.1, roofSlopeH * 1.5, roofLength), matRoof);
-            roofRight.position.set(houseW / 4 + 0.5, 0.4 + houseH + 0.8, 0);
-            roofRight.rotation.z = -Math.PI / 4.5;
-            roofRight.castShadow = true;
-            houseGroup.add(roofRight);
+            // Right Slope Group (Anchored at Peak)
+            const roofRightGroup = new THREE.Group();
+            roofRightGroup.position.set(0, absolutePeakY, 0);
+            houseGroup.add(roofRightGroup);
 
-            // Left slope
-            const roofLeft = new THREE.Mesh(new THREE.BoxGeometry(0.1, roofSlopeH * 1.5, roofLength), matRoof);
-            roofLeft.position.set(-houseW / 4 - 0.5, 0.4 + houseH + 0.8, 0);
-            roofLeft.rotation.z = Math.PI / 4.5;
-            roofLeft.castShadow = true;
-            houseGroup.add(roofLeft);
+            const roofRightPanel = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
+            roofRightPanel.position.set(slopeLen / 2 - 0.2, -0.1, 0); // Offset to sit naturally on peak
+            roofRightPanel.castShadow = true;
+            roofRightGroup.add(roofRightPanel);
+            roofRightGroup.rotation.z = -slopeAngle;
+
+            // Left Slope Group (Anchored at Peak)
+            const roofLeftGroup = new THREE.Group();
+            roofLeftGroup.position.set(0, absolutePeakY, 0);
+            houseGroup.add(roofLeftGroup);
+
+            const roofLeftPanel = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
+            roofLeftPanel.position.set(-slopeLen / 2 + 0.2, -0.1, 0);
+            roofLeftPanel.castShadow = true;
+            roofLeftGroup.add(roofLeftPanel);
+            roofLeftGroup.rotation.z = slopeAngle;
 
             // Chimney (on +X right slope)
             const chimney = new THREE.Mesh(new THREE.BoxGeometry(1.0, 3.0, 1.2), matRoof);
@@ -236,7 +247,7 @@ export default function SeniorLiving3D() {
             // 5. DOOR (Front +Z)
             const doorGroup = new THREE.Group();
             const doorW = 1.4;
-            const doorH = 3.2; // Taller door per user request
+            const doorH = 3.8; // Taller door per user request
 
             // Door Frame
             const frameMat = new THREE.MeshPhysicalMaterial({ color: 0x555555, roughness: 0.8 });
@@ -291,7 +302,8 @@ export default function SeniorLiving3D() {
 
             // Physical Sign Board Board above door
             const signBoard = new THREE.Mesh(new THREE.BoxGeometry(4.2, 1.2, 0.15), matBaseTrim); // Using orange trim material
-            signBoard.position.set(0, 0.4 + 3.2, houseD / 2 + 0.06);
+            // Center between door top (4.2) and roof shoulder (5.2) -> Y = 4.7
+            signBoard.position.set(0, 4.7, houseD / 2 + 0.06);
             houseGroup.add(signBoard);
 
             const frontTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), frontMat);
