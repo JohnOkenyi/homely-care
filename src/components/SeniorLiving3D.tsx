@@ -45,8 +45,8 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             camera.position.set(21, 8, 21);
 
             const controls = new OrbitControls(camera, renderer.domElement);
-            // Lowered target Y slightly from 3.0 to 1.5 to raise the house up in the viewport
-            controls.target.set(2.0, 1.5, 0);
+            // Lowered target Y further to 0.8 to raise the house up in the viewport
+            controls.target.set(2.0, 0.8, 0);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
@@ -426,8 +426,8 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             function tick() {
                 const t = clock.getElapsedTime();
 
-                // Bouncing elegant motion + continuous rotation
-                diorama.position.y = 0.5 + Math.sin(t * 1.5) * 0.1;
+                // Bouncing elegant motion + continuous rotation - raised to 1.0
+                diorama.position.y = 1.0 + Math.sin(t * 1.5) * 0.1;
                 diorama.rotation.y = t * 0.15; // Like a globe
 
                 controls.update();
