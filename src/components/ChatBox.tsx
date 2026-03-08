@@ -135,23 +135,23 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["douglas", "matungamire", "director", "founder", "who founded"],
-        answer: "**Douglas Matungamire** is our Director, Registered Manager, and Founder. He started Homely Health Care in 2016 with experience across Healthcare, Education and Insurance. He has also worked hands-on as a Support Worker/Carer with adults and children with various social care needs."
+        answer: "**Douglas Matungamire**, Director / Registered Manager\n\nDouglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs."
     },
     {
         keywords: ["maria", "wilson", "office manager"],
-        answer: "**Maria Wilson** is our Operations Manager. She previously worked in general management within the NHS in London and Southampton before joining Homely Health Care in 2022. Her role includes recruitment & selection, HR, client liaison, staff management, and accounts."
+        answer: "**Maria Wilson**, Operations Manager\n\nHaving previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts."
     },
     {
         keywords: ["cedric", "dube", "compliance"],
-        answer: "**Cedric Dube** is our Compliance Officer with 15 years' experience in the legal and compliance field. He ensures all our processes adhere to legal and regulatory requirements, fostering a culture of integrity across the organisation."
+        answer: "**Cedric Dube**, Compliance Officer\n\nCedric has 15 years' experience in the legal and compliance field. He ensures that all processes adhere to legal and regulatory requirements, fostering a culture of integrity across the organisation."
     },
     {
         keywords: ["sara", "randall"],
-        answer: "**Sara Randall** is one of our Registered Managers with over **35 years' experience** in the social care industry. She's worked for Social Services, the NHS and in care home settings. She is passionate about ensuring clients receive the best care and all staff are trained to the highest standards to ensure this."
+        answer: "**Sara Randall**, Registered Manager\n\nSara has over 35 years' experience in the social care industry, working for Social Services, the NHS and in care home settings. She is passionate about ensuring clients receive the best care and all staff are trained to the highest standards to ensure this."
     },
     {
         keywords: ["pauline", "makazhu"],
-        answer: "**Pauline Makazhu** is a Registered Nurse and CQC Registered Manager who leads our **TDDI / Complex Care Team**. She began her career as a Support Worker and progressed into nursing, reflecting her commitment to professional growth, clinical excellence, and continuous learning."
+        answer: "**Pauline Makazhu**, Registered Manager\n\nA compassionate Registered Nurse and CQC Registered Manager, Pauline leads the TDDI / Complex Care Team, ensuring individuals with higher clinical needs receive safe, skilled and responsive support."
     },
 
     // ── FIELD CARE MANAGERS ──
