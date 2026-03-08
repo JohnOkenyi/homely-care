@@ -130,8 +130,8 @@ const knowledgeBase: QA[] = [
 
     // ── TEAM ──
     {
-        keywords: ["team", "staff", "who works", "employees", "people", "management"],
-        answer: "Our leadership team includes:\n\n👤 **Douglas Matungamire** – Director & Registered Manager (Founder, est. 2016)\n👤 **Maria Wilson** – Operations Manager (NHS background)\n👤 **Cedric Dube** – Compliance Officer (15 years legal & compliance)\n👤 **Sara Randall** – Registered Manager (35+ years in social care)\n👤 **Pauline Makazhu** – Registered Manager & Registered Nurse (leads TDDI/Complex Care)"
+        keywords: ["team", "staff", "who works", "employees", "people", "management", "members"],
+        answer: "Our leadership team includes:\n\n👤 **Douglas Matungamire** – Director & Registered Manager\n👤 **Maria Wilson** – Operations Manager\n👤 **Cedric Dube** – Compliance Officer\n👤 **Sara Randall** – Registered Manager\n👤 **Pauline Makazhu** – Registered Manager\n\nYou can read more about their specific experience and roles on our **Meet the Team** page!"
     },
     {
         keywords: ["douglas", "matungamire", "director", "founder", "who founded"],
