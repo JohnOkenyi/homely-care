@@ -30,7 +30,7 @@ const knowledgeBase: QA[] = [
 
     // ── ABOUT THE COMPANY ──
     {
-        keywords: ["about", "company", "who are you", "tell me about", "history", "background", "what is homely"],
+        keywords: ["about", "company", "who are you", "history", "background", "what is homely"],
         answer: "**Homely Health Care** was founded in 2016 by Douglas Matungamire. We are an innovative provider of support and personal care, dedicated to creating an atmosphere that enables and encourages you to lead a full and independent life.\n\nOur mission is to bridge the gap between clinical excellence and emotional warmth — making home care synonymous with sanctuary."
     },
     {
