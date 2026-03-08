@@ -492,7 +492,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             />
 
             {/* Hint Widget */}
-            <div className="absolute bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 pointer-events-none z-20 transition-all duration-700 opacity-80 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2">
+            <div className="absolute bottom-6 lg:bottom-10 left-1/2 -translate-x-1/2 pointer-events-none z-20 transition-all duration-700 opacity-80 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 flex flex-col items-center gap-2">
                 <div className="flex items-center gap-3 px-5 py-3 rounded-full bg-[#1A1A1A]/90 border border-white/10 backdrop-blur-xl shadow-2xl">
                     <div className="flex gap-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#D6B36A] animate-ping" />
@@ -502,6 +502,9 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                     <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-white/90">
                         Interactive 3D Exterior
                     </span>
+                </div>
+                <div className="text-[9px] uppercase tracking-widest text-white/70 font-semibold bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-sm border border-white/5 shadow-md">
+                    Drag to rotate &nbsp;•&nbsp; Scroll to zoom &nbsp;•&nbsp; Right drag to pan
                 </div>
             </div>
         </div>

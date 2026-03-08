@@ -163,7 +163,7 @@ const knowledgeBase: QA[] = [
     // ── CQC & QUALITY ──
     {
         keywords: ["cqc", "regulated", "registered", "nhs", "framework", "accredit", "inspection", "rating", "good"],
-        answer: "Homely Health Care is **CQC regulated** and has received a **'Good' rating** from the Care Quality Commission. Our latest inspection was in November 2022, and the report was published in December 2022. We are also **NHS Framework Approved**.\n\nWe operate to the highest clinical and regulatory standards to give you complete peace of mind."
+        answer: "Homely Health Care is **CQC regulated**. We were rated **'Good'** by CQC in our very first inspection and are striving to improve this to **'Excellent'** when we are next inspected! Our latest inspection was in November 2022. We are also **NHS Framework Approved**.\n\nWe operate to the highest clinical and regulatory standards to give you complete peace of mind."
     },
     {
         keywords: ["quality", "standard", "training", "qualified", "professional"],
