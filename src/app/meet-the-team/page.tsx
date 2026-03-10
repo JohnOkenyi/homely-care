@@ -136,7 +136,7 @@ export default function MeetTheTeam() {
                         <div className="grid md:grid-cols-3 gap-12 text-left pt-12 border-t border-[#5B2A86]/5">
                             <div>
                                 <h3 className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#D6B36A] mb-4">The Human Touch</h3>
-                                <p className="text-sm text-[#1B1326]/60 font-light">We hand-select every carer, looking beyond qualifications for true emotional intelligence.</p>
+                                <p className="text-sm text-[#1B1326]/60 font-light">We hand select every carer, looking beyond qualifications for true emotional intelligence.</p>
                             </div>
                             <div>
                                 <h3 className="text-[10px] uppercase font-bold tracking-[0.3em] text-[#D6B36A] mb-4">Continuous Growth</h3>

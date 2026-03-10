@@ -203,8 +203,8 @@ export default function Home() {
               </div>
 
               <h2 className="Heading-Serif text-[clamp(2.2rem,4.5vw,3.5rem)] text-[#1A1A1A] leading-[1.1] mb-6 font-light">
-                Nurturing Dignity with <br />
-                <span className="italic text-[#5B2A86]">Boundless Compassion</span>
+                Upholding dignity with <br />
+                <span className="italic text-[#5B2A86]">care and compassion</span>
               </h2>
 
               <div className="space-y-6 mb-10">
@@ -263,7 +263,7 @@ export default function Home() {
           >
             <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
               {[
-                { icon: UserCheck, title: "Person-Centred Care", desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity." },
+                { icon: UserCheck, title: "Person Centred Care", desc: "We believe every individual is unique. Your care plan is tailored specifically to your wants, needs, and lifestyle for maximum comfort and dignity." },
                 { icon: ShieldCheck, title: "Rigorous Vetting", desc: "Our robust selection process ensures all staff are thoroughly referenced, fully DBS checked, and trained to an exceptionally high standard." },
                 { icon: HeartHandshake, title: "Expert Management", desc: "Our friendly management team and Field Care Managers visit you regularly to ensure the care you receive always meets your expectations." }
               ].map((feature) => (
@@ -430,9 +430,9 @@ export default function Home() {
               },
               {
                 id: "live-in-care",
-                title: "Live-in Care",
+                title: "Live in Care",
                 tag: "24/7 Presence", // Keeping original tag
-                desc: "Round-the-clock reassurance and dedicated 1-to-1 care from a perfectly matched companion.",
+                desc: "Round the clock reassurance and dedicated 1-to-1 care from a perfectly matched companion.",
                 img: "/images/services/live-in-care-diverse.png",
               },
               {
@@ -446,7 +446,7 @@ export default function Home() {
                 id: "complex-care",
                 title: "Complex Care",
                 tag: "Clinical Excellence", // Keeping original tag
-                desc: "Specialist, nurse-led clinical interventions delivered safely in your own environment.",
+                desc: "Specialist, nurse led clinical interventions delivered safely in your own environment.",
                 img: "/images/services/complex-care-diverse.png",
               }
             ].map((srv, idx) => (

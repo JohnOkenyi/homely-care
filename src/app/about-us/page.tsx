@@ -114,8 +114,8 @@ export default function AboutUs() {
                         {[
                             {
                                 icon: Heart,
-                                title: "Person-Centred Care",
-                                desc: "Homely Health Care is committed to connecting you with exceptional care services tailored to your unique needs. We provide solutions to meet your needs as we believe that every individual is different and as a result your care and support must be person-centred.",
+                                title: "Person Centred Care",
+                                desc: "Homely Health Care is committed to providing high quality care services thoughtfully tailored to your individual needs. We understand that every person’s journey is unique and we are committed to providing genuinely person centred support that puts your dignity, preferences and wellbeing at the forefront of everything we do.",
                                 dark: false,
                             },
                             {
@@ -133,7 +133,7 @@ export default function AboutUs() {
                             {
                                 icon: Heart,
                                 title: "Giving Back",
-                                desc: "Homely Health Care donates a percentage of its profits to a small children's education charity, The Rahula Trust, who do amazing work to support children in their education in various parts of the world, as well as The Regiment Support Service.",
+                                desc: "We donate a percentage of our profits to 2 charities, the Rahula Trust which provides education to children in various parts of the world and The Regimental Support Service which provides support to serving soldiers, veterans and their families.",
                                 dark: true,
                             },
                         ].map((card) => (
@@ -245,7 +245,7 @@ export default function AboutUs() {
                         {[
                             { icon: Heart, title: "Compassion", desc: "Every action is led by the heart, ensuring emotional security alongside physical wellbeing." },
                             { icon: Shield, title: "Integrity", desc: "Unwavering commitment to honesty, transparency and the highest standards." },
-                            { icon: Users, title: "Dignity", desc: "Honouring the person behind the patient, respecting their history and autonomy." }
+                            { icon: Users, title: "Dignity", desc: "Honouring the person behind the client, respecting their history and autonomy." }
                         ].map((pillar, idx) => (
                             <motion.div
                                 key={pillar.title}

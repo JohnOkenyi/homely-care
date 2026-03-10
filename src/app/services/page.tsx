@@ -14,7 +14,7 @@ const services = [
     {
         title: "Live In Care",
         subtitle: "24/7 Professional Presence",
-        description: "Experience round-the-clock peace of mind with a dedicated live-in carer who provides clinical support and heartfelt companionship.",
+        description: "Experience round the clock peace of mind with a dedicated live in carer who provides clinical support and heartfelt companionship.",
         icon: Users2,
         features: ["Full-time companionship", "Clinical & emotional support", "Expert domestic care", "Dignified personal care"]
     },
@@ -23,14 +23,14 @@ const services = [
         subtitle: "Independence with Dignity",
         description: "Specialised support for individuals with learning disabilities or autism, empowering them to live fulfilling lives in their community.",
         icon: Waves,
-        features: ["Community integration", "Life skills development", "Flexible support hours", "Person-centred outcomes"]
+        features: ["Community integration", "Life skills development", "Flexible support hours", "Person centred outcomes"]
     },
     {
         title: "Complex Care",
-        subtitle: "Expert Nurse-Led Clinical Care",
+        subtitle: "Expert Nurse Led Complex Care",
         description: "Highly skilled clinical support for complex health conditions, managed by qualified nurses and specialised care practitioners.",
         icon: HeartPulse,
-        features: ["Nurse-led interventions", "Neurological support", "Post-injury rehabilitation", "Multidisciplinary coordination"]
+        features: ["nurse led interventions", "Neurological support", "Post injury rehabilitation", "Multidisciplinary coordination"]
     }
 ];
 
@@ -141,7 +141,7 @@ export default function Services() {
                             A <span className="Heading-Serif italic font-light text-[#D6B36A]">Personalised</span> Path to Care.
                         </h2>
                         <p className="text-[#F2F2F2]/60 text-sm md:text-base font-light max-w-2xl mx-auto mb-8 leading-relaxed">
-                            Every care journey is unique. Speak with our specialist team to design a bespoke plan that honours your choices and enhances your lifestyle.
+                            Every care journey is unique. Speak with our specialist team to design a bespoke plan that respects your choices and enhances your lifestyle.
                         </p>
                         <motion.a
                             href="/contact-us"
