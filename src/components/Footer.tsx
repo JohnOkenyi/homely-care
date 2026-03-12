@@ -66,8 +66,8 @@ export default function Footer() {
                                     </span>
                                 </div>
 
-                                <div className="flex items-start gap-4 mt-2">
-                                    <div className="relative w-16 h-16 shrink-0 bg-white rounded-lg p-1">
+                                <div className="flex items-start gap-5 mt-3">
+                                    <div className="relative w-24 h-24 shrink-0 bg-white rounded-xl p-2 shadow-lg">
                                         <Image
                                             src="/images/cqc-good.png"
                                             alt="CQC Good Rating"

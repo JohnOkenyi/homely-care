@@ -130,17 +130,17 @@ export default function ContactUs() {
                                 whileInView={{ opacity: 1 }}
                                 className="p-4 md:p-8 rounded-full md:rounded-3xl border border-black/5 bg-[#F7F5F2] flex items-center justify-between"
                             >
-                                <div className="flex items-center gap-3 md:gap-4">
-                                    <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center shrink-0 border border-black/5 p-1">
+                                <div className="flex items-center gap-4 md:gap-6">
+                                    <div className="w-12 h-12 md:w-20 md:h-20 bg-white rounded-xl flex items-center justify-center shrink-0 border border-black/5 p-2 shadow-sm">
                                         <Image
                                             src="/images/cqc-good.png"
                                             alt="CQC Good"
-                                            width={48}
-                                            height={48}
+                                            width={80}
+                                            height={80}
                                             className="object-contain"
                                         />
                                     </div>
-                                    <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-black/60">Registered Provider • CQC Good</p>
+                                    <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-black/70">Registered Provider • CQC Good</p>
                                 </div>
                                 <a 
                                     href="https://www.cqc.org.uk/provider/1-259229241" 
