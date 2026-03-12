@@ -130,17 +130,20 @@ export default function ContactUs() {
                                 whileInView={{ opacity: 1 }}
                                 className="p-4 md:p-8 rounded-full md:rounded-3xl border border-black/5 bg-[#F7F5F2] flex items-center justify-between"
                             >
-                                <div className="flex items-center gap-4 md:gap-6">
-                                    <div className="w-12 h-12 md:w-20 md:h-20 bg-white rounded-xl flex items-center justify-center shrink-0 border border-black/5 p-2 shadow-sm">
+                                <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                                    <div className="w-32 h-20 md:w-48 md:h-32 bg-white rounded-xl flex items-center justify-center shrink-0 border border-black/5 p-3 shadow-md">
                                         <Image
                                             src="/images/cqc-good.png"
                                             alt="CQC Good"
-                                            width={80}
-                                            height={80}
+                                            width={192}
+                                            height={128}
                                             className="object-contain"
                                         />
                                     </div>
-                                    <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-black/70">Registered Provider • CQC Good</p>
+                                    <div className="text-center md:text-left">
+                                        <p className="text-[10px] md:text-[14px] uppercase tracking-[0.3em] font-black text-black/80 mb-2">Registered Provider</p>
+                                        <p className="text-[12px] md:text-[18px] font-serif italic text-[#5B2A86]">Official CQC Good Rating</p>
+                                    </div>
                                 </div>
                                 <a 
                                     href="https://www.cqc.org.uk/provider/1-259229241" 
