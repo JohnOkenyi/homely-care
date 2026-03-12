@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 
 // Dynamic Import for the heavy Globe component to improve page load
