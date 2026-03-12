@@ -5,7 +5,6 @@ import {
     Users,
     Wallet,
     Calendar,
-    Banknote,
     Trophy,
     GraduationCap,
     Zap,
