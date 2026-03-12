@@ -544,6 +544,26 @@ export default function Home() {
               <div className="flex flex-col items-center mb-6">
                 <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#5B2A86] mb-4">Social Responsibility</span>
               </div>
+              
+              {/* Charity Certificate */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full max-w-[400px] aspect-[1.414/1] mx-auto mb-12 group"
+              >
+                <div className="absolute -inset-4 bg-gradient-to-tr from-[#D6B36A]/20 via-transparent to-[#5B2A86]/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl border border-white/40 bg-white p-2">
+                  <Image
+                    src="/images/charity-certificate.jpg"
+                    alt="Certificate of Appreciation - Royal Regiment of Fusiliers"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </motion.div>
+
               <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-10 max-w-2xl mx-auto">
                 We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to two charities; The Rahula Trust and The Regiment Support Service.
               </p>
