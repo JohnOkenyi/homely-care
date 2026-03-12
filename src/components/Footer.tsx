@@ -42,32 +42,33 @@ export default function Footer() {
                         </p>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="relative group mt-2"
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative group mt-4 max-w-sm"
                         >
-                            {/* Animated Glow Behind */}
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-[#D6B36A]/50 to-[#5B2A86]/50 rounded-xl opacity-40 group-hover:opacity-80 group-hover:blur-md transition-all duration-1000 animate-pulse"></div>
-
-                            {/* Card Content */}
-                            <div className="relative p-5 rounded-xl border border-[#D6B36A]/20 bg-[#0A0C10] flex flex-col gap-2 overflow-hidden">
-                                {/* Subtle internal shine */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-
-                                <div className="flex items-center gap-2">
-                                    <div className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D6B36A]"></span>
+                            {/* Card Body - Luxury Glassmorphism */}
+                            <div className="relative p-6 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-transparent to-[#D6B36A]/5 backdrop-blur-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-all duration-700 group-hover:border-[#D6B36A]/30 group-hover:shadow-[0_25px_60px_rgba(214,179,106,0.15)]">
+                                
+                                {/* Animated Shine Effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500 ease-in-out" />
+                                
+                                <div className="flex items-center justify-between mb-5">
+                                    <div className="flex items-center gap-3">
+                                        <div className="relative flex h-2.5 w-2.5">
+                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D6B36A] opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D6B36A]"></span>
+                                        </div>
+                                        <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-[#D6B36A]">CQC Regulated</span>
                                     </div>
-                                    <span className="text-[10px] uppercase font-black tracking-[0.3em] text-[#D6B36A]">
-                                        CQC Rating
-                                    </span>
+                                    <div className="px-3 py-1 bg-[#D6B36A]/10 rounded-full border border-[#D6B36A]/20">
+                                        <span className="text-[9px] uppercase font-black tracking-widest text-[#D6B36A]">Official Rating</span>
+                                    </div>
                                 </div>
 
-                                <div className="flex items-center gap-4 mt-3">
-                                    <div className="relative w-16 h-16 shrink-0 bg-white rounded-lg p-1.5 shadow-md">
+                                <div className="flex items-center gap-6">
+                                    <div className="relative w-20 h-20 shrink-0 bg-white rounded-xl p-2 shadow-2xl transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
                                         <Image
                                             src="/images/cqc-good.png"
                                             alt="CQC Good Rating"
@@ -75,15 +76,25 @@ export default function Footer() {
                                             className="object-contain"
                                         />
                                     </div>
-                                    <div className="flex flex-col">
+                                    <div className="space-y-3">
+                                        <h4 className="Heading-Serif italic text-2xl text-white font-light lowercase tracking-tighter leading-none">
+                                            Good <span className="text-[#D6B36A]">Rating</span>
+                                        </h4>
+                                        <p className="text-[11px] text-white/40 uppercase font-bold tracking-widest leading-relaxed">
+                                            Inspected & <br />Proven Excellence
+                                        </p>
                                         <a 
                                             href="https://www.cqc.org.uk/provider/1-259229241" 
                                             target="_blank" 
                                             rel="noopener noreferrer"
-                                            className="text-[9px] uppercase font-black text-[#D6B36A] hover:text-white transition-colors flex items-center gap-1 group/link tracking-[0.2em]"
+                                            className="inline-flex items-center gap-2 text-[10px] font-black uppercase text-[#D6B36A] hover:text-white transition-all duration-300 group/link tracking-[0.3em] mt-1"
                                         >
-                                            Full Report
-                                            <span className="group-hover/link:translate-x-0.5 transition-transform text-[12px]">→</span>
+                                            View Report
+                                            <div className="w-6 h-6 rounded-full border border-[#D6B36A]/30 flex items-center justify-center group-hover/link:bg-[#D6B36A] group-hover/link:text-[#0A0C10] transition-all">
+                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                                    <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
