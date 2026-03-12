@@ -66,13 +66,32 @@ export default function Footer() {
                                     </span>
                                 </div>
 
-                                <p className="text-sm font-light text-white/90 leading-relaxed relative z-10 mt-1">
-                                    <span className="italic">We were rated </span>
-                                    <strong className="font-bold text-[#D6B36A]">Good</strong>
-                                    <span className="italic"> by CQC in our very first inspection and are striving to improve this to </span>
-                                    <strong className="font-bold text-white">Excellent</strong>
-                                    <span className="italic"> when we are next inspected.</span>
-                                </p>
+                                <div className="flex items-start gap-4 mt-2">
+                                    <div className="relative w-16 h-16 shrink-0 bg-white rounded-lg p-1">
+                                        <Image
+                                            src="/images/cqc-good.png"
+                                            alt="CQC Good Rating"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <p className="text-sm font-light text-white/90 leading-relaxed relative z-10">
+                                            <span className="italic">We were rated </span>
+                                            <strong className="font-bold text-[#D6B36A]">Good</strong>
+                                            <span className="italic"> by CQC in our very first inspection.</span>
+                                        </p>
+                                        <a 
+                                            href="https://www.cqc.org.uk/provider/1-259229241" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                            className="text-[10px] uppercase font-bold text-[#D6B36A] hover:text-white transition-colors flex items-center gap-1 group/link"
+                                        >
+                                            View Full Report
+                                            <span className="group-hover/link:translate-x-0.5 transition-transform">→</span>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </motion.div>
                     </div>
@@ -96,10 +115,9 @@ export default function Footer() {
                         <div className="flex flex-col gap-8">
                             <h4 className="text-[11px] uppercase tracking-[0.4em] font-black text-[#D6B36A]/90">Connect</h4>
                             <nav className="flex flex-col gap-4 text-[14px] text-white/40 font-medium">
-                                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">LinkedIn</a>
-                                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Facebook</a>
-                                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Instagram</a>
-                                <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">YouTube</a>
+                                <a href="https://www.linkedin.com/company/homely-health-care-limited/" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">LinkedIn</a>
+                                <a href="https://www.facebook.com/homelyhealthcarelimited" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Facebook</a>
+                                <a href="https://www.instagram.com/homely_healthcare/" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Instagram</a>
                             </nav>
                         </div>
 
@@ -143,8 +161,8 @@ export default function Footer() {
 
                     {/* Legal & Copyright */}
                     <div className="flex flex-wrap items-center justify-center gap-10">
-                        <Link href="/privacy" className="hover:text-[#D6B36A] transition-colors">Privacy</Link>
-                        <Link href="/terms" className="hover:text-[#D6B36A] transition-colors">Terms</Link>
+                        <Link href="javascript:void(0)" className="hover:text-[#D6B36A] transition-colors cursor-not-allowed">Privacy</Link>
+                        <Link href="javascript:void(0)" className="hover:text-[#D6B36A] transition-colors cursor-not-allowed">Terms</Link>
                         <p className="text-white/10 font-light lowercase tracking-normal">
                             &copy; {new Date().getFullYear()} <span className="uppercase tracking-widest font-bold">Homely Health Care</span>
                         </p>

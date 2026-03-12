@@ -500,7 +500,7 @@ export default function Home() {
 
                       <div className="flex items-center gap-4">
                         <Link
-                          href="/services"
+                          href={`/services?service=${srv.id}`}
                           className="px-6 py-2.5 rounded-full border border-white/30 text-white text-[10px] uppercase tracking-[0.2em] font-extrabold transition-all duration-500 hover:bg-[#D6B36A] hover:text-[#1B1326] hover:border-[#D6B36A] bg-white/5"
                         >
                           View Service
@@ -522,7 +522,7 @@ export default function Home() {
           </div>
 
           <div className="mt-16 text-center">
-            <Link href="/services" className="inline-flex items-center px-12 py-5 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] hover:-translate-y-2 relative overflow-hidden group">
+            <Link href="/services?service=all" className="inline-flex items-center px-12 py-5 bg-[#5B2A86] text-white text-[10px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-[#7A4FB3] hover:-translate-y-2 relative overflow-hidden group">
               <span className="relative z-10">Experience All Services</span>
               <div className="absolute inset-0 bg-[#D6B36A] opacity-0 group-hover:opacity-20 transition-opacity" />
             </Link>

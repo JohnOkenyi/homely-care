@@ -127,14 +127,28 @@ export default function ContactUs() {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
-                                className="p-4 md:p-8 rounded-full md:rounded-3xl border border-black/5 bg-[#F7F5F2] flex items-center justify-center md:justify-between"
+                                className="p-4 md:p-8 rounded-full md:rounded-3xl border border-black/5 bg-[#F7F5F2] flex items-center justify-between"
                             >
                                 <div className="flex items-center gap-3 md:gap-4">
-                                    <div className="w-8 h-8 md:w-10 md:h-10 bg-black/5 rounded-full flex items-center justify-center shrink-0">
-                                        <MessageCircle className="w-4 h-4 md:w-5 md:h-5 text-[#5B2A86]" />
+                                    <div className="w-8 h-8 md:w-12 md:h-12 bg-white rounded-lg flex items-center justify-center shrink-0 border border-black/5 p-1">
+                                        <Image
+                                            src="/images/cqc-good.png"
+                                            alt="CQC Good"
+                                            width={48}
+                                            height={48}
+                                            className="object-contain"
+                                        />
                                     </div>
-                                    <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-black/40 text-center md:text-left">Registered Provider • CQC Good</p>
+                                    <p className="text-[10px] md:text-[11px] uppercase tracking-widest font-bold text-black/60">Registered Provider • CQC Good</p>
                                 </div>
+                                <a 
+                                    href="https://www.cqc.org.uk/provider/1-259229241" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="text-[9px] md:text-[10px] uppercase font-bold text-[#5B2A86] hover:underline"
+                                >
+                                    Verify
+                                </a>
                             </motion.div>
                         </div>
 
@@ -167,11 +181,11 @@ export default function ContactUs() {
 
                                     <div className="space-y-2 md:space-y-3">
                                         <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Service Requirement</label>
-                                        <select className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer">
-                                            <option>Live In Care</option>
-                                            <option>Companionship</option>
-                                            <option>Complex Care</option>
-                                            <option>Staffing Support</option>
+                                        <select defaultValue="Live In Care" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer">
+                                            <option value="Home Care">Home Care</option>
+                                            <option value="Live In Care">Live In Care</option>
+                                            <option value="Supported Living">Supported Living</option>
+                                            <option value="Complex Care">Complex Care</option>
                                         </select>
                                     </div>
 
