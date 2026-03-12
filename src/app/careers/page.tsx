@@ -28,11 +28,6 @@ const OFFERS = [
         description: "Industry-leading rates of pay that value your expertise and dedication."
     },
     {
-        icon: <Banknote className="w-6 h-6" />,
-        title: "Weekly Payments",
-        description: "Reliable weekly pay cycles to provide financial peace of mind."
-    },
-    {
         icon: <Users className="w-6 h-6" />,
         title: "Elite Teamwork",
         description: "A collaborative environment where every member is respected and heard."

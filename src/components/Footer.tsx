@@ -75,12 +75,7 @@ export default function Footer() {
                                             className="object-contain"
                                         />
                                     </div>
-                                    <div className="flex flex-col gap-2">
-                                        <p className="text-sm font-light text-white/90 leading-relaxed relative z-10">
-                                            <span className="italic">We were rated </span>
-                                            <strong className="font-bold text-[#D6B36A]">Good</strong>
-                                            <span className="italic"> by CQC in our very first inspection.</span>
-                                        </p>
+                                    <div className="flex flex-col gap-2 justify-center py-4">
                                         <a 
                                             href="https://www.cqc.org.uk/provider/1-259229241" 
                                             target="_blank" 
@@ -117,7 +112,6 @@ export default function Footer() {
                             <nav className="flex flex-col gap-4 text-[14px] text-white/40 font-medium">
                                 <a href="https://www.linkedin.com/company/homely-health-care-limited/" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">LinkedIn</a>
                                 <a href="https://www.facebook.com/homelyhealthcarelimited" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Facebook</a>
-                                <a href="https://www.instagram.com/homely_healthcare/" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Instagram</a>
                             </nav>
                         </div>
 
@@ -125,7 +119,7 @@ export default function Footer() {
                         <div className="flex flex-col gap-8">
                             <h4 className="text-[11px] uppercase tracking-[0.4em] font-black text-[#D6B36A]/90">Enquiries</h4>
                             <div className="flex flex-col gap-4">
-                                <p className="text-[18px] text-white font-serif italic tracking-tight">01202 948898</p>
+                                <p className="text-[18px] text-white font-serif italic tracking-tight">01202 948 898</p>
                                 <div className="space-y-1 group cursor-pointer">
                                     <p className="text-[14px] text-white/60 group-hover:text-[#D6B36A] transition-colors break-all font-light">
                                         info@homelyhealth.uk
