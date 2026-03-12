@@ -202,7 +202,7 @@ export default function Services() {
                             whileTap={{ scale: 0.95 }}
                             className="inline-flex items-center px-12 py-5 bg-[#D6B36A] text-[#1B1326] text-[10px] uppercase tracking-[0.4em] font-bold shadow-2xl transition-all duration-500 hover:bg-white relative overflow-hidden group"
                         >
-                            <span className="relative z-10">Book a Consultation</span>
+                            <span className="relative z-10">Contact Us</span>
                         </motion.a>
                     </motion.div>
                 </div>
