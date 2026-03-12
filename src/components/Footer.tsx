@@ -66,8 +66,8 @@ export default function Footer() {
                                     </span>
                                 </div>
 
-                                <div className="flex items-start gap-5 mt-3">
-                                    <div className="relative w-24 h-24 shrink-0 bg-white rounded-xl p-2 shadow-lg">
+                                <div className="flex items-center gap-4 mt-3">
+                                    <div className="relative w-16 h-16 shrink-0 bg-white rounded-lg p-1.5 shadow-md">
                                         <Image
                                             src="/images/cqc-good.png"
                                             alt="CQC Good Rating"
@@ -75,15 +75,15 @@ export default function Footer() {
                                             className="object-contain"
                                         />
                                     </div>
-                                    <div className="flex flex-col gap-2 justify-center py-4">
+                                    <div className="flex flex-col">
                                         <a 
                                             href="https://www.cqc.org.uk/provider/1-259229241" 
                                             target="_blank" 
                                             rel="noopener noreferrer"
-                                            className="text-[10px] uppercase font-bold text-[#D6B36A] hover:text-white transition-colors flex items-center gap-1 group/link"
+                                            className="text-[9px] uppercase font-black text-[#D6B36A] hover:text-white transition-colors flex items-center gap-1 group/link tracking-[0.2em]"
                                         >
-                                            View Full Report
-                                            <span className="group-hover/link:translate-x-0.5 transition-transform">→</span>
+                                            Full Report
+                                            <span className="group-hover/link:translate-x-0.5 transition-transform text-[12px]">→</span>
                                         </a>
                                     </div>
                                 </div>
