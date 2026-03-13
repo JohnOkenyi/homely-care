@@ -30,7 +30,7 @@ const SERVICES: ServiceData[] = [
         color: "#D6B36A",
         position: [8, 0.45, 0],
         focusTarget: [1, 2, 3.5],
-        focusCamera: [22, 10, 30] // Further out
+        focusCamera: [22, 10, 30]
     },
     {
         id: "live-in",
@@ -40,7 +40,7 @@ const SERVICES: ServiceData[] = [
         color: "#5B2A86",
         position: [-8, 0.45, 0],
         focusTarget: [-4, 2, 0],
-        focusCamera: [-30, 12, 18] // Further out
+        focusCamera: [-30, 12, 18]
     },
     {
         id: "supported",
@@ -50,7 +50,7 @@ const SERVICES: ServiceData[] = [
         color: "#7A4FB3",
         position: [0, 0.45, 8],
         focusTarget: [0, 1.5, 0],
-        focusCamera: [0, 15, 35] // Further out
+        focusCamera: [0, 15, 35]
     },
     {
         id: "complex",
@@ -60,7 +60,7 @@ const SERVICES: ServiceData[] = [
         color: "#F99D31",
         position: [0, 0.45, -8],
         focusTarget: [0, 3, 0],
-        focusCamera: [28, 18, -28] // Further out
+        focusCamera: [28, 18, -28]
     }
 ];
 
@@ -77,6 +77,9 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
         // Interaction state
         let isTransitioning = false;
         let activeService: ServiceData | null = null;
+        let isUserInteracting = false;
+        let startX = 0;
+        let startY = 0;
 
         const timeoutId = setTimeout(() => {
             if (!containerRef.current) return;
@@ -98,7 +101,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
 
             // --- CAMERA ---
             const isMobile = window.innerWidth < 768;
-            const fov = isMobile ? 55 : 25; // Narrower FOV for more premium feel
+            const fov = isMobile ? 55 : 25;
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
             camera.position.set(25, 12, 25);
 
@@ -107,7 +110,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
-            controls.maxDistance = 50;
+            controls.maxDistance = 60;
             controls.maxPolarAngle = Math.PI / 2 - 0.1;
             controls.minPolarAngle = Math.PI / 6;
 
@@ -143,7 +146,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             const diorama = new THREE.Group();
             scene.add(diorama);
 
-            // 1. SATIN BASE (The Platform)
+            // 1. SATIN BASE
             const baseCircle = new THREE.Mesh(
                 new THREE.CylinderGeometry(15, 15.2, 0.4, 64),
                 matSatinBase
@@ -151,7 +154,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             baseCircle.receiveShadow = true;
             diorama.add(baseCircle);
 
-            // Base Rim Glow
             const rimGlow = new THREE.Mesh(
                 new THREE.TorusGeometry(15, 0.05, 16, 100),
                 new THREE.MeshBasicMaterial({ color: 0xD6B36A, transparent: true, opacity: 0.3 })
@@ -174,14 +176,12 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                 return new RoundedBoxGeometry(w, h, d, 4, r);
             };
 
-            // Foundation
-            const baseTrim = new THREE.Mesh(getRoundedBox(houseW + 0.4, 0.3, houseD + 0.4, 0.05), matBaseTrim);
-            baseTrim.position.set(0, 0.15, 0);
-            baseTrim.castShadow = true;
-            baseTrim.receiveShadow = true;
-            houseGroup.add(baseTrim);
+            const baseTrimMesh = new THREE.Mesh(getRoundedBox(houseW + 0.4, 0.3, houseD + 0.4, 0.05), matBaseTrim);
+            baseTrimMesh.position.set(0, 0.15, 0);
+            baseTrimMesh.castShadow = true;
+            baseTrimMesh.receiveShadow = true;
+            houseGroup.add(baseTrimMesh);
 
-            // Walls (Clean, no text)
             const wallFrontShape = new THREE.Shape();
             wallFrontShape.moveTo(-houseW / 2, 0);
             wallFrontShape.lineTo(houseW / 2, 0);
@@ -208,7 +208,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             wallRight.receiveShadow = true;
             houseGroup.add(wallRight);
 
-            // Left Window Lintel
             const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.2, houseD), matHouseBody);
             wallL_Top.position.set(-houseW / 2, 0.3 + houseH - 0.1, 0);
             houseGroup.add(wallL_Top);
@@ -221,7 +220,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             wallL_Side2.position.set(-houseW / 2, 0.3 + (houseH-0.2)/2, -houseD/2 + 0.4);
             houseGroup.add(wallL_Side2);
 
-            // Roof
             const peakY = 0.3 + houseH + 2.5;
             const slopeAngle = Math.atan(2.5 / 4);
             const slopeLen = Math.sqrt(4 * 4 + 2.5 * 2.5) + 0.6;
@@ -239,7 +237,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             roofL.castShadow = true;
             houseGroup.add(roofL);
 
-            // Interior (Simplified characters)
             const interior = new THREE.Group();
             interior.position.set(-1.5, 0.31, 0);
             houseGroup.add(interior);
@@ -256,13 +253,12 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             intLight.position.set(0, 2, 0);
             interior.add(intLight);
 
-            // --- INTERACTIVE BEACONS ---
+            // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
             diorama.add(beaconsGroup);
 
             const beaconGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.1, 32);
             const ringGeo = new THREE.TorusGeometry(1.4, 0.05, 16, 64);
-
             const beaconMeshes: THREE.Mesh[] = [];
 
             SERVICES.forEach((svc) => {
@@ -291,7 +287,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                 ring.rotation.x = Math.PI / 2;
                 group.add(ring);
 
-                // Label (CSS-like Canvas Label)
                 const canvas = document.createElement("canvas");
                 canvas.width = 512;
                 canvas.height = 128;
@@ -310,16 +305,21 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                     new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false })
                 );
                 label.position.y = 1.2;
-                label.lookAt(camera.position); // Will update in tick
                 group.add(label);
                 
                 group.userData.label = label;
                 beaconMeshes.push(disk);
             });
 
-            // --- INTERACTION LOGIC ---
+            // --- INTERACTION ---
             const raycaster = new THREE.Raycaster();
             const mouse = new THREE.Vector2();
+
+            const onMouseDown = (e: MouseEvent) => {
+                startX = e.clientX;
+                startY = e.clientY;
+                isUserInteracting = true;
+            };
 
             const onMouseMove = (e: MouseEvent) => {
                 const rect = container.getBoundingClientRect();
@@ -327,7 +327,13 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                 mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
             };
 
-            const onClick = () => {
+            const onMouseUp = (e: MouseEvent) => {
+                isUserInteracting = false;
+                const dist = Math.sqrt(Math.pow(e.clientX - startX, 2) + Math.pow(e.clientY - startY, 2));
+                if (dist < 5) handleInteraction();
+            };
+
+            const handleInteraction = () => {
                 if (isTransitioning) return;
                 raycaster.setFromCamera(mouse, camera);
                 const intersects = raycaster.intersectObjects(beaconMeshes);
@@ -335,7 +341,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                 if (intersects.length > 0) {
                     const svc = intersects[0].object.parent?.userData.service as ServiceData;
                     if (svc) focusService(svc);
-                } else {
+                } else if (activeService) {
                     resetView();
                 }
             };
@@ -343,8 +349,6 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             const focusService = (svc: ServiceData) => {
                 isTransitioning = true;
                 activeService = svc;
-
-                // Update UI Label
                 if (labelRef.current) {
                     labelRef.current.style.opacity = "1";
                     labelRef.current.innerHTML = `
@@ -352,50 +356,21 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                         <p style="color: white; font-size: 14px; font-weight: 300; opacity: 0.8;">${svc.description}</p>
                     `;
                 }
-
-                gsap.to(camera.position, {
-                    x: svc.focusCamera[0],
-                    y: svc.focusCamera[1],
-                    z: svc.focusCamera[2],
-                    duration: 2,
-                    ease: "power3.inOut"
-                });
-
-                gsap.to(controls.target, {
-                    x: svc.focusTarget[0],
-                    y: svc.focusTarget[1],
-                    z: svc.focusTarget[2],
-                    duration: 2,
-                    ease: "power3.inOut",
-                    onComplete: () => { isTransitioning = false; }
-                });
+                gsap.to(camera.position, { x: svc.focusCamera[0], y: svc.focusCamera[1], z: svc.focusCamera[2], duration: 2, ease: "power3.inOut" });
+                gsap.to(controls.target, { x: svc.focusTarget[0], y: svc.focusTarget[1], z: svc.focusTarget[2], duration: 2, ease: "power3.inOut", onComplete: () => { isTransitioning = false; } });
             };
 
             const resetView = () => {
                 isTransitioning = true;
                 activeService = null;
                 if (labelRef.current) labelRef.current.style.opacity = "0";
-
-                gsap.to(camera.position, {
-                    x: 25,
-                    y: 12,
-                    z: 25,
-                    duration: 2,
-                    ease: "power2.inOut"
-                });
-
-                gsap.to(controls.target, {
-                    x: 0,
-                    y: 1.5,
-                    z: 0,
-                    duration: 2,
-                    ease: "power2.inOut",
-                    onComplete: () => { isTransitioning = false; }
-                });
+                gsap.to(camera.position, { x: 25, y: 12, z: 25, duration: 2, ease: "power2.inOut" });
+                gsap.to(controls.target, { x: 0, y: 1.5, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
             };
 
+            container.addEventListener("mousedown", onMouseDown);
             container.addEventListener("mousemove", onMouseMove);
-            container.addEventListener("click", onClick);
+            container.addEventListener("mouseup", onMouseUp);
 
             const updateSize = () => {
                 const w = container.clientWidth;
@@ -412,31 +387,23 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             
             function tick() {
                 const t = clock.getElapsedTime();
-                
-                if (!activeService && !isTransitioning) {
+                if (!activeService && !isTransitioning && !isUserInteracting) {
                     diorama.rotation.y += 0.005;
                     diorama.position.y = Math.sin(t * 0.5) * 0.2;
                 }
-
-                // Make labels face camera
                 beaconsGroup.children.forEach((b) => {
                     const label = b.userData.label;
                     if (label) label.lookAt(camera.position);
-                    
-                    // Hover effect
                     if (!isTransitioning) {
                         raycaster.setFromCamera(mouse, camera);
                         const intersects = raycaster.intersectObject(b.children[0]);
                         const isHovered = intersects.length > 0;
                         const targetScale = isHovered ? 1.2 : 1.0;
                         b.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
-                        
-                        const mesh = b.children[0] as THREE.Mesh;
-                        const mat = mesh.material as THREE.MeshPhysicalMaterial;
+                        const mat = (b.children[0] as THREE.Mesh).material as THREE.MeshPhysicalMaterial;
                         if (mat) mat.opacity = isHovered ? 0.9 : 0.6;
                     }
                 });
-
                 controls.update();
                 renderer.render(scene, camera);
                 frameId = requestAnimationFrame(tick);
@@ -446,8 +413,9 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             cleanup = () => {
                 cancelAnimationFrame(frameId);
                 window.removeEventListener("resize", updateSize);
+                container.removeEventListener("mousedown", onMouseDown);
                 container.removeEventListener("mousemove", onMouseMove);
-                container.removeEventListener("click", onClick);
+                container.removeEventListener("mouseup", onMouseUp);
                 renderer.dispose();
             };
         }, 100);
@@ -461,33 +429,16 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
 
     return (
         <div className="relative w-full h-full min-h-[500px] flex items-center justify-center group overflow-hidden">
-            {/* Background Atmosphere */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[70%] bg-[#5B2A86]/20 rounded-full blur-[120px]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/3 -translate-y-1/3 w-[50%] h-[50%] bg-[#D6B36A]/10 rounded-full blur-[100px]" />
             </div>
-
-            {/* Service Label Overlay */}
-            <div 
-                ref={labelRef}
-                className="absolute top-10 left-10 z-30 transition-all duration-700 pointer-events-none opacity-0 max-w-[280px]"
-            >
-                {/* Content injected via JS */}
-            </div>
-
-            {/* 3D Canvas */}
-            <div
-                ref={containerRef}
-                className="relative z-10 w-full h-[70vh] md:h-full max-w-[1000px] aspect-[4/3] rounded-3xl overflow-hidden cursor-grab active:cursor-grabbing"
-            />
-
-            {/* Hint Widget */}
+            <div ref={labelRef} className="absolute top-10 left-10 z-30 transition-all duration-700 pointer-events-none opacity-0 max-w-[280px]" />
+            <div ref={containerRef} className="relative z-10 w-full h-[70vh] md:h-full max-w-[1000px] aspect-[4/3] rounded-3xl overflow-hidden cursor-grab active:cursor-grabbing" />
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-700 opacity-60 group-hover:opacity-100">
                 <div className="flex items-center gap-4 px-6 py-3 rounded-full bg-premium-dark/90 border border-white/5 backdrop-blur-2xl shadow-2xl">
                     <div className="w-2 h-2 rounded-full bg-[#D6B36A] animate-pulse" />
-                    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-white/70">
-                        Click beacons to explore services
-                    </span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-white/70">Click beacons to explore services</span>
                 </div>
             </div>
         </div>
