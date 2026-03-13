@@ -183,6 +183,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             baseTrimMesh.receiveShadow = true;
             houseGroup.add(baseTrimMesh);
 
+            // 2b. WALL FRONT (with window)
             const wallFrontShape = new THREE.Shape();
             wallFrontShape.moveTo(-houseW / 2, 0);
             wallFrontShape.lineTo(houseW / 2, 0);
@@ -191,23 +192,44 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             wallFrontShape.lineTo(-houseW / 2, houseH);
             wallFrontShape.lineTo(-houseW / 2, 0);
 
+            // Large front window
+            const frontWinPath = new THREE.Path();
+            frontWinPath.moveTo(-1.5, 1.2);
+            frontWinPath.lineTo(1.5, 1.2);
+            frontWinPath.lineTo(1.5, 3.8);
+            frontWinPath.lineTo(-1.5, 3.8);
+            frontWinPath.closePath();
+            wallFrontShape.holes.push(frontWinPath);
+
             const wallFront = new THREE.Mesh(new THREE.ExtrudeGeometry(wallFrontShape, { depth: wallThick, bevelEnabled: false }), matHouseBody);
             wallFront.position.set(0, 0.3, houseD / 2 - wallThick);
             wallFront.castShadow = true;
             wallFront.receiveShadow = true;
             houseGroup.add(wallFront);
 
+            // 2c. WALL BACK (with window)
             const wallBack = new THREE.Mesh(new THREE.ExtrudeGeometry(wallFrontShape, { depth: wallThick, bevelEnabled: false }), matHouseBody);
             wallBack.position.set(0, 0.3, -houseD / 2);
             wallBack.castShadow = true;
             wallBack.receiveShadow = true;
             houseGroup.add(wallBack);
 
-            const wallRight = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH, houseD), matHouseBody);
-            wallRight.position.set(houseW / 2, 0.3 + houseH / 2, 0);
-            wallRight.castShadow = true;
-            wallRight.receiveShadow = true;
-            houseGroup.add(wallRight);
+            // 2d. WALL RIGHT (modular for window)
+            const wallR_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.2, houseD), matHouseBody);
+            wallR_Top.position.set(houseW / 2, 0.3 + houseH - 0.1, 0);
+            houseGroup.add(wallR_Top);
+
+            const wallR_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH - 0.2, 1.0), matHouseBody);
+            wallR_Side1.position.set(houseW / 2, 0.3 + (houseH-0.2)/2, houseD/2 - 0.5);
+            houseGroup.add(wallR_Side1);
+
+            const wallR_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH - 0.2, 1.0), matHouseBody);
+            wallR_Side2.position.set(houseW / 2, 0.3 + (houseH-0.2)/2, -houseD/2 + 0.5);
+            houseGroup.add(wallR_Side2);
+
+            const wallR_Bottom = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 1.0, houseD - 2.0), matHouseBody);
+            wallR_Bottom.position.set(houseW / 2, 0.3 + 0.5, 0);
+            houseGroup.add(wallR_Bottom);
 
             const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.2, houseD), matHouseBody);
             wallL_Top.position.set(-houseW / 2, 0.3 + houseH - 0.1, 0);
@@ -226,33 +248,47 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             const slopeLen = Math.sqrt(4 * 4 + 2.5 * 2.5) + 0.6;
             const roofWidth = houseD + 1.2;
 
-            const roofR = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.15, roofWidth), matRoof);
-            roofR.position.set(slopeLen/2 - 0.2, peakY, 0);
+            const roofR = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
+            roofR.position.set(slopeLen/2 - 0.2, peakY - 0.1, 0);
             roofR.rotation.z = -slopeAngle;
             roofR.castShadow = true;
             houseGroup.add(roofR);
 
-            const roofL = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.15, roofWidth), matRoof);
-            roofL.position.set(-slopeLen/2 + 0.2, peakY, 0);
+            const roofL = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
+            roofL.position.set(-slopeLen/2 + 0.2, peakY - 0.1, 0);
             roofL.rotation.z = slopeAngle;
             roofL.castShadow = true;
             houseGroup.add(roofL);
 
-            const interior = new THREE.Group();
-            interior.position.set(-1.5, 0.31, 0);
-            houseGroup.add(interior);
+            // RIDGE CAP (CLoses the roof)
+            const ridgeCap = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.3, roofWidth + 0.05), matRoof);
+            ridgeCap.position.set(0, peakY - 0.05, 0);
+            houseGroup.add(ridgeCap);
+
+            // 3. INTERIOR SCENES (Behind Windows)
+            const interiors = new THREE.Group();
+            houseGroup.add(interiors);
 
             const textureLoader = new THREE.TextureLoader();
             const charTex = textureLoader.load('/images/char-helping.png');
             const charMat = new THREE.MeshPhysicalMaterial({ map: charTex, transparent: true, alphaTest: 0.5, side: THREE.DoubleSide });
-            const charPlane = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), charMat);
-            charPlane.rotation.y = Math.PI / 2;
-            charPlane.position.y = 1.75;
-            interior.add(charPlane);
 
-            const intLight = new THREE.PointLight(0xffffff, 1.2, 8);
-            intLight.position.set(0, 2, 0);
-            interior.add(intLight);
+            const createInteriorChar = (px: number, py: number, pz: number, ry: number = 0) => {
+                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), charMat);
+                sprite.position.set(px, py, pz);
+                sprite.rotation.y = ry;
+                interiors.add(sprite);
+
+                const pLight = new THREE.PointLight(0xffffff, 1.5, 6);
+                pLight.position.set(px, py + 1, pz);
+                interiors.add(pLight);
+            };
+
+            // Window positions
+            createInteriorChar(-1.5, 1.8, 0, Math.PI / 2); // Left window
+            createInteriorChar(1.5, 1.8, 0, -Math.PI / 2); // Right window
+            createInteriorChar(0, 2.2, 1.5, 0);           // Front window
+            createInteriorChar(0, 2.2, -1.5, Math.PI);    // Back window
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
