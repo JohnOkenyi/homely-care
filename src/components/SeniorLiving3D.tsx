@@ -277,38 +277,36 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.rotation.y = ry;
                 interiors.add(group);
 
-                // Image Plane
+                // Image Plane (MeshBasicMaterial for HD, non-washed-out look)
                 const tex = textureLoader.load(imgPath);
-                const mat = new THREE.MeshPhysicalMaterial({ 
+                const mat = new THREE.MeshBasicMaterial({ 
                     map: tex, 
                     transparent: true, 
-                    alphaTest: 0.5, 
-                    side: THREE.DoubleSide,
-                    emissive: 0xffffff,
-                    emissiveIntensity: 0.6 // Boosted visibility
+                    alphaTest: 0.1, // Lower alpha test for smoother edges
+                    side: THREE.DoubleSide
                 });
-                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), mat);
+                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), mat);
                 group.add(sprite);
 
-                // Title Label (Canvas Texture)
+                // Title Label (Higher resolution canvas)
                 const canvas = document.createElement("canvas");
-                canvas.width = 512;
-                canvas.height = 128;
+                canvas.width = 1024; // Double resolution
+                canvas.height = 256;
                 const ctx = canvas.getContext("2d");
                 if (ctx) {
-                    ctx.font = "bold 60px 'Inter', sans-serif"; // Increased font size
+                    ctx.font = "bold 80px 'Inter', sans-serif";
                     ctx.fillStyle = "white";
                     ctx.textAlign = "center";
                     ctx.shadowColor = "rgba(0,0,0,0.9)";
-                    ctx.shadowBlur = 10;
-                    ctx.fillText(title.toUpperCase(), 256, 80);
+                    ctx.shadowBlur = 15;
+                    ctx.fillText(title.toUpperCase(), 512, 160);
                 }
                 const labelTex = new THREE.CanvasTexture(canvas);
                 const label = new THREE.Mesh(
-                    new THREE.PlaneGeometry(3.0, 0.75), // Increased label size
+                    new THREE.PlaneGeometry(4.0, 1.0), // Larger label plane
                     new THREE.MeshBasicMaterial({ map: labelTex, transparent: true, depthWrite: false, side: THREE.DoubleSide })
                 );
-                label.position.set(0, -1.3, 0.05);
+                label.position.set(0, -1.4, 0.1); // Shifted forward slightly more
                 group.add(label);
 
                 // Individual Light
@@ -372,7 +370,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 }
                 const tex = new THREE.CanvasTexture(canvas);
                 const label = new THREE.Mesh(
-                    new THREE.PlaneGeometry(3, 0.75),
+                    new THREE.PlaneGeometry(4.5, 1.1), // Much wider to prevent "Supported Living" clipping
                     new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false })
                 );
                 label.position.y = 1.2;
