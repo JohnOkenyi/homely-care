@@ -271,7 +271,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
 
             const textureLoader = new THREE.TextureLoader();
             
-            const createInteriorScene = (px: number, py: number, pz: number, ry: number, imgPath: string, title: string) => {
+            const createInteriorScene = (px: number, py: number, pz: number, ry: number, imgPath: string) => {
                 const group = new THREE.Group();
                 group.position.set(px, py, pz);
                 group.rotation.y = ry;
@@ -291,41 +291,22 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     side: THREE.DoubleSide,
                     toneMapped: false // Bypasses the scene's lighting exposure/tone mapping for HD clarity
                 });
-                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), mat);
+                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.9, 3.9), mat); // Increased size to fill window better
                 group.add(sprite);
 
-                // Title Label (Higher resolution canvas)
-                const canvas = document.createElement("canvas");
-                canvas.width = 1024;
-                canvas.height = 256;
-                const ctx = canvas.getContext("2d");
-                if (ctx) {
-                    ctx.font = "bold 44px 'Inter', sans-serif"; // Reduced size for "was before" feel
-                    ctx.fillStyle = "white";
-                    ctx.textAlign = "center";
-                    ctx.shadowColor = "rgba(0,0,0,0.9)";
-                    ctx.shadowBlur = 12;
-                    ctx.fillText(title.toUpperCase(), 512, 140);
-                }
-                const labelTex = new THREE.CanvasTexture(canvas);
-                labelTex.anisotropy = 8;
-                const label = new THREE.Mesh(
-                    new THREE.PlaneGeometry(3.5, 0.8), // Slightly smaller plane
-                    new THREE.MeshBasicMaterial({ map: labelTex, transparent: true, depthWrite: false, side: THREE.DoubleSide, toneMapped: false })
-                );
-                group.add(label);
+                // --- Removed Title Label from inside house to declutter ---
 
-                // Individual Light
-                const pLight = new THREE.PointLight(0xffffff, 1.8, 6);
+                // Individual Light (Reduced to prevent any potential overexposure)
+                const pLight = new THREE.PointLight(0xffffff, 1.0, 6);
                 pLight.position.set(0, 1, 0.5);
                 group.add(pLight);
             };
 
             // Window positions with specific imagery (Swapped Home and Complex as requested)
-            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/supported-living.png', 'Supported Living'); // Left
-            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png', 'Home Care');           // Right
-            createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care.png', 'Complex Care');               // Front
-            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/live-in-care.png', 'Live-in Care');        // Back
+            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/supported-living.png'); // Left
+            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');           // Right
+            createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care.png');               // Front
+            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/live-in-care.png');        // Back
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
