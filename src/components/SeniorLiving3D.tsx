@@ -106,7 +106,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             camera.position.set(38, 20, 38); // Moved back and up
 
             const controls = new OrbitControls(camera, renderer.domElement);
-            controls.target.set(0, 3, 0); // Raised target to center composition vertically
+            controls.target.set(0, 1.0, 0); // Lowered target to raise the house in the frame
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
@@ -365,7 +365,7 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                 activeService = null;
                 if (labelRef.current) labelRef.current.style.opacity = "0";
                 gsap.to(camera.position, { x: 38, y: 20, z: 38, duration: 2, ease: "power2.inOut" });
-                gsap.to(controls.target, { x: 0, y: 3, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
+                gsap.to(controls.target, { x: 0, y: 1.0, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
             };
 
             container.addEventListener("mousedown", onMouseDown);
