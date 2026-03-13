@@ -30,7 +30,7 @@ const team = [
         name: "Sara Randall",
         role: "Registered Manager",
         bio: "Sara has over 35 years' experience in the social care industry, working for Social Services, the NHS and in care home settings. She is passionate about ensuring clients receive the best care and all staff are trained to the highest standards to ensure this.",
-        img: "/images/team/sara.png",
+        img: "/images/team/sara-new.jpg",
         accolade: "35+ Years Experience"
     },
     {
