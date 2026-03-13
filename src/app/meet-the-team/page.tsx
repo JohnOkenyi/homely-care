@@ -16,7 +16,7 @@ const team = [
         name: "Maria Wilson",
         role: "Operations Manager",
         bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
-        img: "/images/team/maria.png",
+        img: "/images/team/maria-new.jpg",
         accolade: "NHS Experience"
     },
     {
