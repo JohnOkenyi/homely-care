@@ -9,7 +9,7 @@ const team = [
         name: "Douglas Matungamire",
         role: "Director / Registered Manager",
         bio: "Douglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
-        img: "/images/team/douglas.jpg",
+        img: "/images/team/douglas-new.jpg",
         accolade: "Founder & Director"
     },
     {
