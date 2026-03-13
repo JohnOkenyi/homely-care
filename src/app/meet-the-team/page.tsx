@@ -37,7 +37,7 @@ const team = [
         name: "Pauline Makazhu",
         role: "Registered Manager",
         bio: "A compassionate Registered Nurse and CQC Registered Manager, Pauline leads the TDDI / Complex Care Team, ensuring individuals with higher clinical needs receive safe, skilled and responsive support.",
-        img: "/images/team/pauline.jpg",
+        img: "/images/team/pauline-new.jpg",
         accolade: "Clinical Excellence"
     }
 ];
