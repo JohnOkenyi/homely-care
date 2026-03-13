@@ -244,25 +244,25 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             houseGroup.add(wallL_Side2);
 
             const peakY = 0.3 + houseH + 2.5;
-            const slopeAngle = Math.atan(2.5 / 4);
-            const slopeLen = Math.sqrt(4 * 4 + 2.5 * 2.5) + 0.6;
+            const slopeAngle = Math.atan(2.5 / 3.8); // Adjusted for slightly wider contact
+            const slopeLen = Math.sqrt(4 * 4 + 2.5 * 2.5) + 0.8;
             const roofWidth = houseD + 1.2;
 
-            const roofR = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
-            roofR.position.set(slopeLen/2 - 0.2, peakY - 0.1, 0);
+            const roofR = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.4, roofWidth), matRoof);
+            roofR.position.set(slopeLen/2 - 0.5, peakY - 1.25, 0);
             roofR.rotation.z = -slopeAngle;
             roofR.castShadow = true;
             houseGroup.add(roofR);
 
-            const roofL = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.2, roofWidth), matRoof);
-            roofL.position.set(-slopeLen/2 + 0.2, peakY - 0.1, 0);
+            const roofL = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.4, roofWidth), matRoof);
+            roofL.position.set(-slopeLen/2 + 0.5, peakY - 1.25, 0);
             roofL.rotation.z = slopeAngle;
             roofL.castShadow = true;
             houseGroup.add(roofL);
 
-            // RIDGE CAP (CLoses the roof)
-            const ridgeCap = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.3, roofWidth + 0.05), matRoof);
-            ridgeCap.position.set(0, peakY - 0.05, 0);
+            // RIDGE CAP (Substantial cap to seal the peak)
+            const ridgeCap = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.6, roofWidth + 0.1), matRoof);
+            ridgeCap.position.set(0, peakY - 0.1, 0);
             houseGroup.add(ridgeCap);
 
             // 3. INTERIOR SCENES (Behind Windows)
