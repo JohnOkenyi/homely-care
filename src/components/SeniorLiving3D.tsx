@@ -384,11 +384,9 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             };
             window.addEventListener("resize", updateSize);
 
-            const clock = new THREE.Clock();
             let frameId: number;
             
             function tick() {
-                const t = clock.getElapsedTime();
                 if (!activeService && !isTransitioning && !isUserInteracting) {
                     diorama.rotation.y += 0.005;
                     // Removed floating animation for realistic grounded view
