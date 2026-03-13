@@ -106,7 +106,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             camera.position.set(38, 2, 38); // True ground-level position
 
             const controls = new OrbitControls(camera, renderer.domElement);
-            controls.target.set(6, 1.5, 0); // Lowered target to ground level vertically
+            controls.target.set(2, 1.5, 0); // Decreased x to shift scene right
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
@@ -403,7 +403,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 activeService = null;
                 if (labelRef.current) labelRef.current.style.opacity = "0";
                 gsap.to(camera.position, { x: 38, y: 2, z: 38, duration: 2, ease: "power2.inOut" });
-                gsap.to(controls.target, { x: 6, y: 1.5, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
+                gsap.to(controls.target, { x: 2, y: 1.5, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
             };
 
             container.addEventListener("mousedown", onMouseDown);
