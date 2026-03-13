@@ -103,10 +103,10 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             const isMobile = window.innerWidth < 768;
             const fov = isMobile ? 55 : 25;
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
-            camera.position.set(38, 20, 38); // Moved back and up
+            camera.position.set(40, 20, 40);
 
             const controls = new OrbitControls(camera, renderer.domElement);
-            controls.target.set(0, 1.0, 0); // Lowered target to raise the house in the frame
+            controls.target.set(6, 1.0, 0); // Shifted target right to move house left in frame
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
             controls.minDistance = 10;
@@ -364,8 +364,8 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
                 isTransitioning = true;
                 activeService = null;
                 if (labelRef.current) labelRef.current.style.opacity = "0";
-                gsap.to(camera.position, { x: 38, y: 20, z: 38, duration: 2, ease: "power2.inOut" });
-                gsap.to(controls.target, { x: 0, y: 1.0, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
+                gsap.to(camera.position, { x: 40, y: 20, z: 40, duration: 2, ease: "power2.inOut" });
+                gsap.to(controls.target, { x: 6, y: 1.0, z: 0, duration: 2, ease: "power2.inOut", onComplete: () => { isTransitioning = false; } });
             };
 
             container.addEventListener("mousedown", onMouseDown);
