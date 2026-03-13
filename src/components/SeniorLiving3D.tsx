@@ -28,7 +28,7 @@ const SERVICES: ServiceData[] = [
         description: "Personalised care in your sanctuary.",
         icon: "🏠",
         color: "#D6B36A",
-        position: [8, 0.45, 0],
+        position: [8, 0.05, 0],
         focusTarget: [1, 2, 3.5],
         focusCamera: [22, 10, 30]
     },
@@ -38,7 +38,7 @@ const SERVICES: ServiceData[] = [
         description: "24/7 companionship and support.",
         icon: "💜",
         color: "#5B2A86",
-        position: [-8, 0.45, 0],
+        position: [-8, 0.05, 0],
         focusTarget: [-4, 2, 0],
         focusCamera: [-30, 12, 18]
     },
@@ -48,7 +48,7 @@ const SERVICES: ServiceData[] = [
         description: "Empowering independence every day.",
         icon: "🤝",
         color: "#7A4FB3",
-        position: [0, 0.45, 8],
+        position: [0, 0.05, 8],
         focusTarget: [0, 1.5, 0],
         focusCamera: [0, 15, 35]
     },
@@ -58,7 +58,7 @@ const SERVICES: ServiceData[] = [
         description: "Nurse-led clinical excellence.",
         icon: "🏥",
         color: "#F99D31",
-        position: [0, 0.45, -8],
+        position: [0, 0.05, -8],
         focusTarget: [0, 3, 0],
         focusCamera: [28, 18, -28]
     }
@@ -165,6 +165,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             // 2. HOUSE GROUP
             const houseGroup = new THREE.Group();
             houseGroup.scale.set(scale, scale, scale);
+            houseGroup.position.y = 0.2; // Sit on base
             diorama.add(houseGroup);
 
             const houseW = 8.0;
@@ -255,6 +256,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
+            beaconsGroup.position.y = 0.2; // Sit on base
             diorama.add(beaconsGroup);
 
             const beaconGeo = new THREE.CylinderGeometry(1.2, 1.2, 0.1, 32);
@@ -389,7 +391,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 const t = clock.getElapsedTime();
                 if (!activeService && !isTransitioning && !isUserInteracting) {
                     diorama.rotation.y += 0.005;
-                    diorama.position.y = Math.sin(t * 0.5) * 0.2;
+                    // Removed floating animation for realistic grounded view
                 }
                 beaconsGroup.children.forEach((b) => {
                     const label = b.userData.label;
