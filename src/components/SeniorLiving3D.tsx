@@ -270,25 +270,58 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             houseGroup.add(interiors);
 
             const textureLoader = new THREE.TextureLoader();
-            const charTex = textureLoader.load('/images/char-helping.png');
-            const charMat = new THREE.MeshPhysicalMaterial({ map: charTex, transparent: true, alphaTest: 0.5, side: THREE.DoubleSide });
+            
+            const createInteriorScene = (px: number, py: number, pz: number, ry: number, imgPath: string, title: string) => {
+                const group = new THREE.Group();
+                group.position.set(px, py, pz);
+                group.rotation.y = ry;
+                interiors.add(group);
 
-            const createInteriorChar = (px: number, py: number, pz: number, ry: number = 0) => {
-                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), charMat);
-                sprite.position.set(px, py, pz);
-                sprite.rotation.y = ry;
-                interiors.add(sprite);
+                // Image Plane
+                const tex = textureLoader.load(imgPath);
+                const mat = new THREE.MeshPhysicalMaterial({ 
+                    map: tex, 
+                    transparent: true, 
+                    alphaTest: 0.5, 
+                    side: THREE.DoubleSide,
+                    emissive: 0xffffff,
+                    emissiveIntensity: 0.2
+                });
+                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), mat);
+                group.add(sprite);
 
-                const pLight = new THREE.PointLight(0xffffff, 1.5, 6);
-                pLight.position.set(px, py + 1, pz);
-                interiors.add(pLight);
+                // Title Label (Canvas Texture)
+                const canvas = document.createElement("canvas");
+                canvas.width = 512;
+                canvas.height = 128;
+                const ctx = canvas.getContext("2d");
+                if (ctx) {
+                    ctx.font = "bold 40px 'Inter', sans-serif";
+                    ctx.fillStyle = "white";
+                    ctx.textAlign = "center";
+                    ctx.shadowColor = "rgba(0,0,0,0.8)";
+                    ctx.shadowBlur = 8;
+                    ctx.fillText(title.toUpperCase(), 256, 80);
+                }
+                const labelTex = new THREE.CanvasTexture(canvas);
+                const label = new THREE.Mesh(
+                    new THREE.PlaneGeometry(2.5, 0.6),
+                    new THREE.MeshBasicMaterial({ map: labelTex, transparent: true, depthWrite: false, side: THREE.DoubleSide })
+                );
+                label.position.set(0, -1.2, 0.05);
+                group.add(label);
+
+                // Individual Light
+                const pLight = new THREE.PointLight(0xffffff, 1.8, 6);
+                pLight.position.set(0, 1, 0.5);
+                group.add(pLight);
             };
 
-            // Window positions
-            createInteriorChar(-1.5, 1.8, 0, Math.PI / 2); // Left window
-            createInteriorChar(1.5, 1.8, 0, -Math.PI / 2); // Right window
-            createInteriorChar(0, 2.2, 1.5, 0);           // Front window
-            createInteriorChar(0, 2.2, -1.5, Math.PI);    // Back window
+            // Window positions with specific imagery
+            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/supported-living.png', 'Supported Living'); // Left
+            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/complex-care.png', 'Complex Care');      // Right
+            createInteriorScene(0, 2.2, 1.5, 0, '/images/home-care.png', 'Home Care');                     // Front
+            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/live-in-care.png', 'Live-in Care');        // Back
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
@@ -471,10 +504,10 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             </div>
             <div ref={labelRef} className="absolute top-10 left-10 z-30 transition-all duration-700 pointer-events-none opacity-0 max-w-[280px]" />
             <div ref={containerRef} className="relative z-10 w-full h-[70vh] md:h-full max-w-[1000px] aspect-[4/3] rounded-3xl overflow-hidden cursor-grab active:cursor-grabbing" />
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-700 opacity-60 group-hover:opacity-100">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-700 opacity-60 group-hover:opacity-100">
                 <div className="flex items-center gap-4 px-6 py-3 rounded-full bg-premium-dark/90 border border-white/5 backdrop-blur-2xl shadow-2xl">
                     <div className="w-2 h-2 rounded-full bg-[#D6B36A] animate-pulse" />
-                    <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-white/70">Click beacons to explore services</span>
+                    <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-white/70">Drag to rotate . Scroll to zoom . Right-drag to pan</span>
                 </div>
             </div>
         </div>
