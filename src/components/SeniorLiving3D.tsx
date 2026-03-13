@@ -98,16 +98,16 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
 
             // --- CAMERA ---
             const isMobile = window.innerWidth < 768;
-            const fov = isMobile ? 55 : 25; // Narrower FOV for more premium feel
+            const fov = isMobile ? 55 : 20; // Even narrower FOV for a "premium miniature" look
             const camera = new THREE.PerspectiveCamera(fov, initialWidth / initialHeight, 0.1, 200);
-            camera.position.set(25, 12, 25);
+            camera.position.set(35, 18, 35); // Pulled back significantly
 
             const controls = new OrbitControls(camera, renderer.domElement);
             controls.target.set(0, 1.5, 0);
             controls.enableDamping = true;
             controls.dampingFactor = 0.05;
-            controls.minDistance = 10;
-            controls.maxDistance = 50;
+            controls.minDistance = 15; // Further min distance
+            controls.maxDistance = 60;
             controls.maxPolarAngle = Math.PI / 2 - 0.1;
             controls.minPolarAngle = Math.PI / 6;
 
@@ -208,18 +208,12 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             wallRight.receiveShadow = true;
             houseGroup.add(wallRight);
 
-            // Left Window Lintel
-            const wallL_Top = new THREE.Mesh(new THREE.BoxGeometry(wallThick, 0.2, houseD), matHouseBody);
-            wallL_Top.position.set(-houseW / 2, 0.3 + houseH - 0.1, 0);
-            houseGroup.add(wallL_Top);
-
-            const wallL_Side1 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH - 0.2, 0.8), matHouseBody);
-            wallL_Side1.position.set(-houseW / 2, 0.3 + (houseH-0.2)/2, houseD/2 - 0.4);
-            houseGroup.add(wallL_Side1);
-
-            const wallL_Side2 = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH - 0.2, 0.8), matHouseBody);
-            wallL_Side2.position.set(-houseW / 2, 0.3 + (houseH-0.2)/2, -houseD/2 + 0.4);
-            houseGroup.add(wallL_Side2);
+            // Closed Side Wall (Instead of window)
+            const wallLeft = new THREE.Mesh(new THREE.BoxGeometry(wallThick, houseH, houseD), matHouseBody);
+            wallLeft.position.set(-houseW / 2, 0.3 + houseH / 2, 0);
+            wallLeft.castShadow = true;
+            wallLeft.receiveShadow = true;
+            houseGroup.add(wallLeft);
 
             // Roof
             const peakY = 0.3 + houseH + 2.5;
@@ -228,20 +222,28 @@ export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
             const roofWidth = houseD + 1.2;
 
             const roofR = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.15, roofWidth), matRoof);
-            roofR.position.set(slopeLen/2 - 0.2, peakY, 0);
+            roofR.position.set(slopeLen/2 - 0.2, peakY - 0.1, 0); // Tweaked for tighter fit
             roofR.rotation.z = -slopeAngle;
             roofR.castShadow = true;
             houseGroup.add(roofR);
 
             const roofL = new THREE.Mesh(new THREE.BoxGeometry(slopeLen, 0.15, roofWidth), matRoof);
-            roofL.position.set(-slopeLen/2 + 0.2, peakY, 0);
+            roofL.position.set(-slopeLen/2 + 0.2, peakY - 0.1, 0);
             roofL.rotation.z = slopeAngle;
             roofL.castShadow = true;
             houseGroup.add(roofL);
 
-            // Interior (Simplified characters)
+            // Ridge Cap (Closes the roof peak)
+            const ridgeCap = new THREE.Mesh(
+                new THREE.BoxGeometry(0.5, 0.2, roofWidth),
+                matRoof
+            );
+            ridgeCap.position.set(0, peakY + 0.05, 0);
+            houseGroup.add(ridgeCap);
+
+            // Interior characters (Still there but now house is solid)
             const interior = new THREE.Group();
-            interior.position.set(-1.5, 0.31, 0);
+            interior.position.set(0, 0.31, 0);
             houseGroup.add(interior);
 
             const textureLoader = new THREE.TextureLoader();
