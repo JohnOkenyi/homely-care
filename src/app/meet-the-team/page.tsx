@@ -16,14 +16,14 @@ const team = [
         name: "Maria Wilson",
         role: "Operations Manager",
         bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
-        img: "/images/team/maria-new.jpg",
+        img: "/images/team/maria-2026.jpg",
         accolade: "NHS Experience"
     },
     {
         name: "Cedric Dube",
         role: "Compliance Officer",
         bio: "Cedric has 15 years' experience in the legal and compliance field. He ensures that all processes adhere to legal and regulatory requirements, fostering a culture of integrity across the organisation.",
-        img: "/images/team/cedric.png",
+        img: "/images/team/cedric-2026.jpg",
         accolade: "Legal & Compliance"
     },
     {
