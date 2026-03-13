@@ -285,7 +285,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     alphaTest: 0.5, 
                     side: THREE.DoubleSide,
                     emissive: 0xffffff,
-                    emissiveIntensity: 0.2
+                    emissiveIntensity: 0.6 // Boosted visibility
                 });
                 const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.5, 3.5), mat);
                 group.add(sprite);
@@ -296,19 +296,19 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 canvas.height = 128;
                 const ctx = canvas.getContext("2d");
                 if (ctx) {
-                    ctx.font = "bold 40px 'Inter', sans-serif";
+                    ctx.font = "bold 60px 'Inter', sans-serif"; // Increased font size
                     ctx.fillStyle = "white";
                     ctx.textAlign = "center";
-                    ctx.shadowColor = "rgba(0,0,0,0.8)";
-                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = "rgba(0,0,0,0.9)";
+                    ctx.shadowBlur = 10;
                     ctx.fillText(title.toUpperCase(), 256, 80);
                 }
                 const labelTex = new THREE.CanvasTexture(canvas);
                 const label = new THREE.Mesh(
-                    new THREE.PlaneGeometry(2.5, 0.6),
+                    new THREE.PlaneGeometry(3.0, 0.75), // Increased label size
                     new THREE.MeshBasicMaterial({ map: labelTex, transparent: true, depthWrite: false, side: THREE.DoubleSide })
                 );
-                label.position.set(0, -1.2, 0.05);
+                label.position.set(0, -1.3, 0.05);
                 group.add(label);
 
                 // Individual Light
@@ -317,10 +317,10 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(pLight);
             };
 
-            // Window positions with specific imagery
+            // Window positions with specific imagery (Swapped Home and Complex as requested)
             createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/supported-living.png', 'Supported Living'); // Left
-            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/complex-care.png', 'Complex Care');      // Right
-            createInteriorScene(0, 2.2, 1.5, 0, '/images/home-care.png', 'Home Care');                     // Front
+            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png', 'Home Care');           // Right
+            createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care.png', 'Complex Care');               // Front
             createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/live-in-care.png', 'Live-in Care');        // Back
 
             // --- BEACONS ---
