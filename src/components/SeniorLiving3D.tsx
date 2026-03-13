@@ -64,7 +64,7 @@ const SERVICES: ServiceData[] = [
     }
 ];
 
-export default function SeniorLiving3D({ scale = 1.0 }: SeniorLiving3DProps) {
+export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const labelRef = useRef<HTMLDivElement>(null);
 
