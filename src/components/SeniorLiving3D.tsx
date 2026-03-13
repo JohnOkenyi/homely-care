@@ -278,12 +278,15 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 interiors.add(group);
 
                 // Image Plane (MeshBasicMaterial for HD, non-washed-out look)
+                // Solution: We bypass scene lighting AND tone mapping to show the image in full HD quality.
                 const tex = textureLoader.load(imgPath);
+                tex.colorSpace = "srgb"; // Correct color space
                 const mat = new THREE.MeshBasicMaterial({ 
                     map: tex, 
                     transparent: true, 
-                    alphaTest: 0.1, // Lower alpha test for smoother edges
-                    side: THREE.DoubleSide
+                    alphaTest: 0.1, 
+                    side: THREE.DoubleSide,
+                    toneMapped: false // Bypasses the scene's lighting exposure/tone mapping for HD clarity
                 });
                 const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 3.6), mat);
                 group.add(sprite);
@@ -370,10 +373,10 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 }
                 const tex = new THREE.CanvasTexture(canvas);
                 const label = new THREE.Mesh(
-                    new THREE.PlaneGeometry(4.5, 1.1), // Much wider to prevent "Supported Living" clipping
-                    new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false })
+                    new THREE.PlaneGeometry(6.0, 1.5), // Significantly wider and taller plane to ensure NO clipping
+                    new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, toneMapped: false })
                 );
-                label.position.y = 1.2;
+                label.position.y = 1.3;
                 group.add(label);
                 
                 group.userData.label = label;
