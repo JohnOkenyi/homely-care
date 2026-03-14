@@ -18,19 +18,34 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="max-w-md">
-                        <Link href="/" className="block mb-8 w-fit mt-[-10px] perspective-[1000px]">
-                            <div className="flex flex-row items-center gap-4 group">
-                                {/* Intense 3D Extruded Logo Icon */}
+                        <Link href="/" className="block mb-8 w-fit mt-[-10px] perspective-[1200px]">
+                            <div className="flex flex-row items-center gap-6 group">
+                                {/* Cinema 3D Extruded Logo Icon */}
                                 <motion.div 
                                     className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-[#F7F5F2] shrink-0 shadow-xl"
                                     whileHover={{ 
-                                        rotateX: 25, 
-                                        rotateY: -25, 
-                                        scale: 1.15,
-                                        z: 50,
-                                        boxShadow: "1px 1px 0px #e5e1d8, 2px 2px 0px #e5e1d8, 3px 3px 0px #e5e1d8, 4px 4px 0px #e5e1d8, 5px 5px 0px #e5e1d8, 10px 10px 30px rgba(0,0,0,0.5)"
+                                        z: 180, // High Z-axis movement towards user
+                                        scale: 1.35, // Significant scaling for "coming towards you" effect
+                                        rotateX: 12, // Slight tilt to show volume
+                                        rotateY: -12,
+                                        boxShadow: `
+                                            0.5px 0.5px 0px #e5e1d8, 
+                                            1px 1px 0px #e5e1d8, 
+                                            1.5px 1.5px 0px #e5e1d8, 
+                                            2px 2px 0px #e5e1d8, 
+                                            2.5px 2.5px 0px #e5e1d8, 
+                                            3px 3px 0px #e5e1d8, 
+                                            3.5px 3.5px 0px #e5e1d8, 
+                                            4px 4px 0px #e5e1d8,
+                                            15px 15px 35px rgba(0,0,0,0.6)
+                                        `
                                     }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                                    transition={{ 
+                                        type: "spring", 
+                                        stiffness: 250, 
+                                        damping: 18,
+                                        mass: 0.8
+                                    }}
                                     style={{ transformStyle: "preserve-3d" }}
                                 >
                                     <Image
