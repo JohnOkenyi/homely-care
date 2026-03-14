@@ -300,11 +300,11 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             // --- HIGH-VISIBILITY LIGHTBOX SIGN ---
             const signGroup = new THREE.Group();
             signGroup.position.set(0, 6.2, 3.55); 
-            signGroup.scale.set(0.9, 0.9, 0.9); // Increased from 0.65
+            signGroup.scale.set(0.78, 0.78, 0.78); // Reduced from 0.9
             houseGroup.add(signGroup);
 
             // 1. Emissive Backing Plate
-            const lightPlateGeom = new THREE.PlaneGeometry(5.4, 1.4); // Widened
+            const lightPlateGeom = new THREE.PlaneGeometry(5.0, 1.3); // Slightly reduced
             const lightPlateMat = new THREE.MeshBasicMaterial({ 
                 color: 0xffffff, 
                 toneMapped: false, 
@@ -316,7 +316,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             signGroup.add(lightPlate);
 
             // 2. Translucent Glass Shell
-            const glassGeometry = new RoundedBoxGeometry(5.5, 1.5, 0.3, 8, 0.05); // Enlarged
+            const glassGeometry = new RoundedBoxGeometry(5.1, 1.4, 0.28, 8, 0.05); // Slightly reduced
             const glassMaterial = new THREE.MeshPhysicalMaterial({
                 color: 0xffffff,
                 roughness: 0.1,
@@ -330,7 +330,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             signGroup.add(glassSlab);
 
             // 3. Fluorescent Bulbs (Visual markers)
-            const bulbGeo = new THREE.CylinderGeometry(0.04, 0.04, 5.0, 12); // Length increased
+            const bulbGeo = new THREE.CylinderGeometry(0.04, 0.04, 4.6, 12); // Reduced from 5.0
             const bulbMat = new THREE.MeshBasicMaterial({ color: 0xfff0d6, toneMapped: false });
             
             const bulbTop = new THREE.Mesh(bulbGeo, bulbMat);
@@ -352,10 +352,10 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 if (context) {
                     context.fillStyle = 'rgba(255, 255, 255, 0)';
                     context.fillRect(0, 0, canvas.width, canvas.height);
-                    context.font = 'bold 95px "Inter", sans-serif'; // Slightly bigger font
+                    context.font = 'bold 92px "Inter", sans-serif'; 
                     context.textAlign = 'center';
                     context.textBaseline = 'middle';
-                    context.letterSpacing = '6px';
+                    context.letterSpacing = '8px';
                     
                     // Dark sharp text for the light box
                     context.fillStyle = '#1a1a1a';
@@ -372,7 +372,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 transparent: true,
                 side: THREE.FrontSide
             });
-            const signTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(5.0, 1.25), signTextMaterial); // Widened plane
+            const signTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4.6, 1.2), signTextMaterial); // Reduced from 5.0
             signTextPlane.position.z = 0.16; 
             signGroup.add(signTextPlane);
 
