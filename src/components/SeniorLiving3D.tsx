@@ -301,7 +301,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     toneMapped: false 
                 });
                 // Slightly wider than window to ensure full coverage
-                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(4.6, 3.6), mat); 
+                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.9, 3.9), mat); 
                 group.add(sprite);
 
                 // Subtle individual light for depth
