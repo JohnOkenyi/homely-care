@@ -55,14 +55,14 @@ export default function ContactUs() {
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.05 }}
-                            className="hidden lg:flex relative w-full lg:max-w-[700px] lg:h-[600px] items-center justify-center p-8 bg-white/[0.03] border border-white/5 rounded-[40px] shadow-2xl overflow-visible mt-0 lg:-translate-x-12 lg:-translate-y-16"
+                            transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            className="hidden lg:flex relative w-full lg:w-[60%] aspect-[4/3] items-center justify-center overflow-visible"
                         >
-                            <div className="absolute inset-0 z-0 bg-gradient-radial from-[#5B2A86]/5 to-transparent blur-3xl rounded-full scale-75" />
-                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible">
-                                <SeniorLiving3D scale={1.0} />
+                            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 aspect-square bg-gradient-radial from-[#5B2A86]/10 via-transparent to-transparent blur-3xl opacity-50 scale-125" />
+                            <div className="w-full h-full relative z-20 flex items-center justify-center overflow-visible lg:translate-x-12 lg:-translate-y-4">
+                                <SeniorLiving3D />
                             </div>
                         </motion.div>
                     </div>

@@ -277,44 +277,37 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.rotation.y = ry;
                 interiors.add(group);
 
-                // --- Background Backing (For maximum visibility in shadows) ---
-                const backing = new THREE.Mesh(
-                    new THREE.PlaneGeometry(4.7, 3.7),
-                    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.05 })
-                );
-                backing.position.z = -0.01;
-                group.add(backing);
-
-                // Image Plane (MeshBasicMaterial with Maximum Quality)
+                // Image Plane (MeshBasicMaterial for HD, non-washed-out look)
+                // Solution: We bypass scene lighting AND tone mapping to show the image in full HD quality.
                 const tex = textureLoader.load(imgPath);
                 tex.colorSpace = "srgb";
-                tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-                tex.generateMipmaps = true;
-                tex.minFilter = THREE.LinearMipmapLinearFilter;
+                tex.anisotropy = 16; // Significant sharpness boost
+                tex.minFilter = THREE.LinearFilter;
                 tex.magFilter = THREE.LinearFilter;
-
                 const mat = new THREE.MeshBasicMaterial({ 
                     map: tex, 
                     transparent: true, 
-                    alphaTest: 0.05, 
-                    side: THREE.FrontSide,
-                    toneMapped: false 
+                    alphaTest: 0.1, 
+                    side: THREE.DoubleSide,
+                    toneMapped: false // Bypasses the scene's lighting exposure/tone mapping for HD clarity
                 });
-                // Slightly wider than window to ensure full coverage
-                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.9, 3.9), mat); 
+                const sprite = new THREE.Mesh(new THREE.PlaneGeometry(3.9, 3.9), mat); // Increased size to fill window better
                 group.add(sprite);
 
-                // Subtle individual light for depth
-                const pLight = new THREE.PointLight(0xffffff, 0.5, 4);
-                pLight.position.set(0, 0, 1);
+                // --- Removed Title Label from inside house to declutter ---
+
+                // Individual Light (Reduced to prevent any potential overexposure)
+                const pLight = new THREE.PointLight(0xffffff, 1.0, 6);
+                pLight.position.set(0, 1, 0.5);
                 group.add(pLight);
             };
 
-            // Window positions with specific imagery (Nudged close to glass for visibility)
-            createInteriorScene(-3.85, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left
-            createInteriorScene(3.85, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right
-            createInteriorScene(0, 2.2, 3.2, 0, '/images/complex-care-clinical.png');     // Front
-            createInteriorScene(0, 2.2, -3.2, Math.PI, '/images/supported-living-support.png'); // Back
+            // Window positions with specific imagery (Aligned with Service labels)
+            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
+            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
+            createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
+            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living-support.png');   // Back (Near Supported Living)
+
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
             beaconsGroup.position.y = 0.2; // Sit on base
