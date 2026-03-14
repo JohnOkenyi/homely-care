@@ -475,51 +475,34 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                         const isHovered = intersects.length > 0;
 
                         // Target values
-                        const targetScale = isHovered ? 1.3 : 1.0;
-                        const targetY = isHovered ? 0.8 : 0.0;
-                        const targetEmissive = isHovered ? 4.0 : 0.4;
+                        const targetScale = isHovered ? 1.1 : 1.0;
 
                         // Smoothly transition scale
                         b.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
 
-                        // Position with Vibration (Point and Play)
-                        if (isHovered) {
-                            // Immediate vibration on pointer pointing
-                            b.position.x = svc.position[0] + (Math.random() - 0.5) * 0.15;
-                            b.position.y = THREE.MathUtils.lerp(b.position.y, targetY, 0.1) + (Math.random() - 0.5) * 0.05;
-                            b.position.z = svc.position[2] + (Math.random() - 0.5) * 0.15;
-                        } else {
-                            b.position.x = THREE.MathUtils.lerp(b.position.x, svc.position[0], 0.1);
-                            b.position.y = THREE.MathUtils.lerp(b.position.y, 0.0, 0.1);
-                            b.position.z = THREE.MathUtils.lerp(b.position.z, svc.position[2], 0.1);
-                        }
+                        // Position (Grounded)
+                        b.position.x = THREE.MathUtils.lerp(b.position.x, svc.position[0], 0.1);
+                        b.position.y = THREE.MathUtils.lerp(b.position.y, 0.0, 0.1);
+                        b.position.z = THREE.MathUtils.lerp(b.position.z, svc.position[2], 0.1);
 
-                        // Disk Glow (Intense on hover)
+                        // Disk Glow (Default Subtle)
                         const diskMat = disk.material as THREE.MeshPhysicalMaterial;
-                        const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.02) * 0.3) : 1.0;
-                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
-                        diskMat.opacity = isHovered ? 1.0 : 0.8;
+                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, 0.4, 0.1);
+                        diskMat.opacity = 0.6;
 
-                        // Label Population (Always Bright + Extra scale on hover)
+                        // Label (Always Bright)
                         if (label) {
                             const labelMat = label.material as THREE.MeshBasicMaterial;
                             labelMat.opacity = 1.0;
-                            const labelTargetScale = isHovered ? 1.2 : 1.0;
+                            const labelTargetScale = isHovered ? 1.1 : 1.0;
                             label.scale.lerp(new THREE.Vector3(labelTargetScale, labelTargetScale, 1.0), 0.1);
                         }
 
-                        // Ring Animation (Ripple effect)
+                        // Ring (Static)
                         if (ring) {
                             const ringMat = ring.material as THREE.MeshBasicMaterial;
-                            if (isHovered) {
-                                // Creative Ripple: Continuous expansion that fades out
-                                const ripple = (Date.now() * 0.002) % 1.0;
-                                ring.scale.set(1.0 + ripple * 2, 1.0 + ripple * 2, 1.0 + ripple * 2);
-                                ringMat.opacity = (1.0 - ripple) * 0.8;
-                            } else {
-                                ring.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.1);
-                                ringMat.opacity = THREE.MathUtils.lerp(ringMat.opacity, 0.5, 0.1);
-                            }
+                            ring.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.1);
+                            ringMat.opacity = 0.4;
                         }
                     }
                 });
