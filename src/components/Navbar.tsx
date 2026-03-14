@@ -52,7 +52,7 @@ export default function Navbar() {
                 }}
                 animate={hidden && !mobileMenuOpen ? "hidden" : "visible"}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className={`fixed top-0 inset-x-0 z-50 flex items-center h-24 ${scrolled || mobileMenuOpen ? 'bg-[#F7F5F2]/98 backdrop-blur-xl shadow-sm border-b border-[#5B2A86]/10' : 'bg-[#F7F5F2]/90 backdrop-blur-md'
+                className={`fixed top-0 inset-x-0 z-[100] flex items-center h-24 ${scrolled || mobileMenuOpen ? 'bg-[#F7F5F2]/98 backdrop-blur-xl shadow-sm border-b border-[#5B2A86]/10' : 'bg-[#F7F5F2]/90 backdrop-blur-md'
                     }`}
             >
                 <div className="grid-container flex justify-between items-center w-full">
@@ -126,7 +126,7 @@ export default function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0 }}
-                        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-3xl lg:hidden overflow-hidden"
+                        className="fixed inset-0 z-[90] bg-black/40 backdrop-blur-3xl lg:hidden overflow-hidden"
                     >
                         <motion.div
                             initial={{ x: "100%" }}
