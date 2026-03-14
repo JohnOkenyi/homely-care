@@ -411,61 +411,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 if (intersects.length > 0) {
                     const beaconGroup = (intersects[0].object.parent?.userData.service ? intersects[0].object.parent : intersects[0].object.parent?.parent) as THREE.Group;
                     const svc = beaconGroup?.userData.service as ServiceData;
-                    
-                    if (svc && beaconGroup) {
-                        // 1. Find the disk mesh (the circular base)
-                        const disk = beaconGroup.children.find(child => 
-                            child instanceof THREE.Mesh && 
-                            !(child.geometry instanceof THREE.PlaneGeometry) &&
-                            !(child.geometry instanceof THREE.TorusGeometry)
-                        ) as THREE.Mesh;
-                        const diskMat = disk?.material as THREE.MeshPhysicalMaterial;
-
-                        if (diskMat) {
-                            gsap.killTweensOf(diskMat);
-                            disk.userData.isClicking = true;
-                            
-                            // High-impact Glow Burst
-                            gsap.to(diskMat, { 
-                                emissiveIntensity: 25, 
-                                duration: 0.05, 
-                                onComplete: () => {
-                                    gsap.to(diskMat, { 
-                                        emissiveIntensity: 2.5, 
-                                        duration: 1.2,
-                                        onComplete: () => { 
-                                            disk.userData.isClicking = false; 
-                                        }
-                                    });
-                                }
-                            });
-                        }
-
-                        // 2. High-frequency Intense Vibration
-                        gsap.killTweensOf(beaconGroup.position);
-                        const shakeIntensity = 0.8;
-                        const duration = 0.02;
-                        const shakeTl = gsap.timeline();
-                        
-                        for(let i = 0; i < 15; i++) {
-                            shakeTl.to(beaconGroup.position, {
-                                x: svc.position[0] + (Math.random() - 0.5) * shakeIntensity,
-                                y: svc.position[1] + (Math.random() - 0.5) * 0.4,
-                                z: svc.position[2] + (Math.random() - 0.5) * shakeIntensity,
-                                duration: duration,
-                                ease: "none"
-                            });
-                        }
-                        shakeTl.to(beaconGroup.position, { 
-                            x: svc.position[0], 
-                            y: svc.position[1], 
-                            z: svc.position[2], 
-                            duration: 0.1,
-                            ease: "elastic.out(1, 0.3)"
-                        });
-
-                        focusService(svc);
-                    }
+                    if (svc) focusService(svc);
                 } else if (activeService) {
                     resetView();
                 }
@@ -518,38 +464,46 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     const label = b.userData.label as THREE.Mesh;
                     const disk = b.children[0] as THREE.Mesh;
                     const ring = b.children[1] as THREE.Mesh;
+                    const svc = b.userData.service as ServiceData; // Get service data for position
 
                     if (label) label.lookAt(camera.position);
 
                     if (!isTransitioning) {
+                        // Surgical Hit Detection (Disk or Label)
                         raycaster.setFromCamera(mouse, camera);
-                        const intersects = raycaster.intersectObject(disk);
+                        const intersects = raycaster.intersectObjects([disk, label]);
                         const isHovered = intersects.length > 0;
 
                         // Target values
                         const targetScale = isHovered ? 1.3 : 1.0;
                         const targetY = isHovered ? 0.8 : 0.0;
-                        const targetEmissive = isHovered ? 2.5 : 0.4;
-                        const targetOpacity = isHovered ? 1.0 : 0.8;
+                        const targetEmissive = isHovered ? 4.0 : 0.4;
 
-                        // Smoothly transition position and scale (Lock if clicking)
-                        if (!disk.userData.isClicking) {
-                            b.position.y = THREE.MathUtils.lerp(b.position.y, targetY, 0.1);
-                        }
+                        // Smoothly transition scale
                         b.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
 
-                        // Disk Glow (Breathing Pulse when hovered - Skip if clicking burst is active)
-                        const diskMat = disk.material as THREE.MeshPhysicalMaterial;
-                        if (!disk.userData.isClicking) {
-                            const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.01) * 0.4) : 1.0;
-                            diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
+                        // Position with Vibration (Point and Play)
+                        if (isHovered) {
+                            // Immediate vibration on pointer pointing
+                            b.position.x = svc.position[0] + (Math.random() - 0.5) * 0.15;
+                            b.position.y = THREE.MathUtils.lerp(b.position.y, targetY, 0.1) + (Math.random() - 0.5) * 0.05;
+                            b.position.z = svc.position[2] + (Math.random() - 0.5) * 0.15;
+                        } else {
+                            b.position.x = THREE.MathUtils.lerp(b.position.x, svc.position[0], 0.1);
+                            b.position.y = THREE.MathUtils.lerp(b.position.y, 0.0, 0.1);
+                            b.position.z = THREE.MathUtils.lerp(b.position.z, svc.position[2], 0.1);
                         }
-                        diskMat.opacity = THREE.MathUtils.lerp(diskMat.opacity, targetOpacity, 0.1);
 
-                        // Label Population (Always Bright)
+                        // Disk Glow (Intense on hover)
+                        const diskMat = disk.material as THREE.MeshPhysicalMaterial;
+                        const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.02) * 0.3) : 1.0;
+                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
+                        diskMat.opacity = isHovered ? 1.0 : 0.8;
+
+                        // Label Population (Always Bright + Extra scale on hover)
                         if (label) {
                             const labelMat = label.material as THREE.MeshBasicMaterial;
-                            labelMat.opacity = 1.0; // Keep text fully bright
+                            labelMat.opacity = 1.0;
                             const labelTargetScale = isHovered ? 1.2 : 1.0;
                             label.scale.lerp(new THREE.Vector3(labelTargetScale, labelTargetScale, 1.0), 0.1);
                         }
