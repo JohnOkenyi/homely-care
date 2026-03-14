@@ -43,6 +43,16 @@ const SERVICES: ServiceData[] = [
         focusCamera: [-30, 12, 18]
     },
     {
+        id: "supported",
+        title: "Supported Living",
+        description: "Empowering independence every day.",
+        icon: "🤝",
+        color: "#7A4FB3",
+        position: [0, 0.05, -8], // Moved to Back
+        focusTarget: [0, 1.5, 0],
+        focusCamera: [0, 15, 35]
+    },
+    {
         id: "complex",
         title: "Complex Care",
         description: "Nurse-led clinical excellence.",
@@ -295,7 +305,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
             createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
             createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
-            // Back window removed (Supported Living)
+            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living-support.png');   // Back (Near Supported Living)
 
             // --- HIGH-VISIBILITY LIGHTBOX SIGN ---
             const signGroup = new THREE.Group();
