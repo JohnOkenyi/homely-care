@@ -364,7 +364,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                         transparent: true, 
                         depthWrite: false, 
                         toneMapped: false,
-                        opacity: 0.7 
+                        opacity: 1.0 
                     })
                 );
                 label.position.y = 1.3;
@@ -464,37 +464,41 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                         const intersects = raycaster.intersectObject(disk);
                         const isHovered = intersects.length > 0;
 
-                        // Hover target values
-                        const targetScale = isHovered ? 1.25 : 1.0;
-                        const targetOpacity = isHovered ? 1.0 : 0.6;
-                        const targetEmissive = isHovered ? 1.5 : 0.2;
+                        // Target values
+                        const targetScale = isHovered ? 1.3 : 1.0;
+                        const targetY = isHovered ? 0.8 : 0.0;
+                        const targetEmissive = isHovered ? 2.5 : 0.4;
+                        const targetOpacity = isHovered ? 1.0 : 0.8;
 
-                        // Lerp disk group scale
+                        // Smoothly transition position and scale
+                        b.position.y = THREE.MathUtils.lerp(b.position.y, targetY, 0.1);
                         b.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
 
-                        // Disk Material update (Glow)
+                        // Disk Glow (Breathing Pulse when hovered)
                         const diskMat = disk.material as THREE.MeshPhysicalMaterial;
+                        const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.01) * 0.4) : 1.0;
+                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
                         diskMat.opacity = THREE.MathUtils.lerp(diskMat.opacity, targetOpacity, 0.1);
-                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive, 0.1);
 
-                        // Label Glow effect (Opacity and slight scale)
+                        // Label Population (Always Bright)
                         if (label) {
                             const labelMat = label.material as THREE.MeshBasicMaterial;
-                            labelMat.opacity = THREE.MathUtils.lerp(labelMat.opacity, isHovered ? 1.0 : 0.7, 0.1);
-                            const labelTargetScale = isHovered ? 1.1 : 1.0;
+                            labelMat.opacity = 1.0; // Keep text fully bright
+                            const labelTargetScale = isHovered ? 1.2 : 1.0;
                             label.scale.lerp(new THREE.Vector3(labelTargetScale, labelTargetScale, 1.0), 0.1);
                         }
 
-                        // Ring Animation (Pulse and Glow)
+                        // Ring Animation (Ripple effect)
                         if (ring) {
                             const ringMat = ring.material as THREE.MeshBasicMaterial;
-                            ringMat.opacity = THREE.MathUtils.lerp(ringMat.opacity, isHovered ? 0.8 : 0.4, 0.1);
-                            
                             if (isHovered) {
-                                const pulse = 1.0 + Math.sin(Date.now() * 0.008) * 0.15;
-                                ring.scale.set(pulse, pulse, pulse);
+                                // Creative Ripple: Continuous expansion that fades out
+                                const ripple = (Date.now() * 0.002) % 1.0;
+                                ring.scale.set(1.0 + ripple * 2, 1.0 + ripple * 2, 1.0 + ripple * 2);
+                                ringMat.opacity = (1.0 - ripple) * 0.8;
                             } else {
-                                ring.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+                                ring.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.1);
+                                ringMat.opacity = THREE.MathUtils.lerp(ringMat.opacity, 0.5, 0.1);
                             }
                         }
                     }
