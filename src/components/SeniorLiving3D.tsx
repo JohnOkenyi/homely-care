@@ -302,11 +302,82 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(pLight);
             };
 
-            // Window positions with specific imagery (Aligned with Service labels)
-            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
-            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
             createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
             createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living-support.png');   // Back (Near Supported Living)
+
+            // --- ILLUMINATED GLASS SIGN ---
+            const signGroup = new THREE.Group();
+            signGroup.position.set(0, 0.4, 6.5); // Position at the front base
+            dioramaGroup.add(signGroup);
+
+            // Glass Slab
+            const glassGeometry = new RoundedBoxGeometry(4.5, 1.2, 0.2, 8, 0.05);
+            const glassMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0xffffff,
+                metalness: 0,
+                roughness: 0.02,
+                transmission: 0.98,
+                thickness: 0.5,
+                ior: 1.5,
+                transparent: true,
+                opacity: 0.5,
+                envMapIntensity: 1.5
+            });
+            const glassSlab = new THREE.Mesh(glassGeometry, glassMaterial);
+            signGroup.add(glassSlab);
+
+            // Text Texture for Sign
+            const createSignTextTexture = (text: string) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1024;
+                canvas.height = 256;
+                const context = canvas.getContext('2d');
+                if (context) {
+                    context.fillStyle = 'rgba(255, 255, 255, 0)';
+                    context.fillRect(0, 0, canvas.width, canvas.height);
+                    context.font = 'bold 80px "Inter", sans-serif';
+                    context.textAlign = 'center';
+                    context.textBaseline = 'middle';
+                    context.letterSpacing = '10px';
+                    
+                    // Outglow for text
+                    context.shadowColor = '#D6B36A';
+                    context.shadowBlur = 15;
+                    context.fillStyle = '#ffffff';
+                    context.fillText(text.toUpperCase(), canvas.width / 2, canvas.height / 2);
+                }
+                const texture = new THREE.CanvasTexture(canvas);
+                texture.needsUpdate = true;
+                return texture;
+            };
+
+            const signTextTexture = createSignTextTexture('HOMELY HEALTH CARE');
+            const signTextMaterial = new THREE.MeshBasicMaterial({
+                map: signTextTexture,
+                transparent: true,
+                alphaTest: 0.05,
+                side: THREE.DoubleSide
+            });
+            const signTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), signTextMaterial);
+            signTextPlane.position.z = 0.11; // Slightly in front of glass
+            signGroup.add(signTextPlane);
+
+            // Internal Light for Sign
+            const signLight = new THREE.PointLight(0xD6B36A, 1.5, 4);
+            signLight.position.set(0, 0, 0);
+            signGroup.add(signLight);
+
+            // Add a backing glow plane inside the glass
+            const glowPlaneGeom = new THREE.PlaneGeometry(4.2, 0.8);
+            const glowPlaneMat = new THREE.MeshBasicMaterial({
+                color: 0x5B2A86,
+                transparent: true,
+                opacity: 0.15,
+                side: THREE.DoubleSide
+            });
+            const glowPlane = new THREE.Mesh(glowPlaneGeom, glowPlaneMat);
+            glowPlane.position.z = 0.05;
+            signGroup.add(glowPlane);
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
