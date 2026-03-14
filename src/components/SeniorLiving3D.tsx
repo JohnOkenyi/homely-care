@@ -309,28 +309,51 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
 
             // --- ILLUMINATED GLASS SIGN ---
             const signGroup = new THREE.Group();
-            // Positioned above the front window on the wall
-            signGroup.position.set(0, 4.3, 3.55); 
-            signGroup.scale.set(0.7, 0.7, 0.7); // Scaled down to fit the wall better
+            // Positioned at the peak of the front wall gable
+            signGroup.position.set(0, 6.2, 3.55); 
+            signGroup.scale.set(0.65, 0.65, 0.65); // Scaled appropriately for the peak
             houseGroup.add(signGroup);
 
-            // Glass Slab
-            const glassGeometry = new RoundedBoxGeometry(4.5, 1.2, 0.2, 8, 0.05);
+            // Glass Slab (Refined for diffused bulb look)
+            const glassGeometry = new RoundedBoxGeometry(4.5, 1.3, 0.25, 8, 0.05);
             const glassMaterial = new THREE.MeshPhysicalMaterial({
                 color: 0xffffff,
                 metalness: 0.1,
-                roughness: 0.05,
+                roughness: 0.1,
                 transmission: 0.95,
-                thickness: 0.5,
+                thickness: 0.8,
                 ior: 1.5,
                 transparent: true,
-                opacity: 0.6,
+                opacity: 0.7,
                 envMapIntensity: 1.5
             });
             const glassSlab = new THREE.Mesh(glassGeometry, glassMaterial);
             signGroup.add(glassSlab);
 
-            // Text Texture for Sign
+            // --- FLUORESCENT BULBS ---
+            const bulbGeo = new THREE.CylinderGeometry(0.06, 0.06, 4.2, 16);
+            const bulbMat = new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false });
+            
+            const bulbTop = new THREE.Mesh(bulbGeo, bulbMat);
+            bulbTop.rotation.z = Math.PI / 2;
+            bulbTop.position.set(0, 0.45, 0);
+            signGroup.add(bulbTop);
+
+            const bulbBottom = new THREE.Mesh(bulbGeo, bulbMat);
+            bulbBottom.rotation.z = Math.PI / 2;
+            bulbBottom.position.set(0, -0.45, 0);
+            signGroup.add(bulbBottom);
+
+            // Adding a small point light for each bulb area
+            const bLight1 = new THREE.PointLight(0xffffff, 0.8, 3);
+            bLight1.position.set(0, 0.45, 0.1);
+            signGroup.add(bLight1);
+
+            const bLight2 = new THREE.PointLight(0xffffff, 0.8, 3);
+            bLight2.position.set(0, -0.45, 0.1);
+            signGroup.add(bLight2);
+
+            // Text Texture for Sign (Corrected Spelling & Casing)
             const createSignTextTexture = (text: string) => {
                 const canvas = document.createElement('canvas');
                 canvas.width = 1024;
@@ -348,14 +371,14 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     context.shadowColor = '#D6B36A';
                     context.shadowBlur = 15;
                     context.fillStyle = '#ffffff';
-                    context.fillText(text.toUpperCase(), canvas.width / 2, canvas.height / 2);
+                    context.fillText(text, canvas.width / 2, canvas.height / 2);
                 }
                 const texture = new THREE.CanvasTexture(canvas);
                 texture.needsUpdate = true;
                 return texture;
             };
 
-            const signTextTexture = createSignTextTexture('HOMELY HEALTH CARE');
+            const signTextTexture = createSignTextTexture('Homely Health Care');
             const signTextMaterial = new THREE.MeshBasicMaterial({
                 map: signTextTexture,
                 transparent: true,
@@ -366,8 +389,8 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             signTextPlane.position.z = 0.11; // Slightly in front of glass
             signGroup.add(signTextPlane);
 
-            // Internal Light for Sign
-            const signLight = new THREE.PointLight(0xD6B36A, 1.2, 3);
+            // Internal Light for Sign (Adjusted for Bulbs)
+            const signLight = new THREE.PointLight(0xD6B36A, 1.0, 3);
             signLight.position.set(0, 0, 0);
             signGroup.add(signLight);
 
