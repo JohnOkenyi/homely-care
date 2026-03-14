@@ -302,13 +302,15 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(pLight);
             };
 
+            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
+            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
             createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
             createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living-support.png');   // Back (Near Supported Living)
 
             // --- ILLUMINATED GLASS SIGN ---
             const signGroup = new THREE.Group();
             signGroup.position.set(0, 0.4, 6.5); // Position at the front base
-            dioramaGroup.add(signGroup);
+            diorama.add(signGroup);
 
             // Glass Slab
             const glassGeometry = new RoundedBoxGeometry(4.5, 1.2, 0.2, 8, 0.05);
