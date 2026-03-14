@@ -48,7 +48,7 @@ const SERVICES: ServiceData[] = [
         description: "Empowering independence every day.",
         icon: "🤝",
         color: "#7A4FB3",
-        position: [0, 0.05, 8],
+        position: [0, 0.05, -8], // Moved to Back
         focusTarget: [0, 1.5, 0],
         focusCamera: [0, 15, 35]
     },
@@ -58,7 +58,7 @@ const SERVICES: ServiceData[] = [
         description: "Nurse-led clinical excellence.",
         icon: "🏥",
         color: "#F99D31",
-        position: [0, 0.05, -8],
+        position: [0, 0.05, 8], // Moved to Front
         focusTarget: [0, 3, 0],
         focusCamera: [28, 18, -28]
     }
@@ -302,11 +302,11 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(pLight);
             };
 
-            // Window positions with specific imagery (Swapped Home and Complex as requested)
-            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/supported-living.png'); // Left
-            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');           // Right
-            createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care.png');               // Front
-            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/live-in-care.png');        // Back
+            // Window positions with specific imagery (Aligned with Service labels)
+            createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
+            createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
+            createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
+            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living.png');   // Back (Near Supported Living)
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
