@@ -384,13 +384,6 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             const signAreaGlow = new THREE.PointLight(0xD6B36A, 0.8, 6);
             signAreaGlow.position.set(0, 0, -0.2);
             signGroup.add(signAreaGlow);
-            const signTextMaterial = new THREE.MeshBasicMaterial({
-                map: signTextTexture,
-                transparent: true,
-                alphaTest: 0.05,
-                side: THREE.DoubleSide
-            });
-            // Text plane position removed from here as it's merged above
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
