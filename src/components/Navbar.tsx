@@ -58,13 +58,16 @@ export default function Navbar() {
                 <div className="grid-container flex justify-between items-center w-full">
                     {/* LOGO */}
                     <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50">
-                        <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-105">
+                        <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-105 rounded-full overflow-hidden bg-[#F7F5F2]">
                             <Image
                                 src="/logo-final.png"
                                 alt="Homely Healthcare Logo"
                                 fill
                                 className="object-contain"
-                                style={{ filter: 'saturate(1.2) brightness(1.1)' }}
+                                style={{ 
+                                    filter: 'saturate(1.2) brightness(1.1)',
+                                    mixBlendMode: 'multiply'
+                                }}
                                 priority
                             />
                         </div>
