@@ -18,22 +18,20 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="max-w-md">
-                        <Link href="/" className="block mb-8 w-fit mt-[-10px]">
-                            <motion.div 
-                                className="flex flex-row items-center gap-4 group"
-                                whileHover={{ 
-                                    rotateX: 10, 
-                                    rotateY: -10, 
-                                    scale: 1.05,
-                                    perspective: 1000
-                                }}
-                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                style={{ transformStyle: "preserve-3d" }}
-                            >
-                                {/* Blended Logo Icon */}
-                                <div 
-                                    className="relative w-16 h-16 md:w-20 md:h-20 transition-all duration-500 rounded-full overflow-hidden bg-[#F7F5F2] shrink-0 shadow-lg group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
-                                    style={{ transform: "translateZ(30px)" }}
+                        <Link href="/" className="block mb-8 w-fit mt-[-10px] perspective-[1000px]">
+                            <div className="flex flex-row items-center gap-4 group">
+                                {/* Intense 3D Extruded Logo Icon */}
+                                <motion.div 
+                                    className="relative w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-[#F7F5F2] shrink-0 shadow-xl"
+                                    whileHover={{ 
+                                        rotateX: 25, 
+                                        rotateY: -25, 
+                                        scale: 1.15,
+                                        z: 50,
+                                        boxShadow: "1px 1px 0px #e5e1d8, 2px 2px 0px #e5e1d8, 3px 3px 0px #e5e1d8, 4px 4px 0px #e5e1d8, 5px 5px 0px #e5e1d8, 10px 10px 30px rgba(0,0,0,0.5)"
+                                    }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                                    style={{ transformStyle: "preserve-3d" }}
                                 >
                                     <Image
                                         src="/logo-final.png"
@@ -45,18 +43,18 @@ export default function Footer() {
                                             mixBlendMode: 'multiply'
                                         }}
                                     />
-                                </div>
+                                </motion.div>
 
-                                {/* Brand Text */}
-                                <div className="flex flex-col" style={{ transform: "translateZ(50px)" }}>
-                                    <span className="Heading-Serif text-4xl lg:text-5xl tracking-tighter text-white block mb-0 transition-all duration-700 group-hover:text-[#D6B36A] leading-none mt-2 shadow-text">
+                                {/* Static Brand Text */}
+                                <div className="flex flex-col">
+                                    <span className="Heading-Serif text-4xl lg:text-5xl tracking-tighter text-white block mb-0 leading-none mt-2 transition-colors duration-500 group-hover:text-[#D6B36A]">
                                         HOMELY
                                     </span>
                                     <span className="text-[11px] ml-1 uppercase tracking-[0.4em] text-[#D6B36A] block font-extrabold opacity-90 mt-2">
                                         Health Care
                                     </span>
                                 </div>
-                            </motion.div>
+                            </div>
                         </Link>
                         <p className="Text-16 text-white/50 font-light leading-relaxed max-w-sm mb-6">
                             Excellence in private home care, delivering dignity and compassion tailored to your unique lifestyle.
