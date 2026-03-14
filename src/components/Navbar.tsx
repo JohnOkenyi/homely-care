@@ -57,8 +57,34 @@ export default function Navbar() {
             >
                 <div className="grid-container flex justify-between items-center w-full">
                     {/* LOGO */}
-                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50">
-                        <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-105 rounded-full overflow-hidden bg-[#F7F5F2]">
+                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50 perspective-[1200px]">
+                        <motion.div 
+                            className="relative w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden bg-[#F7F5F2] shadow-sm"
+                            whileHover={{ 
+                                z: 180,
+                                scale: 1.35,
+                                rotateX: 12,
+                                rotateY: -12,
+                                boxShadow: `
+                                    0.5px 0.5px 0px #e5e1d8, 
+                                    1px 1px 0px #e5e1d8, 
+                                    1.5px 1.5px 0px #e5e1d8, 
+                                    2px 2px 0px #e5e1d8, 
+                                    2.5px 2.5px 0px #e5e1d8, 
+                                    3px 3px 0px #e5e1d8, 
+                                    3.5px 3.5px 0px #e5e1d8, 
+                                    4px 4px 0px #e5e1d8,
+                                    10px 10px 30px rgba(0,0,0,0.3)
+                                `
+                            }}
+                            transition={{ 
+                                type: "spring", 
+                                stiffness: 250, 
+                                damping: 18,
+                                mass: 0.8
+                            }}
+                            style={{ transformStyle: "preserve-3d" }}
+                        >
                             <Image
                                 src="/logo-final.png"
                                 alt="Homely Healthcare Logo"
@@ -70,7 +96,7 @@ export default function Navbar() {
                                 }}
                                 priority
                             />
-                        </div>
+                        </motion.div>
                         <div className="ml-4 flex flex-col">
                             <span className="Heading-Serif text-xl tracking-tight text-[#5B2A86] block leading-none">
                                 HOMELY
