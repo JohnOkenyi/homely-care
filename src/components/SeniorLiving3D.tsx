@@ -309,20 +309,22 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
 
             // --- ILLUMINATED GLASS SIGN ---
             const signGroup = new THREE.Group();
-            signGroup.position.set(0, 0.4, 6.5); // Position at the front base
-            diorama.add(signGroup);
+            // Positioned above the front window on the wall
+            signGroup.position.set(0, 4.3, 3.55); 
+            signGroup.scale.set(0.7, 0.7, 0.7); // Scaled down to fit the wall better
+            houseGroup.add(signGroup);
 
             // Glass Slab
             const glassGeometry = new RoundedBoxGeometry(4.5, 1.2, 0.2, 8, 0.05);
             const glassMaterial = new THREE.MeshPhysicalMaterial({
                 color: 0xffffff,
-                metalness: 0,
-                roughness: 0.02,
-                transmission: 0.98,
+                metalness: 0.1,
+                roughness: 0.05,
+                transmission: 0.95,
                 thickness: 0.5,
                 ior: 1.5,
                 transparent: true,
-                opacity: 0.5,
+                opacity: 0.6,
                 envMapIntensity: 1.5
             });
             const glassSlab = new THREE.Mesh(glassGeometry, glassMaterial);
@@ -365,7 +367,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             signGroup.add(signTextPlane);
 
             // Internal Light for Sign
-            const signLight = new THREE.PointLight(0xD6B36A, 1.5, 4);
+            const signLight = new THREE.PointLight(0xD6B36A, 1.2, 3);
             signLight.position.set(0, 0, 0);
             signGroup.add(signLight);
 
@@ -374,7 +376,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             const glowPlaneMat = new THREE.MeshBasicMaterial({
                 color: 0x5B2A86,
                 transparent: true,
-                opacity: 0.15,
+                opacity: 0.2,
                 side: THREE.DoubleSide
             });
             const glowPlane = new THREE.Mesh(glowPlaneGeom, glowPlaneMat);
