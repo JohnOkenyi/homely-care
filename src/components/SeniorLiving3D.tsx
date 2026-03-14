@@ -371,7 +371,9 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(label);
                 
                 group.userData.label = label;
+                disk.userData.isClicking = false; // Flag to prevent tick loop override
                 beaconMeshes.push(disk);
+                beaconMeshes.push(label); // Allow clicking directly on the text
             });
 
             // --- INTERACTION ---
@@ -405,28 +407,37 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     const beaconGroup = intersects[0].object.parent as THREE.Group;
                     const svc = beaconGroup?.userData.service as ServiceData;
                     if (svc && beaconGroup) {
-                        // 1. Glow Burst
-                        const disk = beaconGroup.children[0] as THREE.Mesh;
-                        const diskMat = disk.material as THREE.MeshPhysicalMaterial;
-                        gsap.to(diskMat, { 
-                            emissiveIntensity: 12, 
-                            duration: 0.1, 
-                            onComplete: () => {
-                                gsap.to(diskMat, { emissiveIntensity: 2.5, duration: 0.6 });
-                            }
-                        });
-
-                        // 2. Vibration Shake
-                        const shakeAmount = 0.4;
-                        const tl = gsap.timeline();
-                        for(let i=0; i<6; i++) {
-                            tl.to(beaconGroup.position, { 
-                                x: svc.position[0] + (Math.random() - 0.5) * shakeAmount,
-                                z: svc.position[2] + (Math.random() - 0.5) * shakeAmount,
-                                duration: 0.03
+                        // 1. Glow Burst (with lock)
+                        const disk = beaconGroup.children.find(child => child instanceof THREE.Mesh && !(child.geometry instanceof THREE.PlaneGeometry)) as THREE.Mesh;
+                        const diskMat = disk?.material as THREE.MeshPhysicalMaterial;
+                        if (diskMat) {
+                            gsap.killTweensOf(diskMat); // Stop any existing transition
+                            disk.userData.isClicking = true;
+                            gsap.to(diskMat, { 
+                                emissiveIntensity: 15, 
+                                duration: 0.1, 
+                                onComplete: () => {
+                                    gsap.to(diskMat, { 
+                                        emissiveIntensity: 2.5, 
+                                        duration: 1.0,
+                                        onComplete: () => { disk.userData.isClicking = false; }
+                                    });
+                                }
                             });
                         }
-                        tl.to(beaconGroup.position, { x: svc.position[0], z: svc.position[2], duration: 0.03 });
+
+                        // 2. Stronger vibration
+                        const shakeAmount = 0.6;
+                        const tl = gsap.timeline();
+                        for(let i=0; i<10; i++) {
+                            tl.to(beaconGroup.position, { 
+                                x: svc.position[0] + (Math.random() - 0.5) * shakeAmount,
+                                y: svc.position[1] + (Math.random() - 0.5) * 0.2, // Add vertical jitter
+                                z: svc.position[2] + (Math.random() - 0.5) * shakeAmount,
+                                duration: 0.02
+                            });
+                        }
+                        tl.to(beaconGroup.position, { x: svc.position[0], y: svc.position[1], z: svc.position[2], duration: 0.05 });
 
                         focusService(svc);
                     }
@@ -500,10 +511,12 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                         b.position.y = THREE.MathUtils.lerp(b.position.y, targetY, 0.1);
                         b.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
 
-                        // Disk Glow (Breathing Pulse when hovered)
+                        // Disk Glow (Breathing Pulse when hovered - Skip if clicking burst is active)
                         const diskMat = disk.material as THREE.MeshPhysicalMaterial;
-                        const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.01) * 0.4) : 1.0;
-                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
+                        if (!disk.userData.isClicking) {
+                            const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.01) * 0.4) : 1.0;
+                            diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
+                        }
                         diskMat.opacity = THREE.MathUtils.lerp(diskMat.opacity, targetOpacity, 0.1);
 
                         // Label Population (Always Bright)
