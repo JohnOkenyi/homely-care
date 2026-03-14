@@ -172,7 +172,7 @@ export default function Home() {
             >
               <div className="relative aspect-[4/5] md:aspect-square w-full rounded-[40px] overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/compassionate-care.png"
+                  src="/images/compassionate-care-v2.png"
                   alt="Compassionate Home Care"
                   fill
                   className="object-cover"
