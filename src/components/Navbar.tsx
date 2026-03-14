@@ -56,41 +56,19 @@ export default function Navbar() {
                     }`}
             >
                 <div className="grid-container flex justify-between items-center w-full">
-                    {/* ANIMATED CIRCULAR LOGO */}
+                    {/* LOGO */}
                     <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50">
-                        <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
-                            {/* Central Icon - Static & Transparent */}
-                            <div className="absolute w-8 h-8 md:w-9 md:h-9 z-10 transition-transform duration-500 group-hover:scale-110">
-                                <Image
-                                    src="/images/logo-icon.png"
-                                    alt="Homely Logo Icon"
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
-                            </div>
-
-                            {/* Rotating SVG Circular Text */}
-                            <motion.svg
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                                viewBox="0 0 100 100"
-                                className="w-full h-full pointer-events-none"
-                            >
-                                <defs>
-                                    <path
-                                        id="logoTextCircle"
-                                        d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-                                    />
-                                </defs>
-                                <text className="text-[9px] uppercase font-bold fill-[#5B2A86] tracking-[0.15em]">
-                                    <textPath href="#logoTextCircle">
-                                        HOMELY HEALTH CARE • HOMELY HEALTH CARE •
-                                    </textPath>
-                                </text>
-                            </motion.svg>
+                        <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-105">
+                            <Image
+                                src="/logo-final.png"
+                                alt="Homely Healthcare Logo"
+                                fill
+                                className="object-contain"
+                                style={{ filter: 'saturate(1.2) brightness(1.1)' }}
+                                priority
+                            />
                         </div>
-                        <div className="ml-2 flex flex-col">
+                        <div className="ml-4 flex flex-col">
                             <span className="Heading-Serif text-xl tracking-tight text-[#5B2A86] block leading-none">
                                 HOMELY
                             </span>
