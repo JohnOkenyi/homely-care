@@ -306,7 +306,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
             createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
             createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
-            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living.png');   // Back (Near Supported Living)
+            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living-support.png');   // Back (Near Supported Living)
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
