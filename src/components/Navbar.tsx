@@ -64,7 +64,10 @@ export default function Navbar() {
                                 alt="Homely Healthcare Logo"
                                 fill
                                 className="object-contain"
-                                style={{ filter: 'saturate(1.2) brightness(1.1)' }}
+                                style={{ 
+                                    filter: 'saturate(1.2) brightness(1.1)',
+                                    mixBlendMode: 'multiply'
+                                }}
                                 priority
                             />
                         </div>
