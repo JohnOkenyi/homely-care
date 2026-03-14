@@ -344,28 +344,23 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(ring);
 
                 const canvas = document.createElement("canvas");
-                canvas.width = 1024; // Doubled resolution
-                canvas.height = 256;
+                canvas.width = 512;
+                canvas.height = 128;
                 const ctx = canvas.getContext("2d");
                 if (ctx) {
-                    ctx.font = "bold 64px 'Inter', sans-serif";
+                    ctx.font = "bold 32px 'Inter', sans-serif";
                     ctx.fillStyle = "white";
                     ctx.textAlign = "center";
-                    ctx.textBaseline = "middle";
-                    // Add a subtle drop shadow for clarity
-                    ctx.shadowColor = "rgba(0,0,0,0.8)";
-                    ctx.shadowBlur = 20;
-                    ctx.fillText(svc.title.toUpperCase(), 512, 128);
+                    ctx.shadowColor = "rgba(0,0,0,0.5)";
+                    ctx.shadowBlur = 10;
+                    ctx.fillText(svc.title.toUpperCase(), 256, 80);
                 }
                 const tex = new THREE.CanvasTexture(canvas);
                 tex.anisotropy = 16;
                 const label = new THREE.Mesh(
-                    new THREE.PlaneGeometry(8.0, 2.0), // Slightly larger
-                    new THREE.MeshStandardMaterial({ 
+                    new THREE.PlaneGeometry(7.0, 1.7), // Even wider plane to guarantee spelling is visible
+                    new THREE.MeshBasicMaterial({ 
                         map: tex, 
-                        emissiveMap: tex,
-                        emissive: new THREE.Color(svc.color),
-                        emissiveIntensity: 0.5,
                         transparent: true, 
                         depthWrite: false, 
                         toneMapped: false,
@@ -376,8 +371,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 group.add(label);
                 
                 group.userData.label = label;
-                group.userData.color = new THREE.Color(svc.color);
-                beaconMeshes.push(group as unknown as THREE.Mesh); // Use group for intersection fallback but we loop in tick
+                beaconMeshes.push(disk);
             });
 
             // --- INTERACTION ---
@@ -408,8 +402,34 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 const intersects = raycaster.intersectObjects(beaconMeshes);
                 
                 if (intersects.length > 0) {
-                    const svc = intersects[0].object.parent?.userData.service as ServiceData;
-                    if (svc) focusService(svc);
+                    const beaconGroup = intersects[0].object.parent as THREE.Group;
+                    const svc = beaconGroup?.userData.service as ServiceData;
+                    if (svc && beaconGroup) {
+                        // 1. Glow Burst
+                        const disk = beaconGroup.children[0] as THREE.Mesh;
+                        const diskMat = disk.material as THREE.MeshPhysicalMaterial;
+                        gsap.to(diskMat, { 
+                            emissiveIntensity: 12, 
+                            duration: 0.1, 
+                            onComplete: () => {
+                                gsap.to(diskMat, { emissiveIntensity: 2.5, duration: 0.6 });
+                            }
+                        });
+
+                        // 2. Vibration Shake
+                        const shakeAmount = 0.4;
+                        const tl = gsap.timeline();
+                        for(let i=0; i<6; i++) {
+                            tl.to(beaconGroup.position, { 
+                                x: svc.position[0] + (Math.random() - 0.5) * shakeAmount,
+                                z: svc.position[2] + (Math.random() - 0.5) * shakeAmount,
+                                duration: 0.03
+                            });
+                        }
+                        tl.to(beaconGroup.position, { x: svc.position[0], z: svc.position[2], duration: 0.03 });
+
+                        focusService(svc);
+                    }
                 } else if (activeService) {
                     resetView();
                 }
@@ -459,53 +479,53 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                     // Removed floating animation for realistic grounded view
                 }
                 beaconsGroup.children.forEach((b) => {
-                    const group = b as THREE.Group;
-                    const label = group.userData.label as THREE.Mesh;
-                    const disk = group.children[0] as THREE.Mesh;
-                    const ring = group.children[1] as THREE.Mesh;
+                    const label = b.userData.label as THREE.Mesh;
+                    const disk = b.children[0] as THREE.Mesh;
+                    const ring = b.children[1] as THREE.Mesh;
 
                     if (label) label.lookAt(camera.position);
 
-                    // Improved hover detection: check the whole group (disk + label)
-                    raycaster.setFromCamera(mouse, camera);
-                    const intersects = raycaster.intersectObject(group, true);
-                    const isHovered = intersects.length > 0;
+                    if (!isTransitioning) {
+                        raycaster.setFromCamera(mouse, camera);
+                        const intersects = raycaster.intersectObject(disk);
+                        const isHovered = intersects.length > 0;
 
-                    // Hover target values
-                    const targetScale = isHovered ? 1.3 : 1.0;
-                    const targetY = isHovered ? 1.5 : 0.2; // Dramatic Lift
-                    const targetEmissiveDisk = isHovered ? 4.0 : 0.4;
-                    const targetEmissiveLabel = isHovered ? 2.5 : 0.6;
+                        // Target values
+                        const targetScale = isHovered ? 1.3 : 1.0;
+                        const targetY = isHovered ? 0.8 : 0.0;
+                        const targetEmissive = isHovered ? 2.5 : 0.4;
+                        const targetOpacity = isHovered ? 1.0 : 0.8;
 
-                    // Smooth transitions
-                    group.position.y = THREE.MathUtils.lerp(group.position.y, targetY, 0.1);
-                    group.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+                        // Smoothly transition position and scale
+                        b.position.y = THREE.MathUtils.lerp(b.position.y, targetY, 0.1);
+                        b.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
 
-                    // Disk Animation (Breathing Pulse)
-                    const diskMat = disk.material as THREE.MeshPhysicalMaterial;
-                    const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.01) * 0.3) : 1.0;
-                    diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissiveDisk * pulse, 0.1);
-                    diskMat.opacity = isHovered ? 1.0 : 0.8;
+                        // Disk Glow (Breathing Pulse when hovered)
+                        const diskMat = disk.material as THREE.MeshPhysicalMaterial;
+                        const pulse = isHovered ? (1.0 + Math.sin(Date.now() * 0.01) * 0.4) : 1.0;
+                        diskMat.emissiveIntensity = THREE.MathUtils.lerp(diskMat.emissiveIntensity, targetEmissive * pulse, 0.1);
+                        diskMat.opacity = THREE.MathUtils.lerp(diskMat.opacity, targetOpacity, 0.1);
 
-                    // Label Animation (Glow & Scale)
-                    if (label) {
-                        const labelMat = label.material as THREE.MeshStandardMaterial;
-                        labelMat.emissiveIntensity = THREE.MathUtils.lerp(labelMat.emissiveIntensity, targetEmissiveLabel, 0.1);
-                        const labelTargetScale = isHovered ? 1.2 : 1.0;
-                        label.scale.lerp(new THREE.Vector3(labelTargetScale, labelTargetScale, 1.0), 0.1);
-                    }
+                        // Label Population (Always Bright)
+                        if (label) {
+                            const labelMat = label.material as THREE.MeshBasicMaterial;
+                            labelMat.opacity = 1.0; // Keep text fully bright
+                            const labelTargetScale = isHovered ? 1.2 : 1.0;
+                            label.scale.lerp(new THREE.Vector3(labelTargetScale, labelTargetScale, 1.0), 0.1);
+                        }
 
-                    // Ring Animation (Ripple effect)
-                    if (ring) {
-                        const ringMat = ring.material as THREE.MeshBasicMaterial;
-                        if (isHovered) {
-                            // Creative Ripple: Expansion loop
-                            const ripple = (Date.now() * 0.002) % 1.0;
-                            ring.scale.set(1.0 + ripple * 2.5, 1.0 + ripple * 2.5, 1.0 + ripple * 2.5);
-                            ringMat.opacity = (1.0 - ripple) * 1.0;
-                        } else {
-                            ring.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.1);
-                            ringMat.opacity = THREE.MathUtils.lerp(ringMat.opacity, 0.5, 0.1);
+                        // Ring Animation (Ripple effect)
+                        if (ring) {
+                            const ringMat = ring.material as THREE.MeshBasicMaterial;
+                            if (isHovered) {
+                                // Creative Ripple: Continuous expansion that fades out
+                                const ripple = (Date.now() * 0.002) % 1.0;
+                                ring.scale.set(1.0 + ripple * 2, 1.0 + ripple * 2, 1.0 + ripple * 2);
+                                ringMat.opacity = (1.0 - ripple) * 0.8;
+                            } else {
+                                ring.scale.lerp(new THREE.Vector3(1.0, 1.0, 1.0), 0.1);
+                                ringMat.opacity = THREE.MathUtils.lerp(ringMat.opacity, 0.5, 0.1);
+                            }
                         }
                     }
                 });
