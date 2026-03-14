@@ -43,16 +43,6 @@ const SERVICES: ServiceData[] = [
         focusCamera: [-30, 12, 18]
     },
     {
-        id: "supported",
-        title: "Supported Living",
-        description: "Empowering independence every day.",
-        icon: "🤝",
-        color: "#7A4FB3",
-        position: [0, 0.05, -8], // Moved to Back
-        focusTarget: [0, 1.5, 0],
-        focusCamera: [0, 15, 35]
-    },
-    {
         id: "complex",
         title: "Complex Care",
         description: "Nurse-led clinical excellence.",
@@ -305,55 +295,55 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             createInteriorScene(-1.5, 1.8, 0, Math.PI / 2, '/images/live-in-care.png');    // Left (Near Live-in Care)
             createInteriorScene(1.5, 1.8, 0, -Math.PI / 2, '/images/home-care.png');      // Right (Near Home Care)
             createInteriorScene(0, 2.2, 1.5, 0, '/images/complex-care-clinical.png');     // Front (Near Complex Care)
-            createInteriorScene(0, 2.2, -1.5, Math.PI, '/images/supported-living-support.png');   // Back (Near Supported Living)
+            // Back window removed (Supported Living)
 
-            // --- ILLUMINATED GLASS SIGN ---
+            // --- HIGH-VISIBILITY LIGHTBOX SIGN ---
             const signGroup = new THREE.Group();
-            // Positioned at the peak of the front wall gable
             signGroup.position.set(0, 6.2, 3.55); 
-            signGroup.scale.set(0.65, 0.65, 0.65); // Scaled appropriately for the peak
+            signGroup.scale.set(0.65, 0.65, 0.65); 
             houseGroup.add(signGroup);
 
-            // Glass Slab (Refined for diffused bulb look)
+            // 1. Emissive Backing Plate (The "Light" inside the box)
+            const lightPlateGeom = new THREE.PlaneGeometry(4.4, 1.2);
+            const lightPlateMat = new THREE.MeshBasicMaterial({ 
+                color: 0xffffff, 
+                toneMapped: false, 
+                transparent: true, 
+                opacity: 0.9 
+            });
+            const lightPlate = new THREE.Mesh(lightPlateGeom, lightPlateMat);
+            lightPlate.position.z = 0.02;
+            signGroup.add(lightPlate);
+
+            // 2. Translucent Glass Shell (Frosted Acrylic Look)
             const glassGeometry = new RoundedBoxGeometry(4.5, 1.3, 0.25, 8, 0.05);
             const glassMaterial = new THREE.MeshPhysicalMaterial({
                 color: 0xffffff,
-                metalness: 0.1,
                 roughness: 0.1,
-                transmission: 0.95,
-                thickness: 0.8,
-                ior: 1.5,
+                transmission: 0.9,
+                thickness: 0.5,
+                ior: 1.4,
                 transparent: true,
-                opacity: 0.7,
-                envMapIntensity: 1.5
+                opacity: 0.4
             });
             const glassSlab = new THREE.Mesh(glassGeometry, glassMaterial);
             signGroup.add(glassSlab);
 
-            // --- FLUORESCENT BULBS ---
-            const bulbGeo = new THREE.CylinderGeometry(0.06, 0.06, 4.2, 16);
-            const bulbMat = new THREE.MeshBasicMaterial({ color: 0xffffff, toneMapped: false });
+            // 3. Fluorescent Bulbs (Visual markers)
+            const bulbGeo = new THREE.CylinderGeometry(0.04, 0.04, 4.2, 12);
+            const bulbMat = new THREE.MeshBasicMaterial({ color: 0xfff0d6, toneMapped: false });
             
             const bulbTop = new THREE.Mesh(bulbGeo, bulbMat);
             bulbTop.rotation.z = Math.PI / 2;
-            bulbTop.position.set(0, 0.45, 0);
+            bulbTop.position.set(0, 0.4, 0.05);
             signGroup.add(bulbTop);
 
             const bulbBottom = new THREE.Mesh(bulbGeo, bulbMat);
             bulbBottom.rotation.z = Math.PI / 2;
-            bulbBottom.position.set(0, -0.45, 0);
+            bulbBottom.position.set(0, -0.4, 0.05);
             signGroup.add(bulbBottom);
 
-            // Adding a small point light for each bulb area
-            const bLight1 = new THREE.PointLight(0xffffff, 0.8, 3);
-            bLight1.position.set(0, 0.45, 0.1);
-            signGroup.add(bLight1);
-
-            const bLight2 = new THREE.PointLight(0xffffff, 0.8, 3);
-            bLight2.position.set(0, -0.45, 0.1);
-            signGroup.add(bLight2);
-
-            // Text Texture for Sign (Corrected Spelling & Casing)
+            // 4. Text Texture (High contrast for Lightbox)
             const createSignTextTexture = (text: string) => {
                 const canvas = document.createElement('canvas');
                 canvas.width = 1024;
@@ -362,15 +352,13 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 if (context) {
                     context.fillStyle = 'rgba(255, 255, 255, 0)';
                     context.fillRect(0, 0, canvas.width, canvas.height);
-                    context.font = 'bold 80px "Inter", sans-serif';
+                    context.font = 'bold 90px "Inter", sans-serif';
                     context.textAlign = 'center';
                     context.textBaseline = 'middle';
-                    context.letterSpacing = '10px';
+                    context.letterSpacing = '8px';
                     
-                    // Outglow for text
-                    context.shadowColor = '#D6B36A';
-                    context.shadowBlur = 15;
-                    context.fillStyle = '#ffffff';
+                    // Dark sharp text for the light box
+                    context.fillStyle = '#1a1a1a';
                     context.fillText(text, canvas.width / 2, canvas.height / 2);
                 }
                 const texture = new THREE.CanvasTexture(canvas);
@@ -382,29 +370,27 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
             const signTextMaterial = new THREE.MeshBasicMaterial({
                 map: signTextTexture,
                 transparent: true,
+                side: THREE.FrontSide
+            });
+            const signTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), signTextMaterial);
+            signTextPlane.position.z = 0.14; 
+            signGroup.add(signTextPlane);
+
+            // 5. Lighting & Glow
+            const signPointLight = new THREE.PointLight(0xffffff, 1.5, 4);
+            signPointLight.position.set(0, 0, 0.3);
+            signGroup.add(signPointLight);
+
+            const signAreaGlow = new THREE.PointLight(0xD6B36A, 0.8, 6);
+            signAreaGlow.position.set(0, 0, -0.2);
+            signGroup.add(signAreaGlow);
+            const signTextMaterial = new THREE.MeshBasicMaterial({
+                map: signTextTexture,
+                transparent: true,
                 alphaTest: 0.05,
                 side: THREE.DoubleSide
             });
-            const signTextPlane = new THREE.Mesh(new THREE.PlaneGeometry(4, 1), signTextMaterial);
-            signTextPlane.position.z = 0.11; // Slightly in front of glass
-            signGroup.add(signTextPlane);
-
-            // Internal Light for Sign (Adjusted for Bulbs)
-            const signLight = new THREE.PointLight(0xD6B36A, 1.0, 3);
-            signLight.position.set(0, 0, 0);
-            signGroup.add(signLight);
-
-            // Add a backing glow plane inside the glass
-            const glowPlaneGeom = new THREE.PlaneGeometry(4.2, 0.8);
-            const glowPlaneMat = new THREE.MeshBasicMaterial({
-                color: 0x5B2A86,
-                transparent: true,
-                opacity: 0.2,
-                side: THREE.DoubleSide
-            });
-            const glowPlane = new THREE.Mesh(glowPlaneGeom, glowPlaneMat);
-            glowPlane.position.z = 0.05;
-            signGroup.add(glowPlane);
+            // Text plane position removed from here as it's merged above
 
             // --- BEACONS ---
             const beaconsGroup = new THREE.Group();
