@@ -2,10 +2,36 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 
 export default function Footer() {
+    // Mouse Tracking for Footer Logo
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const springConfig = { stiffness: 150, damping: 20, mass: 0.5 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    const rotateX = useTransform(springY, [-0.5, 0.5], [15, -15]);
+    const rotateY = useTransform(springX, [-0.5, 0.5], [-15, 15]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const x = (e.clientX - rect.left) / width - 0.5;
+        const y = (e.clientY - rect.top) / height - 0.5;
+        mouseX.set(x);
+        mouseY.set(y);
+    };
+
+    const handleMouseLeave = () => {
+        mouseX.set(0);
+        mouseY.set(0);
+    };
+
     return (
         <footer className="relative bg-[#0A0C10] text-[#F2F2F2] pt-24 pb-12 overflow-hidden border-t border-white/5 selection:bg-[#D6B36A]/30">
             {/* Ambient Cinematic Glows */}
@@ -18,7 +44,12 @@ export default function Footer() {
 
                     {/* Brand Column */}
                     <div className="max-w-md">
-                        <Link href="/" className="block mb-8 w-fit mt-[-10px] perspective-[1200px]">
+                        <Link 
+                            href="/" 
+                            className="block mb-8 w-fit mt-[-10px] perspective-[1200px]"
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                        >
                             <div className="flex flex-row items-center gap-6 group">
                                 {/* Cinema 3D Extruded Logo Icon */}
                                 <motion.div 
@@ -26,8 +57,8 @@ export default function Footer() {
                                     whileHover={{ 
                                         z: 180, // High Z-axis movement towards user
                                         scale: 1.35, // Significant scaling for "coming towards you" effect
-                                        rotateX: 12, // Slight tilt to show volume
-                                        rotateY: -12,
+                                        rotateX: rotateX.get(),
+                                        rotateY: rotateY.get(),
                                         boxShadow: `
                                             0.5px 0.5px 0px #e5e1d8, 
                                             1px 1px 0px #e5e1d8, 
@@ -40,13 +71,17 @@ export default function Footer() {
                                             15px 15px 35px rgba(0,0,0,0.6)
                                         `
                                     }}
+                                    style={{ 
+                                        rotateX,
+                                        rotateY,
+                                        transformStyle: "preserve-3d" 
+                                    }}
                                     transition={{ 
                                         type: "spring", 
                                         stiffness: 250, 
                                         damping: 18,
                                         mass: 0.8
                                     }}
-                                    style={{ transformStyle: "preserve-3d" }}
                                 >
                                     <Image
                                         src="/logo-final.png"

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { X, Menu } from "lucide-react";
 import { useEffect } from "react";
 
@@ -31,6 +31,32 @@ export default function Navbar() {
         setScrolled(latest > 50);
     });
 
+    // Mouse Tracking for Home Button
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const springConfig = { stiffness: 150, damping: 20, mass: 0.5 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    const rotateX = useTransform(springY, [-0.5, 0.5], [15, -15]);
+    const rotateY = useTransform(springX, [-0.5, 0.5], [-15, 15]);
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const x = (e.clientX - rect.left) / width - 0.5;
+        const y = (e.clientY - rect.top) / height - 0.5;
+        mouseX.set(x);
+        mouseY.set(y);
+    };
+
+    const handleMouseLeave = () => {
+        mouseX.set(0);
+        mouseY.set(0);
+    };
+
     // Body Scroll Lock
     useEffect(() => {
         if (mobileMenuOpen) {
@@ -57,14 +83,20 @@ export default function Navbar() {
             >
                 <div className="grid-container flex justify-between items-center w-full">
                     {/* LOGO */}
-                    <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group relative z-50 perspective-[1200px]">
+                    <Link 
+                        href="/" 
+                        onClick={() => setMobileMenuOpen(false)} 
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                        className="flex items-center group relative z-50 perspective-[1200px]"
+                    >
                         <motion.div 
                             className="relative w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden bg-[#F7F5F2] shadow-sm"
                             whileHover={{ 
                                 z: 180,
                                 scale: 1.35,
-                                rotateX: 12,
-                                rotateY: -12,
+                                rotateX: rotateX.get(), // Use current value for initial hover state, transforms will handle movement
+                                rotateY: rotateY.get(),
                                 boxShadow: `
                                     0.5px 0.5px 0px #e5e1d8, 
                                     1px 1px 0px #e5e1d8, 
@@ -77,13 +109,17 @@ export default function Navbar() {
                                     10px 10px 30px rgba(0,0,0,0.3)
                                 `
                             }}
+                            style={{ 
+                                rotateX,
+                                rotateY,
+                                transformStyle: "preserve-3d" 
+                            }}
                             transition={{ 
                                 type: "spring", 
                                 stiffness: 250, 
                                 damping: 18,
                                 mass: 0.8
                             }}
-                            style={{ transformStyle: "preserve-3d" }}
                         >
                             <Image
                                 src="/logo-final.png"
