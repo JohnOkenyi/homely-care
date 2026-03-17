@@ -551,12 +551,12 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full max-w-[400px] aspect-[1.414/1] mx-auto mb-12 group"
+                className="relative w-full max-w-[260px] aspect-[1.414/1] mx-auto mb-12 group"
               >
                 <div className="absolute -inset-4 bg-gradient-to-tr from-[#D6B36A]/20 via-transparent to-[#5B2A86]/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl border border-white/40 bg-white p-2">
                   <Image
-                    src="/images/charity-certificate.jpg"
+                    src="/images/appreciation-certificate-2026.png"
                     alt="Certificate of Appreciation - Royal Regiment of Fusiliers"
                     fill
                     className="object-contain"
