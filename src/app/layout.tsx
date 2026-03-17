@@ -28,6 +28,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Homely Care | Luxury Care Residences",
   description: "Experience the pinnacle of luxury care and support.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({
