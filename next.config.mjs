@@ -37,6 +37,21 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/join-us',
+        destination: '/careers',
+        permanent: true,
+      },
+      {
+        source: '/copy-of-services',
+        destination: '/about-us',
+        permanent: true,
+      },
+      {
+        source: '/about-1',
+        destination: '/meet-the-team',
+        permanent: true,
+      },
+      {
         source: '/services-1',
         destination: '/services',
         permanent: true,
