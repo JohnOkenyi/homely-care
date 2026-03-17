@@ -9,35 +9,35 @@ const team = [
         name: "Douglas Matungamire",
         role: "Director / Registered Manager",
         bio: "Douglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
-        img: "/images/team/douglas-new.jpg",
+        img: "/images/team/Douglas Matungamire.png",
         accolade: "Founder & Director"
     },
     {
         name: "Maria Wilson",
         role: "Operations Manager",
         bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
-        img: "/images/team/maria-2026.jpg",
+        img: "/images/team/Maria Wilson.png",
         accolade: "NHS Experience"
     },
     {
         name: "Cedric Dube",
         role: "Compliance Officer",
         bio: "Cedric has 15 years' experience in the legal and compliance field. He ensures that all processes adhere to legal and regulatory requirements, fostering a culture of integrity across the organisation.",
-        img: "/images/team/cedric-2026.jpg",
+        img: "/images/team/Cedric Dube.png",
         accolade: "Legal & Compliance"
     },
     {
         name: "Sara Randall",
         role: "Registered Manager",
         bio: "Sara has over 35 years' experience in the social care industry, working for Social Services, the NHS and in care home settings. She is passionate about ensuring clients receive the best care and all staff are trained to the highest standards to ensure this.",
-        img: "/images/team/sara-2026.jpg",
+        img: "/images/team/Sara Randall.png",
         accolade: "35+ Years Experience"
     },
     {
         name: "Pauline Makazhu",
         role: "Registered Manager",
         bio: "A compassionate Registered Nurse and CQC Registered Manager, Pauline leads the TDDI / Complex Care Team, ensuring individuals with higher clinical needs receive safe, skilled and responsive support.",
-        img: "/images/team/pauline-new.jpg",
+        img: "/images/team/Pauline Makazhu.png",
         accolade: "Clinical Excellence"
     }
 ];
