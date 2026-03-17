@@ -146,7 +146,7 @@ export default function Footer() {
                                     </div>
                                     <div className="flex flex-col">
                                         <a 
-                                            href="https://www.cqc.org.uk/provider/1-259229241" 
+                                            href="https://www.cqc.org.uk/location/1-5650432951" 
                                             target="_blank" 
                                             rel="noopener noreferrer"
                                             className="text-[9px] uppercase font-black text-[#D6B36A] hover:text-white transition-colors flex items-center gap-1 group/link tracking-[0.2em]"

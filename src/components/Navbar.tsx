@@ -122,14 +122,10 @@ export default function Navbar() {
                             }}
                         >
                             <Image
-                                src="/logo-final.png"
+                                src="/logo.png"
                                 alt="Homely Healthcare Logo"
                                 fill
                                 className="object-contain"
-                                style={{ 
-                                    filter: 'saturate(1.2) brightness(1.1)',
-                                    mixBlendMode: 'multiply'
-                                }}
                                 priority
                             />
                         </motion.div>

@@ -143,7 +143,7 @@ export default function ContactUs() {
                                     <p className="text-[10px] md:text-[12px] uppercase tracking-widest font-bold text-black/70">Registered Provider • CQC Good</p>
                                 </div>
                                 <a 
-                                    href="https://www.cqc.org.uk/provider/1-259229241" 
+                                    href="https://www.cqc.org.uk/location/1-5650432951" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="text-[9px] md:text-[10px] uppercase font-bold text-[#5B2A86] hover:underline"
