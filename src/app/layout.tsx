@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   description: "Experience the pinnacle of luxury care and support.",
   icons: {
     icon: [
-      { url: "/logo.png?v=20" },
-      { url: "/favicon.ico?v=20", sizes: "any" }
+      { url: "/homely-logo-v50.png?v=50" },
+      { url: "/favicon.ico?v=50", sizes: "any" }
     ],
-    shortcut: "/logo.png?v=20",
-    apple: "/logo.png?v=20",
+    shortcut: "/homely-logo-v50.png?v=50",
+    apple: "/homely-logo-v50.png?v=50",
   },
 };
 
