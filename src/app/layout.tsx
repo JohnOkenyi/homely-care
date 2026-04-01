@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     description: "Experience the pinnacle of luxury care and support.",
   },
   verification: {
-    google: "2glEfAVV_zjrsPYT1uKl1JUccbYoES_VtJflE5sU7GE",
+    google: "2gIEfAVV_zjrsPYT1uKl1JUccbYoES_VtJflE5sU7GE",
   },
 };
 
