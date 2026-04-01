@@ -70,7 +70,7 @@ export default function CareersPage() {
                         className="max-w-4xl"
                     >
                         <span className="text-[10px] md:text-xs font-bold tracking-[0.4em] uppercase text-[#B9A3D3] mb-6 block">
-                            Careers at Homely Health Care
+                            Careers at Homely Health Care Ltd
                         </span>
                         <h1 className="Heading-Serif text-5xl md:text-7xl lg:text-8xl leading-none mb-8">
                             Join the <span className="italic font-light">Highest Standard</span> of Care
@@ -168,10 +168,10 @@ export default function CareersPage() {
                             <h2 className="Heading-Serif text-4xl md:text-5xl mb-8">Team Excellence</h2>
                             <div className="space-y-6 text-white/90 font-light leading-relaxed Text-18">
                                 <p>
-                                    We value our team of Carers, Support Workers and Registered Nurses as we are well aware that they are our biggest asset and the face of Homely Health Care on a daily basis.
+                                    We value our team of Carers, Support Workers and Registered Nurses as we are well aware that they are our biggest asset and the face of Homely Health Care Ltd on a daily basis.
                                 </p>
                                 <p>
-                                    We know the importance of meeting outside work not just for team building exercises but as a way of fostering pride and commitment to being part of the Homely Health Care family.
+                                    We know the importance of meeting outside work not just for team building exercises but as a way of fostering pride and commitment to being part of the Homely Health Care Ltd family.
                                 </p>
                                 <p>
                                     So we arrange fun days out throughout the year allowing those who are available to come along for some fun and down time.

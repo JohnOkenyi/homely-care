@@ -26,7 +26,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Homely Care | Luxury Care Residences",
+  title: "Homely Health Care Ltd",
   description: "Experience the pinnacle of luxury care and support.",
   icons: {
     icon: [

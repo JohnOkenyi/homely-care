@@ -227,7 +227,7 @@ export default function Footer() {
                         <Link href="javascript:void(0)" className="hover:text-[#D6B36A] transition-colors cursor-not-allowed">Privacy</Link>
                         <Link href="javascript:void(0)" className="hover:text-[#D6B36A] transition-colors cursor-not-allowed">Terms</Link>
                         <p className="text-white/10 font-light lowercase tracking-normal">
-                            &copy; {new Date().getFullYear()} <span className="uppercase tracking-widest font-bold">Homely Health Care</span>
+                            &copy; {new Date().getFullYear()} <span className="uppercase tracking-widest font-bold">Homely Health Care Ltd</span>
                         </p>
                     </div>
                 </div>

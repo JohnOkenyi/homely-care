@@ -134,7 +134,7 @@ export default function Navbar() {
                                 HOMELY
                             </span>
                             <span className="text-[8px] uppercase tracking-[0.4em] text-[#5B2A86]/60 block mt-1">
-                                Health Care
+                                Health Care Ltd
                             </span>
                         </div>
                     </Link>

@@ -247,7 +247,7 @@ export default function Home() {
                 Why Choose
               </span>
               <span className="Heading-Serif italic text-[clamp(2.5rem,6vw,4.5rem)] leading-tight font-light highlighted-text-gold">
-                Homely Health Care
+                Homely Health Care Ltd
               </span>
             </h2>
             <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#D6B36A] to-transparent mx-auto mt-6" />
@@ -565,7 +565,7 @@ export default function Home() {
               </motion.div>
 
               <p className="Text-18 text-[#1B1326]/70 leading-relaxed font-light mb-10 max-w-2xl mx-auto">
-                We believe that premium care should extend beyond our immediate community. Homely Health Care proudly dedicates a percentage of its profits to two charities; The Rahula Trust and The Regiment Support Service.
+                We believe that premium care should extend beyond our immediate community. Homely Health Care Ltd proudly dedicates a percentage of its profits to two charities; The Rahula Trust and The Regiment Support Service.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <a

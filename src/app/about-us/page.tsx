@@ -78,7 +78,7 @@ export default function AboutUs() {
                             </h2>
                             <div className="space-y-4 text-sm md:text-base font-light text-[#1A1A1A]/70 leading-relaxed">
                                 <p>
-                                    Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care was established to bridge the gap between expertise and emotional warmth.
+                                    Founded on the belief that every individual deserves to age with dignity and grace, Homely Health Care Ltd was established to bridge the gap between expertise and emotional warmth.
                                 </p>
                                 <p>
                                     We don&apos;t just provide services; we cultivate relationships. Our approach is deeply personal, ensuring that the care we deliver feels less like an intervention and more like an extension of family.
@@ -104,7 +104,7 @@ export default function AboutUs() {
                     >
                         <span className="text-[#D6B36A] text-[9px] tracking-[0.4em] uppercase block mb-3 font-bold">Why Us</span>
                         <h2 className="text-3xl md:text-5xl text-[#1B1326] mb-12 font-serif italic">
-                            People Choose <span className="highlighted-text-gold font-light not-italic">Homely Health Care</span> Because
+                            People Choose <span className="highlighted-text-gold font-light not-italic">Homely Health Care Ltd</span> Because
                         </h2>
                     </motion.div>
                 </div>
@@ -115,7 +115,7 @@ export default function AboutUs() {
                             {
                                 icon: Heart,
                                 title: "Person Centred Care",
-                                desc: "Homely Health Care is committed to providing high quality care services thoughtfully tailored to your individual needs. We understand that every person’s journey is unique and we are committed to providing genuinely person centred support that puts your dignity, preferences and wellbeing at the forefront of everything we do.",
+                                desc: "Homely Health Care Ltd is committed to providing high quality care services thoughtfully tailored to your individual needs. We understand that every person’s journey is unique and we are committed to providing genuinely person centred support that puts your dignity, preferences and wellbeing at the forefront of everything we do.",
                                 dark: false,
                             },
                             {

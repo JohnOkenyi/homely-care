@@ -8,14 +8,14 @@ const team = [
     {
         name: "Douglas Matungamire",
         role: "Director / Registered Manager",
-        bio: "Douglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
+        bio: "Douglas started Homely Health Care Ltd in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs.",
         img: "/images/team/Douglas Matungamire.png",
         accolade: "Founder & Director"
     },
     {
         name: "Maria Wilson",
         role: "Operations Manager",
-        bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
+        bio: "Having previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care Ltd in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts.",
         img: "/images/team/Maria Wilson.png",
         accolade: "NHS Experience"
     },
