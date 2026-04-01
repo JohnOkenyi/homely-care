@@ -27,13 +27,23 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Homely Health Care Ltd",
-  description: "Experience the pinnacle of luxury care and support.",
-  icons: {
-    icon: [
-      { url: "/homely-brand-v100.png?v=100" }
-    ],
-    shortcut: "/homely-brand-v100.png?v=100",
-    apple: "/homely-brand-v100.png?v=100",
+  description: "Homely Health Care Ltd provides the pinnacle of luxury home care, supported living, and complex care services. CQC rated 'Good' and dedicated to dignified, person-centred support.",
+  metadataBase: new URL("https://www.homelyhealth.uk"),
+  openGraph: {
+    title: "Homely Health Care Ltd | Luxury Care & Support",
+    description: "Experience the pinnacle of luxury care and support with Homely Health Care Ltd. CQC regulated home care, live-in care, and supported living.",
+    url: "https://www.homelyhealth.uk",
+    siteName: "Homely Health Care Ltd",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Homely Health Care Ltd",
+    description: "Experience the pinnacle of luxury care and support.",
+  },
+  verification: {
+    google: "2glEfAVV_zjrsPYT1uKl1JUccbYoES_VtJflE5sU7GE",
   },
 };
 
