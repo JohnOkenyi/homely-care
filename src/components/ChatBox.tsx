@@ -17,7 +17,7 @@ const knowledgeBase: QA[] = [
     // ── GENERAL ──
     {
         keywords: ["hello", "hi", "hey", "good morning", "good afternoon", "good evening", "how are you"],
-        answer: "Hello! 👋 Welcome to Homely Health Care Ltd. I'm here to help you learn about our services. What would you like to know?"
+        answer: "Hello! 👋 Welcome to Homely Health Care. I'm here to help you learn about our services. What would you like to know?"
     },
     {
         keywords: ["thank", "thanks", "cheers", "appreciate", "ta"],
@@ -31,11 +31,11 @@ const knowledgeBase: QA[] = [
     // ── ABOUT THE COMPANY ──
     {
         keywords: ["about", "company", "who are you", "history", "background", "what is homely"],
-        answer: "**Homely Health Care Ltd** was founded in 2016 by Douglas Matungamire. We are an innovative provider of support and personal care, dedicated to creating an atmosphere that enables and encourages you to lead a full and independent life.\n\nOur mission is to bridge the gap between clinical excellence and emotional warmth — making home care synonymous with sanctuary."
+        answer: "**Homely Health Care** was founded in 2016 by Douglas Matungamire. We are an innovative provider of support and personal care, dedicated to creating an atmosphere that enables and encourages you to lead a full and independent life.\n\nOur mission is to bridge the gap between clinical excellence and emotional warmth — making home care synonymous with sanctuary."
     },
     {
         keywords: ["founded", "started", "established", "when", "year", "2016", "how long"],
-        answer: "Homely Health Care Ltd was **founded in 2016** by Douglas Matungamire. That gives us nearly a decade of experience providing outstanding care services."
+        answer: "Homely Health Care was **founded in 2016** by Douglas Matungamire. That gives us nearly a decade of experience providing outstanding care services."
     },
     {
         keywords: ["value", "mission", "vision", "pillar", "philosophy", "believe", "principle", "promise"],
@@ -43,7 +43,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["why choose", "why homely", "what makes you different", "special", "unique", "advantage"],
-        answer: "People choose Homely Health Care Ltd because:\n\n✅ **Person-centred care** – Every plan is tailored to your unique needs\n✅ **Rigorous vetting** – All staff are thoroughly referenced, DBS checked, and highly trained\n✅ **Expert management** – Field Care Managers visit regularly to ensure your care is always aligned with your needs\n✅ **CQC rated 'Good'** – Independently inspected and approved\n✅ **Social responsibility** – We donate to The Rahula Trust and The Regiment Support Service"
+        answer: "People choose Homely Health Care because:\n\n✅ **Person-centred care** – Every plan is tailored to your unique needs\n✅ **Rigorous vetting** – All staff are thoroughly referenced, DBS checked, and highly trained\n✅ **Expert management** – Field Care Managers visit regularly to ensure your care is always aligned with your needs\n✅ **CQC rated 'Good'** – Independently inspected and approved\n✅ **Social responsibility** – We donate to The Rahula Trust and The Regiment Support Service"
     },
 
     // ── SERVICES OVERVIEW ──
@@ -135,11 +135,11 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["douglas", "matungamire", "director", "founder", "who founded"],
-        answer: "**Douglas Matungamire**, Director / Registered Manager\n\nDouglas started Homely Health Care Ltd in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs."
+        answer: "**Douglas Matungamire**, Director / Registered Manager\n\nDouglas started Homely Health Care in 2016. He has extensive experience across Healthcare, Education and Insurance as an internal auditor, as well as hands-on care work as a Support Worker / Carer with adults and children with various social care needs."
     },
     {
         keywords: ["maria", "wilson", "office manager"],
-        answer: "**Maria Wilson**, Operations Manager\n\nHaving previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care Ltd in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts."
+        answer: "**Maria Wilson**, Operations Manager\n\nHaving previously worked in general management within the NHS in London and Southampton, Maria joined Homely Health Care in 2022. Her diverse role includes recruitment, HR, client liaison, staff management and accounts."
     },
     {
         keywords: ["cedric", "dube", "compliance"],
@@ -163,7 +163,7 @@ const knowledgeBase: QA[] = [
     // ── CQC & QUALITY ──
     {
         keywords: ["cqc", "regulated", "registered", "nhs", "framework", "accredit", "inspection", "rating", "good"],
-        answer: "Homely Health Care Ltd is **CQC regulated**. We were **inspected and rated 'Good'** by the CQC in our very first inspection! 🌟 You can view our full rating and report on the [CQC website](https://www.cqc.org.uk/location/1-5650432951).\n\nWe are also **NHS Framework Approved** and operate to the highest care and regulatory standards to give you complete peace of mind."
+        answer: "Homely Health Care is **CQC regulated**. We were **inspected and rated 'Good'** by the CQC in our very first inspection! 🌟 You can view our full rating and report on the [CQC website](https://www.cqc.org.uk/location/1-5650432951).\n\nWe are also **NHS Framework Approved** and operate to the highest care and regulatory standards to give you complete peace of mind."
     },
     {
         keywords: ["quality", "standard", "training", "qualified", "professional"],
@@ -179,7 +179,7 @@ const knowledgeBase: QA[] = [
     // ── CHARITY ──
     {
         keywords: ["charity", "rahula", "trust", "donate", "giving back", "social responsibility", "children", "education"],
-        answer: "Homely Health Care Ltd proudly supports **The Rahula Trust** and **The Regiment Support Service**, dedicating a percentage of our profits to these causes. This reflects our belief that premium care should extend beyond our immediate community."
+        answer: "Homely Health Care proudly supports **The Rahula Trust** and **The Regiment Support Service**, dedicating a percentage of our profits to these causes. This reflects our belief that premium care should extend beyond our immediate community."
     },
 
     // ── CAREERS ──
@@ -233,7 +233,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["what can you do", "what can i ask", "how do you work", "what do you know"],
-        answer: "I'm Homely Health Care Ltd's virtual assistant! I can answer questions about:\n\n🏥 Our care services (Home Care, Live-in, Supported Living, Complex Care)\n👥 Our team members\n📞 Contact information\n⭐ CQC rating and quality\n💼 Career opportunities\n💜 Our charity work\n💷 Pricing and funding\n\nJust type your question and I'll do my best to help!"
+        answer: "I'm Homely Health Care's virtual assistant! I can answer questions about:\n\n🏥 Our care services (Home Care, Live-in, Supported Living, Complex Care)\n👥 Our team members\n📞 Contact information\n⭐ CQC rating and quality\n💼 Career opportunities\n💜 Our charity work\n💷 Pricing and funding\n\nJust type your question and I'll do my best to help!"
     }
 ];
 
@@ -411,7 +411,7 @@ export default function ChatBox() {
 
     // AI Chat state
     const [messages, setMessages] = useState<ChatMessage[]>([
-        { role: "bot", text: "Hello! 👋 Welcome to Homely Health Care Ltd. How can I help you today?\n\nYou can ask me about our **services**, **team**, **contact details**, **CQC rating**, **careers**, or anything else about Homely Health Care Ltd." }
+        { role: "bot", text: "Hello! 👋 Welcome to Homely Health Care. How can I help you today?\n\nYou can ask me about our **services**, **team**, **contact details**, **CQC rating**, **careers**, or anything else about Homely Health Care." }
     ]);
     const [input, setInput] = useState("");
     const [isTyping, setIsTyping] = useState(false);
@@ -779,7 +779,7 @@ export default function ChatBox() {
                 {/* FOOTER BRANDING */}
                 <div className="shrink-0 bg-[#FAFAF8] border-t border-black/5 py-2 text-center">
                     <p className="text-[9px] uppercase tracking-widest text-[#1B1326]/25 font-bold">
-                        Homely Health Care Ltd • 24/7 Support
+                        Homely Health Care • 24/7 Support
                     </p>
                 </div>
             </div>

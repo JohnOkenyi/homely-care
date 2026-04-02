@@ -376,7 +376,7 @@ export default function SeniorLiving3D({ scale = 1.3 }: SeniorLiving3DProps) {
                 return texture;
             };
 
-            const signTextTexture = createSignTextTexture('Homely Health Care Ltd');
+            const signTextTexture = createSignTextTexture('Homely Health Care');
             const signTextMaterial = new THREE.MeshBasicMaterial({
                 map: signTextTexture,
                 transparent: true,
