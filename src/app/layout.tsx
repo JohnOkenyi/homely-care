@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   title: "Homely Health Care",
   description: "Homely Health Care provides the pinnacle of luxury home care, supported living, and complex care services. CQC rated 'Good' and dedicated to dignified, person-centred support.",
   metadataBase: new URL("https://www.homelyhealth.uk"),
+  icons: {
+    icon: "/logo-final.png",
+    shortcut: "/logo-final.png",
+    apple: "/logo-final.png",
+  },
   openGraph: {
     title: "Homely Health Care | Luxury Care & Support",
     description: "Experience the pinnacle of luxury care and support with Homely Health Care. CQC regulated home care, live-in care, and supported living.",
