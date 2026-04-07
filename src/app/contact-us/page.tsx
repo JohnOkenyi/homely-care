@@ -39,7 +39,15 @@ export default function ContactUs() {
             `Message:\n${formData.message}`
         );
 
-        window.location.href = `mailto:info@homelyhealth.uk?subject=${subject}&body=${body}`;
+        const mailtoLink = `mailto:info@homelyhealth.uk?subject=${subject}&body=${body}`;
+        
+        // Most reliable cross-browser method to trigger mailto: links
+        const a = document.createElement('a');
+        a.href = mailtoLink;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 100);
     };
 
     return (
