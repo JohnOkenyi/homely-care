@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import Image from "next/image";
@@ -13,6 +14,34 @@ const SeniorLiving3D = dynamic(() => import("@/components/SeniorLiving3D"), {
 });
 
 export default function ContactUs() {
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email: '',
+        service: 'Live In Care',
+        message: ''
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        
+        const subject = encodeURIComponent(`Enquiry from ${formData.name}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\n` +
+            `Phone: ${formData.phone}\n` +
+            `Email: ${formData.email}\n` +
+            `Service Required: ${formData.service}\n\n` +
+            `Message:\n${formData.message}`
+        );
+
+        window.location.href = `mailto:info@homelyhealth.uk?subject=${subject}&body=${body}`;
+    };
+
     return (
         <main className="min-h-screen bg-[#0F1115] text-[#F2F2F2] overflow-hidden">
 
@@ -166,23 +195,52 @@ export default function ContactUs() {
                                     <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Please complete the form below and we will contact you shortly.</p>
                                 </div>
 
-                                <form className="space-y-6 md:space-y-10">
+                                <form onSubmit={handleSubmit} className="space-y-6 md:space-y-10">
                                     <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                                         <div className="space-y-2 md:space-y-3">
-                                            <input type="text" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Full Name" />
+                                            <input 
+                                                type="text" 
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" 
+                                                placeholder="Full Name" 
+                                            />
                                         </div>
                                         <div className="space-y-2 md:space-y-3">
-                                            <input type="tel" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Phone Number" />
+                                            <input 
+                                                type="tel" 
+                                                name="phone"
+                                                value={formData.phone}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" 
+                                                placeholder="Phone Number" 
+                                            />
                                         </div>
                                     </div>
 
                                     <div className="space-y-2 md:space-y-3">
-                                        <input type="email" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" placeholder="Email Address" />
+                                        <input 
+                                            type="email" 
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/40 focus:border-[#5B2A86] focus:outline-none transition-all" 
+                                            placeholder="Email Address" 
+                                        />
                                     </div>
 
                                     <div className="space-y-2 md:space-y-3">
                                         <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Service Requirement</label>
-                                        <select defaultValue="Live In Care" className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer">
+                                        <select 
+                                            name="service"
+                                            value={formData.service}
+                                            onChange={handleChange}
+                                            className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg focus:border-[#5B2A86] focus:outline-none appearance-none cursor-pointer"
+                                        >
                                             <option value="Home Care">Home Care</option>
                                             <option value="Live In Care">Live In Care</option>
                                             <option value="Supported Living">Supported Living</option>
@@ -192,10 +250,19 @@ export default function ContactUs() {
 
                                     <div className="space-y-2 md:space-y-3">
                                         <label className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-[#5B2A86]">Personal Message</label>
-                                        <textarea rows={2} className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none resize-none transition-all" placeholder="How may we assist you?" />
+                                        <textarea 
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            required
+                                            rows={2} 
+                                            className="w-full bg-transparent border-b border-black/10 px-0 py-3 md:py-4 text-[#0F1115] text-base md:text-lg placeholder:text-black/10 focus:border-[#5B2A86] focus:outline-none resize-none transition-all" 
+                                            placeholder="How may we assist you?" 
+                                        />
                                     </div>
 
                                     <motion.button
+                                        type="submit"
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         className="w-full py-5 md:py-6 bg-[#0F1115] text-[#D6B36A] text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold rounded-xl md:rounded-2xl shadow-2xl transition-all duration-500 hover:bg-[#5B2A86] hover:text-white flex items-center justify-center gap-4 group"
