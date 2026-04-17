@@ -36,19 +36,12 @@ export default function ContactUs() {
         setSubmitStatus('idle');
         
         try {
-            // URL Encode data for Netlify Forms
-            const body = new URLSearchParams();
-            body.append('form-name', 'contact');
-            Object.entries(formData).forEach(([key, value]) => {
-                body.append(key, value as string);
-            });
-
-            const response = await fetch('/', {
+            const response = await fetch('/api/send', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: body.toString(),
+                body: JSON.stringify(formData),
             });
 
             if (response.ok) {
@@ -227,10 +220,7 @@ export default function ContactUs() {
                                 <form 
                                     onSubmit={handleSubmit} 
                                     className="space-y-6 md:space-y-10"
-                                    name="contact"
-                                    data-netlify="true"
                                 >
-                                    <input type="hidden" name="form-name" value="contact" />
                                     <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                                         <div className="space-y-2 md:space-y-3">
                                             <input 
