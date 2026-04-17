@@ -24,6 +24,7 @@ export default function ContactUs() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -54,10 +55,13 @@ export default function ContactUs() {
                     message: ''
                 });
             } else {
+                const errorData = await response.json().catch(() => ({ error: 'Server error' }));
+                setErrorMessage(errorData.error || 'Something went wrong. Please try again.');
                 setSubmitStatus('error');
             }
         } catch (error) {
             console.error('Submission error:', error);
+            setErrorMessage('Network error. Please check your connection.');
             setSubmitStatus('error');
         } finally {
             setIsSubmitting(false);
@@ -303,8 +307,8 @@ export default function ContactUs() {
                                             animate={{ opacity: 1, y: 0 }}
                                             className="p-4 bg-red-50 text-red-700 rounded-xl flex items-center gap-3 border border-red-100"
                                         >
-                                            <AlertCircle className="w-5 h-5" />
-                                            <p className="text-sm font-medium">Something went wrong. Please try again or call us directly.</p>
+                                            <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                                            <p className="text-sm font-medium">{errorMessage}</p>
                                         </motion.div>
                                     )}
 
