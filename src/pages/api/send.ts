@@ -65,8 +65,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     return res.status(200).json({ success: true, data });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('API Error:', err);
-    return res.status(500).json({ error: err.message });
+    const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+    return res.status(500).json({ error: errorMessage });
   }
 }
