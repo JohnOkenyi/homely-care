@@ -61,7 +61,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (error) {
       console.error('Resend Error:', error);
-      return res.status(500).json({ error });
+      return res.status(500).json({ 
+        error: error.message || 'Resend API error', 
+        details: error 
+      });
     }
 
     return res.status(200).json({ success: true, data });
