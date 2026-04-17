@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -22,32 +22,53 @@ export default function ContactUs() {
         message: ''
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
         
-        const subject = encodeURIComponent(`Enquiry from ${formData.name}`);
-        const body = encodeURIComponent(
-            `Name: ${formData.name}\n` +
-            `Phone: ${formData.phone}\n` +
-            `Email: ${formData.email}\n` +
-            `Service Required: ${formData.service}\n\n` +
-            `Message:\n${formData.message}`
-        );
+        try {
+            // URL Encode data for Netlify Forms
+            const body = new URLSearchParams();
+            body.append('form-name', 'contact');
+            Object.entries(formData).forEach(([key, value]) => {
+                body.append(key, value as string);
+            });
 
-        const mailtoLink = `mailto:info@homelyhealth.uk?subject=${subject}&body=${body}`;
-        
-        // Most reliable cross-browser method to trigger mailto: links
-        const a = document.createElement('a');
-        a.href = mailtoLink;
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        setTimeout(() => document.body.removeChild(a), 100);
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: body.toString(),
+            });
+
+            if (response.ok) {
+                setSubmitStatus('success');
+                setFormData({
+                    name: '',
+                    phone: '',
+                    email: '',
+                    service: 'Live In Care',
+                    message: ''
+                });
+            } else {
+                setSubmitStatus('error');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -203,7 +224,13 @@ export default function ContactUs() {
                                     <p className="text-black/60 font-medium text-sm sm:text-base max-w-md mx-auto md:mx-0">Please complete the form below and we will contact you shortly.</p>
                                 </div>
 
-                                <form onSubmit={handleSubmit} className="space-y-6 md:space-y-10">
+                                <form 
+                                    onSubmit={handleSubmit} 
+                                    className="space-y-6 md:space-y-10"
+                                    name="contact"
+                                    data-netlify="true"
+                                >
+                                    <input type="hidden" name="form-name" value="contact" />
                                     <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                                         <div className="space-y-2 md:space-y-3">
                                             <input 
@@ -269,14 +296,50 @@ export default function ContactUs() {
                                         />
                                     </div>
 
+                                    {submitStatus === 'success' && (
+                                        <motion.div 
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="p-4 bg-green-50 text-green-700 rounded-xl flex items-center gap-3 border border-green-100"
+                                        >
+                                            <CheckCircle2 className="w-5 h-5" />
+                                            <p className="text-sm font-medium">Enquiry sent successfully! We will be in touch shortly.</p>
+                                        </motion.div>
+                                    )}
+
+                                    {submitStatus === 'error' && (
+                                        <motion.div 
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            className="p-4 bg-red-50 text-red-700 rounded-xl flex items-center gap-3 border border-red-100"
+                                        >
+                                            <AlertCircle className="w-5 h-5" />
+                                            <p className="text-sm font-medium">Something went wrong. Please try again or call us directly.</p>
+                                        </motion.div>
+                                    )}
+
                                     <motion.button
                                         type="submit"
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="w-full py-5 md:py-6 bg-[#0F1115] text-[#D6B36A] text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold rounded-xl md:rounded-2xl shadow-2xl transition-all duration-500 hover:bg-[#5B2A86] hover:text-white flex items-center justify-center gap-4 group"
+                                        disabled={isSubmitting}
+                                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                                        className={`w-full py-5 md:py-6 text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold rounded-xl md:rounded-2xl shadow-2xl transition-all duration-500 flex items-center justify-center gap-4 group ${
+                                            isSubmitting 
+                                            ? 'bg-gray-400 text-white cursor-not-allowed' 
+                                            : 'bg-[#0F1115] text-[#D6B36A] hover:bg-[#5B2A86] hover:text-white'
+                                        }`}
                                     >
-                                        <span>Secure Transmission</span>
-                                        <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        {isSubmitting ? (
+                                            <>
+                                                <span>Transmitting...</span>
+                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>Secure Transmission</span>
+                                                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            </>
+                                        )}
                                     </motion.button>
                                 </form>
                             </motion.div>
