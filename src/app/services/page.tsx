@@ -10,7 +10,7 @@ function ServicesContent() {
     const [selectedService, setSelectedService] = useState<string | "all">("all");
 
     useEffect(() => {
-        const serviceId = searchParams.get("service");
+        const serviceId = searchParams?.get("service");
         if (serviceId && services.find(s => s.id === serviceId)) {
             setSelectedService(serviceId);
         } else if (serviceId === "all") {
