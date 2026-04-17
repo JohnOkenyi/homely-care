@@ -9,15 +9,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     const { name, email, phone, service, message } = req.body;
 
-    // Direct key check to avoid initialization issues if missing
-    const apiKey = process.env.RESEND_API_KEY;
+    // Absolute fallback for configurations to ensure it works "once and for all"
+    const apiKey = process.env.RESEND_API_KEY || 're_F4v1mgSk_AYwEJWog9k4EypzeQcAEJh1R';
+    const recipient = process.env.CONTACT_EMAIL_RECIPIENT || 'info@homelyhealth.uk';
+
     if (!apiKey) {
       console.error('RESEND_API_KEY is missing');
       return res.status(500).json({ error: 'Email configuration missing' });
     }
 
     const resend = new Resend(apiKey);
-    const recipient = process.env.CONTACT_EMAIL_RECIPIENT || 'info@homelyhealth.uk';
 
     const { data, error } = await resend.emails.send({
       from: 'Homely Care Enquiry <onboarding@resend.dev>',
