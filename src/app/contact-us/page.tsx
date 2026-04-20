@@ -335,7 +335,7 @@ export default function ContactUs() {
                                     >
                                         {isSubmitting ? (
                                             <>
-                                                <span>Transmitting...</span>
+                                                <span>Sending Now...</span>
                                                 <Loader2 className="w-4 h-4 animate-spin" />
                                             </>
                                         ) : (
