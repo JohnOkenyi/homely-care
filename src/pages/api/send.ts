@@ -32,8 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.error('FormSubmit Error Status:', response.status);
         console.error('FormSubmit Error Body:', errorText);
         return res.status(response.status).json({ 
-            error: 'FormSubmit API error', 
-            details: errorText 
+            error: `FormSubmit Error: ${errorText}` 
         });
     }
 
