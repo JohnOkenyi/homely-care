@@ -37,12 +37,22 @@ export default function ContactUs() {
         setSubmitStatus('idle');
         
         try {
-            const response = await fetch('/api/send', {
+            // Using FormSubmit.co AJAX directly from the client to bypass Cloudflare's server-side block
+            const response = await fetch('https://formsubmit.co/ajax/info@homelyhealth.uk', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    _subject: `New Enquiry from ${formData.name}`,
+                    _replyto: formData.email,
+                    Name: formData.name,
+                    Email: formData.email,
+                    Phone: formData.phone,
+                    Service: formData.service,
+                    Message: formData.message,
+                }),
             });
 
             if (response.ok) {
@@ -55,8 +65,8 @@ export default function ContactUs() {
                     message: ''
                 });
             } else {
-                const errorData = await response.json().catch(() => ({ error: 'Server error' }));
-                setErrorMessage(errorData.error || 'Something went wrong. Please try again.');
+                const errorData = await response.json().catch(() => ({ error: 'Submission failed' }));
+                setErrorMessage(errorData.message || 'Something went wrong. Please try again.');
                 setSubmitStatus('error');
             }
         } catch (error) {
