@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Resend } from 'resend';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -8,6 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     const { name, email, phone, service, message } = req.body;
+    const recipient = process.env.CONTACT_EMAIL_RECIPIENT || 'info@homelyhealth.uk';
 
     // Using FormSubmit.co to bypass DNS/Wix MX record limitations
     const response = await fetch(`https://formsubmit.co/ajax/${recipient}`, {
