@@ -133,7 +133,7 @@ export default function AboutUs() {
                             {
                                 icon: Heart,
                                 title: "Giving Back",
-                                desc: "We donate a percentage of our profits to 2 charities, the Rahula Trust which provides education to children in various parts of the world and The Regimental Support Service which provides support to serving soldiers, veterans and their families.",
+                                desc: "We donate a percentage of our profits to charity, including The Regimental Support Service which provides support to serving soldiers, veterans and their families.",
                                 dark: true,
                             },
                         ].map((card) => (

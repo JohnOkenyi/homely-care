@@ -43,7 +43,7 @@ const knowledgeBase: QA[] = [
     },
     {
         keywords: ["why choose", "why homely", "what makes you different", "special", "unique", "advantage"],
-        answer: "People choose Homely Health Care because:\n\n✅ **Person-centred care** – Every plan is tailored to your unique needs\n✅ **Rigorous vetting** – All staff are thoroughly referenced, DBS checked, and highly trained\n✅ **Expert management** – Field Care Managers visit regularly to ensure your care is always aligned with your needs\n✅ **CQC rated 'Good'** – Independently inspected and approved\n✅ **Social responsibility** – We donate to The Rahula Trust and The Regiment Support Service"
+        answer: "People choose Homely Health Care because:\n\n✅ **Person-centred care** – Every plan is tailored to your unique needs\n✅ **Rigorous vetting** – All staff are thoroughly referenced, DBS checked, and highly trained\n✅ **Expert management** – Field Care Managers visit regularly to ensure your care is always aligned with your needs\n✅ **CQC rated 'Good'** – Independently inspected and approved\n✅ **Social responsibility** – We donate to The Regiment Support Service"
     },
 
     // ── SERVICES OVERVIEW ──
@@ -178,8 +178,8 @@ const knowledgeBase: QA[] = [
 
     // ── CHARITY ──
     {
-        keywords: ["charity", "rahula", "trust", "donate", "giving back", "social responsibility", "children", "education"],
-        answer: "Homely Health Care proudly supports **The Rahula Trust** and **The Regiment Support Service**, dedicating a percentage of our profits to these causes. This reflects our belief that premium care should extend beyond our immediate community."
+        keywords: ["charity", "donate", "giving back", "social responsibility"],
+        answer: "Homely Health Care proudly supports **The Regiment Support Service**, dedicating a percentage of our profits to this cause. This reflects our belief that premium care should extend beyond our immediate community."
     },
 
     // ── CAREERS ──
@@ -229,7 +229,7 @@ const knowledgeBase: QA[] = [
     // ── CATCH-ALL CONVERSATIONAL ──
     {
         keywords: ["help", "assist", "support me", "i need", "looking for"],
-        answer: "I'd love to help! You can ask me about:\n\n• Our **services** (Home Care, Live-in Care, Supported Living, Complex Care)\n• Our **team** and their experience\n• **Contact details** and office location\n• **CQC rating** and quality standards\n• **Careers** and job opportunities\n• **The Rahula Trust** charity\n\nOr simply call us on **01202 948898** for a personal chat!"
+        answer: "I'd love to help! You can ask me about:\n\n• Our **services** (Home Care, Live-in Care, Supported Living, Complex Care)\n• Our **team** and their experience\n• **Contact details** and office location\n• **CQC rating** and quality standards\n• **Careers** and job opportunities\n• **Charity & community support**\n\nOr simply call us on **01202 948898** for a personal chat!"
     },
     {
         keywords: ["what can you do", "what can i ask", "how do you work", "what do you know"],
