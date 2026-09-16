@@ -584,7 +584,7 @@ export default function Home() {
       </section>
 
       {/* OUR COMMITMENT TO SUSTAINABILITY */}
-      <SustainabilitySection variant="dark" />
+      <SustainabilitySection variant="light" />
     </main >
   );
 }
