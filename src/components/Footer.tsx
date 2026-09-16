@@ -172,6 +172,7 @@ export default function Footer() {
                                 <Link href="/services" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Services</Link>
                                 <Link href="/meet-the-team" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Team</Link>
                                 <Link href="/careers" className="hover:text-white hover:translate-x-1 transition-all duration-300 w-fit">Careers</Link>
+                                <a href="/homely-health-care-carbon-reduction-plan.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[#D6B36A] hover:translate-x-1 transition-all duration-300 w-fit text-[#D6B36A]/80 flex items-center gap-1">Carbon Reduction Plan ↗</a>
                             </nav>
                         </div>
 
@@ -224,6 +225,7 @@ export default function Footer() {
 
                     {/* Legal & Copyright */}
                     <div className="flex flex-wrap items-center justify-center gap-10">
+                        <a href="/homely-health-care-carbon-reduction-plan.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-[#D6B36A] transition-colors">Carbon Reduction Plan</a>
                         <Link href="javascript:void(0)" className="hover:text-[#D6B36A] transition-colors cursor-not-allowed">Privacy</Link>
                         <Link href="javascript:void(0)" className="hover:text-[#D6B36A] transition-colors cursor-not-allowed">Terms</Link>
                         <p className="text-white/10 font-light lowercase tracking-normal">

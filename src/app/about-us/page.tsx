@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Heart, Shield, Users } from "lucide-react";
+import SustainabilitySection from "@/components/SustainabilitySection";
 
 export default function AboutUs() {
     return (
@@ -288,6 +289,9 @@ export default function AboutUs() {
                     </div>
                 </div>
             </section>
+
+            {/* OUR COMMITMENT TO SUSTAINABILITY */}
+            <SustainabilitySection variant="light" />
         </main>
     );
 }

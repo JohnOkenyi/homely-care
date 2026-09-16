@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, HeartHandshake, UserCheck, Heart } from "lucide-react";
 import dynamic from "next/dynamic";
+import SustainabilitySection from "@/components/SustainabilitySection";
 
 // Dynamic Import for the heavy Globe component to improve LCP/TTI
 // Dynamic Import for the new 3D visual
@@ -581,6 +582,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* OUR COMMITMENT TO SUSTAINABILITY */}
+      <SustainabilitySection variant="dark" />
     </main >
   );
 }
